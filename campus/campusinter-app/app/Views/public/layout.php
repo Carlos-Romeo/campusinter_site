@@ -7,7 +7,7 @@
     <title><?= htmlspecialchars($title ?? 'Campus Inter') ?> — Campus Inter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body>
@@ -16,14 +16,20 @@
         <header class="ci-header">
             <div class="ci-header__inner">
                 <a href="/" class="ci-header__logo">
-                    <span class="ci-header__logo-icon">CI</span>
+                    <img src="/assets/img/icon.svg" alt="" width="38" height="38" class="ci-header__logo-icon" style="background:none;box-shadow:none;">
                     <span>Campus Inter</span>
                 </a>
-                <nav class="ci-header__nav">
+                <button id="ci-menu-toggle" class="ci-header__menu-toggle" aria-label="Menu" aria-expanded="false">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <nav id="ci-header-nav" class="ci-header__nav">
                     <a href="/" class="ci-header__link ci-header__link--active">Formations</a>
                     <a href="/admin" class="ci-header__link">Administration</a>
                 </nav>
             </div>
+            <div id="ci-header-overlay" class="ci-header__overlay"></div>
         </header>
 
         <!-- Main Content -->

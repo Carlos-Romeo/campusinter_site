@@ -22,14 +22,27 @@ const CIAdmin = {
 
         if (!toggle || !sidebar) return;
 
+        const close = () => {
+            sidebar.classList.remove('ci-admin__sidebar--open');
+            overlay?.classList.remove('ci-admin__sidebar-overlay--visible');
+        };
+
         toggle.addEventListener('click', () => {
             sidebar.classList.toggle('ci-admin__sidebar--open');
             overlay?.classList.toggle('ci-admin__sidebar-overlay--visible');
         });
 
-        overlay?.addEventListener('click', () => {
-            sidebar.classList.remove('ci-admin__sidebar--open');
-            overlay.classList.remove('ci-admin__sidebar-overlay--visible');
+        overlay?.addEventListener('click', close);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('ci-admin__sidebar--open')) {
+                close();
+            }
+        });
+
+        const mq = window.matchMedia('(min-width: 1024px)');
+        mq.addEventListener('change', (e) => {
+            if (e.matches) close();
         });
     },
 
@@ -156,7 +169,6 @@ const CIAdmin = {
 
         const toast = document.createElement('div');
         toast.className = `ci-toast ci-toast--${type} ci-toast--visible ci-toast--admin`;
-        toast.style.cssText = 'position: fixed; bottom: 24px; right: 24px; z-index: 1000;';
         toast.innerHTML = `
             <span class="ci-toast__message">${message}</span>
             <button class="ci-toast__close" onclick="this.parentElement.remove()">&times;</button>

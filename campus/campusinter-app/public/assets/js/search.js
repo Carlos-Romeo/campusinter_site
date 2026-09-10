@@ -98,7 +98,7 @@ const CISearch = {
 
     async loadLevels() {
         try {
-            const data = await CIApi.get(`/api/levels?year_id=${this.state.yearId}`);
+            const data = await CIApi.get(`/api/levels?year_id=${encodeURIComponent(this.state.yearId)}`);
             this.populateSelect(this.elements.levelSelect, data.data, 'Choisir un niveau');
             this.elements.levelSelect.disabled = false;
         } catch (error) {
@@ -109,7 +109,7 @@ const CISearch = {
 
     async loadDomains() {
         try {
-            const data = await CIApi.get(`/api/domains?level=${this.state.level}&year_id=${this.state.yearId}`);
+            const data = await CIApi.get(`/api/domains?level=${encodeURIComponent(this.state.level)}&year_id=${encodeURIComponent(this.state.yearId)}`);
             this.populateSelect(this.elements.domainSelect, data.data, 'Choisir un domaine');
             this.elements.domainSelect.disabled = false;
         } catch (error) {
@@ -120,7 +120,7 @@ const CISearch = {
 
     async loadSpecialties() {
         try {
-            const data = await CIApi.get(`/api/specialties?domain_id=${this.state.domainId}&level=${this.state.level}&year_id=${this.state.yearId}`);
+            const data = await CIApi.get(`/api/specialties?domain_id=${encodeURIComponent(this.state.domainId)}&level=${encodeURIComponent(this.state.level)}&year_id=${encodeURIComponent(this.state.yearId)}`);
             this.populateSelect(this.elements.specialtySelect, data.data, 'Choisir une spécialité');
             this.elements.specialtySelect.disabled = false;
         } catch (error) {
@@ -137,7 +137,7 @@ const CISearch = {
                 specialty_id: this.state.specialtyId,
                 year_id: this.state.yearId,
             });
-            const data = await CIApi.get(`/api/cities?${params}`);
+            const data = await CIApi.get(`/api/cities?${params.toString()}`);
             this.populateSelect(this.elements.citySelect, data.data, 'Choisir une ville');
             this.elements.citySelect.disabled = false;
         } catch (error) {
@@ -159,9 +159,10 @@ const CISearch = {
                 page: this.state.page,
             });
 
-            const data = await CIApi.get(`/api/programs/search?${params}`);
+            const data = await CIApi.get(`/api/programs/search?${params.toString()}`);
             
             this.state.totalPages = data.totalPages;
+            this.hideLoading();
             this.renderResults(data.data, data.total);
             this.renderPagination(data.page, data.totalPages);
         } catch (error) {
@@ -201,6 +202,13 @@ const CISearch = {
             html += this.renderCard(program, index);
         });
         this.elements.resultsGrid.innerHTML = html;
+
+        // Animate cards in
+        requestAnimationFrame(() => {
+            this.elements.resultsGrid.querySelectorAll('.ci-fade-in').forEach((el, i) => {
+                setTimeout(() => el.classList.add('ci-visible'), i * 80);
+            });
+        });
     },
 
     renderCard(program, index) {

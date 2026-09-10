@@ -81,7 +81,8 @@
                             <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+228 90 00 00 00">
                         </div>
 
-                        <div style="text-align: right;">
+                        <div class="ci-form-step-actions">
+                            <span></span>
                             <button type="button" class="ci-btn ci-btn--secondary" data-ci-step="2">
                                 Continuer
                                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -122,7 +123,7 @@
                             <input type="text" id="bac_series" name="bac_series" placeholder="Ex: C, D, TI">
                         </div>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--ci-space-md); margin-bottom: var(--ci-space-md);">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--ci-space-md); margin-bottom: var(--ci-space-md);" class="ci-form-grid-2">
                             <div class="ci-form-group">
                                 <label for="bac_average">Moyenne du BAC (/20)</label>
                                 <input type="number" id="bac_average" name="bac_average" min="0" max="20" step="0.01" placeholder="Ex: 14.50">
@@ -138,7 +139,7 @@
                             <textarea id="message" name="message" placeholder="Vous pouvez laisser un message ou des informations complémentaires..."></textarea>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between;">
+                        <div class="ci-form-step-actions">
                             <button type="button" class="ci-btn ci-btn--outline" data-ci-step="1">
                                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -162,7 +163,7 @@
 
                         <div id="ci-summary" style="margin-bottom: var(--ci-space-lg);"></div>
 
-                        <div style="display: flex; justify-content: space-between;">
+                        <div class="ci-form-step-actions">
                             <button type="button" class="ci-btn ci-btn--outline" data-ci-step="2">
                                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />

@@ -12,6 +12,52 @@ const CIApp = {
     init() {
         this.initSmoothScroll();
         this.initTooltips();
+        this.initMobileMenu();
+    },
+
+    // Mobile menu toggle
+    initMobileMenu() {
+        const toggle = document.getElementById('ci-menu-toggle');
+        const nav = document.getElementById('ci-header-nav');
+        const overlay = document.getElementById('ci-header-overlay');
+
+        if (!toggle || !nav) return;
+
+        const close = () => {
+            nav.classList.remove('ci-header__nav--open');
+            overlay.classList.remove('ci-header__overlay--visible');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        };
+
+        toggle.addEventListener('click', () => {
+            const isOpen = nav.classList.contains('ci-header__nav--open');
+            if (isOpen) {
+                close();
+            } else {
+                nav.classList.add('ci-header__nav--open');
+                overlay.classList.add('ci-header__overlay--visible');
+                toggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        if (overlay) {
+            overlay.addEventListener('click', close);
+        }
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('ci-header__nav--open')) {
+                close();
+            }
+        });
+
+        // Close on resize to desktop
+        const mq = window.matchMedia('(min-width: 1024px)');
+        mq.addEventListener('change', (e) => {
+            if (e.matches) close();
+        });
     },
 
     // Smooth scroll pour les ancres

@@ -42,7 +42,7 @@
                 <?php else: ?>
                     <div style="display: flex; flex-direction: column; gap: var(--ci-space-md);">
                         <?php foreach ($campuses as $campus): ?>
-                            <div style="display: flex; align-items: flex-start; justify-content: space-between; padding: var(--ci-space-md); background: var(--ci-gray-50); border-radius: var(--ci-radius-md); flex-wrap: wrap; gap: var(--ci-space-md);">
+                            <div class="ci-campus-card" style="display: flex; align-items: flex-start; justify-content: space-between; padding: var(--ci-space-md); background: var(--ci-gray-50); border-radius: var(--ci-radius-md); flex-wrap: wrap; gap: var(--ci-space-md);">
                                 <div>
                                     <div style="font-weight: 600; color: var(--ci-gray-900); margin-bottom: var(--ci-space-xs);">
                                         <?= htmlspecialchars($campus['institution_name']) ?>

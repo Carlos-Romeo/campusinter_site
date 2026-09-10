@@ -4,3 +4,7 @@ Context: {"program":"Doctorat Médecine","campus":"Campus de Cocody"}
 [2026-09-10 14:57:10] INFO [system] Statut candidature mis à jour: ID 1 → archived | IP: 127.0.0.1
 [2026-09-10 15:00:28] INFO [system] Candidature créée: CI-2026-000002 | IP: 127.0.0.1
 Context: {"program":"Doctorat Médecine","campus":"Campus de Cocody"}
+[2026-09-10 15:41:37] INFO [system] Candidature créée: CI-2026-000003 | IP: 127.0.0.1
+Context: {"program":"Doctorat Médecine","campus":"Campus de Cocody"}
+[2026-09-10 15:41:40] ERROR [email] Erreur envoi email à admission@rabatam.ci.com: SMTP Error: Could not authenticate. | IP: 127.0.0.1
+[2026-09-10 15:41:42] ERROR [email] Erreur envoi email à romeo.afanvi@gmail.com: SMTP Error: Could not authenticate. | IP: 127.0.0.1

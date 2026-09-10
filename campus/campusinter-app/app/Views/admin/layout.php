@@ -7,7 +7,7 @@
     <title><?= htmlspecialchars($title ?? 'Admin') ?> — Campus Inter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
@@ -20,7 +20,7 @@
         <aside id="ci-sidebar" class="ci-admin__sidebar">
             <div class="ci-admin__sidebar-header">
                 <a href="/admin" class="ci-admin__sidebar-logo">
-                    <span class="ci-header__logo-icon">CI</span>
+                    <img src="/assets/img/icon.svg" alt="" width="38" height="38" class="ci-header__logo-icon" style="background:none;box-shadow:none;">
                     <span>Campus Inter</span>
                 </a>
             </div>

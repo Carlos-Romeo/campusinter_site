@@ -6,7 +6,7 @@
     <title>Connexion — Campus Inter Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
@@ -15,7 +15,7 @@
         <div class="ci-login__card">
             <div class="ci-login__header">
                 <div class="ci-login__logo">
-                    <span class="ci-header__logo-icon">CI</span>
+                    <img src="/assets/img/icon.svg" alt="" width="42" height="42" class="ci-header__logo-icon" style="background:none;box-shadow:none;">
                     <span>Campus Inter</span>
                 </div>
                 <p class="ci-login__title">Administration</p>
