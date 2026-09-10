@@ -20,7 +20,7 @@
         <aside id="ci-sidebar" class="ci-admin__sidebar">
             <div class="ci-admin__sidebar-header">
                 <a href="/admin" class="ci-admin__sidebar-logo">
-                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="36" style="object-fit: contain;">
+                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="28" style="width:auto;object-fit:contain;display:block;">
                 </a>
             </div>
 

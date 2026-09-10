@@ -15,7 +15,7 @@
         <div class="ci-login__card">
             <div class="ci-login__header">
                 <div class="ci-login__logo">
-                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="48" style="object-fit: contain;">
+                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="44" style="width:auto;object-fit:contain;display:block;margin:0 auto;">
                 </div>
                 <p class="ci-login__title">Administration</p>
             </div>

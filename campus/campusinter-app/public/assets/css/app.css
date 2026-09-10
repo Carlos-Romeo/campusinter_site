@@ -202,12 +202,15 @@ button { cursor: pointer; }
 .ci-header__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--ci-font-titres);
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--ci-noir);
-  letter-spacing: -.02em;
+  gap: 0;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.ci-header__logo img {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .ci-header__logo-icon {
@@ -1279,8 +1282,8 @@ button { cursor: pointer; }
     display: flex;
   }
 
-  .ci-header__logo span:last-child {
-    font-size: 1rem;
+  .ci-header__logo img {
+    height: 26px;
   }
 
   .ci-header__nav {

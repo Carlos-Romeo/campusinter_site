@@ -16,7 +16,7 @@
         <header class="ci-header">
             <div class="ci-header__inner">
                 <a href="/" class="ci-header__logo">
-                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="40" style="object-fit: contain;">
+                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="32" style="width:auto;object-fit:contain;display:block;">
                 </a>
                 <button id="ci-menu-toggle" class="ci-header__menu-toggle" aria-label="Menu" aria-expanded="false">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
