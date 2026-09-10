@@ -16,8 +16,7 @@
         <header class="ci-header">
             <div class="ci-header__inner">
                 <a href="/" class="ci-header__logo">
-                    <img src="/assets/img/icon.svg" alt="" width="38" height="38" class="ci-header__logo-icon" style="background:none;box-shadow:none;">
-                    <span>Campus Inter</span>
+                    <img src="/assets/img/logo-campus-inter.png" alt="Campus Inter" height="40" style="object-fit: contain;">
                 </a>
                 <button id="ci-menu-toggle" class="ci-header__menu-toggle" aria-label="Menu" aria-expanded="false">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -25,6 +24,7 @@
                     </svg>
                 </button>
                 <nav id="ci-header-nav" class="ci-header__nav">
+                    <a href="https://it.dyk08.com/campusinter/index.php/fr" target="_blank" class="ci-header__link">Site</a>
                     <a href="/" class="ci-header__link ci-header__link--active">Formations</a>
                     <a href="/admin" class="ci-header__link">Administration</a>
                 </nav>
