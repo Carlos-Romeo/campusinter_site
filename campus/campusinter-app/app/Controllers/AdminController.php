@@ -944,7 +944,7 @@ class AdminController extends Controller
         // Campus associés
         $stmt = $db->prepare("SELECT campus_id FROM program_campuses WHERE program_id = ?");
         $stmt->execute([$id]);
-        $programCampuses = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $programCampuses = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         $stmt = $db->query("SELECT id, name FROM academic_years ORDER BY name DESC");
         $academicYears = $stmt->fetchAll();

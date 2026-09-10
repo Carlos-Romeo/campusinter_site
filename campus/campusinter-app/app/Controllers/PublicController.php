@@ -61,7 +61,8 @@ class PublicController extends Controller
         $sql .= " ORDER BY FIELD(p.level, 'Bac', 'Bac+1', 'Bac+2', 'Bac+3', 'Bac+4', 'Bac+5', 'Doctorat', 'Autre')";
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        $levels = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $levelsRaw = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        $levels = array_map(fn($l) => ['id' => $l, 'name' => $l], $levelsRaw);
 
         $this->json(['success' => true, 'data' => $levels]);
     }
@@ -431,7 +432,7 @@ class PublicController extends Controller
         }
 
         // Rate limiting
-        if (!RateLimiter::check('application', 3, 600)) {
+        if (!RateLimiter::check('application', 10, 600)) {
             $this->json(['success' => false, 'message' => 'Trop de tentatives. Veuillez réessayer dans 10 minutes.'], 429);
             return;
         }
@@ -616,7 +617,7 @@ class PublicController extends Controller
         }
 
         if (!empty($data['birth_date'])) {
-            $date = DateTime::createFromFormat('Y-m-d', $data['birth_date']);
+            $date = \DateTime::createFromFormat('Y-m-d', $data['birth_date']);
             if (!$date || $date->format('Y-m-d') !== $data['birth_date']) {
                 $errors['birth_date'] = 'La date de naissance n\'est pas valide.';
             }
