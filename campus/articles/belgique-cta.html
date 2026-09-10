@@ -1,0 +1,41 @@
+<section class="ci-section" id="ciContact"><!-- Hexagones : coin bas-gauche, subtil, vert ; images dans quelques alvéoles -->
+<div class="ci-hex ci-hex--bl ci-hex--lg ci-hex--soft" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="https://it.dyk08.com/campusinter/images/etudier%20en%20belgique/Revisions%20complices%20en%20terrasse%20europeenne.png" data-img-every="6" aria-hidden="true"></div>
+<div class="ci-container">
+<div class="ci-contact-cta">
+<div class="ci-contact-grid"><!-- Partie gauche : message + coordonnées -->
+<div class="ci-contact-info ci-reveal-left"><span class="ci-kicker">Passez à l'action</span>
+<h2>Prêt à étudier en Belgique ?</h2>
+<p>Remplissez le formulaire, notre équipe vous recontacte sous 24h pour évaluer votre profil et lancer votre projet d'études en Belgique.</p>
+<ul>
+<li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Évaluation gratuite de votre dossier</li>
+<li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Lomé, Togo</li>
+<li><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</li>
+<li><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</li>
+</ul>
+</div>
+<!-- Partie droite : formulaire (envoi vers mail-campinter.php) --><form class="ci-form ci-reveal-right" id="ciFormInfo" action="mail-campinter.php" method="post" novalidate=""><input type="hidden" name="type" value="contact"> <input type="hidden" name="page" value="Étudier en Belgique"> <input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">
+<h3>Demande d'informations</h3>
+<!-- Nom complet -->
+<div class="ci-champ"><label for="ci-nom">Nom complet</label> <input type="text" id="ci-nom" name="nom" placeholder="Votre nom et prénom" required=""></div>
+<!-- Email -->
+<div class="ci-champ"><label for="ci-email">Adresse e-mail</label> <input type="email" id="ci-email" name="email" placeholder="vous@exemple.com" required=""></div>
+<!-- Téléphone -->
+<div class="ci-champ"><label for="ci-tel">Téléphone / WhatsApp</label> <input type="tel" id="ci-tel" name="telephone" placeholder="+228 ..." required=""></div>
+<!-- Domaine souhaité -->
+<div class="ci-champ"><label for="ci-domaine">Domaine d'études</label><select id="ci-domaine" name="domaine">
+<option value="">Sélectionnez un domaine</option>
+<option value="management">Management &amp; Commerce</option>
+<option value="ingenierie">Ingénierie</option>
+<option value="digital">Digital &amp; Marketing</option>
+<option value="communication">Communication</option>
+<option value="sante">Santé</option>
+<option value="autre">Autre</option>
+</select></div>
+<!-- Message -->
+<div class="ci-champ"><label for="ci-message">Votre message</label> <textarea id="ci-message" name="message" placeholder="Parlez-nous de votre projet..."></textarea></div>
+<!-- Bouton d'envoi --> <button class="ci-btn ci-btn--primaire" type="submit" style="width: 100%; justify-content: center;"> Envoyer ma demande <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> </button>
+<p class="ci-form-status" id="ciFormStatusInfo" role="status" aria-live="polite" hidden=""></p>
+</form></div>
+</div>
+</div>
+</section>

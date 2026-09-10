@@ -1,0 +1,16 @@
+/* CAMPUS INTER — footer partagé */
+.ci-footer{background:#1c1c1c;color:#c7d2cb;padding:70px 0 0;font-size:.92rem}
+.ci-footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:50px}
+.ci-footer h4{color:#fff;font-size:1.05rem;margin:0 0 18px;padding-bottom:10px;position:relative}
+.ci-footer h4::after{content:"";position:absolute;left:0;bottom:0;width:30px;height:2px;background:var(--ci-vert,#159447)}
+.ci-footer p{margin:14px 0 0;line-height:1.7}
+.ci-footer a{display:block;color:#c7d2cb;margin-bottom:9px;transition:color .25s,transform .25s}
+.ci-footer a:hover{color:#fff;transform:translateX(3px)}
+.ci-footer-logo{display:flex;align-items:center;color:#fff;font-family:var(--ci-font-titres,'Arial',sans-serif);font-size:1.15rem;font-weight:800}
+.ci-footer-logo img{width:40px;height:40px;object-fit:contain}.ci-footer-logo span{margin-left:10px}
+.ci-footer-social{display:flex;gap:10px;margin-top:20px}.ci-footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;margin:0;border-radius:50%;background:rgba(255,255,255,.09)}
+.ci-footer-social a:hover{background:var(--ci-vert,#159447);transform:translateY(-3px)}
+.ci-footer-contact a{display:flex;align-items:flex-start;gap:10px}.ci-footer-contact i{width:16px;margin-top:5px;color:var(--ci-vert-clair,#1DB85E)}
+.ci-footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;color:#8e9b92;font-size:.8rem}.ci-footer-bottom a{display:inline;margin:0;padding:0 8px;color:#c7d2cb}
+@media(max-width:1024px){.ci-footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.ci-footer{padding-top:48px}.ci-footer-grid{grid-template-columns:1fr;gap:30px;padding-bottom:36px}}

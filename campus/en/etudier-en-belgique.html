@@ -1,0 +1,611 @@
+<!-- ============================================================
+  CAMPUS INTER — Study in Belgium
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : etudier-en-belgique.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Study in Belgium" (category : Study Abroad — Belgium).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="02">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><a href="#">Studies</a><span class="ci-sep">›</span><span class="ci-here">Study in Belgium</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-database" aria-hidden="true"></i>
+            Studies · Belgium
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Study in <em>Belgium</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Europe at the heart of the French-speaking world: recognized and affordable education, at the crossroads of Europe.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Check my eligibility
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciPourquoi">Why Belgium?</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Our commitments">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span>
+          </div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciPourquoi"><i class="fa-solid fa-star" aria-hidden="true"></i>Why Belgium?</a>
+            <a class="ci-hero-chip" href="#ciProcessus"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Enrollment</a>
+            <a class="ci-hero-chip" href="#ciFaq"><i class="fa-solid fa-circle-question" aria-hidden="true"></i>FAQ</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">02</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-etudier-belgique.jpg" alt="The Atomium in Brussels">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Admissions</b><small>personalized guidance</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Belgium</b><small>procedures prepared in advance</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Belgium · Europe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — POURQUOI LA BELGIQUE (6 avantages)
+       ========================================================== -->
+  <section class="ci-section" id="ciPourquoi" data-ghost="01">
+    <!-- Hexagones : coin haut-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tr ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Why Belgium?</span>
+        <h2>An excellent destination at the heart of Europe</h2>
+        <p>Belgium combines quality education, reasonable fees and a dynamic student life in a French-speaking and international setting.</p>
+      </div>
+
+      <!-- Grille des 6 avantages -->
+      <div class="ci-avantage-grid">
+        <!-- Avantage 1 -->
+        <article class="ci-avantage ci-reveal">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+          <h3>Recognized and affordable education</h3>
+          <p>Diplomas recognized across Europe with some of the most affordable tuition fees in Europe, including in renowned high schools and universities.</p>
+        </article>
+
+        <!-- Avantage 2 -->
+        <article class="ci-avantage ci-reveal" style="--d:.08s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+          <h3>Heart of Europe</h3>
+          <p>Located at the center of Europe, Belgium offers easy access to major European capitals and a dynamic international job market.</p>
+        </article>
+
+        <!-- Avantage 3 -->
+        <article class="ci-avantage ci-reveal" style="--d:.16s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></span>
+          <h3>French-speaking setting</h3>
+          <p>Brussels and Wallonia welcome you in a French-speaking environment, ideal for quickly succeeding in your studies without a language barrier.</p>
+        </article>
+
+        <!-- Avantage 4 -->
+        <article class="ci-avantage ci-reveal" style="--d:.24s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
+          <h3>International atmosphere</h3>
+          <p>A cosmopolitan student community and multicultural campuses that prepare you for a truly European and global career.</p>
+        </article>
+
+        <!-- Avantage 5 -->
+        <article class="ci-avantage ci-reveal" style="--d:.32s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i></span>
+          <h3>Internship opportunities</h3>
+          <p>Many programs include company internships, allowing you to build your professional network from your studies.</p>
+        </article>
+
+        <!-- Avantage 6 -->
+        <article class="ci-avantage ci-reveal" style="--d:.4s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-cloud" aria-hidden="true"></i></span>
+          <h3>Dynamic student life</h3>
+          <p>Lively cities, a rich student life and controlled living costs for an excellent balance between studies and leisure.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — PROCESSUS D'INSCRIPTION (timeline)
+       ========================================================== -->
+  <section class="ci-section" id="ciProcessus" style="background:var(--ci-fond);" data-ghost="02">
+    <!-- Hexagones : coin bas-droit, très subtil, vert -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Enrollment process</span>
+        <h2>A guided pathway, step by step</h2>
+        <p>We support you from initial orientation to your settlement in Belgium, with complete peace of mind.</p>
+      </div>
+
+      <!-- Timeline des 5 étapes -->
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 01</span>
+          <h3>Orientation</h3>
+          <p>Analysis of your profile, goals and budget to identify the most suitable path.</p>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 02</span>
+          <h3>Institution selection</h3>
+          <p>Choice of university or high school and program according to your aspirations and level.</p>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 03</span>
+          <h3>Enrollment & equivalences</h3>
+          <p>Building the enrollment file, requesting diploma equivalence and academic recognition.</p>
+        </div>
+
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 04</span>
+          <h3>Visa / residence permit application</h3>
+          <p>Preparation and submission of your long-stay visa or student residence permit application.</p>
+        </div>
+
+        <!-- Étape 5 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 05</span>
+          <h3>Settlement</h3>
+          <p>Arrival support: accommodation, insurance, bank account opening and settlement formalities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — TYPES DE DÉMARCHES (3 cartes)
+       ========================================================== -->
+  <section class="ci-section" id="ciDemarches" data-ghost="03">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Types of procedures</span>
+        <h2>The essential procedures to study in Belgium</h2>
+        <p>Clear and structured procedures, fully handled by our teams.</p>
+      </div>
+
+      <!-- Grille des 3 types de démarches -->
+      <div class="ci-demarche-grid">
+        <!-- Démarche 1 -->
+        <article class="ci-demarche ci-reveal">
+          <span class="ci-demarche-icone"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i></span>
+          <h3>Enrollment certificate</h3>
+          <p>Get the official certificate from your institution, an essential document for your visa and residence permit procedures.</p>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Admission confirmation</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Proof of training</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Complete handling</li>
+          </ul>
+        </article>
+
+        <!-- Démarche 2 -->
+        <article class="ci-demarche ci-reveal" style="--d:.1s">
+          <span class="ci-demarche-icone"><i class="fa-solid fa-clock" aria-hidden="true"></i></span>
+          <h3>Diploma equivalence</h3>
+          <p>Have your diplomas obtained in Togo or elsewhere recognized to access the desired study level in Belgium.</p>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Document translation</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Recognition file</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Follow-up with the authorities</li>
+          </ul>
+        </article>
+
+        <!-- Démarche 3 -->
+        <article class="ci-demarche ci-reveal" style="--d:.2s">
+          <span class="ci-demarche-icone"><i class="fa-solid fa-file-pen" aria-hidden="true"></i></span>
+          <h3>Long-stay visa</h3>
+          <p>Get your long-stay study visa and student residence permit to live and study in Belgium legally.</p>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> File preparation</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Consulate appointment</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Follow-up and obtaining</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — BANDEAU CHIFFRES (fond sombre)
+       ========================================================== -->
+  <section class="ci-band-chiffres ci-section" id="ciChiffres" data-ghost="04">
+    <!-- Hexagones : fond complet, très subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="12" data-rows="6" data-size="26" data-color="#FFFFFF" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Belgium in numbers</span>
+        <h2>Concrete assets for your project</h2>
+        <p>A few benchmarks that make Belgium a top destination for international students.</p>
+      </div>
+
+      <!-- Statistiques -->
+      <div class="ci-stats">
+        <!-- Stat 1 -->
+        <div class="ci-stat ci-reveal">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="2">0</span> languages</div>
+          <p>French, Dutch, German: a multilingual country at the heart of Europe</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="ci-stat ci-reveal" style="--d:.1s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="3">0</span> regions</div>
+          <p>Brussels, Wallonia and Flanders, offering a wide diversity of campuses</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="ci-stat ci-reveal" style="--d:.2s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="30">0</span>+ %</div>
+          <p>of international students, for a resolutely cosmopolitan atmosphere</p>
+        </div>
+        <!-- Stat 4 -->
+        <div class="ci-stat ci-reveal" style="--d:.3s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="100">0</span>+</div>
+          <p>Recognized higher education institutions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — FAQ (accordéon)
+       ========================================================== -->
+  <section class="ci-section" id="ciFaq" data-ghost="05">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">FAQ</span>
+        <h2>Frequently asked questions</h2>
+        <p>Answers to the most asked questions by our candidates for Belgium.</p>
+      </div>
+
+      <!-- Accordéon FAQ -->
+      <div class="ci-faq">
+        <!-- Question 1 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Do I need a visa to study in Belgium?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Yes, for a stay of more than 90 days, you must obtain a long-stay student visa as well as a residence permit. We handle this entire procedure, from preparing your file to following up with the authorities.</p></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            What is the cost of studying in Belgium?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Enrollment fees in Belgium are among the most affordable in Europe, especially in public universities and high schools. They vary by type of institution and program. Our advisors prepare a complete realistic budget for you: tuition, accommodation, insurance and everyday living.</p></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Can I work during my studies in Belgium?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Yes, an international student can carry out paid activity within a certain time limit. This allows you to fund part of your stay and gain a first professional experience in Belgium. We advise you on the conditions to respect.</p></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Is my Togolese diploma recognized in Belgium?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Your diplomas can be recognized through an equivalence procedure. We support you in building the file, translating documents and following up with the academic recognition authorities, so you can reach the desired study level.</p></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            How long does the procedure to go to Belgium take?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>The complete procedure usually takes 2 to 4 months depending on the period and the institution. We recommend starting your procedures 6 to 9 months before the desired start of the school year. We give you a precise schedule from the first appointment.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6 — CTA + FORMULAIRE DE CONTACT
+       ========================================================== -->
+  <section class="ci-section" id="ciContact">
+    <!-- Hexagones : coin bas-gauche, subtil, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--bl ci-hex--lg ci-hex--soft" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/belgique-bruxelles.jpg" data-img-every="6" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-contact-cta">
+        <div class="ci-contact-grid">
+          <!-- Partie gauche : message + coordonnées -->
+          <div class="ci-contact-info ci-reveal-left">
+            <span class="ci-kicker">Take action</span>
+            <h2>Ready to study in Belgium?</h2>
+            <p>Fill in the form, our team will call you back within 24 hours to assess your profile and start your study project in Belgium.</p>
+            <ul>
+              <li>
+                <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                Free assessment of your file
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Lomé, Togo
+              </li>
+              <li>
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                +228 22 70 25 96
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                contact@campusinter.com
+              </li>
+            </ul>
+          </div>
+
+          <!-- Partie droite : formulaire (envoi vers mail-campinter.php) -->
+          <form class="ci-form ci-reveal-right" id="ciFormInfo" action="mail-campinter.php" method="post" novalidate>
+            <input type="hidden" name="type" value="contact">
+            <input type="hidden" name="page" value="Study in Belgium">
+            <input type="text" name="website" class="ci-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <h3>Information request</h3>
+            <!-- Nom complet -->
+            <div class="ci-champ">
+              <label for="ci-nom">Full name</label>
+              <input type="text" id="ci-nom" name="nom" placeholder="Your first and last name" required>
+            </div>
+            <!-- Email -->
+            <div class="ci-champ">
+              <label for="ci-email">Email address</label>
+              <input type="email" id="ci-email" name="email" placeholder="you@example.com" required>
+            </div>
+            <!-- Téléphone -->
+            <div class="ci-champ">
+              <label for="ci-tel">Phone / WhatsApp</label>
+              <input type="tel" id="ci-tel" name="telephone" placeholder="+228 ..." required>
+            </div>
+            <!-- Domaine souhaité -->
+            <div class="ci-champ">
+              <label for="ci-domaine">Field of study</label>
+              <select id="ci-domaine" name="domaine">
+                <option value="">Select a field</option>
+                <option value="management">Management & Commerce</option>
+                <option value="ingenierie">Engineering</option>
+                <option value="digital">Digital & Marketing</option>
+                <option value="communication">Communication</option>
+                <option value="sante">Health</option>
+                <option value="autre">Other</option>
+              </select>
+            </div>
+            <!-- Message -->
+            <div class="ci-champ">
+              <label for="ci-message">Your message</label>
+              <textarea id="ci-message" name="message" placeholder="Tell us about your project..."></textarea>
+            </div>
+            <!-- Bouton d'envoi -->
+            <button class="ci-btn ci-btn--primaire" type="submit" style="width:100%;justify-content:center;">
+              Send my application
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+            <p class="ci-form-status" id="ciFormStatusInfo" role="status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Study in Belgium".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

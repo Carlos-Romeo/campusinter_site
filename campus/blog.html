@@ -1,0 +1,1002 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE BLOG
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : blog.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Le blog » (catégorie : Blog).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Images à déposer dans le Gestionnaire de médias :
+     - images/campusinter/blog-dossier-campus-france.jpg
+     - images/campusinter/blog-entretien-campus-france.jpg
+     - images/campusinter/blog-metiers-tension.jpg
+     - images/campusinter/blog-travailler-apres-etudes.jpg
+     - images/campusinter/blog-logement-etudiant.jpg
+     - images/campusinter/blog-erreurs-visa.jpg
+  4. Désactiver le filtrage HTML de l'article (sinon Joomla
+     supprime <style> et <script>).
+  5. Le header/footer peuvent être déplacés dans le template
+     Joomla pour éviter la duplication entre les pages.
+  6. Les catégories et articles sont modifiables directement
+      dans le HTML. Le filtre par catégorie fonctionne en
+      JavaScript pur (aucune dépendance externe).
+  7. GRILLE HEXAGONALE : le motif est généré par le script
+      (div.ci-hex). Position : --tl/--tr/--bl/--br/--full ;
+      opacité : --faint/--soft/--mid/--strong ; densité :
+      data-cols/data-rows/data-size ; couleur data-color ;
+      remplissage data-fill ; images data-img/data-img-every.
+          8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE « BLOG »
+     Styles scopés .ci- pour éviter tout conflit Joomla.
+     Charte officielle (voir UX-UI-DESIGN-CAMPUS-INTER.md).
+     ========================================================== */
+
+  /* --- Polices Google Fonts --- */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  /* --- Design tokens (charte Campus Inter) --- */
+  :root{
+    --ci-vert:#159447;  --ci-vert-fonce:#0F7A3A;  --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525;  --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;  --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8; --ci-bordure-input:#E2E8E2;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-grad-sombre:linear-gradient(135deg,#252525,#159447);
+    --ci-rayon:18px; --ci-rayon-lg:22px; --ci-pill:999px;
+    --ci-ombre-carte:0 8px 26px rgba(0,0,0,.06);
+    --ci-ombre:0 14px 40px rgba(21,148,71,.14);
+    --ci-ombre-forte:0 18px 45px rgba(21,148,71,.35);
+    --ci-ombre-noir:0 14px 40px rgba(21,148,71,.25);
+    --ci-ombre-header:0 8px 30px rgba(0,0,0,.08);
+    --ci-ombre-mega:0 25px 60px rgba(0,0,0,.14);
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px); --ci-section-pad-mobile:32px;
+    --ci-conteneur:100%;
+  }
+
+  /* --- Base --- */
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *, .ci-page *::before, .ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 1em; }
+  .ci-container{ width:var(--ci-conteneur); max-width:none; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+  .ci-section-titre{ text-align:center; max-width:720px; margin:0 auto 56px; }
+  .ci-kicker{ display:inline-block; font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:var(--ci-vert-fonce); margin-bottom:16px; }
+  .ci-section-titre h2{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:800; }
+  .ci-section-titre p{ color:var(--ci-texte-2); font-size:1.05rem; }
+
+  /* --- Boutons --- */
+  .ci-btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--ci-font-titres); font-weight:700; font-size:.95rem; padding:15px 30px; border-radius:999px; cursor:pointer; transition:transform .3s, box-shadow .3s, background .3s; border:none; position:relative; overflow:hidden; }
+  .ci-btn i{ font-size:18px; transition:transform .3s; }
+  .ci-btn:hover i{ transform:translateX(4px); }
+  .ci-btn--primaire{ background:var(--ci-grad); color:#fff; box-shadow:var(--ci-ombre-noir); }
+  .ci-btn--primaire:hover{ transform:translateY(-3px); box-shadow:var(--ci-ombre-forte); }
+  .ci-btn--primaire::after{ content:""; position:absolute; inset:0; background:var(--ci-grad-sombre); opacity:0; transition:opacity .35s; }
+  .ci-btn--primaire:hover::after{ opacity:1; }
+  .ci-btn--primaire > *{ position:relative; z-index:1; }
+  .ci-btn--blanc{ background:#fff; color:var(--ci-vert-fonce); box-shadow:var(--ci-ombre); }
+  .ci-btn--blanc:hover{ transform:translateY(-3px); }
+
+  /* --- Preloader --- */
+  .ci-preloader{ position:fixed; inset:0; z-index:9999; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transition:opacity .6s, visibility .6s; }
+  .ci-preloader.ci-hide{ opacity:0; visibility:hidden; }
+  .ci-preloader-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.8rem; color:var(--ci-vert); animation:ciPulse 1.6s infinite; }
+  .ci-preloader-bar{ width:180px; height:5px; background:var(--ci-fond); border-radius:99px; overflow:hidden; }
+  .ci-preloader-bar span{ display:block; height:100%; width:40%; background:var(--ci-grad); border-radius:99px; animation:ciLoad 1.2s infinite; }
+  @keyframes ciPulse{ 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(1.06); opacity:.85;} }
+  @keyframes ciLoad{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(450%);} }
+
+  /* --- Topbar --- */
+  .ci-topbar{ background:var(--ci-noir); color:#cfd8d2; font-size:.82rem; padding:8px 0; }
+  .ci-topbar .ci-container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .ci-topbar a{ color:#cfd8d2; display:inline-flex; align-items:center; gap:6px; transition:color .25s; }
+  .ci-topbar a:hover{ color:#fff; }
+  .ci-topbar i{ font-size:14px; }
+  .ci-topbar-infos{ display:flex; gap:20px; flex-wrap:wrap; }
+  .ci-topbar-social{ display:flex; gap:12px; }
+
+  /* --- Barre de progression --- */
+  .ci-scroll-progress{ position:fixed; top:0; left:0; height:4px; width:0; background:var(--ci-grad); z-index:1000; }
+
+  /* ==========================================================
+     FILTRES PAR CATÉGORIE
+     ========================================================== */
+  .ci-filters{ display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin: -36px 0 44px; position:relative; z-index:5; }
+  .ci-filter{ font-family:var(--ci-font-titres); font-weight:600; font-size:.9rem; padding:12px 22px; border-radius:999px; background:#fff; color:var(--ci-texte); border:1px solid var(--ci-bordure); cursor:pointer; transition:.3s; box-shadow:var(--ci-ombre-carte); }
+  .ci-filter:hover{ border-color:var(--ci-vert); color:var(--ci-vert); transform:translateY(-2px); }
+  .ci-filter.ci-active{ background:var(--ci-grad); color:#fff; border-color:transparent; box-shadow:var(--ci-ombre-noir); }
+
+  /* ==========================================================
+     GRILLE D'ARTICLES
+     ========================================================== */
+  .ci-articles-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; }
+  .ci-article{ background:#fff; border-radius:var(--ci-rayon-lg); overflow:hidden; box-shadow:var(--ci-ombre-carte); transition:transform .3s, box-shadow .3s; }
+  .ci-article:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-article-img{ position:relative; height:200px; overflow:hidden; }
+  .ci-article-img img{ width:100%; height:100%; object-fit:cover; transition:transform .6s; }
+  .ci-article:hover .ci-article-img img{ transform:scale(1.08); }
+  .ci-article-cat{ position:absolute; top:16px; left:16px; font-family:var(--ci-font-titres); font-weight:700; font-size:.75rem; text-transform:uppercase; letter-spacing:.06em; padding:8px 14px; border-radius:999px; color:#fff; background:var(--ci-grad); box-shadow:var(--ci-ombre-noir); }
+  .ci-article-body{ padding:24px; }
+  .ci-article-date{ display:flex; align-items:center; gap:6px; color:var(--ci-texte-2); font-size:.8rem; margin-bottom:10px; }
+  .ci-article-date i{ font-size:15px; }
+  .ci-article-body h3{ font-size:1.18rem; line-height:1.35; margin:0 0 8px; }
+  .ci-article-body h3 a{ color:var(--ci-noir); transition:color .25s; }
+  .ci-article-body h3 a:hover{ color:var(--ci-vert); }
+  .ci-article-body p{ color:var(--ci-texte-2); font-size:.9rem; margin:0 0 16px; }
+  .ci-article-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--ci-font-titres); font-weight:700; font-size:.88rem; color:var(--ci-vert); transition:gap .25s; }
+  .ci-article-link:hover{ gap:12px; }
+  .ci-article-link i{ font-size:16px; }
+
+  /* ==========================================================
+     BANDEAU NEWSLETTER
+     ========================================================== */
+  .ci-newsletter{ background:var(--ci-grad-sombre); color:#fff; border-radius:var(--ci-rayon-lg); padding:56px clamp(20px,6vw,80px); text-align:center; position:relative; overflow:hidden; }
+  .ci-newsletter::before{ content:""; position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,.08); }
+  .ci-newsletter h2{ color:#fff; font-size:clamp(1.6rem,3.4vw,2.4rem); font-weight:800; }
+  .ci-newsletter p{ color:#dceadf; max-width:560px; margin:0 auto 28px; }
+  .ci-newsletter-form{ display:flex; gap:12px; max-width:520px; margin:0 auto; position:relative; z-index:2; }
+  .ci-newsletter-form input{ flex:1; padding:15px 20px; border:none; border-radius:999px; font-family:var(--ci-font-texte); font-size:.95rem; }
+  .ci-newsletter-form input:focus{ outline:none; }
+  .ci-newsletter-form .ci-btn:disabled{ opacity:.65; cursor:wait; }
+  .ci-honeypot{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
+  .ci-newsletter-status{ display:none; font-size:.9rem; font-weight:600; max-width:520px; margin:16px auto 0; padding:12px 18px; border-radius:999px; position:relative; z-index:2; }
+  .ci-newsletter-status:not([hidden]){ display:block; }
+  .ci-newsletter-status.ci-statut-ok{ background:rgba(232,247,238,.15); color:#8fe3b0; border:1px solid rgba(232,247,238,.35); }
+  .ci-newsletter-status.ci-statut-err{ background:rgba(253,232,234,.15); color:#ffb3ae; border:1px solid rgba(253,232,234,.35); }
+
+  /* --- Animations reveal --- */
+  .ci-reveal{ opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal.ci-visible{ opacity:1; transform:translateY(0); }
+  .ci-reveal-left{ opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-left.ci-visible{ opacity:1; transform:translateX(0); }
+  .ci-reveal-right{ opacity:0; transform:translateX(40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-right.ci-visible{ opacity:1; transform:translateX(0); }
+
+  /* --- Footer --- */
+  .ci-footer{ background:#1c1c1c; color:#c7d2cb; padding:70px 0 0; font-size:.92rem; }
+  .ci-footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:50px; }
+  .ci-footer h4{ color:#fff; font-size:1.05rem; margin-bottom:18px; position:relative; padding-bottom:10px; }
+  
+  .ci-footer a{ color:#c7d2cb; display:block; padding:5px 0; transition:color .25s, transform .25s; }
+  .ci-footer a:hover{ color:var(--ci-vert-clair); transform:translateX(4px); }
+  .ci-footer-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.5rem; color:#fff; margin-bottom:14px; }
+  .ci-footer-logo img{ height:46px; filter:brightness(0) invert(1); }
+  .ci-footer-contact a{ display:flex; gap:10px; align-items:flex-start; }
+  .ci-footer-contact i{ font-size:18px; color:var(--ci-vert-clair); flex-shrink:0; margin-top:4px; }
+  .ci-footer-social{ display:flex; gap:10px; margin-top:18px; }
+  .ci-footer-social a{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; padding:0; }
+  .ci-footer-social i{ font-size:18px; }
+  .ci-footer-social a:hover{ background:var(--ci-vert); transform:translateY(-3px); }
+  .ci-footer-bottom{ border-top:1px solid rgba(255,255,255,.1); padding:22px 0; text-align:center; font-size:.82rem; }
+  .ci-footer-bottom a{ display:inline; padding:0 8px; }
+
+  /* --- Boutons flottants --- */
+  .ci-whatsapp{ position:fixed; right:22px; bottom:22px; width:58px; height:58px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(37,211,102,.4); z-index:900; transition:transform .3s; }
+  .ci-whatsapp i{ font-size:30px; }
+  .ci-whatsapp:hover{ transform:scale(1.1); }
+  .ci-to-top{ position:fixed; left:22px; bottom:22px; width:48px; height:48px; border-radius:50%; background:var(--ci-noir); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:var(--ci-ombre-mega); z-index:900; opacity:0; visibility:hidden; transition:.3s; }
+  .ci-to-top.ci-visible{ opacity:1; visibility:visible; }
+  .ci-to-top:hover{ background:var(--ci-vert); }
+  .ci-to-top i{ font-size:22px; }
+
+  /* --- Responsive --- */
+  @media (max-width:1024px){
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:820px){
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+    .ci-section{ padding:var(--ci-section-pad-mobile) 0; }
+    .ci-newsletter-form{ flex-direction:column; }
+  }
+  @media (max-width:560px){
+    .ci-footer-grid{ grid-template-columns:1fr; gap:30px; }
+  }
+  @media (max-width:400px){
+    .ci-container{ padding-left:14px; padding-right:14px; }
+    .ci-section{ padding:24px 0; }
+    .ci-section-titre{ margin-bottom:34px; }
+    .ci-newsletter{ padding:40px 18px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ci-reveal, .ci-reveal-left, .ci-reveal-right{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .ci-preloader, .ci-hero-particles span{ display:none; }
+  }
+
+  /* ==========================================================
+     GRILLE HEXAGONALE DÉCORATIVE (arrière-plans de sections)
+     Conteneur positionné : --tl/--tr/--bl/--br/--full,
+     tailles --sm/--md/--lg/--xl, opacité --faint/--soft/--mid/--strong.
+     Motif SVG généré par le script (attributs data-*).
+     ========================================================== */
+  section{ position:relative; }
+  .ci-hex{
+    position:absolute; pointer-events:none; overflow:hidden;
+    line-height:0; z-index:0;
+  }
+  .ci-hex i{ display:block; width:100%; height:100%; }
+  .ci-hex--tl{ top:0; left:0; }
+  .ci-hex--tr{ top:0; right:0; }
+  .ci-hex--bl{ bottom:0; left:0; }
+  .ci-hex--br{ bottom:0; right:0; }
+  .ci-hex--full{ inset:0; width:100%; height:100%; }
+  .ci-hex--sm{ width:130px; height:150px; }
+  .ci-hex--md{ width:230px; height:270px; }
+  .ci-hex--lg{ width:350px; height:410px; }
+  .ci-hex--xl{ width:520px; height:600px; }
+  .ci-hex--faint{ opacity:.07; }
+  .ci-hex--soft{ opacity:.14; }
+  .ci-hex--mid{ opacity:.24; }
+  .ci-hex--strong{ opacity:.38; }
+  section > .ci-container{ position:relative; z-index:1; }
+  
+
+
+  /* ==========================================================
+     PRÉMIUM — cohérence éditoriale avec l'accueil
+     Numéros fantômes de section
+     ========================================================== */
+  .ci-section[data-ghost]::before{
+    content:attr(data-ghost);
+    position:absolute; top:clamp(6px,2vw,28px); right:clamp(8px,2.5vw,44px); z-index:0;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(3.8rem,7.5vw,6rem); line-height:1;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.2);
+    pointer-events:none; user-select:none;
+  }
+  .ci-section[data-ghost].ci-band-chiffres::before,
+  .ci-section[data-ghost].ci-partners::before{
+    -webkit-text-stroke:1.5px rgba(255,255,255,.16);
+  }
+  @media (max-width:640px){
+    .ci-section[data-ghost]::before{ display:none; }
+  }
+
+
+
+  /* ==========================================================
+     HERO INTÉRIEUR — ADN premium accueil, variante inversée
+     Grille inversée (média gauche / texte droite) + chips de nav
+     ========================================================== */
+  .ci-page-hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#f1f8f4 0%,#ffffff 55%);
+    padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px);
+  }
+  .ci-page-hero .ci-hex{ opacity:.45; }
+  .ci-breadcrumb{ display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap; align-items:center;
+    font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--ci-texte-2); margin-bottom:clamp(28px,4vw,44px); }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); transition:color .25s; }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-sep{ opacity:.5; margin:0 2px; }
+  .ci-breadcrumb .ci-here{ color:var(--ci-vert-fonce); font-weight:700; }
+  .ci-hero-grid--inverse{
+    display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);
+    gap:clamp(32px,5vw,72px); align-items:center; position:relative; z-index:1;
+    grid-template-areas:"media content";
+  }
+  .ci-hero-grid--inverse .ci-hero-content{ grid-area:content; }
+  .ci-hero-grid--inverse .ci-hero-media{ grid-area:media; }
+  .ci-hero-kicker{ display:inline-flex; align-items:center; gap:10px; font-size:.8rem; font-weight:700;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--ci-vert-fonce); margin-bottom:20px; }
+  .ci-hero-kicker::before{ content:""; width:34px; height:2px; background:var(--ci-vert); border-radius:99px; }
+  .ci-hero-kicker i{ font-size:15px; color:var(--ci-vert); }
+  .ci-page-hero h1{ font-size:clamp(2.4rem,5.2vw,3.9rem); font-weight:800; color:var(--ci-noir); margin:0 0 18px; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-page-hero .ci-hero-sous{ font-size:1.08rem; color:var(--ci-texte); max-width:540px; margin-bottom:28px; }
+  .ci-hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .ci-hero-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .ci-hero-chip{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #e2e8e2;
+    border-radius:999px; padding:9px 16px; font-size:.82rem; font-weight:600; color:var(--ci-texte); transition:.25s; }
+  .ci-hero-chip i{ color:var(--ci-vert); font-size:14px; }
+  .ci-hero-chip:hover{ border-color:var(--ci-vert); color:var(--ci-vert-fonce); transform:translateY(-2px); box-shadow:0 10px 24px rgba(18,52,36,.1); }
+  .ci-hero-media{ position:relative; z-index:1; max-width:min(100%,360px); justify-self:end; }
+  .ci-hero-blob{ position:absolute; width:82%; height:74%; top:6%; left:-6%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(29,184,94,.55), rgba(21,148,71,.06) 72%); z-index:0; }
+  .ci-hero-dots{ position:absolute; z-index:0; right:-16%; bottom:2%; opacity:.65; }
+  .ci-hero-img-frame{ position:relative; z-index:1; }
+  .ci-hero-img-frame::before{ content:""; position:absolute; inset:0; transform:translate(-14px,-14px);
+    border:2px solid var(--ci-vert); border-radius:26px; opacity:.4; z-index:0; }
+  .ci-hero-img{ position:relative; z-index:1; width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:26px;
+    box-shadow:0 34px 70px rgba(18,52,36,.24); }
+  .ci-hero-card{ position:absolute; z-index:2; display:flex; align-items:center; gap:12px; background:#fff;
+    border-radius:16px; padding:14px 18px; box-shadow:0 18px 44px rgba(18,52,36,.16); border:1px solid #eef5f0; }
+  .ci-hero-card i{ font-size:20px; color:var(--ci-vert); }
+  .ci-hero-card b{ font-family:var(--ci-font-titres); font-size:1.2rem; color:var(--ci-noir); line-height:1.1; }
+  .ci-hero-card small{ color:var(--ci-texte-2); font-size:.78rem; }
+  .ci-hero-card--1{ top:7%; left:-7%; }
+  .ci-hero-card--2{ bottom:12%; right:-9%; }
+  .ci-hero-tag{ position:absolute; z-index:2; bottom:7%; right:-5%; background:rgba(21,148,71,.94); color:#fff;
+    padding:8px 16px; border-radius:999px; font-size:.82rem; font-weight:600; box-shadow:0 14px 30px rgba(21,148,71,.35); }
+  .ci-ghost{
+    position:absolute; z-index:0; font-family:var(--ci-font-titres); font-weight:800;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.3); user-select:none; pointer-events:none; line-height:1;
+  }
+  .ci-hero-media .ci-ghost{ top:-34px; left:-4%; font-size:clamp(4.2rem,7vw,6rem); }
+  @media (max-width:1024px){
+    .ci-hero-grid--inverse{ grid-template-columns:1fr; grid-template-areas:"content" "media"; }
+    .ci-hero-media{ max-width:min(100%,330px); margin:0 auto; justify-self:auto; }
+    .ci-hero-media .ci-ghost{ top:-36px; left:6%; }
+    .ci-hero-blob{ left:auto; right:-6%; }
+  }
+  @media (max-width:640px){
+    .ci-hero-media{ max-width:min(100%,300px); }
+    .ci-hero-card--1{ left:-4%; }
+    .ci-hero-card--2{ right:-4%; }
+    .ci-hero-tag{ right:-3%; }
+  }
+  @media (max-width:400px){
+    .ci-hero-media{ max-width:min(100%,260px); }
+    .ci-hero-chips{ gap:8px; }
+    .ci-hero-chip{ padding:8px 13px; font-size:.76rem; }
+  }
+</style>
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="06">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span class="ci-sep">›</span><span class="ci-here">Le blog</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+            Actualités &amp; Conseils
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Le blog <em>Campus Inter</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Conseils d'experts, guides pratiques et actualités sur les études, le visa, l'emploi et le logement en Europe.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Parler à un conseiller
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciBlog">Découvrir le blog</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Nos engagements"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Conseils pratiques</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Articles régulièrement mis à jour</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Une question ? Écrivez-nous</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciBlog"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Articles</a>
+            <a class="ci-hero-chip" href="#ciNewsletter"><i class="fa-solid fa-envelope-open" aria-hidden="true"></i>Newsletter</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">06</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-blog.jpg" alt="Étudiants partageant un moment sur le campus">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Guides</b><small>pour mieux vous préparer</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Conseils</b><small>études, visa et emploi</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Europe · Conseils</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION ARTICLES — filtres + grille
+       ========================================================== -->
+  <section class="ci-section" id="ciBlog">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="6" data-rows="4" data-size="24" data-color="#159447" data-fill="5" data-img="images/campusinter/blog-dossier.jpg" data-img-every="8" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Filtres par catégorie -->
+      <div class="ci-filters" id="ciFilters" role="group" aria-label="Filtrer les articles par catégorie">
+        <button class="ci-filter ci-active" data-filter="tous">Tous</button>
+        <button class="ci-filter" data-filter="etudes">Études</button>
+        <button class="ci-filter" data-filter="visa">Visa</button>
+        <button class="ci-filter" data-filter="emploi">Emploi</button>
+        <button class="ci-filter" data-filter="logement">Logement</button>
+      </div>
+
+      <!-- Grille des articles -->
+      <div class="ci-articles-grid" id="ciArticles">
+        <!-- Article 1 : Réussir son dossier Campus France -->
+        <article class="ci-article ci-reveal" data-categorie="etudes">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-dossier-campus-france.jpg" alt="Préparer son dossier Campus France">
+            <span class="ci-article-cat">Études</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 12 juillet 2026 · 6 min</span>
+            <h3><a href="/blog/reussir-son-dossier-campus-france">Réussir son dossier Campus France</a></h3>
+            <p>Les pièces à fournir, les erreurs à éviter et les astuces pour un dossier solide qui maximise vos chances d'admission.</p>
+            <a class="ci-article-link" href="/blog/reussir-son-dossier-campus-france">
+              Lire l'article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 2 : Réussir son entretien Campus France -->
+        <article class="ci-article ci-reveal" style="--d:.08s" data-categorie="visa">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-entretien-campus-france.jpg" alt="Préparer l'entretien Campus France">
+            <span class="ci-article-cat">Visa</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 28 juin 2026 · 5 min</span>
+            <h3><a href="/blog/reussir-son-entretien-campus-france">Réussir son entretien Campus France</a></h3>
+            <p>Comment vous préparer, les questions fréquentes et les bonnes attitudes pour convaincre lors de votre entretien.</p>
+            <a class="ci-article-link" href="/blog/reussir-son-entretien-campus-france">
+              Lire l'article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 3 : Métiers en tension en France -->
+        <article class="ci-article ci-reveal" style="--d:.16s" data-categorie="emploi">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-metiers-tension.jpg" alt="Métiers en tension en France">
+            <span class="ci-article-cat">Emploi</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 15 juin 2026 · 7 min</span>
+            <h3><a href="/blog/metiers-en-tension-en-france">Métiers en tension en France</a></h3>
+            <p>Les secteurs qui recrutent massivement et les métiers recherchés pour faciliter votre projet de visa travail.</p>
+            <a class="ci-article-link" href="/blog/metiers-en-tension-en-france">
+              Lire l'article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 4 : Travailler après ses études -->
+        <article class="ci-article ci-reveal" style="--d:.24s" data-categorie="emploi">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-travailler-apres-etudes.jpg" alt="Travailler après ses études">
+            <span class="ci-article-cat">Emploi</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 2 juin 2026 · 6 min</span>
+            <h3><a href="/blog/travailler-apres-ses-etudes">Travailler après ses études</a></h3>
+            <p>Les étapes pour passer du statut étudiant au statut salarié en France et prolonger votre séjour sereinement.</p>
+            <a class="ci-article-link" href="/blog/travailler-apres-ses-etudes">
+              Lire l'article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 5 : Trouver un logement étudiant -->
+        <article class="ci-article ci-reveal" style="--d:.32s" data-categorie="logement">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-logement-etudiant.jpg" alt="Trouver un logement étudiant">
+            <span class="ci-article-cat">Logement</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 20 mai 2026 · 5 min</span>
+            <h3><a href="/blog/trouver-un-logement-etudiant">Trouver un logement étudiant</a></h3>
+            <p>Résidences, colocation, CAF : nos conseils pour trouver un logement adapté à votre budget avant votre départ.</p>
+            <a class="ci-article-link" href="/blog/trouver-un-logement-etudiant">
+              Lire l'article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 6 : Erreurs à éviter pour le visa -->
+        <article class="ci-article ci-reveal" style="--d:.4s" data-categorie="visa">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-erreurs-visa.jpg" alt="Erreurs à éviter pour le visa">
+            <span class="ci-article-cat">Visa</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 8 mai 2026 · 6 min</span>
+            <h3><a href="/blog/erreurs-a-eviter-pour-le-visa">Erreurs à éviter pour le visa</a></h3>
+            <p>Les pièges les plus courants qui entraînent un refus de visa et comment les éviter pour un dossier sans faille.</p>
+            <a class="ci-article-link" href="/blog/erreurs-a-eviter-pour-le-visa">
+              Lire l'article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION NEWSLETTER
+       ========================================================== -->
+  <section class="ci-section" id="ciNewsletter" style="padding-top:0;">
+    <!-- Hexagones : coin haut-gauche, présent, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--mid" data-cols="5" data-rows="4" data-size="24" data-color="#159447" data-fill="3" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-newsletter ci-reveal">
+        <h2>Restez informé</h2>
+        <p>Recevez nos derniers articles et conseils directement dans votre boîte mail. Pas de spam, seulement des informations utiles.</p>
+        <form class="ci-newsletter-form" id="ciFormNews" action="mail-campinter.php" method="post" novalidate>
+          <input type="hidden" name="type" value="newsletter">
+          <input type="hidden" name="page" value="Blog">
+          <input type="text" name="website" class="ci-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" name="email" placeholder="Votre adresse e-mail" aria-label="Adresse e-mail" required>
+          <button class="ci-btn ci-btn--primaire" type="submit">
+            S'abonner
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </form>
+        <p class="ci-newsletter-status" id="ciNewsStatus" role="status" aria-live="polite" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT « BLOG »
+     IIFE pour éviter les conflits avec le template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences de mouvement (accessibilité) */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000); /* filet de sécurité */
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION + RETOUR EN HAUT
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    var toTop = document.getElementById('ciToTop');
+    function onScroll(){      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       3. PARALLAX — image du hero en mouvement
+       ---------------------------------------------------------- */
+    var bgParallax = document.getElementById('ciBgParallax');
+    if(bgParallax && !reducedMotion){
+      window.addEventListener('scroll', function(){
+        var y = window.scrollY * 0.3;
+        bgParallax.style.transform = 'translate3d(0,' + y + 'px,0)';
+      }, { passive:true });
+    }
+
+    /* ----------------------------------------------------------
+       4. FILTRE DES ARTICLES PAR CATÉGORIE
+       ---------------------------------------------------------- */
+    var filters = document.querySelectorAll('.ci-filter');
+    var articles = document.querySelectorAll('.ci-article');
+    function appliquerFiltre(filtre){
+      var categorie = filtre.getAttribute('data-filter');
+      filters.forEach(function(btn){ btn.classList.toggle('ci-active', btn === filtre); });
+      articles.forEach(function(article){
+        var cat = article.getAttribute('data-categorie');
+        if(categorie === 'tous' || cat === categorie){
+          article.style.display = '';
+          requestAnimationFrame(function(){ article.classList.add('ci-visible'); });
+        } else {
+          article.classList.remove('ci-visible');
+          article.style.display = 'none';
+        }
+      });
+    }
+    filters.forEach(function(filtre){
+      filtre.addEventListener('click', function(){ appliquerFiltre(filtre); });
+    });
+
+    /* ----------------------------------------------------------
+       5. REVEAL AU SCROLL
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       7. BOUTON RETOUR EN HAUT (remontée fluide)
+       ---------------------------------------------------------- */
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       7bis. FORMULAIRE NEWSLETTER — envoi AJAX (mail-campinter.php)
+       ---------------------------------------------------------- */
+    var formNews = document.getElementById('ciFormNews');
+    if(formNews){
+      var statutNews = document.getElementById('ciNewsStatus');
+      formNews.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!formNews.checkValidity()){ formNews.reportValidity(); return; }
+        var bouton = formNews.querySelector('button[type="submit"]');
+        bouton.disabled = true;
+        if(statutNews){ statutNews.hidden = true; }
+        fetch(formNews.getAttribute('action'), {
+          method: 'POST',
+          body: new FormData(formNews),
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(res){ return res.json().catch(function(){ return { success:false, message:'Réponse invalide du serveur.' }; }); })
+        .then(function(data){
+          if(data && data.success){
+            formNews.reset();
+            if(statutNews){
+              statutNews.textContent = data.message || 'Merci pour votre inscription !';
+              statutNews.className = 'ci-newsletter-status ci-statut-ok';
+              statutNews.hidden = false;
+            }
+          } else {
+            if(statutNews){
+              statutNews.textContent = (data && data.message) || 'Une erreur est survenue. Réessayez.';
+              statutNews.className = 'ci-newsletter-status ci-statut-err';
+              statutNews.hidden = false;
+            }
+          }
+        })
+        .catch(function(){
+          if(statutNews){
+            statutNews.textContent = 'Erreur de connexion. Réessayez plus tard.';
+            statutNews.className = 'ci-newsletter-status ci-statut-err';
+            statutNews.hidden = false;
+          }
+        })
+        .finally(function(){ bouton.disabled = false; });
+      });
+    }
+
+    /* ----------------------------------------------------------
+       8. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+  /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Le blog ».
+       2. Images à déposer dans le Gestionnaire de médias
+          (blog-*.jpg + hero-blog.jpg).
+       3. Désactiver le filtrage HTML de l'article.
+       4. Menu : Campus Inter > Blog (alias).
+       5. Pour ajouter un article : dupliquer un
+          <article class="ci-article"> et modifier le contenu.
+          L'attribut data-categorie doit correspondre à l'un des
+          filtres (etudes, visa, emploi, logement).
+       6. Les liens « Lire l'article » pointent vers les articles
+          Joomla à créer (ex. /blog/reussir-son-dossier-campus-france).
+       7. La section newsletter est un ARTICLE JOOMLA à part
+          entière : voir articles/article-blog-newsletter.php
+          (PHP embarqué via Sourcerer, envoi vers amerocar010@gmail.com).
+          Aucun fichier à la racine.
+       ============================================================ -->
+</div>

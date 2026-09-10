@@ -1,0 +1,1039 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE NOS PARTENAIRES
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : nos-partenaires.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Nos partenaires »
+     (catégorie : Campus Inter — Partenaires).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Images à déposer dans le Gestionnaire de médias :
+     - images/campusinter/hero-partenaires.jpg
+     - images/campusinter/logo-galileo.png
+     - images/campusinter/logo-omnes.png
+     - images/campusinter/logo-mediaschool.png
+     - images/campusinter/logo-hema.png
+     - images/campusinter/logo-mbn.png
+     - images/campusinter/partenaire-finance.jpg
+     - images/campusinter/partenaire-logement.jpg
+  4. Désactiver le filtrage HTML de l'article.
+  5. Les logos des groupes sont affichés en noir sur fond
+     blanc. Si un logo est déjà sombre, retirez la classe
+     .ci-partner-logo--noir sur la carte concernée.
+  6. Chaque fiche partenaire peut être enrichie (écoles clés)
+      en dupliquant les lignes .ci-partner-ecole.
+  7. GRILLE HEXAGONALE : le motif est généré par le script
+      (div.ci-hex). Position : --tl/--tr/--bl/--br/--full ;
+      opacité : --faint/--soft/--mid/--strong ; densité :
+      data-cols/data-rows/data-size ; couleur data-color ;
+      remplissage data-fill ; images data-img/data-img-every.
+          8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE « NOS PARTENAIRES »
+     ========================================================== */
+
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF; --ci-fond:#F4F7F4; --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280; --ci-bordure:#E7EFE8; --ci-bordure-input:#E2E8E2;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-grad-sombre:linear-gradient(135deg,#252525,#159447);
+    --ci-rayon:18px; --ci-rayon-lg:22px; --ci-pill:999px;
+    --ci-ombre-carte:0 8px 26px rgba(0,0,0,.06); --ci-ombre:0 14px 40px rgba(21,148,71,.14);
+    --ci-ombre-forte:0 18px 45px rgba(21,148,71,.35); --ci-ombre-noir:0 14px 40px rgba(21,148,71,.25);
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif; --ci-font-texte:'Inter',sans-serif;
+  }
+
+  .ci-page{margin:0;padding:0;font-family:var(--ci-font-texte);color:var(--ci-texte);background:var(--ci-blanc);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .ci-page *,.ci-page *::before,.ci-page *::after{box-sizing:border-box}
+  .ci-page img{max-width:100%;display:block}
+  .ci-page a{text-decoration:none}
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{font-family:var(--ci-font-titres);color:var(--ci-noir);line-height:1.2;margin:0 0 .6em}
+  .ci-page p{margin:0 0 1em}
+
+  .ci-container{width:100%;max-width:none;margin:0 auto;padding-left:clamp(16px,4vw,64px);padding-right:clamp(16px,4vw,64px)}
+  .ci-section{padding:clamp(42px,5vw,70px) 0;position:relative}
+  .ci-section-titre{text-align:center;max-width:720px;margin:0 auto 56px}
+  .ci-kicker{display:inline-block;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ci-vert);margin-bottom:16px}
+  .ci-section-titre h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800}
+  .ci-section-titre p{color:var(--ci-texte-2);font-size:1.05rem}
+
+  /* --- Boutons --- */
+  .ci-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--ci-font-titres);font-weight:700;font-size:.95rem;padding:15px 30px;border-radius:999px;cursor:pointer;transition:transform .3s,box-shadow .3s,background .3s;border:none;position:relative;overflow:hidden}
+  .ci-btn i{font-size:18px;transition:transform .3s}
+  .ci-btn:hover i{transform:translateX(4px)}
+  .ci-btn--primaire{background:var(--ci-grad);color:#fff;box-shadow:var(--ci-ombre-noir)}
+  .ci-btn--primaire:hover{transform:translateY(-3px);box-shadow:var(--ci-ombre-forte)}
+  .ci-btn--primaire::after{content:"";position:absolute;inset:0;background:var(--ci-grad-sombre);opacity:0;transition:opacity .35s}
+  .ci-btn--primaire:hover::after{opacity:1}
+  .ci-btn--primaire>*{position:relative;z-index:1}
+  .ci-btn--outline{background:transparent;color:var(--ci-noir);border:2px solid var(--ci-noir)}
+  .ci-btn--outline:hover{background:var(--ci-noir);color:#fff;transform:translateY(-3px)}
+  .ci-btn--blanc{background:#fff;color:var(--ci-vert-fonce);box-shadow:var(--ci-ombre)}
+  .ci-btn--blanc:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,0,.18)}
+
+  /* --- Préloader --- */
+  .ci-preloader{position:fixed;inset:0;z-index:9999;background:var(--ci-blanc);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s,visibility .6s}
+  .ci-preloader.ci-hide{opacity:0;visibility:hidden}
+  .ci-preloader-logo{font-family:var(--ci-font-titres);font-weight:800;font-size:1.8rem;color:var(--ci-vert);animation:ciPulse 1.6s infinite}
+  .ci-preloader-bar{width:180px;height:5px;background:var(--ci-fond);border-radius:99px;overflow:hidden}
+  .ci-preloader-bar span{display:block;height:100%;width:40%;background:var(--ci-grad);border-radius:99px;animation:ciLoad 1.2s infinite}
+  @keyframes ciPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}}
+  @keyframes ciLoad{0%{transform:translateX(-100%)}100%{transform:translateX(450%)}}
+
+  /* --- Topbar --- */
+  .ci-topbar{background:var(--ci-noir);color:#cfd8d2;font-size:.82rem;padding:8px 0}
+  .ci-topbar .ci-container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .ci-topbar a{color:#cfd8d2;display:inline-flex;align-items:center;gap:6px;transition:color .25s}
+  .ci-topbar a:hover{color:#fff}
+  .ci-topbar i{font-size:14px}
+  .ci-topbar-infos{display:flex;gap:20px;flex-wrap:wrap}
+  .ci-topbar-social{display:flex;gap:12px}
+  .ci-scroll-progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--ci-grad);z-index:1000}
+
+  /* --- Hero interne --- */
+  .ci-page-hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%);padding:clamp(24px,3.5vw,48px) 0 clamp(32px,4vw,55px)}
+  .ci-page-hero .ci-hex{opacity:.45}
+  .ci-hero-grid--inverse{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,72px);align-items:center;position:relative;z-index:1}
+  .ci-breadcrumb{font-size:.82rem;color:var(--ci-texte-2);margin-bottom:24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .ci-breadcrumb a{color:var(--ci-texte-2);transition:color .25s}
+  .ci-breadcrumb a:hover{color:var(--ci-vert)}
+  .ci-sep{color:var(--ci-bordure)}
+  .ci-here{color:var(--ci-noir);font-weight:600}
+  .ci-hero-kicker{display:inline-flex;align-items:center;gap:8px;background:var(--ci-vert-bg);color:var(--ci-vert-fonce);padding:8px 18px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:24px}
+  .ci-hero-kicker i{font-size:15px;color:var(--ci-vert)}
+  .ci-page-hero h1{font-size:clamp(2.2rem,4.2vw,3.65rem);letter-spacing:-.035em}
+  .ci-page-hero h1 em{font-style:normal;color:var(--ci-vert)}
+  .ci-hero-sous{font-size:1.1rem;color:var(--ci-texte);max-width:540px;margin-bottom:32px}
+  .ci-hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .ci-hero-reassurance{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;color:var(--ci-texte-2);font-size:.82rem;font-weight:600}
+  .ci-hero-reassurance span{display:inline-flex;align-items:center;gap:7px}
+  .ci-hero-reassurance i{color:var(--ci-vert);font-size:.9rem}
+  .ci-hero-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .ci-hero-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#fff;border:1.5px solid var(--ci-bordure);border-radius:999px;font-size:.82rem;font-weight:600;color:var(--ci-texte);transition:all .25s}
+  .ci-hero-chip:hover{border-color:var(--ci-vert);color:var(--ci-vert);background:var(--ci-vert-bg)}
+  .ci-hero-media{position:relative;z-index:1;max-width:min(100%,360px)}
+  .ci-hero-blob{position:absolute;width:82%;height:74%;top:6%;right:-6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(29,184,94,.55),rgba(21,148,71,.06) 72%);z-index:0}
+  .ci-hero-dots{position:absolute;z-index:0;left:-16%;bottom:2%;opacity:.65}
+  .ci-hero-img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:26px;box-shadow:0 34px 70px rgba(18,52,36,.24)}
+  .ci-hero-card{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 18px 44px rgba(18,52,36,.16);border:1px solid #eef5f0}
+  .ci-hero-card i{font-size:20px;color:var(--ci-vert)}
+  .ci-hero-card b{font-family:var(--ci-font-titres);font-size:1.2rem;color:var(--ci-noir);line-height:1.1}
+  .ci-hero-card small{color:var(--ci-texte-2);font-size:.78rem}
+  .ci-hero-card--1{top:7%;left:-7%}
+  .ci-hero-card--2{bottom:12%;right:-9%}
+  .ci-hero-tag{position:absolute;z-index:2;bottom:7%;left:-5%;background:rgba(21,148,71,.94);color:#fff;padding:8px 16px;border-radius:999px;font-size:.82rem;font-weight:600;box-shadow:0 14px 30px rgba(21,148,71,.35)}
+  .ci-ghost{position:absolute;z-index:0;font-family:var(--ci-font-titres);font-weight:800;color:transparent;-webkit-text-stroke:1.5px rgba(21,148,71,.3);user-select:none;pointer-events:none;line-height:1}
+  .ci-hero-media .ci-ghost{top:-34px;right:2%;font-size:clamp(4.2rem,7vw,6rem)}
+
+  /* --- Hexagones décoratifs --- */
+  .ci-hex{position:absolute;pointer-events:none;overflow:hidden;line-height:0;z-index:0}
+  .ci-hex i{display:block;width:100%;height:100%}
+  .ci-hex--tl{top:0;left:0}
+  .ci-hex--tr{top:0;right:0}
+  .ci-hex--bl{bottom:0;left:0}
+  .ci-hex--br{bottom:0;right:0}
+  .ci-hex--full{inset:0;width:100%;height:100%}
+  .ci-hex--sm{width:130px;height:150px}
+  .ci-hex--md{width:230px;height:270px}
+  .ci-hex--lg{width:350px;height:410px}
+  .ci-hex--xl{width:520px;height:600px}
+  .ci-hex--faint{opacity:.07}
+  .ci-hex--soft{opacity:.14}
+  .ci-hex--mid{opacity:.24}
+  .ci-hex--strong{opacity:.38}
+  section>.ci-container{position:relative;z-index:1}
+
+  /* --- Intro stats --- */
+  .ci-intro-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(40px,5vw,60px)}
+  .ci-intro-stat{text-align:center;padding:28px 16px;background:#fff;border-radius:var(--ci-rayon);border:1px solid var(--ci-bordure);box-shadow:var(--ci-ombre-carte);transition:transform .3s,box-shadow .3s}
+  .ci-intro-stat:hover{transform:translateY(-4px);box-shadow:var(--ci-ombre)}
+  .ci-intro-num{font-family:var(--ci-font-titres);font-size:clamp(2rem,3.6vw,2.7rem);font-weight:800;color:var(--ci-vert);line-height:1.1}
+  .ci-intro-stat p{font-size:.88rem;color:var(--ci-texte-2);margin:8px 0 0}
+
+  /* --- Fiches partenaires --- */
+  .ci-partner{display:grid;grid-template-columns:1fr 1.6fr;gap:0;background:#fff;border-radius:var(--ci-rayon-lg);box-shadow:var(--ci-ombre-carte);border:1px solid var(--ci-bordure);overflow:hidden;margin-bottom:40px;transition:box-shadow .35s,transform .35s}
+  .ci-partner:hover{box-shadow:0 18px 48px rgba(21,148,71,.12);transform:translateY(-4px)}
+  .ci-partner:nth-child(even){direction:rtl}
+  .ci-partner:nth-child(even)>*{direction:ltr}
+  .ci-partner-visuel{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;background:var(--ci-fond);border-right:1px solid var(--ci-bordure);gap:14px}
+  .ci-partner:nth-child(even) .ci-partner-visuel{border-right:none;border-left:1px solid var(--ci-bordure);order:2}
+  .ci-partner-logo{max-height:56px;max-width:140px;width:auto;object-fit:contain;filter:grayscale(1) brightness(0) opacity(.7);transition:filter .3s}
+  .ci-partner:hover .ci-partner-logo{filter:grayscale(1) brightness(0) opacity(.9)}
+  .ci-partner-groupe{display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--ci-font-titres);font-weight:700;font-size:.85rem;color:var(--ci-noir);text-align:center}
+  .ci-partner-groupe small{font-weight:400;font-size:.75rem;color:var(--ci-texte-2)}
+  .ci-partner-contenu{padding:32px 36px;display:flex;flex-direction:column;justify-content:center}
+  .ci-partner-contenu h3{margin-bottom:12px;font-size:1.25rem}
+  .ci-partner-contenu p{color:var(--ci-texte);font-size:.92rem;line-height:1.7}
+  .ci-partner-chiffres{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .ci-partner-chiffre{display:inline-block;padding:7px 14px;background:var(--ci-vert-bg);color:var(--ci-vert-fonce);border-radius:var(--ci-pill);font-size:.78rem;font-weight:700;font-family:var(--ci-font-titres)}
+  .ci-partner-ecoles{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 18px}
+  .ci-partner-ecole{display:inline-block;padding:5px 12px;background:var(--ci-fond-2);border:1px solid var(--ci-bordure);border-radius:var(--ci-pill);font-size:.74rem;font-weight:600;color:var(--ci-texte);font-family:var(--ci-font-titres)}
+
+  /* --- Services finance & logement --- */
+  .ci-services-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .ci-service{background:#fff;border-radius:var(--ci-rayon-lg);overflow:hidden;box-shadow:var(--ci-ombre-carte);border:1px solid var(--ci-bordure);transition:box-shadow .35s,transform .35s}
+  .ci-service:hover{box-shadow:0 18px 48px rgba(21,148,71,.12);transform:translateY(-4px)}
+  .ci-service>img{width:100%;height:220px;object-fit:cover}
+  .ci-service-body{padding:28px 28px 32px}
+  .ci-service-body h3{display:flex;align-items:center;gap:10px;font-size:1.2rem;margin-bottom:14px}
+  .ci-service-body h3 i{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--ci-vert-bg);color:var(--ci-vert);border-radius:10px;font-size:1rem;flex-shrink:0}
+  .ci-service-body ul{list-style:none;padding:0;margin:14px 0 0}
+  .ci-service-body li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:.92rem;color:var(--ci-texte)}
+  .ci-service-body li i{color:var(--ci-vert);margin-top:3px;flex-shrink:0}
+
+  /* --- Valeur ajoutée --- */
+  .ci-valeur-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .ci-valeur-item{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border:1px solid var(--ci-bordure);border-radius:var(--ci-rayon);padding:32px 28px;text-align:center;transition:box-shadow .35s,transform .35s}
+  .ci-valeur-item:hover{box-shadow:var(--ci-ombre);transform:translateY(-4px)}
+  .ci-valeur-item>i{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;background:var(--ci-vert-bg);color:var(--ci-vert);border-radius:16px;font-size:1.5rem;margin-bottom:16px}
+  .ci-valeur-item h3{font-size:1.05rem;margin-bottom:10px}
+  .ci-valeur-item p{color:var(--ci-texte-2);font-size:.9rem;line-height:1.6;margin:0}
+
+  /* --- CTA --- */
+  .ci-cta{background:linear-gradient(rgba(6,21,14,.9),rgba(9,26,18,.82));color:#fff;text-align:center;position:relative;overflow:hidden}
+  .ci-cta h2{color:#fff;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800}
+  .ci-cta p{color:#dceadf;max-width:600px;margin:0 auto 34px}
+  .ci-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .ci-wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}
+  .ci-wave svg{width:100%;height:70px}
+
+  /* --- Footer --- */
+  .ci-footer{background:var(--ci-noir);color:#c7d2cb;padding:70px 0 0;font-size:.92rem}
+  .ci-footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:50px}
+  .ci-footer h4{color:#fff;font-size:1.05rem;margin-bottom:18px}
+  .ci-footer a{color:#c7d2cb;display:block;padding:5px 0;transition:color .25s,transform .25s}
+  .ci-footer a:hover{color:var(--ci-vert-clair);transform:translateX(4px)}
+  .ci-footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .ci-footer-logo img{height:46px;filter:brightness(0) invert(1)}
+  .ci-footer-social{display:flex;gap:12px;margin-top:16px}
+  .ci-footer-social a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);border-radius:10px;transition:all .25s}
+  .ci-footer-social a:hover{background:var(--ci-vert);border-color:var(--ci-vert);color:#fff;transform:none}
+  .ci-footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;font-size:.82rem;color:#9aa89f;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .ci-footer-bottom a{display:inline;padding:0;transition:color .25s}
+  .ci-footer-bottom a:hover{color:var(--ci-vert-clair);transform:none}
+
+  /* --- Reveal --- */
+  .ci-reveal,.ci-reveal-left,.ci-reveal-right{opacity:0;transition:opacity .7s ease,transform .7s ease}
+  .ci-reveal{transform:translateY(24px)}
+  .ci-reveal-left{transform:translateX(-30px)}
+  .ci-reveal-right{transform:translateX(30px)}
+  .ci-reveal.ci-visible,.ci-reveal-left.ci-visible,.ci-reveal-right.ci-visible{opacity:1;transform:translate(0)}
+
+  /* --- WhatsApp --- */
+  .ci-whatsapp{position:fixed;bottom:max(20px,env(safe-area-inset-bottom));right:max(20px,env(safe-area-inset-right));z-index:9999;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#25d366;color:#fff;border-radius:50%;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;text-decoration:none}
+  .ci-whatsapp:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+  .ci-to-top{position:fixed;bottom:max(94px,calc(env(safe-area-inset-bottom)+74px));right:max(26px,env(safe-area-inset-right));z-index:9999;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--ci-vert);border:1.5px solid var(--ci-bordure);border-radius:50%;font-size:1rem;box-shadow:0 2px 12px rgba(0,0,0,.08);transition:all .3s;opacity:0;visibility:hidden}
+  .ci-to-top.ci-visible{opacity:1;visibility:visible}
+  .ci-to-top:hover{background:var(--ci-vert);color:#fff;border-color:var(--ci-vert);transform:translateY(-2px)}
+
+  /* --- Responsive --- */
+  @media(max-width:900px){
+    .ci-hero-grid--inverse{grid-template-columns:1fr;gap:40px}
+    .ci-hero-media{order:-1;max-width:300px;margin:0 auto}
+    .ci-intro-stats{grid-template-columns:repeat(2,1fr)}
+    .ci-partner{grid-template-columns:1fr}
+    .ci-partner:nth-child(even){direction:ltr}
+    .ci-partner:nth-child(even) .ci-partner-visuel{border-left:none;border-right:none;border-bottom:1px solid var(--ci-bordure);order:0}
+    .ci-partner-visuel{padding:24px 20px}
+    .ci-partner-contenu{padding:20px}
+    .ci-services-grid{grid-template-columns:1fr}
+    .ci-valeur-grid{grid-template-columns:1fr}
+    .ci-footer-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:640px){
+    .ci-section{padding:24px 0}
+    .ci-intro-stats{grid-template-columns:1fr}
+    .ci-hero-chips{flex-direction:column}
+    .ci-hero-cta{flex-direction:column}
+    .ci-hero-cta .ci-btn{width:100%;justify-content:center}
+  }
+  </style>
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Appeler le fixe">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Envoyer un email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Lundi - Vendredi, 07h30 à 17h30
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="04">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span class="ci-sep">›</span><a href="#">Campus Inter</a><span class="ci-sep">›</span><span class="ci-here">Nos partenaires</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+            Réseau Campus Inter
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Nos <em>partenaires</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Un réseau solide pour votre réussite : des partenaires académiques, financiers et logement, au service de votre projet.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Explorer les partenaires
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciIntro">Découvrir le réseau</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Nos engagements"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Premier échange gratuit</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Réponse sous 48 h</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp disponible</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciIntro"><i class="fa-solid fa-handshake" aria-hidden="true"></i>Partenaires</a>
+            <a class="ci-hero-chip" href="#ciAcademiques"><i class="fa-solid fa-school" aria-hidden="true"></i>Académiques</a>
+            <a class="ci-hero-chip" href="#ciServices"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>Services</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">04</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-partenaires.jpg" alt="Poignée de main entre partenaires">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Partenaires</b><small>sélectionnés avec soin</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Programmes</b><small>reconnus en Europe</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Réseau de confiance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — INTRO DU RÉSEAU + CHIFFRES
+       ========================================================== -->
+  <section class="ci-section" id="ciIntro">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Texte de présentation du réseau de partenaires -->
+      <div class="ci-intro ci-reveal">
+        <span class="ci-kicker">Le réseau Campus Inter</span>
+        <h2>Un réseau stratégique au service de votre projet</h2>
+        <p>Chez Campus Inter, nous avons construit un réseau stratégique de partenaires académiques, professionnels et institutionnels en Europe pour offrir à nos candidats les meilleures opportunités d'études, de carrière, de financement et d'intégration.</p>
+        <p>Nous collaborons étroitement avec des groupes d'établissements internationaux reconnus, ainsi qu'avec des partenaires spécialisés dans le financement des projets de migration et des solutions de logement pour étudiants et jeunes professionnels.</p>
+      </div>
+
+      <!-- Statistiques clés du réseau -->
+      <div class="ci-intro-stats">
+        <!-- Stat 1 -->
+        <div class="ci-intro-stat ci-reveal">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="5">0</span>+</div>
+          <p>Groupes académiques partenaires</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="ci-intro-stat ci-reveal" style="--d:.1s">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="100">0</span>+</div>
+          <p>Établissements en Europe</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="ci-intro-stat ci-reveal" style="--d:.2s">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="20">0</span></div>
+          <p>Pays couverts par nos partenaires</p>
+        </div>
+        <!-- Stat 4 -->
+        <div class="ci-intro-stat ci-reveal" style="--d:.3s">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="300">0</span>K+</div>
+          <p>Étudiants formés chaque année</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — PARTENAIRES ACADÉMIQUES (5 fiches)
+       ========================================================== -->
+  <section class="ci-section ci-partenaires" id="ciAcademiques" data-ghost="01">
+    <!-- Hexagones : coin haut-gauche, très subtil, vert -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Partenaires académiques en Europe</span>
+        <h2>Des groupes d'enseignement supérieur d'exception</h2>
+        <p>Campus Inter représente plusieurs groupes d'établissements européens dans plusieurs pays africains. Parmi plus d'une centaine d'établissements présents dans plusieurs villes européennes, vous trouverez forcément le parcours idéal pour votre projet académique.</p>
+      </div>
+
+      <!-- Fiche 1 : Galileo Global Education -->
+      <article class="ci-partner ci-reveal-left">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-galileo.png" alt="Logo Galileo Global Education" loading="lazy">
+          <span class="ci-partner-groupe">Galileo Global Education<small>Plus grand groupe privé d'Europe</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>Galileo Global Education</h3>
+          <p>Campus Inter est partenaire du plus grand groupe d'enseignement supérieur privé en Europe. Ce groupe rassemble plus de 70 écoles et universités réparties dans 20 pays, avec plus de 300 000 étudiants formés chaque année dans des domaines aussi variés que le management, le digital, la communication, les arts, la santé ou encore l'innovation pédagogique.</p>
+          <p>Grâce à ce réseau, nos candidats ont accès à des parcours internationaux, des diplômes professionnalisants reconnus et une forte employabilité à l'international.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">70+ écoles</span>
+            <span class="ci-partner-chiffre">20 pays</span>
+            <span class="ci-partner-chiffre">300K+ étudiants</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">emlyon</span>
+            <span class="ci-partner-ecole">Cours Florent</span>
+            <span class="ci-partner-ecole">Digital Campus</span>
+            <span class="ci-partner-ecole">ESG</span>
+            <span class="ci-partner-ecole">Paris School of Business</span>
+            <span class="ci-partner-ecole">HETIC</span>
+            <span class="ci-partner-ecole">IESA</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Découvrir les écoles <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 2 : Omnes Education Group -->
+      <article class="ci-partner ci-reveal-right">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-omnes.png" alt="Logo Omnes Education" loading="lazy">
+          <span class="ci-partner-groupe">OMNES Education Group<small>Acteur majeur de l'enseignement supérieur</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>OMNES Education Group</h3>
+          <p>Nous travaillons également avec Omnes Education Group, un acteur majeur de l'enseignement supérieur européen. Ce groupe regroupe 15 écoles et près de 20 campus en France et à l'international, dans des domaines comme le management, l'ingénierie, la communication, le digital ou les relations internationales.</p>
+          <p>Avec Omnes Education, nos étudiants bénéficient de programmes variés, d'un réseau d'anciens élèves puissant et d'un accès à un large éventail de secteurs professionnels.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">15 écoles</span>
+            <span class="ci-partner-chiffre">~20 campus</span>
+            <span class="ci-partner-chiffre">215K+ alumni</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">INSEEC</span>
+            <span class="ci-partner-ecole">ESCE</span>
+            <span class="ci-partner-ecole">ECE</span>
+            <span class="ci-partner-ecole">HEIP</span>
+            <span class="ci-partner-ecole">Sup de Pub</span>
+            <span class="ci-partner-ecole">EU Business School</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Découvrir les écoles <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 3 : Media School -->
+      <article class="ci-partner ci-reveal-left">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-mediaschool.png" alt="Logo Media School" loading="lazy">
+          <span class="ci-partner-groupe">MediaSchool<small>Réseau d'écoles de communication &amp; médias</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>Media School</h3>
+          <p>Campus Inter est aussi partenaire de Media School, un réseau d'écoles spécialisées dans les métiers de la communication, du marketing, du digital et des industries créatives. Cette collaboration ouvre des portes vers des formations orientées vers les métiers de demain, ancrés dans la transformation numérique et les stratégies de communication innovantes.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">14 écoles</span>
+            <span class="ci-partner-chiffre">29 campus</span>
+            <span class="ci-partner-chiffre">13 500+ entreprises partenaires</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">IEJ</span>
+            <span class="ci-partner-ecole">SUPDEPROD</span>
+            <span class="ci-partner-ecole">SUPDEWEB</span>
+            <span class="ci-partner-ecole">Paris School of Tourism</span>
+            <span class="ci-partner-ecole">Paris School of Luxury</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Découvrir les écoles <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 4 : Hema Management School -->
+      <article class="ci-partner ci-reveal-right">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-hema.png" alt="Logo Groupe HEMA" loading="lazy">
+          <span class="ci-partner-groupe">Hema Management School<small>Expert de l'alternance depuis 32 ans</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>Hema Management School</h3>
+          <p>Nous collaborons avec Hema Management School, un établissement européen réputé pour ses programmes en management, commerce et leadership. Cette alliance permet à nos candidats de rejoindre des formations axées sur l'entrepreneuriat, la stratégie et la gestion d'entreprise, tout en bénéficiant d'un accompagnement personnalisé pour leur insertion professionnelle.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">32 ans d'expérience</span>
+            <span class="ci-partner-chiffre">Bac à Bac+5</span>
+            <span class="ci-partner-chiffre">Certifié Qualiopi</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">ESMA</span>
+            <span class="ci-partner-ecole">ESCI Paris</span>
+            <span class="ci-partner-ecole">ISEAM</span>
+            <span class="ci-partner-ecole">ISEADD</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Découvrir les écoles <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 5 : MBN Global Education -->
+      <article class="ci-partner ci-reveal-left">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-mbn.png" alt="Logo MBN Global Education" loading="lazy">
+          <span class="ci-partner-groupe">MBN Global Education<small>Formations professionnelles &amp; internationales</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>MBN Global Education</h3>
+          <p>Enfin, Campus Inter est partenaire de MBN Global Education, un groupe éducatif français et international qui propose des formations professionnelles, des bachelors, des mastères et des opportunités d'alternance dans des secteurs variés.</p>
+          <p>MBN Global Education met l'accent sur l'excellence académique, l'ouverture internationale et l'employabilité, en offrant un environnement pédagogique dynamique et attractif.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">BTS · Bachelor · Mastère</span>
+            <span class="ci-partner-chiffre">4 campus</span>
+            <span class="ci-partner-chiffre">Certifié RNCP &amp; Qualiopi</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">Paris-Torcy</span>
+            <span class="ci-partner-ecole">Paris-Évry</span>
+            <span class="ci-partner-ecole">Lyon</span>
+            <span class="ci-partner-ecole">Yaoundé</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Découvrir les écoles <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — PARTENAIRES FINANCIERS & LOGEMENT
+       ========================================================== -->
+  <section class="ci-section" id="ciServices" data-ghost="02">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Un accompagnement complet</span>
+        <h2>Des solutions financières et un logement sécurisé</h2>
+        <p>Au-delà des études et de l'emploi, nous facilitons votre financement et votre installation en France.</p>
+      </div>
+
+      <!-- Grille : Financiers + Logement -->
+      <div class="ci-services-grid">
+        <!-- Partenaires financiers -->
+        <article class="ci-service ci-reveal">
+          <img src="images/campusinter/partenaire-finance.jpg" alt="Solutions de financement" loading="lazy">
+          <div class="ci-service-body">
+            <h3><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i> Partenaires financiers</h3>
+            <p>Pour rendre votre projet d'études ou de migration professionnelle réalisable et sécurisé, Campus Inter travaille avec des partenaires financiers spécialisés qui proposent :</p>
+            <ul>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> des solutions de prêts étudiantes adaptées</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> des bourses et aides financières ciblées</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> des conseils personnalisés pour gérer votre budget</li>
+            </ul>
+            <p style="margin-top:10px;font-size:.9rem;color:var(--ci-texte-2);">Ces partenaires sont sélectionnés pour leur fiabilité, flexibilité et transparence, afin de faciliter votre accès aux formations et à la vie en France.</p>
+          </div>
+        </article>
+
+        <!-- Partenaires logement -->
+        <article class="ci-service ci-reveal" style="--d:.15s">
+          <img src="images/campusinter/partenaire-logement.jpg" alt="Logement étudiant" loading="lazy">
+          <div class="ci-service-body">
+            <h3><i class="fa-solid fa-building-columns" aria-hidden="true"></i> Partenaires logement</h3>
+            <p>Nous mettons aussi à votre disposition un réseau de partenaires logement pour que votre arrivée en France soit confortable et sereine :</p>
+            <ul>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> résidences étudiantes partenaires</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> solutions d'hébergement temporaire ou longue durée</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> accompagnement pour la recherche de logement selon votre budget</li>
+            </ul>
+            <p style="margin-top:10px;font-size:.9rem;color:var(--ci-texte-2);">Un réseau de logements fiables pour arriver sereinement et se concentrer sur l'essentiel.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — VALEUR AJOUTÉE (3 points forts)
+       ========================================================== -->
+  <section class="ci-section ci-valeur" id="ciValeur" data-ghost="03">
+    <!-- Hexagones : fond complet, très subtil, blanc ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="14" data-rows="7" data-size="24" data-color="#FFFFFF" data-fill="5" data-img="images/campusinter/partenaire-logement.jpg" data-img-every="12" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker" style="color:#8ee0b4;">Une vraie valeur ajoutée</span>
+        <h2>Ce réseau unique maximise vos chances de réussite</h2>
+        <p>Grâce à ce réseau de partenaires académiques prestigieux, de solutions de financement robustes et de facilités de logement, Campus Inter vous offre :</p>
+      </div>
+
+      <!-- Grille des 3 valeurs ajoutées -->
+      <div class="ci-valeur-grid">
+        <!-- Valeur 1 -->
+        <div class="ci-valeur-item ci-reveal">
+          <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+          <h3>Parcours de formation internationaux</h3>
+          <p>Un accès privilégié à plus de 100 établissements européens reconnus, tous domaines confondus.</p>
+        </div>
+        <!-- Valeur 2 -->
+        <div class="ci-valeur-item ci-reveal" style="--d:.12s">
+          <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+          <h3>Opportunités de carrière concrètes</h3>
+          <p>Des débouchés réels grâce à un réseau d'entreprises partenaires et une forte employabilité.</p>
+        </div>
+        <!-- Valeur 3 -->
+        <div class="ci-valeur-item ci-reveal" style="--d:.24s">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <h3>Accompagnement complet</h3>
+          <p>Un suivi personnalisé pour chaque étape de votre projet, de l'orientation à l'installation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL — dégradé sombre + vague
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Appel à l'action -->
+      <h2 class="ci-reveal">Devenir partenaire de Campus Inter ?</h2>
+      <p class="ci-reveal">Vous êtes un établissement, une école ou un acteur du secteur ? Construisons ensemble des passerelles vers les étudiants et professionnels d'Afrique.</p>
+      <!-- Boutons d'action -->
+      <div class="ci-cta-btns ci-reveal">
+        <a class="ci-btn ci-btn--primaire" href="/contact">
+          Contacter Campus Inter
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener">Discuter sur WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT « NOS PARTENAIRES »
+     IIFE pour éviter les conflits avec le template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences de mouvement (accessibilité) */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000); /* filet de sécurité */
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION + RETOUR EN HAUT
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    var toTop = document.getElementById('ciToTop');
+    function onScroll(){      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       3. PARALLAX — image du hero en mouvement
+       ---------------------------------------------------------- */
+    var bgParallax = document.getElementById('ciBgParallax');
+    if(bgParallax && !reducedMotion){
+      window.addEventListener('scroll', function(){
+        var y = window.scrollY * 0.3;
+        bgParallax.style.transform = 'translate3d(0,' + y + 'px,0)';
+      }, { passive:true });
+    }
+
+    /* ----------------------------------------------------------
+       4. COMPTEURS ANIMÉS — statistiques du réseau
+       ---------------------------------------------------------- */
+    var counters = document.querySelectorAll('.ci-counter');
+    function animateCounter(el){
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 1800;
+      var start = null;
+      function step(timestamp){
+        if(!start){ start = timestamp; }
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if(progress < 1){ requestAnimationFrame(step); }
+        else { el.textContent = target; }
+      }
+      requestAnimationFrame(step);
+    }
+    var counterObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animateCounter(entry.target); counterObserver.unobserve(entry.target); }
+      });
+    }, { threshold:0.5 });
+    counters.forEach(function(c){ counterObserver.observe(c); });
+
+    /* ----------------------------------------------------------
+       5. REVEAL AU SCROLL
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       7. BOUTON RETOUR EN HAUT (remontée fluide)
+       ---------------------------------------------------------- */
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       8. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+  /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Nos partenaires ».
+       2. Images à déposer dans le Gestionnaire de médias.
+       3. Désactiver le filtrage HTML de l'article.
+       4. Menu : Campus Inter > Nos partenaires (alias).
+       5. Pour ajouter un partenaire : dupliquer un
+          <article class="ci-partner"> et modifier le contenu.
+          Les fiches paires inversent automatiquement l'image.
+       6. Les liens « Découvrir les écoles » pointent vers
+          /ecoles-et-programmes (page à créer).
+       ============================================================ -->
+</div>

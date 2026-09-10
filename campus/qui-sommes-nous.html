@@ -1,0 +1,1173 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE QUI SOMMES-NOUS
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : qui-sommes-nous.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Qui sommes-nous ? »
+     (catégorie : À propos).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Images à déposer dans le Gestionnaire de médias :
+     - images/campusinter/hero-qui-sommes-nous.jpg
+     - images/campusinter/equipe-1.jpg
+     - images/campusinter/equipe-2.jpg
+     - images/campusinter/equipe-3.jpg
+  4. Désactiver le filtrage HTML de l'article (sinon Joomla
+     supprime <style> et <script>).
+  5. Le header/footer peuvent être déplacés dans le template
+     Joomla pour éviter la duplication entre les pages.
+  6. Les valeurs, avantages, chiffres, membres de l'équipe et
+      témoignages sont modifiables directement dans le HTML.
+  7. GRILLE HEXAGONALE : le motif est généré par le script
+      (div.ci-hex). Position : --tl/--tr/--bl/--br/--full ;
+      opacité : --faint/--soft/--mid/--strong ; densité :
+      data-cols/data-rows/data-size ; couleur data-color ;
+      remplissage data-fill ; images data-img/data-img-every.
+          8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE « QUI SOMMES-NOUS »
+     Styles scopés .ci- pour éviter tout conflit Joomla.
+     Charte officielle (voir UX-UI-DESIGN-CAMPUS-INTER.md).
+     ========================================================== */
+
+  /* --- Polices Google Fonts --- */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  /* --- Design tokens (charte Campus Inter) --- */
+  :root{
+    --ci-vert:#159447;  --ci-vert-fonce:#0F7A3A;  --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525;  --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;  --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8; --ci-bordure-input:#E2E8E2;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-grad-sombre:linear-gradient(135deg,#252525,#159447);
+    --ci-rayon:18px; --ci-rayon-lg:22px; --ci-pill:999px;
+    --ci-ombre-carte:0 8px 26px rgba(0,0,0,.06);
+    --ci-ombre:0 14px 40px rgba(21,148,71,.14);
+    --ci-ombre-forte:0 18px 45px rgba(21,148,71,.35);
+    --ci-ombre-noir:0 14px 40px rgba(21,148,71,.25);
+    --ci-ombre-header:0 8px 30px rgba(0,0,0,.08);
+    --ci-ombre-mega:0 25px 60px rgba(0,0,0,.14);
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px); --ci-section-pad-mobile:32px;
+    --ci-conteneur:100%;
+  }
+
+  /* --- Base --- */
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *, .ci-page *::before, .ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 1em; }
+  .ci-container{ width:var(--ci-conteneur); max-width:none; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+  .ci-section-titre{ text-align:center; max-width:720px; margin:0 auto 56px; }
+  .ci-kicker{ display:inline-block; font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:var(--ci-vert-fonce); margin-bottom:16px; }
+  .ci-section-titre h2{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:800; }
+  .ci-section-titre p{ color:var(--ci-texte-2); font-size:1.05rem; }
+
+  /* --- Boutons --- */
+  .ci-btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--ci-font-titres); font-weight:700; font-size:.95rem; padding:15px 30px; border-radius:999px; cursor:pointer; transition:transform .3s, box-shadow .3s, background .3s; border:none; position:relative; overflow:hidden; }
+  .ci-btn i{ font-size:18px; transition:transform .3s; }
+  .ci-btn:hover i{ transform:translateX(4px); }
+  .ci-btn--primaire{ background:var(--ci-grad); color:#fff; box-shadow:var(--ci-ombre-noir); }
+  .ci-btn--primaire:hover{ transform:translateY(-3px); box-shadow:var(--ci-ombre-forte); }
+  .ci-btn--primaire::after{ content:""; position:absolute; inset:0; background:var(--ci-grad-sombre); opacity:0; transition:opacity .35s; }
+  .ci-btn--primaire:hover::after{ opacity:1; }
+  .ci-btn--primaire > *{ position:relative; z-index:1; }
+  .ci-btn--blanc{ background:#fff; color:var(--ci-vert-fonce); box-shadow:var(--ci-ombre); }
+  .ci-btn--blanc:hover{ transform:translateY(-3px); }
+
+  /* --- Preloader --- */
+  .ci-preloader{ position:fixed; inset:0; z-index:9999; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transition:opacity .6s, visibility .6s; }
+  .ci-preloader.ci-hide{ opacity:0; visibility:hidden; }
+  .ci-preloader-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.8rem; color:var(--ci-vert); animation:ciPulse 1.6s infinite; }
+  .ci-preloader-bar{ width:180px; height:5px; background:var(--ci-fond); border-radius:99px; overflow:hidden; }
+  .ci-preloader-bar span{ display:block; height:100%; width:40%; background:var(--ci-grad); border-radius:99px; animation:ciLoad 1.2s infinite; }
+  @keyframes ciPulse{ 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(1.06); opacity:.85;} }
+  @keyframes ciLoad{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(450%);} }
+
+  /* --- Topbar --- */
+  .ci-topbar{ background:var(--ci-noir); color:#cfd8d2; font-size:.82rem; padding:8px 0; }
+  .ci-topbar .ci-container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .ci-topbar a{ color:#cfd8d2; display:inline-flex; align-items:center; gap:6px; transition:color .25s; }
+  .ci-topbar a:hover{ color:#fff; }
+  .ci-topbar i{ font-size:14px; }
+  .ci-topbar-infos{ display:flex; gap:20px; flex-wrap:wrap; }
+  .ci-topbar-social{ display:flex; gap:12px; }
+
+  /* --- Barre de progression --- */
+  .ci-scroll-progress{ position:fixed; top:0; left:0; height:4px; width:0; background:var(--ci-grad); z-index:1000; }
+
+  /* ==========================================================
+     SECTION 1 — NOTRE MISSION (intro centrée)
+     ========================================================== */
+  .ci-mission{ text-align:center; max-width:820px; margin:0 auto; }
+  .ci-mission h2{ font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; }
+  .ci-mission > p{ color:var(--ci-texte-2); font-size:1.05rem; }
+  .ci-mission-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin-top:40px; text-align:left; }
+  .ci-mission-item{ background:#fff; border:1px solid var(--ci-bordure); border-radius:16px; padding:22px; transition:transform .3s, box-shadow .3s; }
+  .ci-mission-item:hover{ transform:translateY(-5px); box-shadow:var(--ci-ombre); }
+  .ci-mission-item b{ display:flex; align-items:center; gap:10px; font-family:var(--ci-font-titres); font-size:1rem; color:var(--ci-noir); margin-bottom:6px; }
+  .ci-mission-item i{ font-size:22px; color:var(--ci-vert); flex-shrink:0; }
+  .ci-mission-item p{ color:var(--ci-texte-2); font-size:.88rem; margin:0; }
+
+  /* ==========================================================
+     SECTION 2 — NOS VALEURS (4 cartes)
+     ========================================================== */
+  .ci-valeurs{ background:var(--ci-fond); }
+  .ci-valeurs-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px; }
+  .ci-valeur{ background:#fff; border-radius:var(--ci-rayon-lg); padding:34px 28px; text-align:center; box-shadow:var(--ci-ombre-carte); transition:transform .3s, box-shadow .3s; }
+  .ci-valeur:hover{ transform:translateY(-8px); box-shadow:var(--ci-ombre); }
+  .ci-valeur-icone{ width:70px; height:70px; border-radius:50%; background:var(--ci-grad); color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; box-shadow:var(--ci-ombre-noir); }
+  .ci-valeur-icone i{ font-size:32px; }
+  .ci-valeur h3{ font-size:1.2rem; }
+  .ci-valeur p{ color:var(--ci-texte-2); font-size:.93rem; margin:0; }
+
+  /* ==========================================================
+     SECTION 3 — POURQUOI NOUS CHOISIR (listes + stats)
+     ========================================================== */
+  .ci-choisir{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .ci-choisir h2{ font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:800; }
+  .ci-choisir-intro{ color:var(--ci-texte-2); }
+  .ci-choisir-list{ list-style:none; padding:0; margin:0; }
+  .ci-choisir-list li{ display:flex; gap:14px; align-items:flex-start; padding:12px 0; border-bottom:1px dashed var(--ci-bordure); }
+  .ci-choisir-list li:last-child{ border-bottom:none; }
+  .ci-choisir-check{ width:38px; height:38px; flex-shrink:0; border-radius:12px; background:var(--ci-vert-bg); color:var(--ci-vert); display:flex; align-items:center; justify-content:center; }
+  .ci-choisir-check i{ font-size:20px; }
+  .ci-choisir-list b{ display:block; font-family:var(--ci-font-titres); font-size:1.02rem; color:var(--ci-noir); }
+  .ci-choisir-list span{ color:var(--ci-texte-2); font-size:.9rem; }
+  .ci-choisir-side{ background:var(--ci-grad-sombre); border-radius:var(--ci-rayon-lg); padding:36px 30px; color:#fff; box-shadow:var(--ci-ombre-mega); }
+  .ci-choisir-side h3{ color:#fff; font-size:1.25rem; margin-bottom:6px; }
+  .ci-choisir-side p{ color:#dceadf; font-size:.95rem; }
+  .ci-choisir-side .ci-badge{ display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; font-family:var(--ci-font-titres); font-weight:700; font-size:.9rem; padding:10px 18px; border-radius:999px; margin-top:14px; }
+  .ci-choisir-side .ci-badge i{ font-size:18px; color:var(--ci-vert-clair); }
+
+  /* ==========================================================
+     SECTION 4 — CHIFFRES CLÉS (compteurs, fond sombre)
+     ========================================================== */
+  .ci-chiffres{ background:var(--ci-noir); color:#fff; }
+  .ci-chiffres .ci-section-titre h2{ color:#fff; }
+  .ci-chiffres .ci-section-titre p{ color:#b9c6be; }
+  .ci-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:28px; text-align:center; }
+  .ci-stat{ padding:10px; }
+  .ci-stat-num{ font-family:var(--ci-font-titres); font-weight:800; font-size:clamp(2rem,4vw,2.8rem); background:var(--ci-grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .ci-stat p{ color:#c9d4cd; font-size:.92rem; margin:6px 0 0; }
+
+  /* ==========================================================
+     SECTION 5 — NOTRE ÉQUIPE (cartes placeholder)
+     ========================================================== */
+  .ci-equipe-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+  .ci-membre{ background:#fff; border-radius:var(--ci-rayon-lg); overflow:hidden; box-shadow:var(--ci-ombre-carte); transition:transform .3s, box-shadow .3s; }
+  .ci-membre:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-membre-photo{ position:relative; height:240px; overflow:hidden; }
+  .ci-membre-photo img{ width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+  .ci-membre:hover .ci-membre-photo img{ transform:scale(1.06); }
+  .ci-membre-photo::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(37,37,37,.75)); }
+  .ci-membre-body{ padding:22px; }
+  .ci-membre-body h3{ font-size:1.15rem; margin:0 0 4px; }
+  .ci-membre-role{ display:inline-block; color:var(--ci-vert); font-family:var(--ci-font-titres); font-weight:700; font-size:.82rem; letter-spacing:.04em; text-transform:uppercase; margin-bottom:10px; }
+  .ci-membre-body p{ color:var(--ci-texte-2); font-size:.9rem; margin:0; }
+
+  /* ==========================================================
+     SECTION 6 — TÉMOIGNAGES
+     ========================================================== */
+  .ci-temoignages{ background:var(--ci-fond); }
+  .ci-temoignage-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .ci-temoignage{ background:#fff; border-radius:var(--ci-rayon-lg); padding:30px; box-shadow:var(--ci-ombre-carte); transition:transform .3s, box-shadow .3s; }
+  .ci-temoignage:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-temoignage-etoiles{ color:#F5B301; letter-spacing:3px; margin-bottom:12px; }
+  .ci-temoignage-quote{ color:var(--ci-texte); font-size:.95rem; }
+  .ci-temoignage-autor{ display:flex; align-items:center; gap:14px; margin-top:20px; }
+  .ci-temoignage-avatar{ width:52px; height:52px; border-radius:50%; overflow:hidden; border:3px solid var(--ci-vert-bg-2); flex-shrink:0; }
+  .ci-temoignage-avatar img{ width:100%; height:100%; object-fit:cover; }
+  .ci-temoignage-autor b{ display:block; font-family:var(--ci-font-titres); font-size:.95rem; color:var(--ci-noir); }
+  .ci-temoignage-autor span{ color:var(--ci-texte-2); font-size:.82rem; }
+
+  /* ==========================================================
+     SECTION 7 — CITATION SIGNATURE
+     ========================================================== */
+  .ci-citation{ text-align:center; background:var(--ci-grad); color:#fff; position:relative; overflow:hidden; }
+  .ci-citation::before{ content:""; position:absolute; top:-80px; left:-80px; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.1); }
+  .ci-citation::after{ content:""; position:absolute; bottom:-60px; right:-40px; width:220px; height:220px; border-radius:50%; background:rgba(0,0,0,.12); }
+  .ci-citation blockquote{ position:relative; z-index:2; font-family:var(--ci-font-titres); font-weight:800; font-size:clamp(1.5rem,3.6vw,2.4rem); color:#fff; margin:0; }
+
+  /* ==========================================================
+     SECTION 8 — CTA FINAL
+     ========================================================== */
+  .ci-cta{ background:var(--ci-fond-2); text-align:center; }
+  .ci-cta h2{ font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; }
+  .ci-cta p{ color:var(--ci-texte-2); max-width:600px; margin:0 auto 34px; }
+  .ci-cta-btns{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+  /* --- Animations reveal --- */
+  .ci-reveal{ opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal.ci-visible{ opacity:1; transform:translateY(0); }
+  .ci-reveal-left{ opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-left.ci-visible{ opacity:1; transform:translateX(0); }
+  .ci-reveal-right{ opacity:0; transform:translateX(40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-right.ci-visible{ opacity:1; transform:translateX(0); }
+
+  /* --- Footer --- */
+  .ci-footer{ background:#1c1c1c; color:#c7d2cb; padding:70px 0 0; font-size:.92rem; }
+  .ci-footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:50px; }
+  .ci-footer h4{ color:#fff; font-size:1.05rem; margin-bottom:18px; position:relative; padding-bottom:10px; }
+  
+  .ci-footer a{ color:#c7d2cb; display:block; padding:5px 0; transition:color .25s, transform .25s; }
+  .ci-footer a:hover{ color:var(--ci-vert-clair); transform:translateX(4px); }
+  .ci-footer-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.5rem; color:#fff; margin-bottom:14px; }
+  .ci-footer-logo img{ height:46px; filter:brightness(0) invert(1); }
+  .ci-footer-contact a{ display:flex; gap:10px; align-items:flex-start; }
+  .ci-footer-contact i{ font-size:18px; color:var(--ci-vert-clair); flex-shrink:0; margin-top:4px; }
+  .ci-footer-social{ display:flex; gap:10px; margin-top:18px; }
+  .ci-footer-social a{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; padding:0; }
+  .ci-footer-social i{ font-size:18px; }
+  .ci-footer-social a:hover{ background:var(--ci-vert); transform:translateY(-3px); }
+  .ci-footer-bottom{ border-top:1px solid rgba(255,255,255,.1); padding:22px 0; text-align:center; font-size:.82rem; }
+  .ci-footer-bottom a{ display:inline; padding:0 8px; }
+
+  /* --- Boutons flottants --- */
+  .ci-whatsapp{ position:fixed; right:22px; bottom:22px; width:58px; height:58px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(37,211,102,.4); z-index:900; transition:transform .3s; }
+  .ci-whatsapp i{ font-size:30px; }
+  .ci-whatsapp:hover{ transform:scale(1.1); }
+  .ci-to-top{ position:fixed; left:22px; bottom:22px; width:48px; height:48px; border-radius:50%; background:var(--ci-noir); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:var(--ci-ombre-mega); z-index:900; opacity:0; visibility:hidden; transition:.3s; }
+  .ci-to-top.ci-visible{ opacity:1; visibility:visible; }
+  .ci-to-top:hover{ background:var(--ci-vert); }
+  .ci-to-top i{ font-size:22px; }
+
+  /* --- Responsive --- */
+  @media (max-width:1024px){
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+    .ci-choisir{ grid-template-columns:1fr; gap:36px; }
+  }
+  @media (max-width:820px){
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+    .ci-section{ padding:var(--ci-section-pad-mobile) 0; }
+  }
+  @media (max-width:560px){
+    .ci-footer-grid{ grid-template-columns:1fr; gap:30px; }
+  }
+  @media (max-width:400px){
+    .ci-container{ padding-left:14px; padding-right:14px; }
+    .ci-section{ padding:24px 0; }
+    .ci-section-titre{ margin-bottom:34px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ci-reveal, .ci-reveal-left, .ci-reveal-right{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .ci-preloader, .ci-hero-particles span{ display:none; }
+  }
+
+  /* ==========================================================
+     GRILLE HEXAGONALE DÉCORATIVE (arrière-plans de sections)
+     Conteneur positionné : --tl/--tr/--bl/--br/--full,
+     tailles --sm/--md/--lg/--xl, opacité --faint/--soft/--mid/--strong.
+     Motif SVG généré par le script (attributs data-*).
+     ========================================================== */
+  section{ position:relative; }
+  .ci-hex{
+    position:absolute; pointer-events:none; overflow:hidden;
+    line-height:0; z-index:0;
+  }
+  .ci-hex i{ display:block; width:100%; height:100%; }
+  .ci-hex--tl{ top:0; left:0; }
+  .ci-hex--tr{ top:0; right:0; }
+  .ci-hex--bl{ bottom:0; left:0; }
+  .ci-hex--br{ bottom:0; right:0; }
+  .ci-hex--full{ inset:0; width:100%; height:100%; }
+  .ci-hex--sm{ width:130px; height:150px; }
+  .ci-hex--md{ width:230px; height:270px; }
+  .ci-hex--lg{ width:350px; height:410px; }
+  .ci-hex--xl{ width:520px; height:600px; }
+  .ci-hex--faint{ opacity:.07; }
+  .ci-hex--soft{ opacity:.14; }
+  .ci-hex--mid{ opacity:.24; }
+  .ci-hex--strong{ opacity:.38; }
+  section > .ci-container{ position:relative; z-index:1; }
+  
+
+
+  /* ==========================================================
+     PRÉMIUM — cohérence éditoriale avec l'accueil
+     Numéros fantômes de section
+     ========================================================== */
+  .ci-section[data-ghost]::before{
+    content:attr(data-ghost);
+    position:absolute; top:clamp(6px,2vw,28px); right:clamp(8px,2.5vw,44px); z-index:0;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(3.8rem,7.5vw,6rem); line-height:1;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.2);
+    pointer-events:none; user-select:none;
+  }
+  .ci-section[data-ghost].ci-band-chiffres::before,
+  .ci-section[data-ghost].ci-partners::before{
+    -webkit-text-stroke:1.5px rgba(255,255,255,.16);
+  }
+  @media (max-width:640px){
+    .ci-section[data-ghost]::before{ display:none; }
+  }
+
+
+
+  /* ==========================================================
+     HERO INTÉRIEUR — ADN premium accueil, variante inversée
+     Grille inversée (média gauche / texte droite) + chips de nav
+     ========================================================== */
+  .ci-page-hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#f1f8f4 0%,#ffffff 55%);
+    padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px);
+  }
+  .ci-page-hero .ci-hex{ opacity:.45; }
+  .ci-breadcrumb{ display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap; align-items:center;
+    font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--ci-texte-2); margin-bottom:clamp(28px,4vw,44px); }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); transition:color .25s; }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-sep{ opacity:.5; margin:0 2px; }
+  .ci-breadcrumb .ci-here{ color:var(--ci-vert-fonce); font-weight:700; }
+  .ci-hero-grid--inverse{
+    display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);
+    gap:clamp(32px,5vw,72px); align-items:center; position:relative; z-index:1;
+    grid-template-areas:"media content";
+  }
+  .ci-hero-grid--inverse .ci-hero-content{ grid-area:content; }
+  .ci-hero-grid--inverse .ci-hero-media{ grid-area:media; }
+  .ci-hero-kicker{ display:inline-flex; align-items:center; gap:10px; font-size:.8rem; font-weight:700;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--ci-vert-fonce); margin-bottom:20px; }
+  .ci-hero-kicker::before{ content:""; width:34px; height:2px; background:var(--ci-vert); border-radius:99px; }
+  .ci-hero-kicker i{ font-size:15px; color:var(--ci-vert); }
+  .ci-page-hero h1{ font-size:clamp(2.4rem,5.2vw,3.9rem); font-weight:800; color:var(--ci-noir); margin:0 0 18px; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-page-hero .ci-hero-sous{ font-size:1.08rem; color:var(--ci-texte); max-width:540px; margin-bottom:28px; }
+  .ci-hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .ci-hero-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .ci-hero-chip{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #e2e8e2;
+    border-radius:999px; padding:9px 16px; font-size:.82rem; font-weight:600; color:var(--ci-texte); transition:.25s; }
+  .ci-hero-chip i{ color:var(--ci-vert); font-size:14px; }
+  .ci-hero-chip:hover{ border-color:var(--ci-vert); color:var(--ci-vert-fonce); transform:translateY(-2px); box-shadow:0 10px 24px rgba(18,52,36,.1); }
+  .ci-hero-media{ position:relative; z-index:1; max-width:min(100%,360px); justify-self:end; }
+  .ci-hero-blob{ position:absolute; width:82%; height:74%; top:6%; left:-6%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(29,184,94,.55), rgba(21,148,71,.06) 72%); z-index:0; }
+  .ci-hero-dots{ position:absolute; z-index:0; right:-16%; bottom:2%; opacity:.65; }
+  .ci-hero-img-frame{ position:relative; z-index:1; }
+  .ci-hero-img-frame::before{ content:""; position:absolute; inset:0; transform:translate(-14px,-14px);
+    border:2px solid var(--ci-vert); border-radius:26px; opacity:.4; z-index:0; }
+  .ci-hero-img{ position:relative; z-index:1; width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:26px;
+    box-shadow:0 34px 70px rgba(18,52,36,.24); }
+  .ci-hero-card{ position:absolute; z-index:2; display:flex; align-items:center; gap:12px; background:#fff;
+    border-radius:16px; padding:14px 18px; box-shadow:0 18px 44px rgba(18,52,36,.16); border:1px solid #eef5f0; }
+  .ci-hero-card i{ font-size:20px; color:var(--ci-vert); }
+  .ci-hero-card b{ font-family:var(--ci-font-titres); font-size:1.2rem; color:var(--ci-noir); line-height:1.1; }
+  .ci-hero-card small{ color:var(--ci-texte-2); font-size:.78rem; }
+  .ci-hero-card--1{ top:7%; left:-7%; }
+  .ci-hero-card--2{ bottom:12%; right:-9%; }
+  .ci-hero-tag{ position:absolute; z-index:2; bottom:7%; right:-5%; background:rgba(21,148,71,.94); color:#fff;
+    padding:8px 16px; border-radius:999px; font-size:.82rem; font-weight:600; box-shadow:0 14px 30px rgba(21,148,71,.35); }
+  .ci-ghost{
+    position:absolute; z-index:0; font-family:var(--ci-font-titres); font-weight:800;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.3); user-select:none; pointer-events:none; line-height:1;
+  }
+  .ci-hero-media .ci-ghost{ top:-34px; left:-4%; font-size:clamp(4.2rem,7vw,6rem); }
+  @media (max-width:1024px){
+    .ci-hero-grid--inverse{ grid-template-columns:1fr; grid-template-areas:"content" "media"; }
+    .ci-hero-media{ max-width:min(100%,330px); margin:0 auto; justify-self:auto; }
+    .ci-hero-media .ci-ghost{ top:-36px; left:6%; }
+    .ci-hero-blob{ left:auto; right:-6%; }
+  }
+  @media (max-width:640px){
+    .ci-hero-media{ max-width:min(100%,300px); }
+    .ci-hero-card--1{ left:-4%; }
+    .ci-hero-card--2{ right:-4%; }
+    .ci-hero-tag{ right:-3%; }
+  }
+  @media (max-width:400px){
+    .ci-hero-media{ max-width:min(100%,260px); }
+    .ci-hero-chips{ gap:8px; }
+    .ci-hero-chip{ padding:8px 13px; font-size:.76rem; }
+  }
+</style>
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="07">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span class="ci-sep">›</span><span class="ci-here">Qui sommes-nous ?</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+            Notre histoire
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Qui <em>sommes-nous ?</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Votre partenaire de confiance pour réussir votre projet de mobilité vers l'Europe, depuis Lomé jusqu'à votre destination.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Rencontrer un conseiller
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciMission">Notre mission</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Nos engagements"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Premier échange gratuit</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Réponse sous 48 h</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp disponible</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciMission"><i class="fa-solid fa-heart" aria-hidden="true"></i>Valeurs</a>
+            <a class="ci-hero-chip" href="#ciChoisir"><i class="fa-solid fa-chart-line" aria-hidden="true"></i>Chiffres clés</a>
+            <a class="ci-hero-chip" href="#ciEquipe"><i class="fa-solid fa-people-group" aria-hidden="true"></i>Équipe</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">07</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-qui-sommes-nous.jpg" alt="L'équipe Campus Inter">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>À Lomé</b><small>une équipe à votre écoute</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Suivi</b><small>personnalisé et humain</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Depuis Lomé</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — NOTRE MISSION
+       ========================================================== -->
+  <section class="ci-section" id="ciMission">
+    <!-- Hexagones : coin bas-droit, présent, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--mid" data-cols="5" data-rows="3" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/equipe-1.jpg" data-img-every="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-mission ci-reveal">
+        <span class="ci-kicker">Notre mission</span>
+        <h2>Votre réussite en Europe commence ici</h2>
+        <p>Campus Inter est une agence spécialisée dans l'accompagnement des projets de mobilité vers l'Europe. Nous aidons chaque candidat à réaliser son rêve en toute sérénité.</p>
+
+        <!-- Grille des 4 étapes de la mission -->
+        <div class="ci-mission-grid">
+          <div class="ci-mission-item ci-reveal">
+            <b><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Clarifier son projet</b>
+            <p>Identifier vos objectifs, vos envies et vos possibilités dès le premier rendez-vous.</p>
+          </div>
+          <div class="ci-mission-item ci-reveal" style="--d:.08s">
+            <b><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Choisir la bonne voie</b>
+            <p>Vous orienter vers la formation ou la filière la plus adaptée à votre profil.</p>
+          </div>
+          <div class="ci-mission-item ci-reveal" style="--d:.16s">
+            <b><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i> Réussir ses démarches</b>
+            <p>Constituer un dossier solide et suivre chaque étape administrative avec rigueur.</p>
+          </div>
+          <div class="ci-mission-item ci-reveal" style="--d:.24s">
+            <b><i class="fa-solid fa-landmark" aria-hidden="true"></i> S'installer sereinement</b>
+            <p>Vous accompagner sur place : logement, formalités et intégration réussie.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — NOS VALEURS (4 cartes)
+       ========================================================== -->
+  <section class="ci-valeurs ci-section" id="ciValeurs" data-ghost="01">
+    <!-- Hexagones : coin haut-gauche, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Nos valeurs</span>
+        <h2>Ce qui nous anime au quotidien</h2>
+        <p>Quatre valeurs fondamentales guident chacune de nos actions et de nos accompagnements.</p>
+      </div>
+
+      <!-- Grille des 4 valeurs -->
+      <div class="ci-valeurs-grid">
+        <!-- Valeur 1 -->
+        <article class="ci-valeur ci-reveal">
+          <span class="ci-valeur-icone"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+          <h3>Accompagnement humain</h3>
+          <p>Une relation de proximité, à l'écoute de chaque candidat, de ses doutes et de ses ambitions.</p>
+        </article>
+
+        <!-- Valeur 2 -->
+        <article class="ci-valeur ci-reveal" style="--d:.1s">
+          <span class="ci-valeur-icone"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span>
+          <h3>Rigueur administrative</h3>
+          <p>Des dossiers complets, précis et conformes, pour maximiser vos chances de succès.</p>
+        </article>
+
+        <!-- Valeur 3 -->
+        <article class="ci-valeur ci-reveal" style="--d:.2s">
+          <span class="ci-valeur-icone"><i class="fa-solid fa-clock" aria-hidden="true"></i></span>
+          <h3>Résultats concrets</h3>
+          <p>Des visas obtenus, des étudiants installés, des parcours réussis : notre fierté quotidienne.</p>
+        </article>
+
+        <!-- Valeur 4 -->
+        <article class="ci-valeur ci-reveal" style="--d:.3s">
+          <span class="ci-valeur-icone"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+          <h3>Transparence</h3>
+          <p>Des informations claires, des tarifs annoncés et des étapes détaillées sans mauvaise surprise.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — POURQUOI NOUS CHOISIR
+       ========================================================== -->
+  <section class="ci-section" id="ciChoisir">
+    <div class="ci-container">
+      <div class="ci-choisir">
+        <!-- Colonne liste -->
+        <div class="ci-reveal-left">
+          <span class="ci-kicker">Pourquoi nous choisir ?</span>
+          <h2>Un partenaire de confiance à vos côtés</h2>
+          <p class="ci-choisir-intro">Notre expertise et notre engagement font toute la différence dans la réussite de votre projet.</p>
+          <ul class="ci-choisir-list">
+            <li>
+              <span class="ci-choisir-check"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+              <div>
+                <b>Expertise des procédures France</b>
+                <span>Une connaissance approfondie des procédures Campus France et des visas</span>
+              </div>
+            </li>
+            <li>
+              <span class="ci-choisir-check"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+              <div>
+                <b>Approche personnalisée</b>
+                <span>Chaque profil est unique : votre accompagnement est taillé sur mesure</span>
+              </div>
+            </li>
+            <li>
+              <span class="ci-choisir-check"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+              <div>
+                <b>Gain de temps considérable</b>
+                <span>Nous gérons les démarches à votre place pour vous concentrer sur l'essentiel</span>
+              </div>
+            </li>
+            <li>
+              <span class="ci-choisir-check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>
+              <div>
+                <b>Sécurité des dossiers</b>
+                <span>Vos documents sont traités avec la plus grande confidentialité et rigueur</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Colonne encadré -->
+        <div class="ci-choisir-side ci-reveal-right">
+          <h3>L'Immigration No Stress !</h3>
+          <p>Notre promesse : transformer votre projet d'études ou d'emploi en une expérience fluide, rassurante et réussie, de A à Z.</p>
+          <p>Basés à Bè-Kpota, nous sommes proches de vous, disponibles et à l'écoute à chaque étape de votre parcours.</p>
+          <span class="ci-badge"><i class="fa-solid fa-check" aria-hidden="true"></i> Accompagnement complet</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — CHIFFRES CLÉS (compteurs)
+       ========================================================== -->
+  <section class="ci-chiffres ci-section" id="ciChiffres" data-ghost="02">
+    <!-- Hexagones : fond complet, très subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="12" data-rows="6" data-size="26" data-color="#FFFFFF" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Chiffres clés</span>
+        <h2>Des résultats qui parlent</h2>
+        <p>Quelques chiffres qui témoignent de notre engagement et de notre expertise.</p>
+      </div>
+
+      <!-- Statistiques -->
+      <div class="ci-stats">
+        <!-- Stat 1 -->
+        <div class="ci-stat ci-reveal">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="1500">0</span>+</div>
+          <p>Dossiers accompagnés avec succès</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="ci-stat ci-reveal" style="--d:.1s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="5">0</span>+</div>
+          <p>Années d'expérience en mobilité</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="ci-stat ci-reveal" style="--d:.2s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="98">0</span>%</div>
+          <p>De clients satisfaits et accompagnés</p>
+        </div>
+        <!-- Stat 4 -->
+        <div class="ci-stat ci-reveal" style="--d:.3s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="100">0</span>+</div>
+          <p>Établissements partenaires en Europe</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — NOTRE ÉQUIPE
+       ========================================================== -->
+  <section class="ci-section" id="ciEquipe" data-ghost="03">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Notre équipe</span>
+        <h2>Des experts à votre écoute</h2>
+        <p>Une équipe passionnée et expérimentée, dédiée à la réussite de votre projet de mobilité.</p>
+      </div>
+
+      <!-- Grille de l'équipe -->
+      <div class="ci-equipe-grid">
+        <!-- Membre 1 -->
+        <article class="ci-membre ci-reveal">
+          <div class="ci-membre-photo"><img src="images/campusinter/equipe-1.jpg" alt="Conseiller mobilité Campus Inter"></div>
+          <div class="ci-membre-body">
+            <h3>Alexandre Mensah</h3>
+            <span class="ci-membre-role">Conseiller mobilité</span>
+            <p>Expert en orientation et stratégie de projet, il guide chaque candidat vers la meilleure destination et filière.</p>
+          </div>
+        </article>
+
+        <!-- Membre 2 -->
+        <article class="ci-membre ci-reveal" style="--d:.12s">
+          <div class="ci-membre-photo"><img src="images/campusinter/equipe-2.jpg" alt="Chargé de dossiers Campus France"></div>
+          <div class="ci-membre-body">
+            <h3>Fatou Diallo</h3>
+            <span class="ci-membre-role">Chargée de dossiers Campus France</span>
+            <p>Elle pilote la constitution et le suivi des dossiers Campus France avec une rigueur exemplaire.</p>
+          </div>
+        </article>
+
+        <!-- Membre 3 -->
+        <article class="ci-membre ci-reveal" style="--d:.24s">
+          <div class="ci-membre-photo"><img src="images/campusinter/equipe-3.jpg" alt="Responsable logement Campus Inter"></div>
+          <div class="ci-membre-body">
+            <h3>Jean Kossi</h3>
+            <span class="ci-membre-role">Responsable logement</span>
+            <p>Il accompagne nos étudiants et professionnels dans la recherche de leur logement et leur installation en Europe.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6 — TÉMOIGNAGES
+       ========================================================== -->
+  <section class="ci-temoignages ci-section" id="ciTemoignages" data-ghost="04">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Témoignages</span>
+        <h2>Ils nous font confiance</h2>
+        <p>Le retour de nos étudiants et professionnels accompagnés vers l'Europe.</p>
+      </div>
+
+      <!-- Grille des témoignages -->
+      <div class="ci-temoignage-grid">
+        <!-- Témoignage 1 -->
+        <article class="ci-temoignage ci-reveal">
+          <div class="ci-temoignage-etoiles">★★★★★</div>
+          <p class="ci-temoignage-quote">"Grâce à Campus Inter, mon dossier Campus France a été accepté du premier coup. L'équipe était disponible et professionnelle à chaque étape."</p>
+          <div class="ci-temoignage-autor">
+            <div class="ci-temoignage-avatar"><img src="images/campusinter/equipe-1.jpg" alt="Awa S."></div>
+            <div>
+              <b>Awa S.</b>
+              <span>Étudiante en France</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Témoignage 2 -->
+        <article class="ci-temoignage ci-reveal" style="--d:.1s">
+          <div class="ci-temoignage-etoiles">★★★★★</div>
+          <p class="ci-temoignage-quote">"J'ai obtenu mon visa travail grâce à un accompagnement sérieux et personnalisé. Je recommande vivement Campus Inter."</p>
+          <div class="ci-temoignage-autor">
+            <div class="ci-temoignage-avatar"><img src="images/campusinter/equipe-2.jpg" alt="Kossi D."></div>
+            <div>
+              <b>Kossi D.</b>
+              <span>Professionnel en France</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Témoignage 3 -->
+        <article class="ci-temoignage ci-reveal" style="--d:.2s">
+          <div class="ci-temoignage-etoiles">★★★★★</div>
+          <p class="ci-temoignage-quote">"De l'orientation jusqu'à mon installation, tout a été géré. J'ai même trouvé mon logement avant mon départ. Un vrai soulagement !"</p>
+          <div class="ci-temoignage-autor">
+            <div class="ci-temoignage-avatar"><img src="images/campusinter/equipe-3.jpg" alt="Mariam B."></div>
+            <div>
+              <b>Mariam B.</b>
+              <span>Étudiante en Belgique</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 7 — CITATION SIGNATURE
+       ========================================================== -->
+  <section class="ci-citation ci-section" id="ciCitation">
+    <!-- Hexagones : coin bas-droit, subtil, blanc -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="3" data-size="22" data-color="#FFFFFF" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <blockquote class="ci-reveal">« Votre réussite est notre priorité. »</blockquote>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 8 — CTA FINAL
+       ========================================================== -->
+  <section class="ci-cta ci-section" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-reveal">
+        <span class="ci-kicker">Travaillons ensemble</span>
+        <h2>Commençons votre projet dès aujourd'hui</h2>
+        <p>Contactez notre équipe pour un premier rendez-vous gratuit et laissez-nous transformer votre rêve en réalité.</p>
+        <div class="ci-cta-btns">
+          <a class="ci-btn ci-btn--primaire" href="/contact">
+            Démarrer mon projet
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000">
+            WhatsApp
+            <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT « QUI SOMMES-NOUS »
+     IIFE pour éviter les conflits avec le template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences de mouvement (accessibilité) */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000); /* filet de sécurité */
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION + RETOUR EN HAUT
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    var toTop = document.getElementById('ciToTop');
+    function onScroll(){      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       3. PARALLAX — image du hero en mouvement
+       ---------------------------------------------------------- */
+    var bgParallax = document.getElementById('ciBgParallax');
+    if(bgParallax && !reducedMotion){
+      window.addEventListener('scroll', function(){
+        var y = window.scrollY * 0.3;
+        bgParallax.style.transform = 'translate3d(0,' + y + 'px,0)';
+      }, { passive:true });
+    }
+
+    /* ----------------------------------------------------------
+       4. COMPTEURS ANIMÉS — chiffres clés
+       ---------------------------------------------------------- */
+    var counters = document.querySelectorAll('.ci-counter');
+    function animateCounter(el){
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 1800;
+      var start = null;
+      function step(timestamp){
+        if(!start){ start = timestamp; }
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if(progress < 1){ requestAnimationFrame(step); }
+        else { el.textContent = target; }
+      }
+      requestAnimationFrame(step);
+    }
+    var counterObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animateCounter(entry.target); counterObserver.unobserve(entry.target); }
+      });
+    }, { threshold:0.5 });
+    counters.forEach(function(c){ counterObserver.observe(c); });
+
+    /* ----------------------------------------------------------
+       5. REVEAL AU SCROLL
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       7. BOUTON RETOUR EN HAUT (remontée fluide)
+       ---------------------------------------------------------- */
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       8. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+  /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Qui sommes-nous ? ».
+       2. Images à déposer dans le Gestionnaire de médias :
+          - hero-qui-sommes-nous.jpg
+          - equipe-1.jpg, equipe-2.jpg, equipe-3.jpg
+       3. Désactiver le filtrage HTML de l'article.
+       4. Menu : Campus Inter > Qui sommes-nous ? (alias).
+       5. Pour modifier une valeur, un membre de l'équipe ou un
+          témoignage : dupliquer et modifier les blocs
+          correspondants.
+       ============================================================ -->
+</div>

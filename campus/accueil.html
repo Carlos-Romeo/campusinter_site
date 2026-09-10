@@ -1,0 +1,1748 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE ACCUEIL (HOME)
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : accueil.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer un article Joomla « Accueil » (ID conseillé : 1)
+     dans la catégorie « Accueil ».
+  2. Passer l'éditeur en mode code (CodeMirror ou JCE) et
+     coller l'intégralité de ce bloc HTML/CSS/JS.
+  3. Déposer les images dans le Gestionnaire de médias :
+     - images/campusinter/logo-campus-inter.png
+     - images/campusinter/hero-accueil.jpg
+     - images/campusinter/accueil-etudes.jpg
+     - images/campusinter/accueil-travail.jpg
+     - images/campusinter/accueil-visa.jpg
+     - images/campusinter/accueil-installation.jpg
+     - images/campusinter/logo-galileo.png, logo-omnes.png,
+       logo-mediaschool.png, logo-hema.png, logo-mbn.png
+  4. Configurer le menu principal : Alias vers cet article.
+  5. Le header/footer ci-dessous sont fournis à titre de
+     gabarit : ils peuvent être déplacés dans le template
+     Joomla (index.php) pour être partagés entre les pages.
+  ------------------------------------------------------------
+  À NOTER : tous les styles sont préfixés « ci- » et scopés
+  sous .ci-page pour éviter tout conflit avec le template.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE DE LA PAGE ACCUEIL
+     Toutes les classes sont préfixées .ci- pour ne pas entrer
+     en conflit avec le template Joomla.
+     ========================================================== */
+
+  /* --- Import des polices Google Fonts --- */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  /* --- Variables de la charte graphique Campus Inter --- */
+  :root{
+    --ci-vert:        #159447;   /* Vert principal (logo)   */
+    --ci-vert-fonce:  #0F7A3A;   /* Vert foncé              */
+    --ci-vert-clair:  #1DB85E;   /* Vert clair              */
+    --ci-vert-bg:     #E8F7EE;   /* Fond vert très clair    */
+    --ci-noir:        #252525;   /* Noir / anthracite       */
+    --ci-blanc:       #FFFFFF;   /* Blanc                   */
+    --ci-fond:        #F4F7F4;   /* Fond gris-vert clair    */
+    --ci-fond-2:      #F8FAF8;   /* Fond très clair         */
+    --ci-texte:       #2F3B36;   /* Texte principal         */
+    --ci-texte-2:     #6B7280;   /* Texte secondaire        */
+    --ci-grad:        linear-gradient(135deg, #159447, #1DB85E); /* Dégradé vert */
+    --ci-grad-sombre: linear-gradient(135deg, #252525, #159447); /* Dégradé noir->vert */
+    --ci-rayon:       18px;      /* Rayon des cartes        */
+    --ci-ombre:       0 14px 40px rgba(21,148,71,.14);      /* Ombre douce */
+    --ci-ombre-noir:  0 14px 40px rgba(21,148,71,.25);
+  }
+
+  /* --- Conteneur global de la page (scope CSS) --- */
+  .ci-page{
+    margin:0;
+    padding:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ci-texte);
+    background:var(--ci-blanc);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .ci-page *, .ci-page *::before, .ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    color:var(--ci-noir);
+    line-height:1.2;
+    margin:0 0 .6em;
+  }
+  .ci-page p{ margin:0 0 1em; }
+
+  /* --- Conteneur central réutilisable (100% largeur, adaptatif) --- */
+  .ci-container{
+    width:100%;
+    max-width:none;
+    margin:0 auto;
+    padding-left:clamp(16px, 4vw, 64px);
+    padding-right:clamp(16px, 4vw, 64px);
+  }
+  .ci-section{ padding:clamp(42px,5vw,70px) 0; position:relative; }
+  .ci-section-titre{ text-align:center; max-width:720px; margin:0 auto 56px; }
+  .ci-kicker{
+    display:inline-block; font-size:.85rem; letter-spacing:.18em;
+    text-transform:uppercase; font-weight:700; color:var(--ci-vert);
+    margin-bottom:16px;
+  }
+  .ci-section-titre h2{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:800; }
+  .ci-section-titre p{ color:var(--ci-texte-2); font-size:1.05rem; }
+
+  /* ==========================================================
+     BOUTONS — styles primaire / secondaire / fantôme
+     ========================================================== */
+  .ci-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700;
+    font-size:.95rem; padding:15px 30px; border-radius:999px;
+    cursor:pointer; transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    border:none; position:relative; overflow:hidden;
+  }
+  .ci-btn i{ font-size:18px; transition:transform .3s ease; }
+  .ci-btn:hover i{ transform:translateX(4px); }
+  .ci-btn--primaire{ background:var(--ci-grad); color:#fff; box-shadow:var(--ci-ombre-noir); }
+  .ci-btn--primaire:hover{ transform:translateY(-3px); box-shadow:0 18px 45px rgba(21,148,71,.35); }
+  .ci-btn--outline{ background:transparent; color:var(--ci-noir); border:2px solid var(--ci-noir); }
+  .ci-btn--outline:hover{ background:var(--ci-noir); color:#fff; transform:translateY(-3px); }
+  .ci-btn--blanc{ background:#fff; color:var(--ci-vert-fonce); box-shadow:var(--ci-ombre); }
+  .ci-btn--blanc:hover{ transform:translateY(-3px); box-shadow:0 18px 45px rgba(0,0,0,.18); }
+  /* Effet de remplissage animé sur les boutons primaires */
+  .ci-btn--primaire::after{
+    content:""; position:absolute; inset:0;
+    background:var(--ci-grad-sombre); opacity:0; transition:opacity .35s ease;
+  }
+  .ci-btn--primaire:hover::after{ opacity:1; }
+  .ci-btn--primaire > *{ position:relative; z-index:1; }
+
+  /* ==========================================================
+     PRÉLOADER — écran de chargement animé
+     ========================================================== */
+  .ci-preloader{
+    position:fixed; inset:0; z-index:9999; background:var(--ci-blanc);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:24px; transition:opacity .6s ease, visibility .6s ease;
+  }
+  .ci-preloader.ci-hide{ opacity:0; visibility:hidden; }
+  .ci-preloader-logo{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.8rem; color:var(--ci-vert); animation:ciPulse 1.6s ease-in-out infinite; }
+  .ci-preloader-bar{ width:180px; height:5px; background:var(--ci-fond); border-radius:99px; overflow:hidden; }
+  .ci-preloader-bar span{ display:block; height:100%; width:40%; background:var(--ci-grad); border-radius:99px; animation:ciLoad 1.2s ease-in-out infinite; }
+  @keyframes ciPulse{ 0%,100%{ transform:scale(1); opacity:1; } 50%{ transform:scale(1.06); opacity:.85; } }
+  @keyframes ciLoad{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(450%);} }
+
+  /* ==========================================================
+     TOPBAR — bandeau de contact au-dessus du menu
+     ========================================================== */
+  .ci-topbar{ background:var(--ci-noir); color:#cfd8d2; font-size:.82rem; padding:8px 0; }
+  .ci-topbar .ci-container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .ci-topbar a{ color:#cfd8d2; display:inline-flex; align-items:center; gap:6px; transition:color .25s; }
+  .ci-topbar a:hover{ color:#fff; }
+  .ci-topbar i{ font-size:14px; }
+  .ci-topbar-infos{ display:flex; gap:20px; flex-wrap:wrap; }
+  .ci-topbar-social{ display:flex; gap:12px; }
+
+  /* Barre de progression de lecture (scroll) */
+  .ci-scroll-progress{ position:fixed; top:0; left:0; height:4px; width:0; background:var(--ci-grad); z-index:1000; }
+
+  /* ==========================================================
+     HERO — composition éditoriale asymétrique (premium)
+     ========================================================== */
+  .ci-hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#f1f8f4 0%,#ffffff 55%);
+    padding:clamp(24px,3.5vw,48px) 0 clamp(32px,4vw,55px);
+  }
+  .ci-hero .ci-hex{ opacity:.45; }
+  .ci-hero-grid{ display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(32px,5vw,72px); align-items:center; position:relative; z-index:1; }
+  .ci-hero-badge{
+    display:inline-flex; align-items:center; gap:8px; background:var(--ci-vert-bg);
+    color:var(--ci-vert-fonce); padding:8px 18px; border-radius:999px;
+    font-size:.82rem; font-weight:600; margin-bottom:24px; opacity:0; animation:ciFadeUp .7s .2s forwards;
+  }
+  .ci-hero-badge i{ font-size:15px; color:var(--ci-vert); }
+  .ci-hero h1{ font-size:clamp(2.5rem,5.5vw,4.1rem); font-weight:800; color:var(--ci-noir); margin-bottom:20px; opacity:0; animation:ciFadeUp .7s .35s forwards; }
+  .ci-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  /* Effet machine à écrire (typewriter) */
+  .ci-type{ display:inline-block; min-height:1.4em; color:var(--ci-vert); font-weight:800; }
+  .ci-type-cursor{ display:inline-block; width:4px; background:var(--ci-vert); margin-left:4px; animation:ciBlink .8s step-end infinite; }
+  @keyframes ciBlink{ 50%{ opacity:0; } }
+  .ci-hero p.ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:540px; margin-bottom:32px; opacity:0; animation:ciFadeUp .7s .5s forwards; }
+  .ci-hero-cta{ display:flex; gap:14px; flex-wrap:wrap; opacity:0; animation:ciFadeUp .7s .65s forwards; }
+  @keyframes ciFadeUp{ from{ opacity:0; transform:translateY(28px);} to{ opacity:1; transform:translateY(0);} }
+
+  /* Média hero — photo verticale + cartes flottantes + trajectoire */
+  .ci-hero-media{ position:relative; z-index:1; max-width:min(100%,360px); }
+  .ci-hero-blob{ position:absolute; width:82%; height:74%; top:6%; right:-6%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(29,184,94,.55), rgba(21,148,71,.06) 72%); z-index:0; }
+  .ci-hero-dots{ position:absolute; z-index:0; left:-16%; bottom:2%; opacity:.65; }
+  .ci-hero-img{ position:relative; z-index:1; width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:26px;
+    box-shadow:0 34px 70px rgba(18,52,36,.24); }
+  .ci-hero-card{ position:absolute; z-index:2; display:flex; align-items:center; gap:12px; background:#fff;
+    border-radius:16px; padding:14px 18px; box-shadow:0 18px 44px rgba(18,52,36,.16); border:1px solid #eef5f0; }
+  .ci-hero-card i{ font-size:20px; color:var(--ci-vert); }
+  .ci-hero-card b{ font-family:'Plus Jakarta Sans',sans-serif; font-size:1.2rem; color:var(--ci-noir); line-height:1.1; }
+  .ci-hero-card small{ color:var(--ci-texte-2); font-size:.78rem; }
+  .ci-hero-card--1{ top:7%; left:-7%; opacity:0; animation:ciFadeUp .8s .8s forwards; }
+  .ci-hero-card--2{ bottom:12%; right:-9%; opacity:0; animation:ciFadeUp .8s .95s forwards; }
+  .ci-hero-tag{ position:absolute; z-index:2; bottom:7%; left:-5%; background:rgba(21,148,71,.94); color:#fff;
+    padding:8px 16px; border-radius:999px; font-size:.82rem; font-weight:600; box-shadow:0 14px 30px rgba(21,148,71,.35); }
+
+  /* Numéros fantômes éditoriaux (grands chiffres de section) */
+  .ci-ghost{
+    position:absolute; z-index:0; font-family:'Plus Jakarta Sans',sans-serif; font-weight:800;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.3); user-select:none; pointer-events:none; line-height:1;
+  }
+  .ci-hero-media .ci-ghost{ top:-34px; right:2%; font-size:clamp(4.2rem,7vw,6rem); }
+  .ci-ghost--titre{ top:4px; right:0; font-size:clamp(4.5rem,9vw,7rem); -webkit-text-stroke:1.5px rgba(21,148,71,.16); }
+  .ci-ghost--clair{ -webkit-text-stroke:1.5px rgba(255,255,255,.14); }
+
+  /* Widget « Trouver ma formation » en bas du hero — barre de recherche affinée */
+  .ci-hero-widget{
+    position:relative; z-index:2; background:#fff; border-radius:18px; border:1px solid #e7efe8;
+    box-shadow:0 22px 50px rgba(18,52,36,.12);
+    padding:18px; margin-top:44px; display:grid; grid-template-columns:2fr 2fr auto; gap:14px; align-items:end;
+  }
+  .ci-hero-widget label{ display:block; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--ci-vert-fonce); margin-bottom:6px; }
+  .ci-hero-widget select{
+    width:100%; padding:13px 14px; border:1.5px solid #e2e8e2; border-radius:12px;
+    font-family:'Inter',sans-serif; font-size:.95rem; color:var(--ci-noir); background:#fbfdfb; cursor:pointer; transition:border .25s;
+  }
+  .ci-hero-widget select:focus{ outline:none; border-color:var(--ci-vert); }
+  .ci-hero-widget-cta{ align-self:end; }
+  .ci-hero-widget-cta .ci-btn{ justify-content:center; white-space:nowrap; }
+  .ci-hero-scroll{
+    position:absolute; bottom:20px; left:50%; transform:translateX(-50%); z-index:3;
+    color:var(--ci-texte-2); font-size:.8rem; display:flex; flex-direction:column; align-items:center; gap:6px; opacity:.9;
+  }
+  .ci-hero-scroll i{ font-size:22px; color:var(--ci-vert); animation:ciBounce 1.6s infinite; }
+  @keyframes ciBounce{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+
+  /* ==========================================================
+     STATISTIQUES — compteurs animés
+     ========================================================== */
+  .ci-stats{ background:var(--ci-noir); color:#fff; padding:clamp(64px,8vw,110px) 0; position:relative; }
+  .ci-stats-head{ text-align:center; margin-bottom:clamp(36px,5vw,56px); }
+  .ci-stats-head .ci-kicker{ color:var(--ci-vert-clair); }
+  .ci-stats-head h2{ color:#fff; font-size:clamp(1.6rem,3.4vw,2.4rem); font-weight:800; margin:0; }
+  .ci-stats-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:clamp(24px,4vw,40px); text-align:center; }
+  .ci-stat{ position:relative; padding-top:22px; }
+  .ci-stat::before{ content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:34px; height:3px; border-radius:99px; background:var(--ci-vert-clair); }
+  .ci-stat-num{ font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(2.8rem,6vw,4.4rem); font-weight:800; line-height:1; color:var(--ci-vert-clair); }
+  .ci-stat-label{ color:#c7d2cb; font-size:.95rem; margin-top:10px; }
+
+  /* ==========================================================
+     ENGAGEMENTS — checklist animée
+     ========================================================== */
+  .ci-engagements{ display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(32px,5vw,72px); align-items:start; }
+  .ci-engagements-intro{ position:relative; padding-top:14px; }
+  .ci-engagements-intro .ci-ghost{ top:-34px; left:-8px; font-size:clamp(5rem,10vw,8rem); }
+  .ci-engagements-intro h2{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:800; margin:14px 0 14px; }
+  .ci-engagements-intro p{ color:var(--ci-texte-2); max-width:430px; margin-bottom:28px; }
+  .ci-eng-list{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+  .ci-eng-item{
+    background:#fff; border:1px solid #e7efe8; border-radius:18px; padding:22px 24px;
+    display:flex; align-items:flex-start; gap:18px; transition:transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .ci-eng-item:hover{ transform:translateX(6px); box-shadow:var(--ci-ombre); border-color:transparent; }
+  .ci-eng-num{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.7rem; line-height:1; color:var(--ci-vert); opacity:.5; min-width:34px; }
+  .ci-eng-item h4{ font-size:1rem; margin:0; }
+  .ci-eng-item p{ margin:4px 0 0; font-size:.85rem; color:var(--ci-texte-2); }
+
+  /* ==========================================================
+     DOMAINES D'EXPERTISE — cartes 3D tilt
+     ========================================================== */
+  .ci-domains{ background:var(--ci-fond); }
+  .ci-domain-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:26px; }
+  .ci-domain-card{
+    position:relative; background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 8px 26px rgba(0,0,0,.06);
+    transform-style:preserve-3d; transition:transform .15s ease; will-change:transform;
+  }
+  .ci-domain-card img{ width:100%; height:220px; object-fit:cover; transition:transform .6s ease; }
+  .ci-domain-card:hover img{ transform:scale(1.08); }
+  .ci-domain-body{ padding:24px; position:relative; }
+  .ci-domain-badge{
+    position:absolute; top:-22px; left:24px; width:46px; height:46px; border-radius:14px;
+    background:var(--ci-grad); color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--ci-ombre-noir);
+  }
+  .ci-domain-badge i{ font-size:24px; }
+  .ci-domain-body h3{ font-size:1.2rem; margin-top:26px; }
+  .ci-domain-body p{ color:var(--ci-texte-2); font-size:.93rem; }
+  .ci-domain-lien{ display:inline-flex; align-items:center; gap:8px; color:var(--ci-vert); font-weight:700; font-size:.9rem; }
+  .ci-domain-lien i{ font-size:16px; transition:transform .3s; }
+  .ci-domain-lien:hover i{ transform:translateX(5px); }
+  .ci-domain-num{ position:absolute; top:14px; right:16px; z-index:2; background:rgba(21,148,71,.92); color:#fff;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:.8rem; letter-spacing:.08em;
+    padding:5px 12px; border-radius:999px; box-shadow:0 10px 22px rgba(21,148,71,.3); }
+
+  /* ==========================================================
+     TIMELINE « Comment ça marche »
+     ========================================================== */
+  .ci-timeline{ position:relative; max-width:min(100%,1000px); margin:0 auto; }
+  /* Ligne verticale de la timeline */
+  .ci-timeline::before{ content:""; position:absolute; left:50%; top:0; bottom:0; width:4px; background:var(--ci-vert-bg); transform:translateX(-50%); }
+  .ci-step{ position:relative; width:50%; padding:0 40px 50px; }
+  .ci-step:nth-child(odd){ left:0; text-align:right; }
+  .ci-step:nth-child(even){ left:50%; text-align:left; }
+  .ci-step-dot{
+    position:absolute; top:4px; width:22px; height:22px; border-radius:50%; background:#fff;
+    border:5px solid var(--ci-vert); box-shadow:0 0 0 6px var(--ci-vert-bg); z-index:2;
+  }
+  .ci-step:nth-child(odd) .ci-step-dot{ right:-11px; }
+  .ci-step:nth-child(even) .ci-step-dot{ left:-11px; }
+  .ci-step-num{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.1rem; color:var(--ci-vert); }
+  .ci-step h3{ font-size:1.15rem; margin:.2em 0 .3em; }
+  .ci-step p{ color:var(--ci-texte-2); font-size:.93rem; margin:0; }
+
+  /* ==========================================================
+     PARTENAIRES — marquee de logos défilants
+     ========================================================== */
+  .ci-partners{ background:var(--ci-noir); color:#fff; overflow:hidden; }
+  .ci-marquee{ position:relative; overflow:hidden; padding:20px 0; mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+  .ci-marquee-track{ display:flex; gap:50px; width:max-content; animation:ciScroll 28s linear infinite; }
+  .ci-marquee:hover .ci-marquee-track{ animation-play-state:paused; }
+  @keyframes ciScroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  .ci-marquee-item{ display:flex; align-items:center; gap:10px; color:#dfe9e2; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1.15rem; white-space:nowrap; }
+  .ci-marquee-item img{ height:34px; filter:brightness(0) invert(1); opacity:.85; }
+  .ci-partners-note{ text-align:center; color:#c7d2cb; margin-top:26px; font-size:.95rem; }
+
+  /* ==========================================================
+     POURQUOI NOUS CHOISIR — features
+     ========================================================== */
+  .ci-feature-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px; }
+  .ci-feature{
+    background:var(--ci-vert-bg); border-radius:var(--ci-rayon); padding:30px; position:relative; overflow:hidden;
+    transition:transform .3s, background .3s;
+  }
+  .ci-feature:hover{ transform:translateY(-6px); background:#ddf0e5; }
+  .ci-feature i{ font-size:34px; color:var(--ci-vert); margin-bottom:16px; }
+  .ci-feature h3{ font-size:1.08rem; }
+  .ci-feature p{ color:var(--ci-texte-2); font-size:.92rem; margin:0; }
+
+  /* ==========================================================
+     TÉMOIGNAGES — slider
+     ========================================================== */
+  .ci-testimonials{ background:var(--ci-fond); }
+  .ci-slider{ position:relative; max-width:min(100%,1000px); margin:0 auto; }
+  .ci-slide{ display:none; animation:ciFadeIn .6s ease; }
+  .ci-slide.ci-active{ display:block; }
+  @keyframes ciFadeIn{ from{ opacity:0; } to{ opacity:1; } }
+  .ci-slide-card{
+    background:#fff; border-radius:22px; padding:38px; text-align:center; box-shadow:var(--ci-ombre);
+  }
+  .ci-slide-etoiles{ color:#f5b301; font-size:1.15rem; letter-spacing:4px; margin-bottom:16px; }
+  .ci-slide-card blockquote{ font-size:1.08rem; font-style:italic; color:var(--ci-texte); margin:0 0 20px; }
+  .ci-slide-auteur{ display:flex; align-items:center; justify-content:center; gap:14px; }
+  .ci-slide-avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover; display:block; box-shadow:0 8px 20px rgba(18,52,36,.18); }
+  .ci-slide-auteur b{ display:block; font-family:'Plus Jakarta Sans',sans-serif; }
+  .ci-slide-auteur small{ color:var(--ci-texte-2); }
+  .ci-slider-nav{ display:flex; justify-content:center; align-items:center; gap:18px; margin-top:26px; }
+  .ci-slider-btn{
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--ci-vert); background:#fff; color:var(--ci-vert);
+    cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.3s;
+  }
+  .ci-slider-btn:hover{ background:var(--ci-vert); color:#fff; }
+  .ci-slider-btn i{ font-size:18px; }
+  .ci-slider-dots{ display:flex; gap:8px; }
+  .ci-dot{ width:10px; height:10px; border-radius:50%; background:#c9d6ce; cursor:pointer; transition:.3s; border:none; padding:0; }
+  .ci-dot.ci-active{ background:var(--ci-vert); transform:scale(1.3); }
+
+  /* ==========================================================
+     FAQ — accordéon animé
+     ========================================================== */
+  .ci-faq{ max-width:760px; margin:0 auto; }
+  .ci-faq-item{ background:#fff; border:1px solid #e7efe8; border-radius:16px; margin-bottom:14px; overflow:hidden; transition:box-shadow .3s; }
+  .ci-faq-item.ci-open{ box-shadow:var(--ci-ombre); border-color:transparent; }
+  .ci-faq-q{
+    width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px;
+    background:none; border:none; cursor:pointer; padding:20px 24px; text-align:left;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1rem; color:var(--ci-noir);
+  }
+  .ci-faq-icone{ width:30px; height:30px; flex-shrink:0; border-radius:50%; background:var(--ci-vert-bg); color:var(--ci-vert); display:flex; align-items:center; justify-content:center; transition:transform .35s; }
+  .ci-faq-icone i{ font-size:16px; }
+  .ci-faq-item.ci-open .ci-faq-icone{ transform:rotate(45deg); background:var(--ci-vert); color:#fff; }
+  .ci-faq-a{ max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .ci-faq-a p{ padding:0 24px 20px; margin:0; color:var(--ci-texte-2); font-size:.94rem; }
+
+  /* ==========================================================
+     BLOG — aperçu des articles
+     ========================================================== */
+  .ci-blog-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:26px; }
+  .ci-blog-card{ background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 8px 26px rgba(0,0,0,.06); transition:transform .3s, box-shadow .3s; }
+  .ci-blog-card:hover{ transform:translateY(-8px); box-shadow:var(--ci-ombre); }
+  .ci-blog-card img{ width:100%; height:190px; object-fit:cover; }
+  .ci-blog-body{ padding:22px; }
+  .ci-blog-cat{ font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ci-vert); }
+  .ci-blog-body h3{ font-size:1.05rem; margin:.5em 0 .6em; }
+  .ci-blog-body h3 a{ color:var(--ci-noir); transition:color .25s; }
+  .ci-blog-body h3 a:hover{ color:var(--ci-vert); }
+  .ci-blog-meta{ font-size:.82rem; color:var(--ci-texte-2); }
+
+  /* ==========================================================
+     CTA FINAL + formulaire rapide
+     ========================================================== */
+  .ci-cta{
+    background:linear-gradient(rgba(6,21,14,.9),rgba(9,26,18,.82)), url('images/campusinter/accueil-etudes.jpg') center/cover no-repeat;
+    color:#fff; text-align:center; position:relative; overflow:hidden;
+  }
+  /* Vague décorative entre sections sombres */
+  .ci-wave{ position:absolute; bottom:-1px; left:0; width:100%; line-height:0; }
+  .ci-wave i{ width:100%; height:70px; fill:var(--ci-fond-2); }
+  .ci-cta h2{ color:#fff; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; }
+  .ci-cta p{ color:#dceadf; max-width:600px; margin:0 auto 34px; }
+  .ci-cta-form{
+    max-width:680px; margin:0 auto; background:rgba(255,255,255,.08); backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.18); border-radius:20px; padding:26px;
+    display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left;
+  }
+  .ci-cta-form input, .ci-cta-form select{
+    width:100%; padding:14px 16px; border-radius:12px; border:1.5px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.95); font-family:'Inter',sans-serif; font-size:.95rem; color:var(--ci-noir);
+  }
+  .ci-cta-form input:focus, .ci-cta-form select:focus{ outline:none; border-color:var(--ci-vert-clair); }
+  .ci-cta-form .ci-full{ grid-column:1 / -1; }
+  .ci-cta-form .ci-btn{ justify-content:center; }
+  .ci-cta-form .ci-btn:disabled{ opacity:.65; cursor:wait; }
+  .ci-honeypot{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
+  .ci-form-status{ display:none; font-size:.88rem; font-weight:600; margin:0; padding:12px 16px; border-radius:10px; }
+  .ci-form-status:not([hidden]){ display:block; }
+  .ci-form-status.ci-statut-ok{ background:rgba(232,247,238,.95); color:var(--ci-vert-fonce); border:1px solid #b7e3c9; }
+  .ci-form-status.ci-statut-err{ background:rgba(253,232,234,.95); color:#b3261e; border:1px solid #f2c1c1; }
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+  .ci-footer{ background:var(--ci-noir); color:#c7d2cb; padding:70px 0 0; font-size:.92rem; }
+  .ci-footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:50px; }
+  .ci-footer h4{ color:#fff; font-size:1.05rem; margin-bottom:18px; position:relative; padding-bottom:10px; }
+  
+  .ci-footer a{ color:#c7d2cb; display:block; padding:5px 0; transition:color .25s, transform .25s; }
+  .ci-footer a:hover{ color:var(--ci-vert-clair); transform:translateX(4px); }
+  .ci-footer-logo{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.5rem; color:#fff; margin-bottom:14px; }
+  .ci-footer-logo img{ height:46px; filter:brightness(0) invert(1); }
+  .ci-footer-contact a{ display:flex; gap:10px; align-items:flex-start; }
+  .ci-footer-contact i{ font-size:18px; color:var(--ci-vert-clair); flex-shrink:0; margin-top:4px; }
+  .ci-footer-social{ display:flex; gap:10px; margin-top:18px; }
+  .ci-footer-social a{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; padding:0; }
+  .ci-footer-social i{ font-size:18px; }
+  .ci-footer-social a:hover{ background:var(--ci-vert); transform:translateY(-3px); }
+  .ci-footer-bottom{ border-top:1px solid rgba(255,255,255,.1); padding:22px 0; text-align:center; font-size:.82rem; }
+  .ci-footer-bottom a{ display:inline; padding:0 8px; }
+
+  /* ==========================================================
+     ÉLÉMENTS FLOTTANTS & DIVERS
+     ========================================================== */
+  /* Bouton WhatsApp flottant avec pulsation */
+  .ci-whatsapp{
+    position:fixed; bottom:26px; right:26px; z-index:900; width:60px; height:60px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 30px rgba(37,211,102,.4); transition:transform .3s;
+  }
+  .ci-whatsapp:hover{ transform:scale(1.1); }
+  .ci-whatsapp i{ font-size:30px; }
+  .ci-whatsapp::before{ content:""; position:absolute; inset:-6px; border-radius:50%; border:2px solid #25D366; animation:ciPulseRing 1.8s ease-out infinite; }
+  @keyframes ciPulseRing{ 0%{ transform:scale(.85); opacity:1; } 100%{ transform:scale(1.4); opacity:0; } }
+
+  /* Bouton retour en haut */
+  .ci-to-top{
+    position:fixed; bottom:100px; right:34px; z-index:900; width:48px; height:48px; border-radius:12px;
+    background:var(--ci-noir); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    opacity:0; visibility:hidden; transform:translateY(14px); transition:.35s;
+  }
+  .ci-to-top.ci-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+  .ci-to-top:hover{ background:var(--ci-vert); }
+  .ci-to-top i{ font-size:20px; }
+
+  /* --- Système de reveal au scroll --- */
+  .ci-reveal{ opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal.ci-visible{ opacity:1; transform:translateY(0); }
+  .ci-reveal-left{ opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-left.ci-visible{ opacity:1; transform:translateX(0); }
+  .ci-reveal-right{ opacity:0; transform:translateX(40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-right.ci-visible{ opacity:1; transform:translateX(0); }
+
+  /* ==========================================================
+     RESPONSIVE — adaptation mobile/tablette
+     ========================================================== */
+  @media (max-width:1024px){
+    .ci-hero-grid{ grid-template-columns:1fr; }
+    .ci-hero-media{ max-width:min(100%,330px); margin:0 auto; }
+    .ci-hero-media .ci-ghost{ top:-36px; right:8%; }
+    .ci-hero-widget{ grid-template-columns:1fr; }
+    .ci-engagements{ grid-template-columns:1fr; }
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+    .ci-timeline::before{ left:12px; }
+    .ci-step{ width:100%; left:0 !important; text-align:left !important; padding:0 0 40px 46px; }
+    .ci-step:nth-child(odd) .ci-step-dot, .ci-step:nth-child(even) .ci-step-dot{ left:1px; right:auto; }
+  }
+  @media (max-width:640px){
+    .ci-section{ padding:32px 0; }
+    .ci-topbar-infos{ justify-content:center; }
+    .ci-topbar-social{ display:none; }
+    .ci-footer-grid{ grid-template-columns:1fr; gap:30px; }
+    .ci-cta-form{ grid-template-columns:1fr; }
+    .ci-hero{ min-height:auto; padding:35px 0 45px; }
+    .ci-hero-media{ max-width:min(100%,300px); }
+    .ci-hero-card--1{ left:-4%; }
+    .ci-hero-card--2{ right:-4%; }
+    .ci-hero-tag{ left:-3%; }
+  }
+  @media (max-width:400px){
+    .ci-container{ padding-left:14px; padding-right:14px; }
+    .ci-section{ padding:24px 0; }
+    .ci-section-titre{ margin-bottom:34px; }
+    .ci-cta-form{ padding:20px 16px; }
+    .ci-hero-media{ max-width:min(100%,260px); }
+  }
+
+  /* ==========================================================
+     ACCESSIBILITÉ : désactivation des animations si demandé
+     ========================================================== */
+  @media (prefers-reduced-motion: reduce){
+    .ci-preloader-bar span, .ci-hero-particles span, .ci-marquee-track,
+    .ci-type-cursor, .ci-hero-scroll i, .ci-whatsapp::before{ animation:none !important; }
+    .ci-reveal, .ci-reveal-left, .ci-reveal-right{ opacity:1 !important; transform:none !important; }
+    html{ scroll-behavior:auto !important; }
+  }
+
+  /* ==========================================================
+     GRILLE HEXAGONALE DÉCORATIVE (arrière-plans de sections)
+     Conteneur positionné : --tl/--tr/--bl/--br/--full,
+     tailles --sm/--md/--lg/--xl, opacité --faint/--soft/--mid/--strong.
+     Motif SVG généré par le script (attributs data-*).
+     ========================================================== */
+  section{ position:relative; }
+  .ci-hex{
+    position:absolute; pointer-events:none; overflow:hidden;
+    line-height:0; z-index:0;
+  }
+  .ci-hex i{ display:block; width:100%; height:100%; }
+  .ci-hex--tl{ top:0; left:0; }
+  .ci-hex--tr{ top:0; right:0; }
+  .ci-hex--bl{ bottom:0; left:0; }
+  .ci-hex--br{ bottom:0; right:0; }
+  .ci-hex--full{ inset:0; width:100%; height:100%; }
+  .ci-hex--sm{ width:130px; height:150px; }
+  .ci-hex--md{ width:230px; height:270px; }
+  .ci-hex--lg{ width:350px; height:410px; }
+  .ci-hex--xl{ width:520px; height:600px; }
+  .ci-hex--faint{ opacity:.07; }
+  .ci-hex--soft{ opacity:.14; }
+  .ci-hex--mid{ opacity:.24; }
+  .ci-hex--strong{ opacity:.38; }
+  section > .ci-container{ position:relative; z-index:1; }
+  </style>
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Appeler le fixe">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Envoyer un email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Lundi - Vendredi, 07h30 à 17h30
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       SECTION HERO — composition éditoriale asymétrique (premium)
+       ========================================================== -->
+  <section class="ci-hero" id="ciHero">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="14" data-rows="8" data-size="30" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <div class="ci-hero-grid">
+        <!-- Colonne texte -->
+        <div class="ci-hero-content">
+          <!-- Badge de positionnement -->
+          <span class="ci-hero-badge">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Agence de mobilité internationale • Lomé, Togo
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Votre avenir <em>commence ici.</em></h1>
+
+          <!-- Effet machine à écrire : mots alternés -->
+          <p style="font-size:1.25rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;">
+            <span class="ci-type" id="ciType"></span><span class="ci-type-cursor">&nbsp;</span>
+          </p>
+
+          <!-- Sous-titre -->
+          <p class="ci-hero-sous">
+            Campus Inter accompagne étudiants et professionnels dans leur projet de mobilité légale vers l'Europe.
+            De l'orientation jusqu'à votre intégration, nous vous guidons pas à pas.
+          </p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire ci-magnetic" href="/contact">
+              Démarrer mon projet maintenant
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline ci-magnetic" href="/ecoles-et-programmes">Découvrir nos programmes</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Nos engagements">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Premier échange gratuit</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Réponse sous 48 h</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp disponible</span>
+          </div>
+        </div>
+
+        <!-- Colonne média : photo verticale + numéro fantôme + cartes flottantes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">01</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <img class="ci-hero-img" src="images/campusinter/hero-accueil.jpg" alt="Étudiante diplômée accompagnée par Campus Inter">
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Projet</b><small>études, emploi ou visa</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Europe</b><small>France et Belgique</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Europe · Visa légal</span>
+        </div>
+      </div>
+
+      <!-- Widget « Trouver ma formation » — barre de recherche affinée -->
+      <div class="ci-hero-widget" role="search" aria-label="Rechercher une formation">
+        <div>
+          <label for="ciDomaine">Domaine</label>
+          <select id="ciDomaine">
+            <option>Management &amp; Business</option>
+            <option>Digital &amp; Tech</option>
+            <option>Communication &amp; Médias</option>
+            <option>Arts &amp; Industries créatives</option>
+            <option>Ingénierie &amp; Sciences</option>
+            <option>Santé</option>
+            <option>Droit</option>
+            <option>Tourisme &amp; Hôtellerie</option>
+          </select>
+        </div>
+        <div>
+          <label for="ciPays">Pays</label>
+          <select id="ciPays">
+            <option>France</option>
+            <option>Belgique</option>
+          </select>
+        </div>
+        <div class="ci-hero-widget-cta">
+          <button class="ci-btn ci-btn--primaire" id="ciRechercher" type="button">
+            Rechercher
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicateur de scroll -->
+    <a class="ci-hero-scroll" href="#ciStats" aria-label="Défiler vers le bas">
+      Découvrir
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <!-- ==========================================================
+       STATISTIQUES — compteurs animés
+       ========================================================== -->
+  <section class="ci-stats" id="ciStats">
+    <!-- Hexagones : coin bas-droit, présent, vert vif sur fond noir -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--mid" data-cols="7" data-rows="5" data-size="26" data-color="#1DB85E" data-fill="3" data-rotate="12" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-stats-head ci-reveal">
+        <span class="ci-kicker">Campus Inter en chiffres</span>
+        <h2>Des résultats concrets</h2>
+      </div>
+      <div class="ci-stats-grid">
+        <!-- Chaque compteur : nombre + libellé -->
+        <div class="ci-stat ci-reveal">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="500">0</span>+</div>
+          <div class="ci-stat-label">Dossiers accompagnés</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.1s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="350">0</span>+</div>
+          <div class="ci-stat-label">Visas obtenus</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.2s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="5">0</span></div>
+          <div class="ci-stat-label">Groupes partenaires</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.3s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="100">0</span>+</div>
+          <div class="ci-stat-label">Établissements en Europe</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.4s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="98">0</span>%</div>
+          <div class="ci-stat-label">Clients satisfaits</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       NOS ENGAGEMENTS — checklist
+       ========================================================== -->
+  <section class="ci-section" id="ciEngagements">
+    <!-- Hexagones : coin haut-gauche, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-engagements">
+        <!-- Introduction éditoriale -->
+        <div class="ci-engagements-intro ci-reveal">
+          <span class="ci-kicker">Nos engagements</span>
+          <span class="ci-ghost" aria-hidden="true">02</span>
+          <h2>Une promesse : votre réussite, sans stress</h2>
+          <p>Des démarches claires et un suivi humain à chaque étape de votre projet.</p>
+          <a class="ci-btn ci-btn--outline" href="/qui-sommes-nous">Découvrir notre méthode</a>
+        </div>
+
+        <!-- Checklist numérotée -->
+        <ul class="ci-eng-list">
+          <li class="ci-eng-item ci-reveal">
+            <span class="ci-eng-num" aria-hidden="true">01</span>
+            <div><h4>Accompagnement personnalisé</h4><p>Un conseiller dédié à votre projet.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.08s">
+            <span class="ci-eng-num" aria-hidden="true">02</span>
+            <div><h4>Démarches simplifiées</h4><p>Des procédures expliquées étape par étape.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.16s">
+            <span class="ci-eng-num" aria-hidden="true">03</span>
+            <div><h4>Dossiers solides</h4><p>Montage rigoureux qui maximise vos chances.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.24s">
+            <span class="ci-eng-num" aria-hidden="true">04</span>
+            <div><h4>Suivi jusqu'à l'installation</h4><p>Nous restons à vos côtés après l'arrivée.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.32s">
+            <span class="ci-eng-num" aria-hidden="true">05</span>
+            <div><h4>Transparence totale</h4><p>Des informations claires et honnêtes.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       DOMAINES D'EXPERTISE — cartes tilt 3D
+       ========================================================== -->
+  <section class="ci-section ci-domains" id="ciDomaines">
+    <!-- Hexagones : coin haut-droit, très subtil, vert -->
+    <div class="ci-hex ci-hex--tr ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <span class="ci-ghost ci-ghost--titre" aria-hidden="true">03</span>
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Nos domaines d'expertise</span>
+        <h2>Étudier • Travailler • Visa • S'installer</h2>
+        <p>Quatre piliers pour réaliser votre projet de mobilité légale vers l'Europe.</p>
+      </div>
+
+      <div class="ci-domain-grid">
+        <!-- Carte : Étudier en France -->
+        <article class="ci-domain-card ci-tilt ci-reveal">
+          <span class="ci-domain-num">01</span>
+          <img src="images/campusinter/accueil-etudes.jpg" alt="Étudiants souriants devant une université" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+            <h3>Étudier en France</h3>
+            <p>Diplômes reconnus mondialement, coûts accessibles, universités de qualité et opportunités professionnelles.</p>
+            <a class="ci-domain-lien" href="/etudier-en-france">En savoir plus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Étudier en Belgique -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.1s">
+          <span class="ci-domain-num">02</span>
+          <img src="images/campusinter/accueil-belgique.jpg" alt="Étudiant à Bruxelles" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
+            <h3>Étudier en Belgique</h3>
+            <p>Un enseignement de qualité au cœur de l'Europe, dans un cadre francophone et international.</p>
+            <a class="ci-domain-lien" href="/etudier-en-belgique">En savoir plus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Travailler en France -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.2s">
+          <span class="ci-domain-num">03</span>
+          <img src="images/campusinter/accueil-travail.jpg" alt="Professionnel dans un bureau moderne" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+            <h3>Travailler en France</h3>
+            <p>Des opportunités réelles : BTP, santé, restauration, industrie, services.</p>
+            <a class="ci-domain-lien" href="/travailler-en-france">En savoir plus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Visa & Démarches -->
+        <article class="ci-domain-card ci-tilt ci-reveal">
+          <span class="ci-domain-num">04</span>
+          <img src="images/campusinter/accueil-visa.jpg" alt="Passeport et documents de visa" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            <h3>Visa &amp; Démarches</h3>
+            <p>Un accompagnement complet : Campus France, visa étudiant, visa travail, entretiens.</p>
+            <a class="ci-domain-lien" href="/visa-et-demarches">En savoir plus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Installation -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.1s">
+          <span class="ci-domain-num">05</span>
+          <img src="images/campusinter/accueil-installation.jpg" alt="Logement étudiant confortable" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <h3>Installation</h3>
+            <p>Logement, assurance, formalités : une arrivée sereine en France.</p>
+            <a class="ci-domain-lien" href="/installation-en-france">En savoir plus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Écoles & Programmes -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.2s">
+          <span class="ci-domain-num">06</span>
+          <img src="images/campusinter/accueil-programmes.jpg" alt="Campus universitaire européen" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+            <h3>Écoles &amp; Programmes</h3>
+            <p>100+ établissements européens partenaires, tous domaines, du Bac au Bac+5.</p>
+            <a class="ci-domain-lien" href="/ecoles-et-programmes">En savoir plus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       COMMENT ÇA MARCHE — timeline animée
+       ========================================================== -->
+  <section class="ci-section" id="ciProcessus">
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Comment ça marche</span>
+        <h2>Votre projet, guidé pas à pas</h2>
+        <p>Un processus simple et transparent, de la première prise de contact à votre installation.</p>
+      </div>
+
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 01</span>
+          <h3>Orientation &amp; bilan de projet</h3>
+          <p>Nous analysons votre profil, vos objectifs et définissons ensemble la meilleure voie.</p>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 02</span>
+          <h3>Constitution du dossier</h3>
+          <p>Montage stratégique : CV, lettres, justificatifs et préparation aux entretiens.</p>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 03</span>
+          <h3>Procédure visa</h3>
+          <p>Campus France, rendez-vous consulaire, préparation complète de l'entretien.</p>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 04</span>
+          <h3>Installation &amp; suivi</h3>
+          <p>Logement, assurance, formalités administratives : vous êtes accompagné jusqu'à l'arrivée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       PARTENAIRES — marquee de logos
+       ========================================================== -->
+  <section class="ci-section ci-partners" id="ciPartenaires">
+    <!-- Hexagones : fond complet, très subtil, blanc ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="16" data-rows="7" data-size="24" data-color="#FFFFFF" data-fill="5" data-img="images/campusinter/accueil-programmes.jpg" data-img-every="11" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker" style="color:#8ee0b4;">Nos partenaires</span>
+        <h2 style="color:#fff;">Un réseau solide pour votre réussite</h2>
+        <p style="color:#c7d2cb;">Cinq groupes d'enseignement supérieur internationaux, plus de 100 établissements accessibles depuis Bè-Kpota.</p>
+      </div>
+    </div>
+
+    <!-- Bandeau défilant de logos partenaires -->
+    <div class="ci-marquee" aria-label="Logos de nos partenaires">
+      <div class="ci-marquee-track">
+        <!-- 1ère série de logos (dupliquée pour l'effet infini) -->
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-galileo.png" alt=""> Galileo Global Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-omnes.png" alt=""> OMNES Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mediaschool.png" alt=""> MediaSchool</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-hema.png" alt=""> Groupe HEMA</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mbn.png" alt=""> MBN Global Education</span>
+        <!-- 2ème série (pour la boucle infinie) -->
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-galileo.png" alt=""> Galileo Global Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-omnes.png" alt=""> OMNES Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mediaschool.png" alt=""> MediaSchool</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-hema.png" alt=""> Groupe HEMA</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mbn.png" alt=""> MBN Global Education</span>
+      </div>
+    </div>
+
+    <div class="ci-container">
+      <p class="ci-partners-note ci-reveal">
+        🎓 100+ établissements européens partenaires
+        &nbsp;·&nbsp; <a class="ci-btn ci-btn--blanc" href="/nos-partenaires" style="margin-top:10px;">Découvrir nos partenaires</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       POURQUOI NOUS CHOISIR — features
+       ========================================================== -->
+  <section class="ci-section" id="ciPourquoi">
+    <!-- Hexagones : coin bas-gauche, subtil, vert clair sur fond vert très pâle -->
+    <div class="ci-hex ci-hex--bl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="20" data-color="#1DB85E" data-fill="0" data-rotate="-8" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Pourquoi nous choisir</span>
+        <h2>Un partenaire de confiance, de A à Z</h2>
+        <p>Des résultats concrets grâce à une expertise reconnue des procédures européennes.</p>
+      </div>
+
+      <div class="ci-feature-grid">
+        <!-- Feature 1 -->
+        <div class="ci-feature ci-reveal">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+          <h3>Expertise des procédures France</h3>
+          <p>Une connaissance pointue de Campus France, des visas et des démarches préfectures.</p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="ci-feature ci-reveal" style="--d:.1s">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <h3>Approche personnalisée</h3>
+          <p>Chaque projet est unique : nous construisons un accompagnement sur mesure.</p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="ci-feature ci-reveal" style="--d:.2s">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          <h3>Gain de temps considérable</h3>
+          <p>Nous prenons en charge les formalités pour que vous vous concentrez sur l'essentiel.</p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="ci-feature ci-reveal" style="--d:.3s">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <h3>Sécurité des dossiers</h3>
+          <p>Un montage rigoureux et conforme qui protège votre projet et maximise vos chances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       TÉMOIGNAGES — slider
+       ========================================================== -->
+  <section class="ci-section ci-testimonials" id="ciTemoignages">
+    <!-- Hexagones : coin bas-droit, présent, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--mid" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/temoignage-etudiant.jpg" data-img-every="6" aria-hidden="true"></div>
+    <div class="ci-container">
+      <span class="ci-ghost ci-ghost--titre" aria-hidden="true">04</span>
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Témoignages</span>
+        <h2>Ils ont réussi, grâce à Campus Inter</h2>
+        <p>Des histoires réelles d'étudiants et de professionnels accompagnés de A à Z.</p>
+      </div>
+
+      <div class="ci-slider" id="ciSlider">
+        <!-- Témoignage 1 -->
+        <div class="ci-slide ci-active">
+          <div class="ci-slide-card">
+            <div class="ci-slide-etoiles" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>« J'ai obtenu mon visa étudiant en 2 mois grâce à l'équipe. Un accompagnement sérieux, rassurant et efficace. »</blockquote>
+            <div class="ci-slide-auteur">
+              <img class="ci-slide-avatar" src="images/campusinter/temoignage-etudiant.jpg" alt="Aïcha">
+              <div style="text-align:left;"><b>Aïcha</b><small>Master en France — Lomé</small></div>
+            </div>
+          </div>
+        </div>
+        <!-- Témoignage 2 -->
+        <div class="ci-slide">
+          <div class="ci-slide-card">
+            <div class="ci-slide-etoiles" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>« Un accompagnement complet de A à Z, jusqu'à mon arrivée à Lyon. Je recommande les yeux fermés. »</blockquote>
+            <div class="ci-slide-auteur">
+              <img class="ci-slide-avatar" src="images/campusinter/temoignage-avatar-2.jpg" alt="Kossi">
+              <div style="text-align:left;"><b>Kossi</b><small>Bachelor en France — Lyon</small></div>
+            </div>
+          </div>
+        </div>
+        <!-- Témoignage 3 -->
+        <div class="ci-slide">
+          <div class="ci-slide-card">
+            <div class="ci-slide-etoiles" aria-label="5 étoiles">★★★★★</div>
+            <blockquote>« Ma reconversion professionnelle en France était un rêve. Campus Inter l'a rendue réelle, sans stress. »</blockquote>
+            <div class="ci-slide-auteur">
+              <img class="ci-slide-avatar" src="images/campusinter/temoignage-avatar-3.jpg" alt="Fati">
+              <div style="text-align:left;"><b>Fati</b><small>Visa travail — Paris</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation du slider -->
+        <div class="ci-slider-nav">
+          <button class="ci-slider-btn" id="ciPrev" aria-label="Témoignage précédent">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <div class="ci-slider-dots" id="ciDots" role="tablist" aria-label="Sélection de témoignages"></div>
+          <button class="ci-slider-btn" id="ciNext" aria-label="Témoignage suivant">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FAQ — accordéon animé
+       ========================================================== -->
+  <section class="ci-section" id="ciFaq">
+    <!-- Hexagones : coin haut-gauche, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--tl ci-hex--sm ci-hex--faint" data-cols="5" data-rows="3" data-size="20" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Questions fréquentes</span>
+        <h2>Vos questions, nos réponses</h2>
+        <p>Tout ce qu'il faut savoir avant de démarrer votre projet avec Campus Inter.</p>
+      </div>
+
+      <div class="ci-faq">
+        <!-- Question 1 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Comment commencer mon projet ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Contactez-nous par téléphone, WhatsApp, email ou via le formulaire de contact. Un premier rendez-vous gratuit permet d'analyser votre profil et de définir ensemble le parcours adapté.</p></div>
+        </div>
+        <!-- Question 2 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Quels sont vos honoraires ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Nos tarifs sont transparents et communiqués lors du premier rendez-vous. Nous travaillons en toute transparence, sans frais cachés : vous savez exactement ce qui est inclus.</p></div>
+        </div>
+        <!-- Question 3 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Combien de temps dure la procédure visa ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>La durée varie selon le type de visa et la période de l'année. En général, comptez plusieurs semaines entre la constitution du dossier et la décision consulaire. Nous gérons le calendrier avec vous.</p></div>
+        </div>
+        <!-- Question 4 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Faut-il déjà parler français ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Pas nécessairement. De nombreuses formations proposent des parcours pour débutants ou en anglais. Lors de l'orientation, nous évaluons votre niveau et vous orientons vers les programmes adaptés.</p></div>
+        </div>
+        <!-- Question 5 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Quels documents dois-je fournir ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>En général : passeport, photos d'identité, CV, diplômes, justificatifs de moyens financiers, lettres de motivation et pièces de l'établissement. Nous vous fournissons une checklist personnalisée.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       BLOG — aperçu des derniers articles
+       ========================================================== -->
+  <section class="ci-section" style="background:var(--ci-fond);" id="ciBlog">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="3" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Le blog</span>
+        <h2>Nos derniers conseils</h2>
+        <p>Guides pratiques pour réussir votre projet d'études et de mobilité.</p>
+      </div>
+
+      <div class="ci-blog-grid">
+        <!-- Article 1 -->
+        <article class="ci-blog-card ci-reveal">
+          <img src="images/campusinter/blog-dossier.jpg" alt="Dossier Campus France" loading="lazy">
+          <div class="ci-blog-body">
+            <span class="ci-blog-cat">Visa</span>
+            <h3><a href="/blog/reussir-son-dossier-campus-france">Réussir son dossier Campus France</a></h3>
+            <span class="ci-blog-meta">5 min de lecture</span>
+          </div>
+        </article>
+        <!-- Article 2 -->
+        <article class="ci-blog-card ci-reveal" style="--d:.1s">
+          <img src="images/campusinter/blog-entretien.jpg" alt="Entretien Campus France" loading="lazy">
+          <div class="ci-blog-body">
+            <span class="ci-blog-cat">Entretien</span>
+            <h3><a href="/blog/reussir-son-entretien-campus-france">Réussir son entretien Campus France</a></h3>
+            <span class="ci-blog-meta">6 min de lecture</span>
+          </div>
+        </article>
+        <!-- Article 3 -->
+        <article class="ci-blog-card ci-reveal" style="--d:.2s">
+          <img src="images/campusinter/blog-logement.jpg" alt="Logement étudiant en France" loading="lazy">
+          <div class="ci-blog-body">
+            <span class="ci-blog-cat">Logement</span>
+            <h3><a href="/blog/trouver-un-logement-etudiant">Trouver un logement étudiant</a></h3>
+            <span class="ci-blog-meta">4 min de lecture</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL + formulaire rapide
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <span class="ci-ghost ci-ghost--clair" aria-hidden="true">05</span>
+      <h2 class="ci-reveal">Votre avenir commence ici !</h2>
+      <p class="ci-reveal">Laissez-nous vos coordonnées : un conseiller Campus Inter vous recontacte sous 48h pour un premier bilan gratuit.</p>
+
+      <!-- Formulaire de contact rapide (envoi vers mail-campinter.php) -->
+      <form class="ci-cta-form ci-reveal" id="ciForm" action="mail-campinter.php" method="post" novalidate>
+        <input type="hidden" name="type" value="contact">
+        <input type="hidden" name="page" value="Accueil">
+        <input type="text" name="website" class="ci-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div>
+          <input type="text" name="nom" placeholder="Nom complet *" required aria-label="Nom complet">
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="Adresse email *" required aria-label="Adresse email">
+        </div>
+        <div>
+          <input type="tel" name="telephone" placeholder="Téléphone / WhatsApp" aria-label="Téléphone">
+        </div>
+        <div>
+          <select name="projet" aria-label="Type de projet">
+            <option value="">Type de projet</option>
+            <option>Étudier en France</option>
+            <option>Étudier en Belgique</option>
+            <option>Travailler en France</option>
+            <option>Visa &amp; Démarches</option>
+            <option>Installation</option>
+          </select>
+        </div>
+        <div class="ci-full">
+          <button class="ci-btn ci-btn--primaire" type="submit">
+            Envoyer ma demande
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+        <p class="ci-full" style="font-size:.8rem;color:#dceadf;margin:0;">
+          En envoyant ce formulaire, vous acceptez d'être contacté par Campus Inter. Vos données restent confidentielles.
+        </p>
+        <p class="ci-full ci-form-status" id="ciFormStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes + newsletter
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT DE LA PAGE ACCUEIL
+     Enveloppé dans une IIFE (fonction auto-exécutée) pour ne
+     pas polluer la portée globale du template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences d'accessibilité : si l'utilisateur
+       demande moins de mouvement, on ne lance pas le typewriter. */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    if(window.addEventListener){ window.addEventListener('load', hidePreloader); }
+    // Filet de sécurité : on masque aussi après 3s au cas où.
+    setTimeout(hidePreloader, 3000);
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION DE LECTURE
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    function onScrollHeader(){
+      // Largeur de la barre de progression = % de lecture de la page
+      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+        progress.style.width = pct + '%';
+      }
+      // Affichage du bouton retour en haut
+      var toTop = document.getElementById('ciToTop');
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScrollHeader, { passive:true });
+    onScrollHeader();
+
+    /* ----------------------------------------------------------
+       3. EFFET MACHINE À ÉCRIRE (typewriter) dans le hero
+       ---------------------------------------------------------- */
+    var typeEl = document.getElementById('ciType');
+    if(typeEl && !reducedMotion){
+      var mots = ['Étudier', 'Travailler', 'Obtenir un visa', "S'installer en Europe"];
+      var motIndex = 0, lettreIndex = 0, suppression = false;
+      function taper(){
+        var mot = mots[motIndex];
+        if(suppression){
+          lettreIndex--;
+          typeEl.textContent = mot.substring(0, lettreIndex);
+          if(lettreIndex === 0){ suppression = false; motIndex = (motIndex + 1) % mots.length; }
+          setTimeout(taper, 50);
+        } else {
+          lettreIndex++;
+          typeEl.textContent = mot.substring(0, lettreIndex);
+          if(lettreIndex === mot.length){ suppression = true; setTimeout(taper, 1600); }
+          else { setTimeout(taper, 80); }
+        }
+      }
+      taper();
+    } else if(typeEl){
+      typeEl.textContent = 'Étudier';
+    }
+
+    /* ----------------------------------------------------------
+       4. REVEAL AU SCROLL — éléments qui apparaissent en douceur
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      // Solution de repli si IntersectionObserver indisponible
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       5. COMPTEURS ANIMÉS — les statistiques
+       ---------------------------------------------------------- */
+    var counters = document.querySelectorAll('.ci-counter');
+    function animateCounter(el){
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 1800;           // durée en millisecondes
+      var start = null;
+      function step(timestamp){
+        if(!start){ start = timestamp; }
+        var progress = Math.min((timestamp - start) / duration, 1);
+        // Fonction d'accélération pour un effet naturel
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if(progress < 1){ requestAnimationFrame(step); }
+        else { el.textContent = target; }
+      }
+      requestAnimationFrame(step);
+    }
+    var counterObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animateCounter(entry.target); counterObserver.unobserve(entry.target); }
+      });
+    }, { threshold:0.5 });
+    counters.forEach(function(c){ counterObserver.observe(c); });
+
+    /* ----------------------------------------------------------
+       6. CARTES 3D TILT — effet de rotation au survol
+       ---------------------------------------------------------- */
+    var tiltCards = document.querySelectorAll('.ci-tilt');
+    if(!reducedMotion && window.matchMedia('(pointer:fine)').matches){
+      tiltCards.forEach(function(card){
+        card.addEventListener('mousemove', function(e){
+          var rect = card.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width - 0.5;   // position X relative
+          var y = (e.clientY - rect.top) / rect.height - 0.5;   // position Y relative
+          // Rotation maximale de 6 degrés
+          card.style.transform = 'perspective(900px) rotateX(' + (-y*8) + 'deg) rotateY(' + (x*8) + 'deg)';
+        });
+        card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+      });
+    }
+
+    /* ----------------------------------------------------------
+       7. BOUTONS MAGNÉTIQUES — le bouton attire la souris
+       ---------------------------------------------------------- */
+    var magneticBtns = document.querySelectorAll('.ci-magnetic');
+    if(window.matchMedia('(pointer:fine)').matches){
+      magneticBtns.forEach(function(btn){
+        btn.addEventListener('mousemove', function(e){
+          var rect = btn.getBoundingClientRect();
+          var dx = (e.clientX - rect.left - rect.width/2) * 0.2;   // décalage horizontal
+          var dy = (e.clientY - rect.top - rect.height/2) * 0.2;   // décalage vertical
+          btn.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+        });
+        btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+      });
+    }
+
+    /* ----------------------------------------------------------
+       8. SLIDER DE TÉMOIGNAGES — autoplay + flèches + points
+       ---------------------------------------------------------- */
+    var slides = document.querySelectorAll('.ci-slide');
+    var dotsWrap = document.getElementById('ciDots');
+    var current = 0, timer = null;
+
+    // Création dynamique des points de navigation
+    slides.forEach(function(_, i){
+      var dot = document.createElement('button');
+      dot.className = 'ci-dot' + (i === 0 ? ' ci-active' : '');
+      dot.setAttribute('aria-label', 'Témoignage ' + (i+1));
+      dot.addEventListener('click', function(){ goTo(i); resetTimer(); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = dotsWrap.querySelectorAll('.ci-dot');
+
+    // Affiche la slide d'indice donné
+    function goTo(index){
+      slides[current].classList.remove('ci-active');
+      dots[current].classList.remove('ci-active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('ci-active');
+      dots[current].classList.add('ci-active');
+    }
+    // Défilement automatique toutes les 5 secondes
+    function autoPlay(){ timer = setInterval(function(){ goTo(current + 1); }, 5000); }
+    function resetTimer(){ clearInterval(timer); autoPlay(); }
+    // Boutons précédent / suivant
+    document.getElementById('ciPrev').addEventListener('click', function(){ goTo(current - 1); resetTimer(); });
+    document.getElementById('ciNext').addEventListener('click', function(){ goTo(current + 1); resetTimer(); });
+    if(!reducedMotion){ autoPlay(); }
+
+    /* ----------------------------------------------------------
+       9. FAQ ACCORDÉON — ouverture/fermeture animée
+       ---------------------------------------------------------- */
+    document.querySelectorAll('.ci-faq-item').forEach(function(item){
+      var btn = item.querySelector('.ci-faq-q');
+      var reponse = item.querySelector('.ci-faq-a');
+      btn.addEventListener('click', function(){
+        var isOpen = item.classList.contains('ci-open');
+        // Fermer toutes les autres questions
+        document.querySelectorAll('.ci-faq-item.ci-open').forEach(function(other){
+          other.classList.remove('ci-open');
+          other.querySelector('.ci-faq-a').style.maxHeight = null;
+          other.querySelector('.ci-faq-q').setAttribute('aria-expanded', 'false');
+        });
+        // Ouvrir celle cliquée si elle était fermée
+        if(!isOpen){
+          item.classList.add('ci-open');
+          reponse.style.maxHeight = reponse.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ----------------------------------------------------------
+       11. BOUTON RETOUR EN HAUT — remontée fluide
+       ---------------------------------------------------------- */
+    document.getElementById('ciToTop').addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       12. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+    /* ----------------------------------------------------------
+       13. FORMULAIRE — bouton « Rechercher » (démo)
+       ---------------------------------------------------------- */
+    var btnRechercher = document.getElementById('ciRechercher');
+    if(btnRechercher){
+      btnRechercher.addEventListener('click', function(){
+        var domaine = document.getElementById('ciDomaine').value;
+        var pays = document.getElementById('ciPays').value;
+        // En production : rediriger vers /ecoles-et-programmes avec les filtres
+        // Exemple : window.location.href = '/ecoles-et-programmes?domaine=' + encodeURIComponent(domaine) + '&pays=' + pays;
+        window.location.href = '/ecoles-et-programmes?domaine=' + encodeURIComponent(domaine) + '&pays=' + encodeURIComponent(pays);
+      });
+    }
+
+    /* ----------------------------------------------------------
+       14. FORMULAIRE CTA — envoi AJAX vers mail-campinter.php
+       ---------------------------------------------------------- */
+    var ctaForm = document.getElementById('ciForm');
+    if(ctaForm){
+      var ctaStatut = document.getElementById('ciFormStatus');
+      ctaForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!ctaForm.checkValidity()){ ctaForm.reportValidity(); return; }
+        var bouton = ctaForm.querySelector('button[type="submit"]');
+        bouton.disabled = true;
+        if(ctaStatut){ ctaStatut.hidden = true; }
+        fetch(ctaForm.getAttribute('action'), {
+          method: 'POST',
+          body: new FormData(ctaForm),
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(res){ return res.json().catch(function(){ return { success:false, message:'Réponse invalide du serveur.' }; }); })
+        .then(function(data){
+          if(data && data.success){
+            ctaForm.reset();
+            if(ctaStatut){
+              ctaStatut.textContent = data.message || 'Demande envoyée avec succès.';
+              ctaStatut.className = 'ci-full ci-form-status ci-statut-ok';
+              ctaStatut.hidden = false;
+            }
+          } else {
+            if(ctaStatut){
+              ctaStatut.textContent = (data && data.message) || 'Une erreur est survenue. Réessayez.';
+              ctaStatut.className = 'ci-full ci-form-status ci-statut-err';
+              ctaStatut.hidden = false;
+            }
+          }
+        })
+        .catch(function(){
+          if(ctaStatut){
+            ctaStatut.textContent = 'Erreur de connexion. Réessayez ou appelez le +228 22 70 25 96.';
+            ctaStatut.className = 'ci-full ci-form-status ci-statut-err';
+            ctaStatut.hidden = false;
+          }
+        })
+        .finally(function(){ bouton.disabled = false; });
+      });
+    }
+
+    /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Accueil » en mode code.
+       2. Déposer les images dans Gestionnaire de médias et vérifier
+          les chemins (images/campusinter/...).
+       3. Activer l'option « Filtrer le HTML » sur « Aucun filtrage »
+          dans Options de l'article (Onglet Publication) sinon Joomla
+          supprime les balises <style> et <script>.
+       4. Configurer le menu Accueil → Article « Accueil » (alias).
+       5. Pour partager header/footer entre les pages : les déplacer
+          dans le template (index.php) en mode « Article comme
+          contenu du template » ou utiliser un module custom HTML.
+        6. La section CTA + formulaire est un ARTICLE JOOMLA
+          à part entière : voir articles/article-accueil-cta.php
+          (PHP embarqué via Sourcerer, envoi vers amerocar010@gmail.com).
+          Aucun fichier à la racine.
+        7. GRILLE HEXAGONALE : le motif est généré par le script
+          (conteneurs <div class="ci-hex ...">). Pour ajouter une
+          grille à une section, copier une div .ci-hex existante et
+          régler : --tl/--tr/--bl/--br/--full (position),
+          --sm/--md/--lg/--xl (taille), --faint/--soft/--mid/--strong
+          (opacité), data-cols/data-rows/data-size (densité),
+          data-color (couleur), data-fill (remplir 1 sur N),
+          data-img/data-img-every (images dans des alvéoles).
+        8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+</div>

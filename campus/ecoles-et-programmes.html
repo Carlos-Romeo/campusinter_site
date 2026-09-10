@@ -1,0 +1,1085 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE ÉCOLES & PROGRAMMES
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : ecoles-et-programmes.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Écoles & Programmes »
+     (catégorie : Écoles & Programmes).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Images à déposer dans le Gestionnaire de médias :
+     - images/campusinter/hero-ecoles-programmes.jpg
+     - logos des groupes : logo-galileo.png, logo-omnes.png,
+       logo-mediaschool.png, logo-hema.png, logo-mbn.png
+  4. Désactiver le filtrage HTML de l'article (sinon Joomla
+     supprime <style> et <script>).
+  5. Le header/footer peuvent être déplacés dans le template
+     Joomla pour éviter la duplication entre les pages.
+  6. La recherche et les filtres (domaine, pays, niveau)
+     fonctionnent en JavaScript pur et se combinent.
+  7. Les cartes écoles portent des attributs data-* :
+     data-domaine, data-pays, data-niveau — à maintenir lors
+     de l'ajout d'une école.
+   8. Les liens « Voir la fiche » pointent vers les fiches
+      (template fiche-ecole.html à créer dans Joomla).
+   9. GRILLE HEXAGONALE : le motif est généré par le script
+      (div.ci-hex). Position : --tl/--tr/--bl/--br/--full ;
+      opacité : --faint/--soft/--mid/--strong ; densité :
+      data-cols/data-rows/data-size ; couleur data-color ;
+      remplissage data-fill ; images data-img/data-img-every.
+          8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE « ÉCOLES & PROGRAMMES »
+     ========================================================== */
+
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF; --ci-fond:#F4F7F4; --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280; --ci-bordure:#E7EFE8; --ci-bordure-input:#E2E8E2;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-grad-sombre:linear-gradient(135deg,#252525,#159447);
+    --ci-rayon:18px; --ci-rayon-lg:22px; --ci-pill:999px;
+    --ci-ombre-carte:0 8px 26px rgba(0,0,0,.06); --ci-ombre:0 14px 40px rgba(21,148,71,.14);
+    --ci-ombre-forte:0 18px 45px rgba(21,148,71,.35); --ci-ombre-noir:0 14px 40px rgba(21,148,71,.25);
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif; --ci-font-texte:'Inter',sans-serif;
+  }
+
+  .ci-page{margin:0;padding:0;font-family:var(--ci-font-texte);color:var(--ci-texte);background:var(--ci-blanc);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .ci-page *,.ci-page *::before,.ci-page *::after{box-sizing:border-box}
+  .ci-page img{max-width:100%;display:block}
+  .ci-page a{text-decoration:none}
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{font-family:var(--ci-font-titres);color:var(--ci-noir);line-height:1.2;margin:0 0 .6em}
+  .ci-page p{margin:0 0 1em}
+
+  .ci-container{width:100%;max-width:none;margin:0 auto;padding-left:clamp(16px,4vw,64px);padding-right:clamp(16px,4vw,64px)}
+  .ci-section{padding:clamp(42px,5vw,70px) 0;position:relative}
+  .ci-section-titre{text-align:center;max-width:720px;margin:0 auto 56px}
+  .ci-kicker{display:inline-block;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ci-vert);margin-bottom:16px}
+  .ci-section-titre h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800}
+  .ci-section-titre p{color:var(--ci-texte-2);font-size:1.05rem}
+
+  .ci-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--ci-font-titres);font-weight:700;font-size:.95rem;padding:15px 30px;border-radius:999px;cursor:pointer;transition:transform .3s,box-shadow .3s,background .3s;border:none;position:relative;overflow:hidden}
+  .ci-btn i{font-size:18px;transition:transform .3s}
+  .ci-btn:hover i{transform:translateX(4px)}
+  .ci-btn--primaire{background:var(--ci-grad);color:#fff;box-shadow:var(--ci-ombre-noir)}
+  .ci-btn--primaire:hover{transform:translateY(-3px);box-shadow:var(--ci-ombre-forte)}
+  .ci-btn--primaire::after{content:"";position:absolute;inset:0;background:var(--ci-grad-sombre);opacity:0;transition:opacity .35s}
+  .ci-btn--primaire:hover::after{opacity:1}
+  .ci-btn--primaire>*{position:relative;z-index:1}
+  .ci-btn--blanc{background:#fff;color:var(--ci-vert-fonce);box-shadow:var(--ci-ombre)}
+  .ci-btn--blanc:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,0,.18)}
+
+  .ci-preloader{position:fixed;inset:0;z-index:9999;background:var(--ci-blanc);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s,visibility .6s}
+  .ci-preloader.ci-hide{opacity:0;visibility:hidden}
+  .ci-preloader-logo{font-family:var(--ci-font-titres);font-weight:800;font-size:1.8rem;color:var(--ci-vert);animation:ciPulse 1.6s infinite}
+  .ci-preloader-bar{width:180px;height:5px;background:var(--ci-fond);border-radius:99px;overflow:hidden}
+  .ci-preloader-bar span{display:block;height:100%;width:40%;background:var(--ci-grad);border-radius:99px;animation:ciLoad 1.2s infinite}
+  @keyframes ciPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}}
+  @keyframes ciLoad{0%{transform:translateX(-100%)}100%{transform:translateX(450%)}}
+
+  .ci-topbar{background:var(--ci-noir);color:#cfd8d2;font-size:.82rem;padding:8px 0}
+  .ci-topbar .ci-container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .ci-topbar a{color:#cfd8d2;display:inline-flex;align-items:center;gap:6px;transition:color .25s}
+  .ci-topbar a:hover{color:#fff}
+  .ci-topbar i{font-size:14px}
+  .ci-topbar-infos{display:flex;gap:20px;flex-wrap:wrap}
+  .ci-topbar-social{display:flex;gap:12px}
+  .ci-scroll-progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--ci-grad);z-index:1000}
+
+  .ci-page-hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%);padding:clamp(24px,3.5vw,48px) 0 clamp(32px,4vw,55px)}
+  .ci-page-hero .ci-hex{opacity:.45}
+  .ci-hero-grid--inverse{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,72px);align-items:center;position:relative;z-index:1}
+  .ci-breadcrumb{font-size:.82rem;color:var(--ci-texte-2);margin-bottom:24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .ci-breadcrumb a{color:var(--ci-texte-2);transition:color .25s}
+  .ci-breadcrumb a:hover{color:var(--ci-vert)}
+  .ci-sep{color:var(--ci-bordure)}
+  .ci-here{color:var(--ci-noir);font-weight:600}
+  .ci-hero-kicker{display:inline-flex;align-items:center;gap:8px;background:var(--ci-vert-bg);color:var(--ci-vert-fonce);padding:8px 18px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:24px}
+  .ci-hero-kicker i{font-size:15px;color:var(--ci-vert)}
+  .ci-page-hero h1{font-size:clamp(2.2rem,4.2vw,3.65rem);letter-spacing:-.035em}
+  .ci-page-hero h1 em{font-style:normal;color:var(--ci-vert)}
+  .ci-hero-sous{font-size:1.1rem;color:var(--ci-texte);max-width:540px;margin-bottom:32px}
+  .ci-hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .ci-hero-reassurance{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;color:var(--ci-texte-2);font-size:.82rem;font-weight:600}
+  .ci-hero-reassurance span{display:inline-flex;align-items:center;gap:7px}
+  .ci-hero-reassurance i{color:var(--ci-vert);font-size:.9rem}
+  .ci-hero-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .ci-hero-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#fff;border:1.5px solid var(--ci-bordure);border-radius:999px;font-size:.82rem;font-weight:600;color:var(--ci-texte);transition:all .25s}
+  .ci-hero-chip:hover{border-color:var(--ci-vert);color:var(--ci-vert);background:var(--ci-vert-bg)}
+  .ci-hero-media{position:relative;z-index:1;max-width:min(100%,360px)}
+  .ci-hero-blob{position:absolute;width:82%;height:74%;top:6%;right:-6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(29,184,94,.55),rgba(21,148,71,.06) 72%);z-index:0}
+  .ci-hero-dots{position:absolute;z-index:0;left:-16%;bottom:2%;opacity:.65}
+  .ci-hero-img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:26px;box-shadow:0 34px 70px rgba(18,52,36,.24)}
+  .ci-hero-card{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 18px 44px rgba(18,52,36,.16);border:1px solid #eef5f0}
+  .ci-hero-card i{font-size:20px;color:var(--ci-vert)}
+  .ci-hero-card b{font-family:var(--ci-font-titres);font-size:1.2rem;color:var(--ci-noir);line-height:1.1}
+  .ci-hero-card small{color:var(--ci-texte-2);font-size:.78rem}
+  .ci-hero-card--1{top:7%;left:-7%}
+  .ci-hero-card--2{bottom:12%;right:-9%}
+  .ci-hero-tag{position:absolute;z-index:2;bottom:7%;left:-5%;background:rgba(21,148,71,.94);color:#fff;padding:8px 16px;border-radius:999px;font-size:.82rem;font-weight:600;box-shadow:0 14px 30px rgba(21,148,71,.35)}
+  /* --- Hexagones décoratifs --- */
+  .ci-hex{position:absolute;pointer-events:none;overflow:hidden;line-height:0;z-index:0}
+  .ci-hex i{display:block;width:100%;height:100%}
+  .ci-hex--tl{top:0;left:0}
+  .ci-hex--tr{top:0;right:0}
+  .ci-hex--bl{bottom:0;left:0}
+  .ci-hex--br{bottom:0;right:0}
+  .ci-hex--full{inset:0;width:100%;height:100%}
+  .ci-hex--sm{width:130px;height:150px}
+  .ci-hex--md{width:230px;height:270px}
+  .ci-hex--lg{width:350px;height:410px}
+  .ci-hex--xl{width:520px;height:600px}
+  .ci-hex--faint{opacity:.07}
+  .ci-hex--soft{opacity:.14}
+  .ci-hex--mid{opacity:.24}
+  .ci-hex--strong{opacity:.38}
+  section>.ci-container{position:relative;z-index:1}
+
+  .ci-ghost{position:absolute;z-index:0;font-family:var(--ci-font-titres);font-weight:800;color:transparent;-webkit-text-stroke:1.5px rgba(21,148,71,.3);user-select:none;pointer-events:none;line-height:1}
+  .ci-hero-media .ci-ghost{top:-34px;right:2%;font-size:clamp(4.2rem,7vw,6rem)}
+
+  .ci-recherche{margin-bottom:40px}
+  .ci-recherche-card{background:#fff;border-radius:var(--ci-rayon-lg);box-shadow:var(--ci-ombre-carte);border:1px solid var(--ci-bordure);padding:28px 32px}
+  .ci-recherche-search{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--ci-fond);border:1.5px solid var(--ci-bordure);border-radius:12px;margin-bottom:20px;transition:border-color .25s,box-shadow .25s}
+  .ci-recherche-search:focus-within{border-color:var(--ci-vert);box-shadow:0 0 0 3px rgba(21,148,71,.1)}
+  .ci-recherche-search i{color:var(--ci-texte-2);font-size:1.1rem}
+  .ci-recherche-search input{flex:1;border:none;background:transparent;font-size:.95rem;color:var(--ci-noir);outline:none;font-family:var(--ci-font-texte)}
+  .ci-recherche-filtres{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+  .ci-recherche-filtres select{flex:1;min-width:180px;padding:12px 36px 12px 14px;border:1.5px solid var(--ci-bordure-input);border-radius:10px;font-size:.88rem;color:var(--ci-noir);background:var(--ci-fond-2);font-family:var(--ci-font-texte);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7b6b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;transition:border-color .25s,box-shadow .25s}
+  .ci-recherche-filtres select:focus{outline:none;border-color:var(--ci-vert);box-shadow:0 0 0 3px rgba(21,148,71,.1)}
+  .ci-recherche-count{margin:0;font-size:.88rem;color:var(--ci-texte-2)}
+  .ci-recherche-count b{color:var(--ci-vert)}
+
+  .ci-ecole-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-bottom:40px}
+  .ci-ecole-card{background:#fff;border-radius:var(--ci-rayon);border:1px solid var(--ci-bordure);overflow:hidden;box-shadow:var(--ci-ombre-carte);transition:box-shadow .35s,transform .35s}
+  .ci-ecole-card:hover{box-shadow:0 18px 48px rgba(21,148,71,.12);transform:translateY(-4px)}
+  .ci-ecole-head{display:flex;align-items:center;justify-content:center;height:90px;padding:18px 24px;background:var(--ci-fond);border-bottom:1px solid var(--ci-bordure)}
+  .ci-ecole-head img{max-height:40px;max-width:120px;width:auto;object-fit:contain;filter:grayscale(1) brightness(0) opacity(.65);transition:filter .3s}
+  .ci-ecole-card:hover .ci-ecole-head img{filter:grayscale(1) brightness(0) opacity(.85)}
+  .ci-ecole-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:8px}
+  .ci-ecole-groupe{font-size:.78rem;font-weight:600;color:var(--ci-vert);text-transform:uppercase;letter-spacing:.06em}
+  .ci-ecole-body h3{font-size:1.1rem;margin-bottom:0}
+  .ci-ecole-tags{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+  .ci-tag{display:inline-block;padding:4px 10px;background:var(--ci-vert-bg);color:var(--ci-vert-fonce);border-radius:var(--ci-pill);font-size:.72rem;font-weight:600;font-family:var(--ci-font-titres)}
+  .ci-ecole-ligne{display:flex;align-items:flex-start;gap:8px;font-size:.85rem;color:var(--ci-texte-2);margin:2px 0;line-height:1.5}
+  .ci-ecole-ligne i{color:var(--ci-vert);margin-top:3px;flex-shrink:0;font-size:.85rem}
+  .ci-ecole-lien{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:.88rem;font-weight:700;color:var(--ci-vert);font-family:var(--ci-font-titres);transition:gap .25s}
+  .ci-ecole-lien:hover{gap:10px;color:var(--ci-vert-fonce)}
+
+  .ci-domaines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+  .ci-domaine{display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 16px;background:#fff;border:1.5px solid var(--ci-bordure);border-radius:var(--ci-rayon);text-align:center;cursor:pointer;transition:all .3s;font-family:var(--ci-font-titres)}
+  .ci-domaine:hover{border-color:var(--ci-vert);background:var(--ci-vert-bg);transform:translateY(-4px);box-shadow:0 12px 32px rgba(21,148,71,.12)}
+  .ci-domaine b{font-size:.9rem;color:var(--ci-noir)}
+  .ci-domaine span:last-child{font-size:.78rem;color:var(--ci-texte-2)}
+  .ci-domaine-icone{display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:var(--ci-vert-bg);color:var(--ci-vert);border-radius:14px;font-size:1.2rem;transition:all .3s}
+  .ci-domaine:hover .ci-domaine-icone{background:var(--ci-vert);color:#fff}
+
+  .ci-aucun-resultat{display:none;text-align:center;padding:60px 24px;color:var(--ci-texte-2)}
+  .ci-aucun-resultat i{font-size:2.5rem;color:var(--ci-bordure);margin-bottom:16px}
+  .ci-aucun-resultat h3{color:var(--ci-noir);margin-bottom:10px}
+  .ci-aucun-resultat p{max-width:420px;margin:0 auto 20px;font-size:.92rem}
+
+  .ci-cta{background:linear-gradient(rgba(6,21,14,.9),rgba(9,26,18,.82));color:#fff;text-align:center;position:relative;overflow:hidden}
+  .ci-cta h2{color:#fff;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800}
+  .ci-cta p{color:#dceadf;max-width:600px;margin:0 auto 34px}
+  .ci-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .ci-wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}
+  .ci-wave svg{width:100%;height:70px}
+
+  .ci-footer{background:var(--ci-noir);color:#c7d2cb;padding:70px 0 0;font-size:.92rem}
+  .ci-footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:50px}
+  .ci-footer h4{color:#fff;font-size:1.05rem;margin-bottom:18px}
+  .ci-footer a{color:#c7d2cb;display:block;padding:5px 0;transition:color .25s,transform .25s}
+  .ci-footer a:hover{color:var(--ci-vert-clair);transform:translateX(4px)}
+  .ci-footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .ci-footer-logo img{height:46px;filter:brightness(0) invert(1)}
+  .ci-footer-social{display:flex;gap:12px;margin-top:16px}
+  .ci-footer-social a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);border-radius:10px;transition:all .25s}
+  .ci-footer-social a:hover{background:var(--ci-vert);border-color:var(--ci-vert);color:#fff;transform:none}
+  .ci-footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;font-size:.82rem;color:#9aa89f;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .ci-footer-bottom a{display:inline;padding:0;transition:color .25s}
+  .ci-footer-bottom a:hover{color:var(--ci-vert-clair);transform:none}
+
+  .ci-reveal,.ci-reveal-left,.ci-reveal-right{opacity:0;transition:opacity .7s ease,transform .7s ease}
+  .ci-reveal{transform:translateY(24px)}
+  .ci-reveal-left{transform:translateX(-30px)}
+  .ci-reveal-right{transform:translateX(30px)}
+  .ci-reveal.ci-visible,.ci-reveal-left.ci-visible,.ci-reveal-right.ci-visible{opacity:1;transform:translate(0)}
+
+  .ci-whatsapp{position:fixed;bottom:max(20px,env(safe-area-inset-bottom));right:max(20px,env(safe-area-inset-right));z-index:9999;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#25d366;color:#fff;border-radius:50%;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;text-decoration:none}
+  .ci-whatsapp:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+  .ci-to-top{position:fixed;bottom:max(94px,calc(env(safe-area-inset-bottom)+74px));right:max(26px,env(safe-area-inset-right));z-index:9999;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--ci-vert);border:1.5px solid var(--ci-bordure);border-radius:50%;font-size:1rem;box-shadow:0 2px 12px rgba(0,0,0,.08);transition:all .3s;opacity:0;visibility:hidden}
+  .ci-to-top.ci-visible{opacity:1;visibility:visible}
+  .ci-to-top:hover{background:var(--ci-vert);color:#fff;border-color:var(--ci-vert);transform:translateY(-2px)}
+
+  @media(max-width:900px){
+    .ci-hero-grid--inverse{grid-template-columns:1fr;gap:40px}
+    .ci-hero-media{order:-1;max-width:300px;margin:0 auto}
+    .ci-ecole-grid{grid-template-columns:1fr}
+    .ci-footer-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:768px){
+    .ci-recherche-filtres{flex-direction:column}
+    .ci-recherche-filtres select{min-width:0}
+    .ci-domaines-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:640px){
+    .ci-section{padding:24px 0}
+    .ci-hero-chips{flex-direction:column}
+    .ci-hero-cta{flex-direction:column}
+    .ci-hero-cta .ci-btn{width:100%;justify-content:center}
+    .ci-domaines-grid{grid-template-columns:1fr}
+  }
+  </style>
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="03">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span class="ci-sep">›</span><span class="ci-here">Écoles &amp; Programmes</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            Catalogue · Europe
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Écoles &amp; <em>Programmes</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Parcourez notre catalogue d'écoles partenaires en Europe. Filtrez par domaine, pays et niveau pour trouver la formation qui vous correspond.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Trouver mon programme
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciCatalogue">Voir le catalogue</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Nos engagements"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Premier échange gratuit</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Réponse sous 48 h</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp disponible</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciCatalogue"><i class="fa-solid fa-layer-group" aria-hidden="true"></i>Domaines</a>
+            <a class="ci-hero-chip" href="/etudier-en-france"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Étudier en France</a>
+            <a class="ci-hero-chip" href="/etudier-en-belgique"><i class="fa-solid fa-database" aria-hidden="true"></i>Étudier en Belgique</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">03</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-ecoles-programmes.jpg" alt="Campus universitaire européen">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Écoles</b><small>et programmes partenaires</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Orientation</b><small>selon votre projet</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Europe · Partenaires</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — OUTIL DE RECHERCHE + GRILLE D'ÉCOLES
+       ========================================================== -->
+  <section class="ci-section" id="ciCatalogue">
+    <!-- Hexagones : coin bas-droit, très subtil, vert -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Carte recherche + filtres combinés -->
+      <div class="ci-recherche ci-reveal">
+        <div class="ci-recherche-card">
+          <!-- Champ de recherche texte -->
+          <div class="ci-recherche-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="text" id="ciSearch" placeholder="Rechercher une école, un programme, une ville..." aria-label="Rechercher une école ou un programme">
+          </div>
+
+          <!-- Filtres déroulants combinés -->
+          <div class="ci-recherche-filtres">
+            <!-- Filtre domaine -->
+            <select id="ciFiltreDomaine" aria-label="Filtrer par domaine">
+              <option value="tous">Tous les domaines</option>
+              <option value="management">Management &amp; Business</option>
+              <option value="digital">Digital &amp; Tech</option>
+              <option value="communication">Communication &amp; Médias</option>
+              <option value="arts">Arts &amp; Création</option>
+              <option value="design">Design</option>
+              <option value="ingenierie">Ingénierie</option>
+              <option value="sante">Santé</option>
+              <option value="droit">Droit</option>
+              <option value="tourisme">Tourisme &amp; Luxe</option>
+              <option value="data">Data &amp; IA</option>
+            </select>
+
+            <!-- Filtre pays -->
+            <select id="ciFiltrePays" aria-label="Filtrer par pays">
+              <option value="tous">Tous les pays</option>
+              <option value="france">France</option>
+              <option value="belgique">Belgique</option>
+            </select>
+
+            <!-- Filtre niveau -->
+            <select id="ciFiltreNiveau" aria-label="Filtrer par niveau">
+              <option value="tous">Tous les niveaux</option>
+              <option value="bts">BTS / Bac+2</option>
+              <option value="bachelor">Bachelor / Bac+3</option>
+              <option value="mastere">Mastère / Bac+5</option>
+              <option value="pge">Programme Grande École</option>
+            </select>
+          </div>
+
+          <!-- Compteur de résultats -->
+          <p class="ci-recherche-count"><b id="ciCount">0</b> école(s) trouvée(s)</p>
+        </div>
+      </div>
+
+      <!-- Grille d'écoles (data-* pour le filtrage combiné) -->
+      <div class="ci-ecole-grid" id="ciEcoleGrid">
+        <!-- École 1 : GGE — emlyon (Management, France, PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>emlyon business school</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Management</span><span class="ci-tag">Programme Grande École</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon · Shanghai · Mumbai</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère · Programme Grande École</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/emlyon">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 2 : GGE — Digital Campus (Digital, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="digital" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>Digital Campus</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Digital</span><span class="ci-tag">Tech</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Dakar</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Digital</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/digital-campus">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 3 : GGE — Cours Florent (Arts, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="arts" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>Cours Florent</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Art dramatique</span><span class="ci-tag">Cinéma</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Montpellier</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Arts &amp; Création</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/cours-florent">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 4 : GGE — Intuit Lab (Design, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="design" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>Intuit Lab</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Design</span><span class="ci-tag">Direction artistique</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Aix-en-Provence · Mumbai · São Paulo</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Design</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/intuit-lab">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 5 : OMNES — ESCE (Management, France, Bachelor/PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>ESCE Business School</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Commerce international</span><span class="ci-tag">Bachelor</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère · PGE</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/esce">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 6 : OMNES — ECE (Ingénierie/Digital, France, Bac+2 à Bac+5) -->
+        <article class="ci-ecole-card" data-domaine="ingenierie" data-pays="france" data-niveau="bts bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>ECE — École d'ingénieurs</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Ingénierie</span><span class="ci-tag">Digital</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bac+2 · Bac+5 Ingénieur</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/ece">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 7 : OMNES — INSEEC (Management, France, PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>INSEEC</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Management</span><span class="ci-tag">Finance</span><span class="ci-tag">Marketing</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Rennes</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère · PGE</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/inseec">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 8 : OMNES — Sup de Pub (Communication, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="communication" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>Sup de Pub</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Publicité</span><span class="ci-tag">Communication</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Aix</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Communication</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/sup-de-pub">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 9 : MediaSchool — IEJ (Communication, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="communication" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mediaschool.png" alt="MediaSchool"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Media School</span>
+            <h3>IEJ — Journalisme</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Journalisme</span><span class="ci-tag">Médias</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · 15 campus en France</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Communication</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/iej">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 10 : MediaSchool — PSTC (Tourisme, France/Belgique, BTS/Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="tourisme" data-pays="france belgique" data-niveau="bts bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mediaschool.png" alt="MediaSchool"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Media School</span>
+            <h3>Paris School of Tourism &amp; Communication</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Tourisme</span><span class="ci-tag">Communication</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bruxelles · Barcelone</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> BTS · Bachelor · Mastère</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/pstc">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 11 : HEMA — ESCI Paris (Management, France, PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-hema.png" alt="Groupe HEMA"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Hema Management School</span>
+            <h3>ESCI Paris</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Commerce international</span><span class="ci-tag">Programme Grande École</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris — Marne-la-Vallée</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Programme Grande École · Bac à Bac+5</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/esci">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 12 : MBN — BTS & Bachelor (Management, France, BTS/Bachelor) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bts bachelor">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mbn.png" alt="MBN Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">MBN Global Education</span>
+            <h3>MBN — BTS &amp; Bachelor</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">BTS</span><span class="ci-tag">Bachelor</span><span class="ci-tag">Mastère</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris-Torcy · Paris-Évry · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> BTS · Bachelor · Mastère</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/mbn">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Message aucun résultat -->
+      <div class="ci-aucun-resultat" id="ciAucunResultat">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <h3>Aucun résultat</h3>
+        <p>Aucune école ne correspond à vos critères. Essayez d'élargir votre recherche ou contactez-nous pour un conseil personnalisé.</p>
+        <a class="ci-btn ci-btn--primaire" href="/contact">Parlons de votre projet</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — DOMAINES MIS EN AVANT (12 domaines)
+       ========================================================== -->
+  <section class="ci-domaines ci-section" id="ciDomaines" data-ghost="01">
+    <!-- Hexagones : coin haut-gauche, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Domaines</span>
+        <h2>Explorez par domaine</h2>
+        <p>Cliquez sur un domaine pour filtrer immédiatement les écoles du catalogue.</p>
+      </div>
+
+      <!-- Grille des 12 domaines -->
+      <div class="ci-domaines-grid">
+        <!-- Domaine 1 -->
+        <div class="ci-domaine ci-reveal" data-filtre-domaine="management">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-table" aria-hidden="true"></i></span>
+          <b>Management</b>
+          <span>Business &amp; Commerce</span>
+        </div>
+        <!-- Domaine 2 -->
+        <div class="ci-domaine ci-reveal" style="--d:.05s" data-filtre-domaine="digital">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-display" aria-hidden="true"></i></span>
+          <b>Digital &amp; Tech</b>
+          <span>Web, IA, Data</span>
+        </div>
+        <!-- Domaine 3 -->
+        <div class="ci-domaine ci-reveal" style="--d:.1s" data-filtre-domaine="communication">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-comment" aria-hidden="true"></i></span>
+          <b>Communication</b>
+          <span>Médias &amp; Publicité</span>
+        </div>
+        <!-- Domaine 4 -->
+        <div class="ci-domaine ci-reveal" style="--d:.15s" data-filtre-domaine="arts">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-stamp" aria-hidden="true"></i></span>
+          <b>Arts &amp; Création</b>
+          <span>Théâtre, Cinéma, Musique</span>
+        </div>
+        <!-- Domaine 5 -->
+        <div class="ci-domaine ci-reveal" style="--d:.2s" data-filtre-domaine="design">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i></span>
+          <b>Design</b>
+          <span>Direction artistique</span>
+        </div>
+        <!-- Domaine 6 -->
+        <div class="ci-domaine ci-reveal" style="--d:.25s" data-filtre-domaine="ingenierie">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-wrench" aria-hidden="true"></i></span>
+          <b>Ingénierie</b>
+          <span>Écoles d'ingénieurs</span>
+        </div>
+        <!-- Domaine 7 -->
+        <div class="ci-domaine ci-reveal" style="--d:.3s" data-filtre-domaine="sante">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+          <b>Santé</b>
+          <span>Santé &amp; Social</span>
+        </div>
+        <!-- Domaine 8 -->
+        <div class="ci-domaine ci-reveal" style="--d:.35s" data-filtre-domaine="droit">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+          <b>Droit</b>
+          <span>Droit &amp; Carrières juridiques</span>
+        </div>
+        <!-- Domaine 9 -->
+        <div class="ci-domaine ci-reveal" style="--d:.4s" data-filtre-domaine="tourisme">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-location-arrow" aria-hidden="true"></i></span>
+          <b>Tourisme &amp; Luxe</b>
+          <span>Hôtellerie, Événementiel</span>
+        </div>
+        <!-- Domaine 10 -->
+        <div class="ci-domaine ci-reveal" style="--d:.45s" data-filtre-domaine="data">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+          <b>Data &amp; IA</b>
+          <span>Intelligence artificielle</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — CTA FINAL
+       ========================================================== -->
+  <section class="ci-cta ci-section" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-reveal">
+        <span class="ci-kicker">Vous hésitez ?</span>
+        <h2>Trouvez la formation idéale</h2>
+        <p>Notre équipe vous oriente gratuitement vers les programmes les plus adaptés à votre profil, votre niveau et votre budget.</p>
+        <div class="ci-cta-btns">
+          <a class="ci-btn ci-btn--primaire" href="/contact">
+            Trouver ma formation
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000">
+            WhatsApp
+            <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT « ÉCOLES & PROGRAMMES »
+     IIFE pour éviter les conflits avec le template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences de mouvement (accessibilité) */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000); /* filet de sécurité */
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION + RETOUR EN HAUT
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    var toTop = document.getElementById('ciToTop');
+    function onScroll(){      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       3. PARALLAX — image du hero en mouvement
+       ---------------------------------------------------------- */
+    var bgParallax = document.getElementById('ciBgParallax');
+    if(bgParallax && !reducedMotion){
+      window.addEventListener('scroll', function(){
+        var y = window.scrollY * 0.3;
+        bgParallax.style.transform = 'translate3d(0,' + y + 'px,0)';
+      }, { passive:true });
+    }
+
+    /* ----------------------------------------------------------
+       4. RECHERCHE + FILTRES COMBINÉS (domaine, pays, niveau)
+       ---------------------------------------------------------- */
+    var searchInput = document.getElementById('ciSearch');
+    var selectDomaine = document.getElementById('ciFiltreDomaine');
+    var selectPays = document.getElementById('ciFiltrePays');
+    var selectNiveau = document.getElementById('ciFiltreNiveau');
+    var cartes = document.querySelectorAll('.ci-ecole-card');
+    var aucunResultat = document.getElementById('ciAucunResultat');
+    var compteur = document.getElementById('ciCount');
+
+    function appliquerFiltres(){
+      var texte = searchInput.value.trim().toLowerCase();
+      var domaine = selectDomaine.value;
+      var pays = selectPays.value;
+      var niveau = selectNiveau.value;
+      var visibles = 0;
+
+      cartes.forEach(function(carte){
+        /* Récupération des données de la carte */
+        var dDomaine = carte.getAttribute('data-domaine');
+        var dPays = carte.getAttribute('data-pays').split(' ');
+        var dNiveau = carte.getAttribute('data-niveau').split(' ');
+        var libelle = carte.textContent.toLowerCase();
+
+        /* Conditions de correspondance */
+        var matchDomaine = (domaine === 'tous') || (dDomaine === domaine);
+        var matchPays = (pays === 'tous') || (dPays.indexOf(pays) !== -1);
+        var matchNiveau = (niveau === 'tous') || (dNiveau.indexOf(niveau) !== -1);
+        var matchTexte = (texte === '') || (libelle.indexOf(texte) !== -1);
+
+        var match = matchDomaine && matchPays && matchNiveau && matchTexte;
+
+        /* Affichage avec animation en fondu */
+        if(match){
+          carte.style.display = '';
+          requestAnimationFrame(function(){ carte.classList.add('ci-visible'); });
+          visibles++;
+        } else {
+          carte.classList.remove('ci-visible');
+          carte.style.display = 'none';
+        }
+      });
+
+      /* Mise à jour du compteur et du message « aucun résultat » */
+      compteur.textContent = visibles;
+      aucunResultat.style.display = (visibles === 0) ? 'block' : 'none';
+    }
+
+    /* Écoute des changements sur les 3 listes et la recherche */
+    searchInput.addEventListener('input', appliquerFiltres);
+    selectDomaine.addEventListener('change', appliquerFiltres);
+    selectPays.addEventListener('change', appliquerFiltres);
+    selectNiveau.addEventListener('change', appliquerFiltres);
+
+    /* ----------------------------------------------------------
+       5. DOMAINES CLIQUABLES — filtrent le catalogue
+       ---------------------------------------------------------- */
+    document.querySelectorAll('.ci-domaine').forEach(function(domaine){
+      domaine.addEventListener('click', function(){
+        var filtre = this.getAttribute('data-filtre-domaine');
+        selectDomaine.value = filtre;
+        appliquerFiltres();
+        /* Remontée fluide vers le catalogue */
+        var catalogue = document.getElementById('ciCatalogue');
+        if(catalogue){ catalogue.scrollIntoView({ behavior:'smooth' }); }
+      });
+    });
+
+    /* ----------------------------------------------------------
+       6. REVEAL AU SCROLL
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       8. BOUTON RETOUR EN HAUT (remontée fluide)
+       ---------------------------------------------------------- */
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       9. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+    /* Initialisation : compteur + visibilité des cartes */
+    appliquerFiltres();
+
+  /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Écoles & Programmes ».
+       2. Images à déposer dans le Gestionnaire de médias
+          (hero + logos des 5 groupes partenaires).
+       3. Désactiver le filtrage HTML de l'article.
+       4. Menu : Campus Inter > Écoles & Programmes (alias).
+       5. Pour ajouter une école : dupliquer un
+          <article class="ci-ecole-card"> et modifier le contenu.
+          Respecter les attributs data-* (domaine, pays, niveau).
+       6. La section « Domaines » filtre le catalogue : chaque
+          <div class="ci-domaine"> possède data-filtre-domaine.
+       7. Les fiches écoles (template fiche-ecole.html) sont des
+          articles séparés liés par « Voir la fiche ».
+       8. La grille peut être dupliquée par catégorie via les
+          articles Joomla si besoin.
+       ============================================================ -->
+</div>

@@ -1,0 +1,123 @@
+<script>
+(function () {
+  'use strict';
+  var params = new URLSearchParams(window.location.search);
+  var form = document.getElementById('ciFormInfo');
+  var successEl = document.getElementById('ci-success');
+  var errorEl = document.getElementById('ci-error');
+  if (params.get('ci') === 'success') {
+    if (form) form.style.display = 'none';
+    if (errorEl) errorEl.style.display = 'none';
+    if (successEl) successEl.classList.add('show');
+    if (window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname); }
+  } else if (params.get('ci') === 'error') {
+    if (form) form.style.display = 'none';
+    if (successEl) successEl.style.display = 'none';
+    if (errorEl) errorEl.classList.add('show');
+    if (window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname); }
+  }
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...'; }
+    });
+  }
+})();
+</script>
+{source}<?php
+defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
+$pageUrl = Uri::current();
+
+echo '<section class="ci-section" id="ciContact">';
+echo '<div class="ci-hex ci-hex--bl ci-hex--lg ci-hex--soft" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="https://it.dyk08.com/campusinter/images/etudier%20en%20belgique/Revisions%20complices%20en%20terrasse%20europeenne.png" data-img-every="6" aria-hidden="true"></div>';
+echo '<div class="ci-container">';
+echo '<div class="ci-contact-cta">';
+echo '<div class="ci-contact-grid">';
+echo '<div class="ci-contact-info ci-reveal-left"><span class="ci-kicker">Take action</span>';
+echo '<h2>Ready to study in Belgium?</h2>';
+echo '<p>Fill out the form and our team will contact you within 24 hours to assess your profile and start your study project in Belgium.</p>';
+echo '<ul>';
+echo '<li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Free assessment of your application</li>';
+echo '<li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l\'Oti, face Massalassi, Bè-Kpota, Lomé, Togo</li>';
+echo '<li><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</li>';
+echo '<li><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</li>';
+echo '</ul></div>';
+echo '<div id="ci-success" class="ci-form-status ci-statut-ok" role="status" style="display:none;">Thank you! Your request has been sent. A Campus Inter advisor will contact you within 24 hours.</div>';
+echo '<div id="ci-error" class="ci-form-status ci-statut-err" role="status" style="display:none;">Sending failed. Please try again or call +228 22 70 25 96.</div>';
+echo '<form class="ci-form ci-reveal-right" id="ciFormInfo" action="' . $pageUrl . '" method="post">';
+echo '<input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">';
+echo '<h3>Request information</h3>';
+echo '<div class="ci-champ"><label for="ci-nom">Full name</label> <input type="text" id="ci-nom" name="nom" placeholder="Your first and last name" required=""></div>';
+echo '<div class="ci-champ"><label for="ci-email">Email address</label> <input type="email" id="ci-email" name="email" placeholder="you@example.com" required=""></div>';
+echo '<div class="ci-champ"><label for="ci-tel">Phone / WhatsApp</label> <input type="tel" id="ci-tel" name="telephone" placeholder="+228 ..." required=""></div>';
+echo '<div class="ci-champ"><label for="ci-domaine">Field of study</label><select id="ci-domaine" name="domaine"><option value="">Select a field</option><option value="management">Management &amp; Commerce</option><option value="ingenierie">Engineering</option><option value="digital">Digital &amp; Marketing</option><option value="communication">Communication</option><option value="sante">Health</option><option value="autre">Other</option></select></div>';
+echo '<div class="ci-champ"><label for="ci-message">Your message</label> <textarea id="ci-message" name="message" placeholder="Tell us about your project..."></textarea></div>';
+echo '<button class="ci-btn ci-btn--primaire" type="submit" style="width:100%;justify-content:center;"> Send my request <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> </button>';
+echo '</form></div></div></div></section>';
+
+return;
+}
+
+function sanitize($value) {
+if (is_array($value)) {
+return array_map('sanitize', $value);
+}
+return htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
+}
+
+function buildRow($label, $value) {
+return '<tr><td style="padding:10px 14px;border-bottom:1px solid #e8ecf0;font-weight:700;color:#1a1a2e;white-space:nowrap;vertical-align:top;width:200px;background:#f7f8fa">' . $label . '</td><td style="padding:10px 14px;border-bottom:1px solid #e8ecf0;color:#4a4a5a">' . nl2br($value) . '</td></tr>';
+}
+
+$data = [];
+foreach ($_POST as $key => $value) {
+$data[$key] = sanitize($value);
+}
+
+if (!empty($data['website'])) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=success');
+return;
+}
+
+$nom  = $data['nom'] ?? '';
+$mail = $data['email'] ?? '';
+$tel  = $data['telephone'] ?? '';
+$dom  = $data['domaine'] ?? '';
+$msg  = $data['message'] ?? '';
+
+if ($nom === '' || $mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+
+$html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#f7f8fa;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif">';
+$html .= '<table style="max-width:620px;margin:30px auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e8ecf0"><tr><td style="padding:30px 28px;background:linear-gradient(135deg,rgba(21,148,71,0.95),rgba(29,184,94,0.8));text-align:center"><h1 style="margin:0;font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:0.05em">NEW REQUEST — BELGIUM</h1><p style="margin:8px 0 0;font-size:0.8rem;color:rgba(255,255,255,0.7)">Campus Inter</p></td></tr>';
+$html .= '<tr><td style="padding:24px 28px 0"><table style="width:100%;border-collapse:collapse">' . buildRow('Full name', $nom) . buildRow('Email address', $mail) . buildRow('Phone / WhatsApp', $tel !== '' ? $tel : 'Not provided') . buildRow('Field of study', $dom !== '' ? $dom : 'Not specified') . buildRow('Message', $msg !== '' ? $msg : 'Not provided') . buildRow('Received on', date('d/m/Y à H:i')) . '</table></td></tr>';
+$html .= '<tr><td style="padding:24px 28px;text-align:center;color:#6b6b7b;font-size:0.75rem;border-top:1px solid #e8ecf0">Request submitted from the Campus Inter website.</td></tr></table></body></html>';
+
+$sujet = 'New Belgium Request — ' . $nom;
+
+try {
+$app = Factory::getApplication();
+$mailer = Factory::getMailer();
+$mailer->setSender([$app->get('mailfrom'), $app->get('fromname')]);
+$mailer->addRecipient('amerocar010' . '@' . 'gmail.com');
+$mailer->addReplyTo($mail);
+$mailer->setSubject($sujet);
+$mailer->setBody($html);
+$mailer->isHtml(true);
+$mailer->send();
+$app->redirect(Uri::current() . '?ci=success');
+} catch (Exception $e) {
+$app->redirect(Uri::current() . '?ci=error');
+}
+?>{/source}

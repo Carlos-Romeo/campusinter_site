@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Rediriger vers HTTPS (décommenter en production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Empêcher l'accès aux fichiers sensibles
+RewriteRule ^(config|app|database|storage)/ - [F,L]
+
+# Rediriger les dossiers vers index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

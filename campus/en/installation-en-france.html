@@ -1,0 +1,440 @@
+<!-- ============================================================
+  CAMPUS INTER — Settlement in France
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : installation-en-france.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Settlement in France" (category : Settlement — France).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="05">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><a href="/visa-et-demarches">Visa & Procedures</a><span class="ci-sep">›</span><span class="ci-here">Settlement in France</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Formalities · Accommodation
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Settlement <em>in France</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Arrive with peace of mind: accommodation, formalities and complete support to start your new life well.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Prepare my settlement
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciLogement">Find accommodation</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Our commitments"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciLogement"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>Formalities</a>
+            <a class="ci-hero-chip" href="#ciAccompagnement"><i class="fa-solid fa-user-check" aria-hidden="true"></i>Support</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">05</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-installation-france.jpg" alt="Modern apartment">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Accommodation</b><small>and procedures started early</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Arrival</b><small>better prepared</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Life in France</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — LOGEMENT
+       ========================================================== -->
+  <section class="ci-section" id="ciLogement">
+    <!-- Hexagones : coin haut-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tr ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-logement">
+        <!-- Image + badge -->
+        <div class="ci-logement-img ci-reveal-left">
+          <img src="images/campusinter/installation-logement.jpg" alt="Student residence in France">
+          <span class="ci-logement-badge">Accommodation solutions</span>
+        </div>
+
+        <!-- Contenu logement -->
+        <div class="ci-reveal-right">
+          <span class="ci-kicker">Accommodation</span>
+          <h2>A roof even before you leave</h2>
+          <p>We help you find the ideal accommodation, suited to your budget and needs, for a stress-free settlement.</p>
+          <ul class="ci-logement-list">
+            <li>
+              <span class="ci-logement-check"><i class="fa-solid fa-landmark" aria-hidden="true"></i></span>
+              <div>
+                <b>Partner student residences</b>
+                <span>Secure accommodation close to campuses</span>
+              </div>
+            </li>
+            <li>
+              <span class="ci-logement-check"><i class="fa-solid fa-calendar" aria-hidden="true"></i></span>
+              <div>
+                <b>Temporary or long-stay accommodation</b>
+                <span>Depending on the length of your stay and your preferences</span>
+              </div>
+            </li>
+            <li>
+              <span class="ci-logement-check"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+              <div>
+                <b>Support tailored to your budget</b>
+                <span>Personalized search to control your costs</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — FORMALITÉS (5 cartes)
+       ========================================================== -->
+  <section class="ci-formalites ci-section" id="ciFormalites" data-ghost="01">
+    <!-- Hexagones : coin bas-droit, très subtil, vert -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Formalities</span>
+        <h2>Simplified administrative procedures</h2>
+        <p>We guide you through all the essential formalities to settle in complete legality and serenity.</p>
+      </div>
+
+      <!-- Grille des 5 formalités -->
+      <div class="ci-formalites-grid">
+        <!-- Formalité 1 -->
+        <article class="ci-formalite ci-reveal">
+          <span class="ci-formalite-icone"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+          <h3>Insurance</h3>
+          <p>Subscribing to your health and home insurance</p>
+        </article>
+
+        <!-- Formalité 2 -->
+        <article class="ci-formalite ci-reveal" style="--d:.08s">
+          <span class="ci-formalite-icone"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></span>
+          <h3>Bank account opening</h3>
+          <p>Opening your bank account in France</p>
+        </article>
+
+        <!-- Formalité 3 -->
+        <article class="ci-formalite ci-reveal" style="--d:.16s">
+          <span class="ci-formalite-icone"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i></span>
+          <h3>Enrollment</h3>
+          <p>Validation of your enrollment at the institution</p>
+        </article>
+
+        <!-- Formalité 4 -->
+        <article class="ci-formalite ci-reveal" style="--d:.24s">
+          <span class="ci-formalite-icone"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i></span>
+          <h3>Residence permit</h3>
+          <p>Validation and follow-up of your residence permit</p>
+        </article>
+
+        <!-- Formalité 5 -->
+        <article class="ci-formalite ci-reveal" style="--d:.32s">
+          <span class="ci-formalite-icone"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+          <h3>CAF</h3>
+          <p>Applying for housing assistance to reduce your costs</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — ACCOMPAGNEMENT À L'ARRIVÉE (3 étapes)
+       ========================================================== -->
+  <section class="ci-section" id="ciAccompagnement" data-ghost="02">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Arrival support</span>
+        <h2>You are never alone</h2>
+        <p>Our team supports you concretely from your first weeks in France, in 3 simple steps.</p>
+      </div>
+
+      <!-- 3 étapes -->
+      <div class="ci-etapes">
+        <!-- Étape 1 -->
+        <article class="ci-etape ci-reveal">
+          <span class="ci-etape-num">01</span>
+          <span class="ci-etape-icone"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+          <h3>Welcome & settlement</h3>
+          <p>Reception on arrival, settling into your accommodation and a first practical overview of your new city.</p>
+        </article>
+
+        <!-- Étape 2 -->
+        <article class="ci-etape ci-reveal" style="--d:.12s">
+          <span class="ci-etape-num">02</span>
+          <span class="ci-etape-icone"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span>
+          <h3>Administrative formalities</h3>
+          <p>Support for all your procedures: insurance, banking, enrollment and residence permit.</p>
+        </article>
+
+        <!-- Étape 3 -->
+        <article class="ci-etape ci-reveal" style="--d:.24s">
+          <span class="ci-etape-icone"><i class="fa-solid fa-clock" aria-hidden="true"></i></span>
+          <h3>Follow-up & advice</h3>
+          <p>Regular follow-up to answer your questions and advise you on your integration over the months.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — TÉMOIGNAGE
+       ========================================================== -->
+  <section class="ci-temoignage ci-section" id="ciTemoignage">
+    <!-- Hexagones : coin bas-gauche, présent, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--bl ci-hex--md ci-hex--mid" data-cols="5" data-rows="3" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/installation-logement.jpg" data-img-every="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-temoignage-inner ci-reveal">
+        <!-- Guillemets -->
+        <div class="ci-temoignage-quote">
+          <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+          <p>"Thanks to Campus Inter, I found accommodation before leaving, opened my bank account and obtained my residence permit without any difficulty. The team supported me at every step, I was never alone."</p>
+        </div>
+
+        <!-- Auteur -->
+        <div class="ci-temoignage-autor">
+          <div class="ci-temoignage-avatar"><img src="images/campusinter/temoignage-etudiant.jpg" alt="Student supported by Campus Inter"></div>
+          <div style="text-align:left;">
+            <b>Kodjo A.</b>
+            <span>Master's student — France</span>
+            <div class="ci-etoiles">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — CTA FINAL
+       ========================================================== -->
+  <section class="ci-cta ci-section" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-reveal">
+        <span class="ci-kicker">Ready to settle?</span>
+        <h2>Prepare your settlement with peace of mind</h2>
+        <p>Contact us today for complete support with your settlement in France.</p>
+        <div class="ci-cta-btns">
+          <a class="ci-btn ci-btn--primaire" href="/contact">
+            Start my project
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000">
+            WhatsApp
+            <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Settlement in France".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

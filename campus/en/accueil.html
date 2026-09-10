@@ -1,0 +1,803 @@
+<!-- ============================================================
+  CAMPUS INTER — Home
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : accueil.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Home" (category : —).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Call the landline">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Write on WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Send an email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Monday - Friday, 7:30 am to 5:30 pm
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       SECTION HERO — composition éditoriale asymétrique (premium)
+       ========================================================== -->
+  <section class="ci-hero" id="ciHero">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="14" data-rows="8" data-size="30" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <div class="ci-hero-grid">
+        <!-- Colonne texte -->
+        <div class="ci-hero-content">
+          <!-- Badge de positionnement -->
+          <span class="ci-hero-badge">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            International mobility agency • Lomé, Togo
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Your future <em>starts here.</em></h1>
+
+          <!-- Effet machine à écrire : mots alternés -->
+          <p style="font-size:1.25rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;">
+            <span class="ci-type" id="ciType"></span><span class="ci-type-cursor"> </span>
+          </p>
+
+          <!-- Sous-titre -->
+          <p class="ci-hero-sous">
+            Campus Inter supports students and professionals in their legal mobility project to Europe. From orientation to your integration, we guide you step by step.
+          </p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire ci-magnetic" href="/contact">
+              Start my project now
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline ci-magnetic" href="/ecoles-et-programmes">Discover our programs</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Our commitments">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span>
+          </div>
+        </div>
+
+        <!-- Colonne média : photo verticale + numéro fantôme + cartes flottantes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">01</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <img class="ci-hero-img" src="images/campusinter/hero-accueil.jpg" alt="Graduate student supported by Campus Inter">
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Project</b><small>studies, employment or visa</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Europe</b><small>France and Belgium</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Europe · Legal Visa</span>
+        </div>
+      </div>
+
+      <!-- Widget « Trouver ma formation » — barre de recherche affinée -->
+      <div class="ci-hero-widget" role="search" aria-label="Search for a program">
+        <div>
+          <label for="ciDomaine">Field</label>
+          <select id="ciDomaine">
+            <option>Management & Business</option>
+            <option>Digital & Tech</option>
+            <option>Communication & Media</option>
+            <option>Arts & Creative Industries</option>
+            <option>Engineering & Sciences</option>
+            <option>Health</option>
+            <option>Law</option>
+            <option>Tourism & Hospitality</option>
+          </select>
+        </div>
+        <div>
+          <label for="ciPays">Country</label>
+          <select id="ciPays">
+            <option>France</option>
+            <option>Belgium</option>
+          </select>
+        </div>
+        <div class="ci-hero-widget-cta">
+          <button class="ci-btn ci-btn--primaire" id="ciRechercher" type="button">
+            Search
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicateur de scroll -->
+    <a class="ci-hero-scroll" href="#ciStats" aria-label="Scroll down">
+      Discover
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <!-- ==========================================================
+       STATISTIQUES — compteurs animés
+       ========================================================== -->
+  <section class="ci-stats" id="ciStats">
+    <!-- Hexagones : coin bas-droit, présent, vert vif sur fond noir -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--mid" data-cols="7" data-rows="5" data-size="26" data-color="#1DB85E" data-fill="3" data-rotate="12" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-stats-head ci-reveal">
+        <span class="ci-kicker">Campus Inter in numbers</span>
+        <h2>Concrete results</h2>
+      </div>
+      <div class="ci-stats-grid">
+        <!-- Chaque compteur : nombre + libellé -->
+        <div class="ci-stat ci-reveal">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="500">0</span>+</div>
+          <div class="ci-stat-label">Files supported</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.1s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="350">0</span>+</div>
+          <div class="ci-stat-label">Visas obtained</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.2s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="5">0</span></div>
+          <div class="ci-stat-label">Partner groups</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.3s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="100">0</span>+</div>
+          <div class="ci-stat-label">Institutions in Europe</div>
+        </div>
+        <div class="ci-stat ci-reveal" style="--d:.4s">
+          <div class="ci-stat-num"><span class="ci-counter" data-target="98">0</span>%</div>
+          <div class="ci-stat-label">Satisfied clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       NOS ENGAGEMENTS — checklist
+       ========================================================== -->
+  <section class="ci-section" id="ciEngagements">
+    <!-- Hexagones : coin haut-gauche, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-engagements">
+        <!-- Introduction éditoriale -->
+        <div class="ci-engagements-intro ci-reveal">
+          <span class="ci-kicker">Our commitments</span>
+          <span class="ci-ghost" aria-hidden="true">02</span>
+          <h2>One promise: your success, without stress</h2>
+          <p>Clear procedures and human follow-up at every stage of your project.</p>
+          <a class="ci-btn ci-btn--outline" href="/qui-sommes-nous">Discover our method</a>
+        </div>
+
+        <!-- Checklist numérotée -->
+        <ul class="ci-eng-list">
+          <li class="ci-eng-item ci-reveal">
+            <span class="ci-eng-num" aria-hidden="true">01</span>
+            <div><h4>Personalized support</h4><p>A dedicated advisor for your project.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.08s">
+            <span class="ci-eng-num" aria-hidden="true">02</span>
+            <div><h4>Simplified procedures</h4><p>Procedures explained step by step.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.16s">
+            <span class="ci-eng-num" aria-hidden="true">03</span>
+            <div><h4>Solid files</h4><p>Rigorous preparation that maximizes your chances.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.24s">
+            <span class="ci-eng-num" aria-hidden="true">04</span>
+            <div><h4>Follow-up until settlement</h4><p>We stay by your side after your arrival.</p></div>
+          </li>
+          <li class="ci-eng-item ci-reveal" style="--d:.32s">
+            <span class="ci-eng-num" aria-hidden="true">05</span>
+            <div><h4>Total transparency</h4><p>Clear and honest information.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       DOMAINES D'EXPERTISE — cartes tilt 3D
+       ========================================================== -->
+  <section class="ci-section ci-domains" id="ciDomaines">
+    <!-- Hexagones : coin haut-droit, très subtil, vert -->
+    <div class="ci-hex ci-hex--tr ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <span class="ci-ghost ci-ghost--titre" aria-hidden="true">03</span>
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Our areas of expertise</span>
+        <h2>Study • Work • Visa • Settle</h2>
+        <p>Four pillars to achieve your legal mobility project to Europe.</p>
+      </div>
+
+      <div class="ci-domain-grid">
+        <!-- Carte : Étudier en France -->
+        <article class="ci-domain-card ci-tilt ci-reveal">
+          <span class="ci-domain-num">01</span>
+          <img src="images/campusinter/accueil-etudes.jpg" alt="Smiling students in front of a university" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+            <h3>Study in France</h3>
+            <p>Diplomas recognized worldwide, affordable costs, quality universities and professional opportunities.</p>
+            <a class="ci-domain-lien" href="/etudier-en-france">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Étudier en Belgique -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.1s">
+          <span class="ci-domain-num">02</span>
+          <img src="images/campusinter/accueil-belgique.jpg" alt="Student in Brussels" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
+            <h3>Study in Belgium</h3>
+            <p>Quality education at the heart of Europe, in a French-speaking and international setting.</p>
+            <a class="ci-domain-lien" href="/etudier-en-belgique">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Travailler en France -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.2s">
+          <span class="ci-domain-num">03</span>
+          <img src="images/campusinter/accueil-travail.jpg" alt="Professional in a modern office" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+            <h3>Working in France</h3>
+            <p>Real opportunities: construction, healthcare, hospitality, industry, services.</p>
+            <a class="ci-domain-lien" href="/travailler-en-france">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Visa & Démarches -->
+        <article class="ci-domain-card ci-tilt ci-reveal">
+          <span class="ci-domain-num">04</span>
+          <img src="images/campusinter/accueil-visa.jpg" alt="Passport and visa documents" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            <h3>Visa & Procedures</h3>
+            <p>Complete support: Campus France, student visa, work visa, interviews.</p>
+            <a class="ci-domain-lien" href="/visa-et-demarches">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Installation -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.1s">
+          <span class="ci-domain-num">05</span>
+          <img src="images/campusinter/accueil-installation.jpg" alt="Comfortable student accommodation" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <h3>Settlement</h3>
+            <p>Accommodation, insurance, formalities: a smooth arrival in France.</p>
+            <a class="ci-domain-lien" href="/installation-en-france">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Carte : Écoles & Programmes -->
+        <article class="ci-domain-card ci-tilt ci-reveal" style="--d:.2s">
+          <span class="ci-domain-num">06</span>
+          <img src="images/campusinter/accueil-programmes.jpg" alt="European university campus" loading="lazy">
+          <div class="ci-domain-body">
+            <span class="ci-domain-badge"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+            <h3>Schools & Programs</h3>
+            <p>100+ European partner institutions, all fields, from Bac to Master's level.</p>
+            <a class="ci-domain-lien" href="/ecoles-et-programmes">Learn more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       COMMENT ÇA MARCHE — timeline animée
+       ========================================================== -->
+  <section class="ci-section" id="ciProcessus">
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">How it works</span>
+        <h2>Your project, guided step by step</h2>
+        <p>A simple, transparent process, from the first contact to your settlement.</p>
+      </div>
+
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 01</span>
+          <h3>Orientation & project assessment</h3>
+          <p>We analyze your profile and goals and define the best path together.</p>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 02</span>
+          <h3>Building the file</h3>
+          <p>Strategic preparation: CV, letters, supporting documents and interview preparation.</p>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 03</span>
+          <h3>Visa procedure</h3>
+          <p>Campus France, consular appointment, complete interview preparation.</p>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 04</span>
+          <h3>Settlement & follow-up</h3>
+          <p>Accommodation, insurance, administrative formalities: you are supported until arrival.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       PARTENAIRES — marquee de logos
+       ========================================================== -->
+  <section class="ci-section ci-partners" id="ciPartenaires">
+    <!-- Hexagones : fond complet, très subtil, blanc ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="16" data-rows="7" data-size="24" data-color="#FFFFFF" data-fill="5" data-img="images/campusinter/accueil-programmes.jpg" data-img-every="11" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker" style="color:#8ee0b4;">Our partners</span>
+        <h2 style="color:#fff;">A solid network for your success</h2>
+        <p style="color:#c7d2cb;">Five international higher education groups, more than 100 institutions accessible from Bè-Kpota.</p>
+      </div>
+    </div>
+
+    <!-- Bandeau défilant de logos partenaires -->
+    <div class="ci-marquee" aria-label="Logos of our partners">
+      <div class="ci-marquee-track">
+        <!-- 1ère série de logos (dupliquée pour l'effet infini) -->
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-galileo.png" alt=""> Galileo Global Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-omnes.png" alt=""> OMNES Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mediaschool.png" alt=""> MediaSchool</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-hema.png" alt=""> HEMA Group</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mbn.png" alt=""> MBN Global Education</span>
+        <!-- 2ème série (pour la boucle infinie) -->
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-galileo.png" alt=""> Galileo Global Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-omnes.png" alt=""> OMNES Education</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mediaschool.png" alt=""> MediaSchool</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-hema.png" alt=""> HEMA Group</span>
+        <span class="ci-marquee-item"><img src="images/campusinter/logo-mbn.png" alt=""> MBN Global Education</span>
+      </div>
+    </div>
+
+    <div class="ci-container">
+      <p class="ci-partners-note ci-reveal">
+        🎓 100+ European partner institutions ·  <a class="ci-btn ci-btn--blanc" href="/nos-partenaires" style="margin-top:10px;">Discover our partners</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       POURQUOI NOUS CHOISIR — features
+       ========================================================== -->
+  <section class="ci-section" id="ciPourquoi">
+    <!-- Hexagones : coin bas-gauche, subtil, vert clair sur fond vert très pâle -->
+    <div class="ci-hex ci-hex--bl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="20" data-color="#1DB85E" data-fill="0" data-rotate="-8" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Why choose us</span>
+        <h2>A trusted partner, from A to Z</h2>
+        <p>Concrete results thanks to recognized expertise in European procedures.</p>
+      </div>
+
+      <div class="ci-feature-grid">
+        <!-- Feature 1 -->
+        <div class="ci-feature ci-reveal">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+          <h3>Expertise in French procedures</h3>
+          <p>Sharp knowledge of Campus France, visas and prefecture procedures.</p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="ci-feature ci-reveal" style="--d:.1s">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <h3>Personalized approach</h3>
+          <p>Every project is unique: we build tailor-made support.</p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="ci-feature ci-reveal" style="--d:.2s">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          <h3>Considerable time savings</h3>
+          <p>We take care of the formalities so you can focus on what matters.</p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="ci-feature ci-reveal" style="--d:.3s">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <h3>File security</h3>
+          <p>Rigorous, compliant preparation that protects your project and maximizes your chances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       TÉMOIGNAGES — slider
+       ========================================================== -->
+  <section class="ci-section ci-testimonials" id="ciTemoignages">
+    <!-- Hexagones : coin bas-droit, présent, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--mid" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/temoignage-etudiant.jpg" data-img-every="6" aria-hidden="true"></div>
+    <div class="ci-container">
+      <span class="ci-ghost ci-ghost--titre" aria-hidden="true">04</span>
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Testimonials</span>
+        <h2>They succeeded, thanks to Campus Inter</h2>
+        <p>Real stories of students and professionals supported from A to Z.</p>
+      </div>
+
+      <div class="ci-slider" id="ciSlider">
+        <!-- Témoignage 1 -->
+        <div class="ci-slide ci-active">
+          <div class="ci-slide-card">
+            <div class="ci-slide-etoiles" aria-label="5 stars">★★★★★</div>
+            <blockquote>I got my student visa in 2 months thanks to the team. Serious, reassuring and effective support.</blockquote>
+            <div class="ci-slide-auteur">
+              <img class="ci-slide-avatar" src="images/campusinter/temoignage-etudiant.jpg" alt="Aïcha">
+              <div style="text-align:left;"><b>Aïcha</b><small>Master's in France — Lomé</small></div>
+            </div>
+          </div>
+        </div>
+        <!-- Témoignage 2 -->
+        <div class="ci-slide">
+          <div class="ci-slide-card">
+            <div class="ci-slide-etoiles" aria-label="5 stars">★★★★★</div>
+            <blockquote>Complete support from A to Z, until my arrival in Lyon. I recommend it with my eyes closed.</blockquote>
+            <div class="ci-slide-auteur">
+              <img class="ci-slide-avatar" src="images/campusinter/temoignage-avatar-2.jpg" alt="Kossi">
+              <div style="text-align:left;"><b>Kossi</b><small>Bachelor in France — Lyon</small></div>
+            </div>
+          </div>
+        </div>
+        <!-- Témoignage 3 -->
+        <div class="ci-slide">
+          <div class="ci-slide-card">
+            <div class="ci-slide-etoiles" aria-label="5 stars">★★★★★</div>
+            <blockquote>My professional retraining in France was a dream. Campus Inter made it real, without stress.</blockquote>
+            <div class="ci-slide-auteur">
+              <img class="ci-slide-avatar" src="images/campusinter/temoignage-avatar-3.jpg" alt="Fati">
+              <div style="text-align:left;"><b>Fati</b><small>Work visa — Paris</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation du slider -->
+        <div class="ci-slider-nav">
+          <button class="ci-slider-btn" id="ciPrev" aria-label="Previous testimonial">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <div class="ci-slider-dots" id="ciDots" role="tablist" aria-label="Selection of testimonials"></div>
+          <button class="ci-slider-btn" id="ciNext" aria-label="Next testimonial">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FAQ — accordéon animé
+       ========================================================== -->
+  <section class="ci-section" id="ciFaq">
+    <!-- Hexagones : coin haut-gauche, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--tl ci-hex--sm ci-hex--faint" data-cols="5" data-rows="3" data-size="20" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Frequently asked questions</span>
+        <h2>Your questions, our answers</h2>
+        <p>Everything you need to know before starting your project with Campus Inter.</p>
+      </div>
+
+      <div class="ci-faq">
+        <!-- Question 1 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            How do I start my project?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Contact us by phone, WhatsApp, email or via the contact form. A free first appointment allows us to analyze your profile and define the right pathway together.</p></div>
+        </div>
+        <!-- Question 2 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            What are your fees?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Our prices are transparent and shared during the first appointment. We work in full transparency, without hidden fees: you know exactly what is included.</p></div>
+        </div>
+        <!-- Question 3 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            How long does the visa procedure take?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>The time varies depending on the visa type and the time of year. In general, allow several weeks between building your file and the consular decision. We manage the schedule with you.</p></div>
+        </div>
+        <!-- Question 4 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Do I need to already speak French?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Not necessarily. Many programs offer pathways for beginners or in English. During orientation, we assess your level and direct you toward suitable programs.</p></div>
+        </div>
+        <!-- Question 5 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            What documents do I need to provide?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>In general: passport, ID photos, CV, diplomas, proof of financial resources, cover letters and documents from the institution. We provide you with a personalized checklist.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       BLOG — aperçu des derniers articles
+       ========================================================== -->
+  <section class="ci-section" style="background:var(--ci-fond);" id="ciBlog">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="3" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">The blog</span>
+        <h2>Our latest advice</h2>
+        <p>Practical guides to make your study and mobility project a success.</p>
+      </div>
+
+      <div class="ci-blog-grid">
+        <!-- Article 1 -->
+        <article class="ci-blog-card ci-reveal">
+          <img src="images/campusinter/blog-dossier.jpg" alt="Campus France file" loading="lazy">
+          <div class="ci-blog-body">
+            <span class="ci-blog-cat">Visa</span>
+            <h3><a href="/blog/reussir-son-dossier-campus-france">Succeeding with your Campus France file</a></h3>
+            <span class="ci-blog-meta">5 min read</span>
+          </div>
+        </article>
+        <!-- Article 2 -->
+        <article class="ci-blog-card ci-reveal" style="--d:.1s">
+          <img src="images/campusinter/blog-entretien.jpg" alt="Campus France interview" loading="lazy">
+          <div class="ci-blog-body">
+            <span class="ci-blog-cat">Interview</span>
+            <h3><a href="/blog/reussir-son-entretien-campus-france">Succeeding at your Campus France interview</a></h3>
+            <span class="ci-blog-meta">6 min read</span>
+          </div>
+        </article>
+        <!-- Article 3 -->
+        <article class="ci-blog-card ci-reveal" style="--d:.2s">
+          <img src="images/campusinter/blog-logement.jpg" alt="Student accommodation in France" loading="lazy">
+          <div class="ci-blog-body">
+            <span class="ci-blog-cat">Accommodation</span>
+            <h3><a href="/blog/trouver-un-logement-etudiant">Find student accommodation</a></h3>
+            <span class="ci-blog-meta">4 min read</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL + formulaire rapide
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <span class="ci-ghost ci-ghost--clair" aria-hidden="true">05</span>
+      <h2 class="ci-reveal">Your future starts here!</h2>
+      <p class="ci-reveal">Leave us your contact details: a Campus Inter advisor will call you back within 48 hours for a free first assessment.</p>
+
+      <!-- Formulaire de contact rapide (envoi vers mail-campinter.php) -->
+      <form class="ci-cta-form ci-reveal" id="ciForm" action="mail-campinter.php" method="post" novalidate>
+        <input type="hidden" name="type" value="contact">
+        <input type="hidden" name="page" value="Home">
+        <input type="text" name="website" class="ci-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div>
+          <input type="text" name="nom" placeholder="Full name *" required aria-label="Full name">
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="Email address *" required aria-label="Email address">
+        </div>
+        <div>
+          <input type="tel" name="telephone" placeholder="Phone / WhatsApp" aria-label="Phone">
+        </div>
+        <div>
+          <select name="projet" aria-label="Project type">
+            <option value="">Project type</option>
+            <option>Study in France</option>
+            <option>Study in Belgium</option>
+            <option>Working in France</option>
+            <option>Visa & Procedures</option>
+            <option>Settlement</option>
+          </select>
+        </div>
+        <div class="ci-full">
+          <button class="ci-btn ci-btn--primaire" type="submit">
+            Send my application
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+        <p class="ci-full" style="font-size:.8rem;color:#dceadf;margin:0;">
+          By sending this form, you agree to be contacted by Campus Inter. Your data remains confidential.
+        </p>
+        <p class="ci-full ci-form-status" id="ciFormStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewbox="0 0 1440 70" preserveaspectratio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes + newsletter
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Home".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

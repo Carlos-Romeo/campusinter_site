@@ -1,0 +1,262 @@
+INVENTAIRE COMPLET DES IMAGES CAMPUS INTER
+============================================
+
+Regles communes : photographie authentique, lumiere naturelle, grain photo leger,
+couleurs vert profond / beige / blanc, diversite africaine realiste, aucun texte
+lisible, aucun logo, aucune marque, pas de rendu 3D ni illustration.
+
+
+1. ACCUEIL — accueil.html (13 images)
+---------------------------------------
+
+ 1. hero-accueil.jpg          4:5 vertical   Diplomee africaine tenant un dossier de diplome et un passeport, debout devant un campus universitaire europeen moderne, lumiere doree de fin d'apres-midi
+                                                   -> Hero principal #ciHero .ci-hero-img
+
+ 2. accueil-etudes.jpg        4:3 paysage    Etudiants africains souriants devant une universite europeenne, sacs a dos et materiel de cours, conversation spontanee
+                                                   -> Carte service "Etudier en Europe" + fond formulaire CTA
+
+ 3. accueil-belgique.jpg      4:3 paysage    Etudiant africain marchant a Bruxelles pres d'une architecture europeenne elegante, sac a dos et dossier
+                                                   -> Carte service "Etudier en Belgique"
+
+ 4. accueil-travail.jpg       4:3 paysage    Professionnel africain en collaboration avec des collgues a un bureau moderne en France, ordinateur portable et carnet
+                                                   -> Carte service "Travailler en France"
+
+ 5. accueil-visa.jpg          4:3 paysage    Vue de dessus d'un bureau de preparation de visa avec passeport, checklist, stylo et dossier, mains africaines en train de verifier
+                                                   -> Carte service "Visa & Demarches"
+
+ 6. accueil-installation.jpg  4:3 paysage    Etudiant africain rangeant des livres et une petite plante dans un studio etudiant francais propre, lumiere matinale
+                                                   -> Carte service "Installation"
+
+ 7. accueil-programmes.jpg    4:3 paysage    Etudiants internationaux consultent une carte de campus et une tablette devant une universite europeenne contemporaine
+                                                   -> Carte service "Ecoles & Programmes" + decor hexagonal
+
+ 8. blog-dossier.jpg          16:10          Dossier de candidature bien organise, ordinateur portable ouvert, stylo et passeport sur un bureau lumineux, etudiant africain flou en arriere-plan
+                                                   -> Vignette blog "Dossier Campus France" + blog hexagonal
+
+ 9. blog-entretien.jpg        16:10          Etudiant africain repetant un entretien devant la camera d'un ordinateur, carnet en main, expression concentree
+                                                   -> Vignette blog "Entretien Campus France"
+
+10. blog-logement.jpg         16:10          Studio etudiant francais lumineux et modeste, etudiant africain deballant des livres a cote d'une petite valise
+                                                   -> Vignette blog "Logement etudiant"
+
+11. temoignage-etudiant.jpg   1:1 carre      Portrait d'etudiante ouest-africaine a l'exterieur sur un campus universitaire francais, sourire naturel, vetements decontractes
+                                                   -> Slider temoignages (avatar 1) + installation
+
+12. temoignage-avatar-2.jpg   1:1 carre      Portrait d'etudiant ouest-africain a Bruxelles, veste decontractee et sac a dos, ville floue en arriere-plan
+                                                   -> Slider temoignages (avatar 2)
+
+13. temoignage-avatar-3.jpg   1:1 carre      Portrait de femme ouest-africaine dans un studio etudiant lumineux en France, tenant un carnet, sourire naturel
+                                                   -> Slider temoignages (avatar 3)
+
+
+2. BLOG — blog.html (7 images)
+---------------------------------------
+
+ 1. hero-blog.jpg                      4:5 vertical   Trois etudiants africains partageant des conseils autour d'un ordinateur dans un espace de campus lumineux, rires et discussion
+                                                            -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. blog-dossier-campus-france.jpg     16:10          Etudiant africain preparant calmement un dossier de candidature a un bureau, ordinateur, carnet et documents ranges
+                                                            -> Carte article 1
+
+ 3. blog-entretien-campus-france.jpg   16:10          Etudiante africaine repetant un entretien en ligne sur ordinateur dans un espace de travail range, expression confiante
+                                                            -> Carte article 2
+
+ 4. blog-metiers-tension.jpg           16:10          Technicien africain en equipement de protection verifiant un panneau numerique dans un lieu industriel francais propre
+                                                            -> Carte article 3
+
+ 5. blog-travailler-apres-etudes.jpg   16:10          Diplome africain sortant d'un bureau d'orientation carriere avec un portfolio sous le bras, campus europeen moderne
+                                                            -> Carte article 4
+
+ 6. blog-logement-etudiant.jpg         16:10          Etudiant africain visitant un studio lumineux et modeste avec un agent, valise visible, moment documentaire
+                                                            -> Carte article 5
+
+ 7. blog-erreurs-visa.jpg              16:10          Demandeur africain verifiant une checklist de visa avec une expression concentree mais composee, passeport et dossier sur le bureau
+                                                            -> Carte article 6
+
+
+3. ECOLES & PROGRAMMES — ecoles-et-programmes.html (1 image)
+---------------------------------------
+
+ 1. hero-ecoles-programmes.jpg   4:5 vertical   Etudiants internationaux africains rassembles sur les marches d'un batiment universitaire europeen, discutant de parcours autour d'une tablette
+                                                     -> Hero principal .ci-page-hero .ci-hero-img
+
+
+4. ETUDIER EN BELGIQUE — etudier-en-belgique.html (2 images)
+---------------------------------------
+
+ 1. hero-etudier-belgique.jpg   4:5 vertical   Etudiant africain a Bruxelles regardant vers l'Atomium en arriere-plan, sac a dos et carnet, lumiere belge nuageuse avec eclat
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. belgique-bruxelles.jpg      4:3 paysage    Deux etudiants africains assis a une terrasse de cafe a Bruxelles, revoyant leurs notes et souriant, rue europeenne floue en arriere-plan
+                                                   -> Decor hexagonal section temoignage
+
+
+5. ETUDIER EN FRANCE — etudier-en-france.html (2 images)
+---------------------------------------
+
+ 1. hero-etudier-france.jpg     4:5 vertical   Deux etudiants africains marchant dans la cour historique d'une universite francaise, l'un portant des livres et un ordinateur, lumiere matinale
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. paris-universite.jpg        4:3 paysage    Groupe d'etudiants traversant la cour d'une universite parisienne historique entre les cours, sacs a dos et livres, architecture francaise subtile
+                                                   -> Decor hexagonal section FAQ
+
+
+6. INSTALLATION EN FRANCE — installation-en-france.html (3 images)
+---------------------------------------
+
+ 1. hero-installation-france.jpg 4:5 vertical  Femme africaine entrant dans un studio etudiant francais lumineux et bien decore avec une petite valise et des cles en main, sourire naturel
+                                                    -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. installation-logement.jpg     4:3 paysage  Espace commun accueillant d'une residence etudiante francaise, etudiant africain assis confortablement avec ordinateur et livres, plantes et lumiere naturelle
+                                                    -> Section logement + decor hexagonal
+
+ 3. temoignage-etudiant.jpg       1:1 carre   (identique a accueil #11) Portrait d'etudiante ouest-africaine sur campus francais
+                                                    -> Temoignage section
+
+
+7. NOS PARTENAIRES — nos-partenaires.html (3 images)
+---------------------------------------
+
+ 1. hero-partenaires.jpg       4:5 vertical   Professionnelle africaine et representante europeenne se serrant la main au-dessus d'une table de reunion, documents et ordinateur discrets, bureau moderne lumineux
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. partenaire-finance.jpg     4:3 paysage    Etudiant africain recevant des conseils de planification financiere d'un professionnel a un bureau, calculatrice, carnet et ordinateur visibles
+                                                   -> Carte "Financement"
+
+ 3. partenaire-logement.jpg    4:3 paysage    Etudiant africain et conseiller logement examinant des options d'appartement sur une tablette a un bureau, interaction utile et sincere
+                                                   -> Carte "Logement" + decor hexagonal
+
+
+8. QUI SOMMES-NOUS — qui-sommes-nous.html (7 images)
+---------------------------------------
+
+ 1. hero-qui-sommes-nous.jpg   4:5 vertical   Portrait de groupe de 3-4 conseillers africains de mobilite dans un bureau moderne accueillant a Lome, vetements smart casual, lumiere naturelle, accents verts
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. equipe-1.jpg               1:1 carre      Portrait professionnel buste d'une conseillere africaine de mobilite internationale, debut de trentaine, vetements elegants neutres avec accent vert, bureau flou
+                                                   -> Section equipe (portrait 1)
+
+ 3. equipe-2.jpg               1:1 carre      Portrait professionnel buste d'un conseiller africain de mobilite, debut de trentaine, chemise decontractee elegante, bureau moderne flou, expression amicale
+                                                   -> Section equipe (portrait 2)
+
+ 4. equipe-3.jpg               1:1 carre      Portrait professionnel buste d'une conseillere africaine logement et relocation, debut de trentaine, tenue professionnelle soignee, bureau lumineux flou
+                                                   -> Section equipe (portrait 3)
+
+ 5. valeurs-accompagnement.jpg 4:3 paysage    Conseiller africain assis en face d'un jeune etudiant dans un bureau moderne a Lome, se penchant en avant avec attention sincere, lumiere naturelle
+                                                   -> Section valeurs / mission
+
+ 6. agence-lome.jpg            4:3 paysage    Interieur d'une agence de mobilite moderne et lumineuse a Lome, murs blancs avec accents verts, conseillers travaillant a des bureaux avec ordinateurs, plantes
+                                                   -> Section agence / lieu
+
+ 7. histoire-campus-inter.jpg  4:3 paysage    Fondateur ou conseiller senior africain examinant un diplome ou une recompense encadree sur un mur dans un bureau lumineux, fierte subtile, plantes et livres
+                                                   -> Section histoire / parcours
+
+
+9. TRAVAILLER EN FRANCE — travailler-en-france.html (6 images)
+---------------------------------------
+
+ 1. hero-travailler-france.jpg  4:5 vertical  Professionnel africain de la vingtaine travaillant avec confiance dans un bureau francais moderne lumineux, ordinateur ouvert, collegues flous en arriere-plan
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. secteur-btp.jpg            4:3 paysage   Professionnel africain du BTP portant casque de securite et gilet haute visibilite sur un chantier francais propre, examinant des plans avec un collegue
+                                                   -> Carte secteur BTP
+
+ 3. secteur-sante.jpg          4:3 paysage   Professionnel de sante africain en scrubs propres parlant aimablement avec un patient adulte dans une clinique moderne lumineuse
+                                                   -> Carte secteur Sante
+
+ 4. secteur-restauration.jpg   4:3 paysage   Chef africain dressant un plat dans une cuisine professionnelle moderne, expression concentree, lumiere de cuisine chaleureuse
+                                                   -> Carte secteur Hotellerie-restauration
+
+ 5. secteur-industrie.jpg      4:3 paysage   Logisticien africain en vetements de securite verifiant un inventaire dans un entrepot automatise propre, lumiere industrielle reelle
+                                                   -> Carte secteur Industrie-logistique
+
+ 6. secteur-services.jpg       4:3 paysage   Professionnel africain de service client travaillant sur un ordinateur dans un bureau contemporain lumineux, casque audio a proximite
+                                                   -> Carte secteur Services-numerique
+
+
+10. VISA & DEMARCHES — visa-et-demarches.html (2 images)
+---------------------------------------
+
+ 1. hero-visa-demarches.jpg    4:5 vertical   Gros plan sur des mains africaines organisant meticulousement un passeport, checklist de demande de visa, stylo et dossier neutre sur un bureau en bois propre
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. visa-et-demarches.jpg      4:3 paysage    Femme africaine a un bureau verifiant soigneusement un dossier de documents de voyage et un passeport, ordinateur et stylo a proximite
+                                                   -> Decor hexagonal section demarches
+
+
+11. NOUS REJOINDRE — nous-rejoindre.html (2 images)
+---------------------------------------
+
+ 1. nous-rejoindre-hero.jpg    4:5 vertical   Jeune professionnel africain en tenue smart casual debout dans un bureau moderne lumineux a Lome, tenant un carnet et regardant l'appareil avec un sourire confiant, collegues flous en arriere-plan
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+ 2. nous-rejoindre-equipe.jpg  4:3 paysage    Equipe jeune africaine collaborative autour d'un bureau partage dans un bureau moderne lumineux a Lome, ordinateurs et carnets, discussion naturelle et sourires
+                                                   -> Section valeurs / esprit d'equipe
+
+
+12. CONTACT — contact.html (1 image)
+---------------------------------------
+
+ 1. contact-hero.jpg           4:5 vertical   Zone d'accueil chaleureuse d'une agence de mobilite moderne a Lome, receptionniste africaine accueillant un visiteur avec un sourire sincere, interieur lumineux et propre avec accents verts
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+
+13. FAQ — faq.html (1 image)
+---------------------------------------
+
+ 1. faq-hero.jpg               4:5 vertical   Conseiller africain de mobilite expliquant patiemment des documents a un jeune etudiant a travers un bureau, tous deux souriant naturellement, ordinateur et papiers flous, bureau moderne lumineux
+                                                   -> Hero principal .ci-page-hero .ci-hero-img
+
+
+14. ARTICLES DE BLOG — article-[slug].html (6 images)
+---------------------------------------
+
+ 1. article-dossier-campus-france.jpg       21:9 banniere  Etudiant africain organisant calmement un dossier complet a un bureau lumineux, ordinateur, passeport et empilement de papiers soignes
+                                                               -> Bandeau d'article
+
+ 2. article-entretien-campus-france.jpg     21:9 banniere  Etudiante africaine repetant un entretien en ligne sur ordinateur dans un espace de travail range, expression confiante et composee
+                                                               -> Bandeau d'article
+
+ 3. article-metiers-tension.jpg             21:9 banniere  Technicien africain en equipement de protection verifiant un panneau de controle numerique dans une installation industrielle francaise moderne
+                                                               -> Bandeau d'article
+
+ 4. article-travailler-apres-etudes.jpg     21:9 banniere  Diplome africain sortant d'un batiment universitaire europeen moderne avec un portfolio sous le bras, expression naturelle confiante
+                                                               -> Bandeau d'article
+
+ 5. article-logement-etudiant.jpg           21:9 banniere  Etudiant africain signant un bail dans un studio lumineux et modeste, conseiller logement a cote, petite valise visible
+                                                               -> Bandeau d'article
+
+ 6. article-erreurs-visa.jpg                21:9 banniere  Demandeur africain verifiant meticulousement une checklist de visa et un passeport a un bureau, expression concentree, lumiere naturelle douce
+                                                               -> Bandeau d'article
+
+
+15. FICHE ECOLE — fiche-ecole.html (1 image)
+---------------------------------------
+
+ 1. fiche-ecole-campus.jpg    16:9 paysage   Entree d'un batiment universitaire europeen contemporain avec des etudiants internationaux divers arrivant, pas de signalisation lisible, lumiere naturelle, verdure subtile
+                                                  -> Bandeau ecole (generique, reutilisable)
+
+
+=========================================================================
+RECAPITULATIF
+=========================================================================
+
+ Page                          Images
+ --------------------------    ------
+ Accueil                              13
+ Blog                                  7
+ Ecoles & Programmes                   1
+ Etudier en Belgique                   2
+ Etudier en France                     2
+ Installation en France                3
+ Nos partenaires                       3
+ Qui sommes-nous                       7
+ Travailler en France                  6
+ Visa & Demarches                      2
+ Nous rejoindre                        2
+ Contact                               1
+ FAQ                                   1
+ Articles de blog                      6
+ Fiche ecole                           1
+ --------------------------    ------
+ TOTAL                               57 images

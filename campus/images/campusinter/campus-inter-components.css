@@ -1,0 +1,620 @@
+/**
+ * Campus Inter — Composants manquants pour pages Partenaires & Écoles
+ * À inclure APRÈS campus-inter-common.css
+ */
+
+/* ============================================================
+   PARTENAIRES — Fiches partenaires académiques
+   ============================================================ */
+.ci-partner {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 0;
+  background: #fff;
+  border-radius: var(--ci-rayon-lg);
+  box-shadow: var(--ci-ombre-carte);
+  border: 1px solid var(--ci-bordure);
+  overflow: hidden;
+  margin-bottom: 40px;
+  transition: box-shadow .35s, transform .35s;
+}
+.ci-partner:hover {
+  box-shadow: 0 18px 48px rgba(21,148,71,.12);
+  transform: translateY(-4px);
+}
+.ci-partner:nth-child(even) {
+  direction: rtl;
+}
+.ci-partner:nth-child(even) > * {
+  direction: ltr;
+}
+.ci-partner-visuel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  background: var(--ci-fond);
+  border-right: 1px solid var(--ci-bordure);
+  gap: 16px;
+}
+.ci-partner:nth-child(even) .ci-partner-visuel {
+  border-right: none;
+  border-left: 1px solid var(--ci-bordure);
+  order: 2;
+}
+.ci-partner-logo {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.2);
+  transition: filter .3s;
+}
+.ci-partner:hover .ci-partner-logo {
+  filter: grayscale(0);
+}
+.ci-partner-groupe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ci-font-titres);
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--ci-noir);
+  text-align: center;
+}
+.ci-partner-groupe small {
+  font-weight: 400;
+  font-size: .78rem;
+  color: var(--ci-texte-2);
+}
+.ci-partner-contenu {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ci-partner-contenu h3 {
+  margin-bottom: 14px;
+  font-size: 1.35rem;
+}
+.ci-partner-contenu p {
+  color: var(--ci-texte);
+  font-size: .94rem;
+  line-height: 1.7;
+}
+
+/* Chiffres clés */
+.ci-partner-chiffres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+.ci-partner-chiffre {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--ci-vert-bg);
+  color: var(--ci-vert-fonce);
+  border-radius: var(--ci-pill);
+  font-size: .82rem;
+  font-weight: 700;
+  font-family: var(--ci-font-titres);
+}
+
+/* Écoles clés */
+.ci-partner-ecoles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 20px;
+}
+.ci-partner-ecole {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--ci-fond-2);
+  border: 1px solid var(--ci-bordure);
+  border-radius: var(--ci-pill);
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ci-texte);
+  font-family: var(--ci-font-titres);
+}
+
+/* ============================================================
+   PARTENAIRES — Services (finance & logement)
+   ============================================================ */
+.ci-services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.ci-service {
+  background: #fff;
+  border-radius: var(--ci-rayon-lg);
+  overflow: hidden;
+  box-shadow: var(--ci-ombre-carte);
+  border: 1px solid var(--ci-bordure);
+  transition: box-shadow .35s, transform .35s;
+}
+.ci-service:hover {
+  box-shadow: 0 18px 48px rgba(21,148,71,.12);
+  transform: translateY(-4px);
+}
+.ci-service > img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.ci-service-body {
+  padding: 28px 28px 32px;
+}
+.ci-service-body h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+.ci-service-body h3 i {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ci-vert-bg);
+  color: var(--ci-vert);
+  border-radius: 10px;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.ci-service-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+}
+.ci-service-body li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: .92rem;
+  color: var(--ci-texte);
+}
+.ci-service-body li i {
+  color: var(--ci-vert);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PARTENAIRES — Valeur ajoutée
+   ============================================================ */
+.ci-valeur-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.ci-valeur-item {
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--ci-bordure);
+  border-radius: var(--ci-rayon);
+  padding: 32px 28px;
+  text-align: center;
+  transition: box-shadow .35s, transform .35s;
+}
+.ci-valeur-item:hover {
+  box-shadow: var(--ci-ombre);
+  transform: translateY(-4px);
+}
+.ci-valeur-item > i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: var(--ci-vert-bg);
+  color: var(--ci-vert);
+  border-radius: 16px;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.ci-valeur-item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+.ci-valeur-item p {
+  color: var(--ci-texte-2);
+  font-size: .9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   ÉCOLES — Carte de recherche + filtres
+   ============================================================ */
+.ci-recherche {
+  margin-bottom: 40px;
+}
+.ci-recherche-card {
+  background: #fff;
+  border-radius: var(--ci-rayon-lg);
+  box-shadow: var(--ci-ombre-carte);
+  border: 1px solid var(--ci-bordure);
+  padding: 28px 32px;
+}
+.ci-recherche-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--ci-fond);
+  border: 1.5px solid var(--ci-bordure);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  transition: border-color .25s, box-shadow .25s;
+}
+.ci-recherche-search:focus-within {
+  border-color: var(--ci-vert);
+  box-shadow: 0 0 0 3px rgba(21,148,71,.1);
+}
+.ci-recherche-search i {
+  color: var(--ci-texte-2);
+  font-size: 1.1rem;
+}
+.ci-recherche-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: .95rem;
+  color: var(--ci-noir);
+  outline: none;
+  font-family: var(--ci-font-texte);
+}
+.ci-recherche-filtres {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.ci-recherche-filtres select {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 36px 12px 14px;
+  border: 1.5px solid var(--ci-bordure-input);
+  border-radius: 10px;
+  font-size: .88rem;
+  color: var(--ci-noir);
+  background: var(--ci-fond-2);
+  font-family: var(--ci-font-texte);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7b6b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+  transition: border-color .25s, box-shadow .25s;
+}
+.ci-recherche-filtres select:focus {
+  outline: none;
+  border-color: var(--ci-vert);
+  box-shadow: 0 0 0 3px rgba(21,148,71,.1);
+}
+.ci-recherche-count {
+  margin: 0;
+  font-size: .88rem;
+  color: var(--ci-texte-2);
+}
+.ci-recherche-count b {
+  color: var(--ci-vert);
+}
+
+/* ============================================================
+   ÉCOLES — Grille de cartes écoles
+   ============================================================ */
+.ci-ecole-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.ci-ecole-card {
+  background: #fff;
+  border-radius: var(--ci-rayon);
+  border: 1px solid var(--ci-bordure);
+  overflow: hidden;
+  box-shadow: var(--ci-ombre-carte);
+  transition: box-shadow .35s, transform .35s;
+}
+.ci-ecole-card:hover {
+  box-shadow: 0 18px 48px rgba(21,148,71,.12);
+  transform: translateY(-4px);
+}
+.ci-ecole-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  padding: 18px 24px;
+  background: var(--ci-fond);
+  border-bottom: 1px solid var(--ci-bordure);
+}
+.ci-ecole-head img {
+  max-height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.15);
+  transition: filter .3s;
+}
+.ci-ecole-card:hover .ci-ecole-head img {
+  filter: grayscale(0);
+}
+.ci-ecole-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ci-ecole-groupe {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ci-vert);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.ci-ecole-body h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+.ci-ecole-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0;
+}
+.ci-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--ci-vert-bg);
+  color: var(--ci-vert-fonce);
+  border-radius: var(--ci-pill);
+  font-size: .72rem;
+  font-weight: 600;
+  font-family: var(--ci-font-titres);
+}
+.ci-ecole-ligne {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: .85rem;
+  color: var(--ci-texte-2);
+  margin: 2px 0;
+  line-height: 1.5;
+}
+.ci-ecole-ligne i {
+  color: var(--ci-vert);
+  margin-top: 3px;
+  flex-shrink: 0;
+  font-size: .85rem;
+}
+.ci-ecole-lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--ci-vert);
+  font-family: var(--ci-font-titres);
+  transition: gap .25s;
+}
+.ci-ecole-lien:hover {
+  gap: 10px;
+  color: var(--ci-vert-fonce);
+}
+
+/* ============================================================
+   ÉCOLES — Grille des domaines
+   ============================================================ */
+.ci-domaines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.ci-domaine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 16px;
+  background: #fff;
+  border: 1.5px solid var(--ci-bordure);
+  border-radius: var(--ci-rayon);
+  text-align: center;
+  cursor: pointer;
+  transition: all .3s;
+  font-family: var(--ci-font-titres);
+}
+.ci-domaine:hover {
+  border-color: var(--ci-vert);
+  background: var(--ci-vert-bg);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(21,148,71,.12);
+}
+.ci-domaine b {
+  font-size: .9rem;
+  color: var(--ci-noir);
+}
+.ci-domaine span:last-child {
+  font-size: .78rem;
+  color: var(--ci-texte-2);
+}
+.ci-domaine-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--ci-vert-bg);
+  color: var(--ci-vert);
+  border-radius: 14px;
+  font-size: 1.2rem;
+  transition: all .3s;
+}
+.ci-domaine:hover .ci-domaine-icone {
+  background: var(--ci-vert);
+  color: #fff;
+}
+
+/* ============================================================
+   ÉCOLES — Aucun résultat
+   ============================================================ */
+.ci-aucun-resultat {
+  display: none;
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--ci-texte-2);
+}
+.ci-aucun-resultat i {
+  font-size: 2.5rem;
+  color: var(--ci-bordure);
+  margin-bottom: 16px;
+}
+.ci-aucun-resultat h3 {
+  color: var(--ci-noir);
+  margin-bottom: 10px;
+}
+.ci-aucun-resultat p {
+  max-width: 420px;
+  margin: 0 auto 20px;
+  font-size: .92rem;
+}
+
+/* ============================================================
+   RESPONSIVE — Partenaires
+   ============================================================ */
+@media (max-width: 900px) {
+  .ci-partner {
+    grid-template-columns: 1fr;
+  }
+  .ci-partner:nth-child(even) {
+    direction: ltr;
+  }
+  .ci-partner:nth-child(even) .ci-partner-visuel {
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--ci-bordure);
+    order: 0;
+  }
+  .ci-partner-visuel {
+    padding: 28px 24px;
+  }
+  .ci-partner-contenu {
+    padding: 24px;
+  }
+  .ci-services-grid {
+    grid-template-columns: 1fr;
+  }
+  .ci-valeur-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Écoles
+   ============================================================ */
+@media (max-width: 768px) {
+  .ci-recherche-filtres {
+    flex-direction: column;
+  }
+  .ci-recherche-filtres select {
+    min-width: 0;
+  }
+  .ci-ecole-grid {
+    grid-template-columns: 1fr;
+  }
+  .ci-domaines-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .ci-domaines-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS — reveal (complète le JS existant)
+   ============================================================ */
+.ci-reveal,
+.ci-reveal-left,
+.ci-reveal-right {
+  opacity: 0;
+  transition: opacity .7s ease, transform .7s ease;
+}
+.ci-reveal { transform: translateY(24px); }
+.ci-reveal-left { transform: translateX(-30px); }
+.ci-reveal-right { transform: translateX(30px); }
+.ci-reveal.ci-visible,
+.ci-reveal-left.ci-visible,
+.ci-reveal-right.ci-visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* WhatsApp flottant */
+.ci-whatsapp {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  right: max(20px, env(safe-area-inset-right));
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  transition: all .3s;
+  text-decoration: none;
+}
+.ci-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,.55);
+}
+
+/* Bouton retour en haut */
+.ci-to-top {
+  position: fixed;
+  bottom: max(94px, calc(env(safe-area-inset-bottom) + 74px));
+  right: max(26px, env(safe-area-inset-right));
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: var(--ci-vert);
+  border: 1.5px solid var(--ci-bordure);
+  border-radius: 50%;
+  font-size: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  transition: all .3s;
+  opacity: 0;
+  visibility: hidden;
+}
+.ci-to-top.ci-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.ci-to-top:hover {
+  background: var(--ci-vert);
+  color: #fff;
+  border-color: var(--ci-vert);
+  transform: translateY(-2px);
+}

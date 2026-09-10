@@ -1,0 +1,503 @@
+<?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  Template CampusInter
+ *
+ * @copyright   Copyright (C) 2024 Campus Inter. Tous droits réservés.
+ * @license     GNU General Public License version 2 ou ultérieure
+ */
+
+// Pas d'accès direct
+defined('_JEXEC') or die;
+
+// Chargement des paramètres du template
+$app = JFactory::getApplication();
+$doc = JFactory::getDocument();
+$params = $app->getTemplate(true)->params;
+
+// Définitions des variables de configuration
+$primaryColor = $params->get('primaryColor', '#0a2540');
+$accentColor = $params->get('accentColor', '#f39c12');
+$showStats = $params->get('showStats', 1);
+$showPartners = $params->get('showPartners', 1);
+$showFAQ = $params->get('showFAQ', 1);
+
+// Ajout des feuilles de style et scripts
+$doc->addStyleSheet('templates/' . $this->template . '/css/template.css');
+$doc->addScript('templates/' . $this->template . '/js/scripts.js', 'text/javascript', true);
+
+// Ajout des polices Google Fonts (Poppins pour les titres, Open Sans pour le texte)
+$doc->addStyleSheet('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+// Ajout de Font Awesome pour les icônes
+$doc->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+// Variables pour le menu et le titre de page
+$menu = $app->getMenu();
+$active = $menu->getActive();
+$pageClass = $active ? $active->params->get('pageclass_sfx', '') : '';
+$pageTitle = $doc->getTitle();
+?>
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <jdoc:include type="head" />
+    
+    <!-- Styles personnalisés du template avec variables CSS -->
+    <style>
+        :root {
+            --primary-color: <?php echo $primaryColor; ?>;
+            --accent-color: <?php echo $accentColor; ?>;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="<?php echo $pageClass; ?> site">
+    
+    <!-- ==============================================
+         HEADER : Navigation fixe avec logo et menu responsive
+         ============================================== -->
+    <header id="site-header" class="site-header">
+        <div class="header-container">
+            
+            <!-- Logo Campus Inter avec animation au survol -->
+            <div class="header-logo">
+                <a href="<?php echo JUri::base(); ?>" title="Campus Inter - Votre avenir commence ici !">
+                    <img src="<?php echo JUri::base(); ?>templates/<?php echo $this->template; ?>/images/logo.png" 
+                         alt="Campus Inter - Votre partenaire mobilité internationale" 
+                         class="logo-img">
+                </a>
+                <span class="logo-slogan">Votre avenir commence ici !</span>
+            </div>
+            
+            <!-- Menu de navigation principal -->
+            <nav class="main-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item <?php echo ($active == null || $active->home) ? 'active' : ''; ?>">
+                        <a href="<?php echo JUri::base(); ?>" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo JUri::base(); ?>index.php/a-propos" class="nav-link">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo JUri::base(); ?>index.php/services" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo JUri::base(); ?>index.php/partenaires" class="nav-link">Partenaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo JUri::base(); ?>index.php/contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Bouton d'appel à l'action (CTA) -->
+            <a href="<?php echo JUri::base(); ?>index.php/contact" class="btn-cta">
+                <i class="fas fa-paper-plane"></i> Nous contacter
+            </a>
+            
+            <!-- Bouton hamburger pour le menu mobile -->
+            <button class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==============================================
+         SECTION BANNIÈRE (HERO) : Plein écran avec fond animé
+         ============================================== -->
+    <section id="banner" class="hero-banner">
+        <div class="hero-overlay"></div>
+        
+        <!-- Module personnalisé pour le contenu de la bannière -->
+        <jdoc:include type="modules" name="banner" style="none" />
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Votre avenir commence ici !
+            </h1>
+            <p class="hero-subtitle">Études – Emploi – Visa – Installation en Europe</p>
+            <div class="hero-buttons">
+                <a href="<?php echo JUri::base(); ?>index.php/services" class="btn btn-primary">
+                    <i class="fas fa-graduation-cap"></i> Nos services
+                </a>
+                <a href="<?php echo JUri::base(); ?>index.php/contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Nous contacter
+                </a>
+            </div>
+        </div>
+        
+        <!-- Indicateur de défilement -->
+        <div class="scroll-indicator">
+            <span>Défiler</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION SERVICES : Quatre blocs principaux
+         ============================================== -->
+    <section id="services" class="section-services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nos Services</h2>
+                <p class="section-subtitle">Un accompagnement personnalisé pour votre projet international</p>
+            </div>
+            
+            <div class="services-grid">
+                
+                <!-- Service 1 : Études en France -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="service-title">Études en France</h3>
+                    <p class="service-desc">
+                        Nous accompagnons votre projet d'études en France, de la candidature à l'inscription. 
+                        Nous collaborons avec les universités et écoles partenaires pour faciliter votre admission.
+                    </p>
+                    <a href="<?php echo JUri::base(); ?>index.php/services/etudes-france" class="service-link">
+                        En savoir plus <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 : Études au Canada -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-maple-leaf"></i>
+                    </div>
+                    <h3 class="service-title">Études au Canada</h3>
+                    <p class="service-desc">
+                        Découvrez les opportunités d'études au Canada avec notre expertise. 
+                        Nous vous guidons dans vos démarches auprès des établissements canadiens.
+                    </p>
+                    <a href="<?php echo JUri::base(); ?>index.php/services/etudes-canada" class="service-link">
+                        En savoir plus <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 : Visa étudiant -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3 class="service-title">Visa Étudiant</h3>
+                    <p class="service-desc">
+                        Nous assurons le suivi complet de vos procédures consulaires et de demande de visa. 
+                        Notre équipe vous accompagne à chaque étape pour optimiser vos chances de succès.
+                    </p>
+                    <a href="<?php echo JUri::base(); ?>index.php/services/visa-etudiant" class="service-link">
+                        En savoir plus <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 : Voyage d'études -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <h3 class="service-title">Voyages d'études</h3>
+                    <p class="service-desc">
+                        Organisation de voyages d'études et programmes éducatifs internationaux. 
+                        Vivez une expérience immersive tout en poursuivant votre formation.
+                    </p>
+                    <a href="<?php echo JUri::base(); ?>index.php/services/voyages-etudes" class="service-link">
+                        En savoir plus <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION STATISTIQUES : Chiffres clés animés
+         ============================================== -->
+    <?php if ($showStats) : ?>
+    <section id="stats" class="section-stats">
+        <div class="stats-overlay"></div>
+        <div class="container">
+            <div class="stats-grid">
+                
+                <div class="stat-item" data-aos="fade-up">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-suffix">+</div>
+                    <div class="stat-label">Destinations étudiées</div>
+                </div>
+                
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number" data-count="20">0</div>
+                    <div class="stat-suffix">+</div>
+                    <div class="stat-label">Années d'expérience</div>
+                </div>
+                
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number" data-count="10000">0</div>
+                    <div class="stat-suffix">+</div>
+                    <div class="stat-label">Étudiants accompagnés</div>
+                </div>
+                
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-suffix"></div>
+                    <div class="stat-label">Partenaires institutionnels</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ==============================================
+         SECTION PARTENAIRES : Logos avec effets et modales
+         ============================================== -->
+    <?php if ($showPartners) : ?>
+    <section id="partners" class="section-partners">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nos Partenaires</h2>
+                <p class="section-subtitle">Des institutions d'excellence pour votre réussite académique</p>
+            </div>
+            
+            <div class="partners-grid">
+                
+                <!-- Partenaire 1 : Galileo Global Education -->
+                <div class="partner-card" data-partner="galileo">
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">GGE</div>
+                    </div>
+                    <h3 class="partner-name">Galileo Global Education</h3>
+                    <p class="partner-tagline">Leader mondial de l'enseignement supérieur privé</p>
+                </div>
+                
+                <!-- Partenaire 2 : MediaSchool -->
+                <div class="partner-card" data-partner="mediaschool">
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">MS</div>
+                    </div>
+                    <h3 class="partner-name">MediaSchool</h3>
+                    <p class="partner-tagline">14 écoles, 29 campus en France</p>
+                </div>
+                
+                <!-- Partenaire 3 : OMNES Éducation -->
+                <div class="partner-card" data-partner="omnes">
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">OMNES</div>
+                    </div>
+                    <h3 class="partner-name">OMNES Éducation</h3>
+                    <p class="partner-tagline">15 grandes écoles, 40 000 étudiants</p>
+                </div>
+                
+                <!-- Partenaire 4 : MBN Global Education -->
+                <div class="partner-card" data-partner="mbn">
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">MBN</div>
+                    </div>
+                    <h3 class="partner-name">MBN Global Education</h3>
+                    <p class="partner-tagline">Formation supérieure en alternance et international</p>
+                </div>
+                
+                <!-- Partenaire 5 : Groupe HEMA -->
+                <div class="partner-card" data-partner="hema">
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">HEMA</div>
+                    </div>
+                    <h3 class="partner-name">Groupe HEMA</h3>
+                    <p class="partner-tagline">Premier groupe 100 % alternance en France</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modale détaillée pour chaque partenaire -->
+    <div id="partner-modal" class="partner-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fermer">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <!-- ==============================================
+         SECTION FAQ : Accordéon interactif
+         ============================================== -->
+    <?php if ($showFAQ) : ?>
+    <section id="faq" class="section-faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Questions Fréquentes</h2>
+                <p class="section-subtitle">Tout ce que vous devez savoir pour votre projet d'études à l'étranger</p>
+            </div>
+            
+            <div class="faq-list">
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Comment postuler dans une université partenaire ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>La procédure de candidature varie selon l'établissement et le pays. En général, vous devez constituer un dossier comprenant vos relevés de notes, votre CV, une lettre de motivation et un niveau de langue suffisant. Notre équipe vous accompagne dans la préparation et la soumission de votre dossier auprès de nos établissements partenaires.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quels documents fournir pour une demande de visa étudiant ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Pour un visa étudiant, vous aurez besoin d'un passeport valide, d'une lettre d'admission de l'établissement, de preuves de ressources financières, d'un certificat de niveau de langue et d'une assurance maladie. Nous vous fournissons une checklist complète et vérifions votre dossier avant dépôt.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quels services propose Campus Inter pour l'orientation ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Campus Inter offre un accompagnement complet : orientation personnalisée, aide à la constitution du dossier, préparation aux entretiens, suivi des procédures Campus France, demande de visa, organisation du voyage et même assistance à l'arrivée dans le pays d'accueil.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Proposez-vous des formations en ligne ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oui, dans le cadre de notre expertise en digitalisation de la formation, nous proposons des programmes e-learning et des dispositifs de gamification pour préparer les étudiants à leur départ et optimiser leurs chances de réussite à l'étranger.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Où se situe votre agence à Lomé ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Notre agence est située à Bè-Kpota, face à la mosquée de Lomé. Nous sommes ouverts du lundi au vendredi de 9h à 17h, et le samedi de 8h à 13h. Vous pouvez nous contacter au +228 22 70 25 96 ou +228 97 75 40 00.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ==============================================
+         PIED DE PAGE (FOOTER) : Coordonnées et carte
+         ============================================== -->
+    <footer id="footer" class="site-footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <!-- Colonne 1 : Informations sur Campus Inter -->
+                    <div class="footer-col footer-about">
+                        <h3 class="footer-title">Campus Inter</h3>
+                        <p class="footer-desc">
+                            Votre partenaire de confiance pour la mobilité internationale des étudiants. 
+                            Spécialiste des études en France, au Canada et des démarches de visa.
+                        </p>
+                        <div class="social-links">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Colonne 2 : Liens rapides -->
+                    <div class="footer-col footer-links">
+                        <h3 class="footer-title">Liens Rapides</h3>
+                        <ul class="footer-menu">
+                            <li><a href="<?php echo JUri::base(); ?>">Accueil</a></li>
+                            <li><a href="<?php echo JUri::base(); ?>index.php/a-propos">À propos</a></li>
+                            <li><a href="<?php echo JUri::base(); ?>index.php/services">Services</a></li>
+                            <li><a href="<?php echo JUri::base(); ?>index.php/partenaires">Partenaires</a></li>
+                            <li><a href="<?php echo JUri::base(); ?>index.php/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Colonne 3 : Coordonnées -->
+                    <div class="footer-col footer-contact">
+                        <h3 class="footer-title">Contact</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bè-Kpota, face à la mosquée<br>Lomé, Togo</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+22822702596">+228 22 70 25 96</a><br>
+                                <a href="tel:+22897754000">+228 97 75 40 00</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:contact@campusinter.com">contact@campusinter.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <span>Lun - Ven : 09h00 - 17h00<br>Sam : 08h00 - 13h00</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Colonne 4 : Carte Google Maps -->
+                    <div class="footer-col footer-map">
+                        <h3 class="footer-title">Nous Trouver</h3>
+                        <div class="map-wrapper">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12622.848!2d1.2233!3d6.1725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMDMnMjguMyJOIDHCsDE0JzA2LjMiVw!5e0!3m2!1sfr!2stg!4v1620000000000" 
+                                width="100%" 
+                                height="200" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                title="Localisation Campus Inter à Lomé">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barre de copyright et mentions légales -->
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">
+                    &copy; <?php echo date('Y'); ?> Campus Inter. Tous droits réservés.
+                </p>
+                <ul class="legal-links">
+                    <li><a href="<?php echo JUri::base(); ?>index.php/mentions-legales">Mentions légales</a></li>
+                    <li><a href="<?php echo JUri::base(); ?>index.php/politique-confidentialite">Politique de confidentialité</a></li>
+                    <li><a href="<?php echo JUri::base(); ?>index.php/cgv">CGV</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==============================================
+         INCLUSION DES MODULES DE POSITION FOOTER SI NÉCESSAIRE
+         ============================================== -->
+    <jdoc:include type="modules" name="footer" style="none" />
+    
+</body>
+</html>

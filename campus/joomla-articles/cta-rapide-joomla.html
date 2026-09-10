@@ -1,0 +1,78 @@
+<!-- ============================================================
+  CAMPUS INTER — CTA FORMULAIRE RAPIDE
+  HTML pur — le JS gère l'envoi vers mail-cta.php
+  ============================================================ -->
+<section class="ci-section ci-cta" id="ciCta">
+<div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+<div class="ci-container"><span class="ci-ghost ci-ghost--clair" aria-hidden="true">05</span>
+<h2 class="ci-reveal">Votre avenir commence ici !</h2>
+<p class="ci-reveal">Laissez-nous vos coordonnées : un conseiller Campus Inter vous recontacte sous 48h pour un premier bilan gratuit.</p>
+<p class="ci-full ci-form-status" id="ciFormStatus" role="status" aria-live="polite" hidden=""></p>
+<form class="ci-cta-form ci-reveal" id="ciForm" action="mail-cta.php" method="post" novalidate="">
+<input type="hidden" name="type" value="contact">
+<input type="hidden" name="page" value="Accueil">
+<input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">
+<div><input type="text" name="nom" placeholder="Nom complet *" required="" aria-label="Nom complet"></div>
+<div><input type="email" name="email" placeholder="Adresse email *" required="" aria-label="Adresse email"></div>
+<div><input type="tel" name="telephone" placeholder="Téléphone / WhatsApp" aria-label="Téléphone"></div>
+<div><select name="projet" aria-label="Type de projet">
+<option value="">Type de projet</option>
+<option>Étudier en France</option>
+<option>Étudier en Belgique</option>
+<option>Travailler en France</option>
+<option>Visa &amp; Démarches</option>
+<option>Installation</option>
+</select></div>
+<div class="ci-full"><button class="ci-btn ci-btn--primaire" type="submit"> Envoyer ma demande <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> </button></div>
+<p class="ci-full" style="font-size: .8rem; color: #dceadf; margin: 0;">En envoyant ce formulaire, vous acceptez d'être contacté par Campus Inter. Vos données restent confidentielles.</p>
+</form>
+</div>
+<div class="ci-wave" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg></div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var form = document.getElementById('ciForm');
+  if(!form) return;
+  var status = document.getElementById('ciFormStatus');
+  var btn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi en cours...';
+    if(status){ status.hidden = true; }
+
+    var data = new FormData(form);
+
+    fetch(form.getAttribute('action'), {
+      method: 'POST',
+      body: data,
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(function(res){ return res.json().catch(function(){ return {success:false,message:'Réponse invalide du serveur.'}; }); })
+    .then(function(json){
+      if(status){
+        status.textContent = json.message || (json.success ? 'Envoyé !' : 'Erreur.');
+        status.className = 'ci-full ci-form-status ' + (json.success ? 'ci-statut-ok' : 'ci-statut-err');
+        status.hidden = false;
+      }
+      if(json.success){ form.reset(); }
+    })
+    .catch(function(){
+      if(status){
+        status.textContent = 'Erreur de connexion. Réessayez ou appelez le +228 22 70 25 96.';
+        status.className = 'ci-full ci-form-status ci-statut-err';
+        status.hidden = false;
+      }
+    })
+    .finally(function(){
+      btn.disabled = false;
+      btn.innerHTML = 'Envoyer ma demande <i class="fa-solid fa-paper-plane"></i>';
+    });
+  });
+})();
+</script>

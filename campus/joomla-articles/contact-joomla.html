@@ -1,0 +1,227 @@
+<style>
+/* ===== CONTACT PAGE — styles inline (complète le template ci- existant) ===== */
+.ci-contact{position:relative;padding:80px 0 60px;background:#f7f8fa;overflow:hidden}
+.ci-contact .ci-container{position:relative;z-index:2}
+.ci-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:900px){.ci-contact-grid{grid-template-columns:1fr;gap:32px}}
+
+/* --- Colonne info --- */
+.ci-contact-info{padding:32px;background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.06);border:1px solid #e8ecf0}
+.ci-contact-info .ci-kicker{display:inline-block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#159447;margin-bottom:10px}
+.ci-contact-info h2{margin:0 0 12px;font-size:1.6rem;font-weight:800;color:#1a1a2e;line-height:1.25}
+.ci-contact-info>p{color:#4a4a5a;line-height:1.65;margin:0 0 24px;font-size:.95rem}
+.ci-contact-list{list-style:none;padding:0;margin:0 0 24px}
+.ci-contact-list li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid #f0f2f5}
+.ci-contact-list li:last-child{border-bottom:none}
+.ci-contact-list li i{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(21,148,71,.08);color:#159447;border-radius:10px;font-size:1rem;margin-top:2px}
+.ci-contact-list li div{display:flex;flex-direction:column;gap:2px}
+.ci-contact-list li strong{font-size:.82rem;font-weight:700;color:#1a1a2e;text-transform:uppercase;letter-spacing:.04em}
+.ci-contact-list li span,.ci-contact-list li a{font-size:.92rem;color:#4a4a5a;text-decoration:none;line-height:1.5}
+.ci-contact-list li a:hover{color:#159447}
+.ci-contact-social{display:flex;gap:10px}
+.ci-contact-social a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#f0f7f2;color:#159447;border-radius:10px;font-size:1rem;transition:all .25s}
+.ci-contact-social a:hover{background:#159447;color:#fff;transform:translateY(-2px)}
+
+/* --- Colonne formulaire --- */
+.ci-contact-form-wrap{padding:32px;background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.06);border:1px solid #e8ecf0}
+.ci-contact-form-wrap h3{margin:0 0 20px;font-size:1.15rem;font-weight:700;color:#1a1a2e}
+.ci-form .ci-champ{margin-bottom:16px}
+.ci-form .ci-champ label{display:block;font-size:.82rem;font-weight:600;color:#1a1a2e;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em}
+.ci-form .ci-champ input,.ci-form .ci-champ select,.ci-form .ci-champ textarea{width:100%;padding:12px 14px;border:1.5px solid #dde3da;border-radius:10px;font-size:.92rem;color:#1a1a2e;background:#fafcf9;transition:border-color .25s,box-shadow .25s;font-family:inherit;box-sizing:border-box}
+.ci-form .ci-champ input:focus,.ci-form .ci-champ select:focus,.ci-form .ci-champ textarea:focus{outline:none;border-color:#159447;box-shadow:0 0 0 3px rgba(21,148,71,.12);background:#fff}
+.ci-form .ci-champ textarea{min-height:120px;resize:vertical}
+.ci-form .ci-champ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7b6b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.ci-form .ci-honeypot{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden}
+
+/* --- Statuts --- */
+.ci-form-status{padding:16px 20px;border-radius:10px;font-size:.9rem;font-weight:600;text-align:center;margin-bottom:20px;animation:ciFadeIn .4s ease}
+.ci-statut-ok{background:#e8f5ec;color:#159447;border:1px solid #b8dfc3}
+.ci-statut-err{background:#fde8e8;color:#c0392b;border:1px solid #f5c6c6}
+.ci-form-status.show{display:block!important}
+
+/* --- Responsive --- */
+@media(max-width:600px){
+.ci-contact{padding:48px 0 40px}
+.ci-contact-info,.ci-contact-form-wrap{padding:24px 20px}
+.ci-contact-info h2{font-size:1.3rem}
+}
+
+@keyframes ciFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+<script>
+(function () {
+  'use strict';
+  var params = new URLSearchParams(window.location.search);
+  var form = document.getElementById('ciContactForm');
+  var successEl = document.getElementById('ci-success');
+  var errorEl = document.getElementById('ci-error');
+  if (params.get('ci') === 'success') {
+    if (form) form.style.display = 'none';
+    if (errorEl) errorEl.style.display = 'none';
+    if (successEl) successEl.classList.add('show');
+    if (window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname); }
+  } else if (params.get('ci') === 'error') {
+    if (form) form.style.display = 'none';
+    if (successEl) successEl.style.display = 'none';
+    if (errorEl) errorEl.classList.add('show');
+    if (window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname); }
+  }
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...'; }
+    });
+  }
+})();
+</script>
+{source}<?php
+defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
+$pageUrl = Uri::current();
+
+echo '<section class="ci-section ci-contact" id="ciContact">';
+echo '<div class="ci-hex ci-hex--bl ci-hex--lg ci-hex--soft" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="https://it.dyk08.com/campusinter/images/contact/contact-hero.png" data-img-every="6" aria-hidden="true"></div>';
+echo '<div class="ci-container">';
+
+/* --- Carte info --- */
+echo '<div class="ci-contact-grid">';
+
+echo '<div class="ci-contact-info ci-reveal-left">';
+echo '<span class="ci-kicker">Parlons de votre projet</span>';
+echo '<h2>Contactez-nous</h2>';
+echo '<p>Une question, un projet d\'étude ou de migration ? Notre équipe à Lomé est à votre écoute. Réponse sous 24h.</p>';
+echo '<ul class="ci-contact-list">';
+echo '<li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><div><strong>Adresse</strong><span>Boulevard de l\'Oti, face Massalassi, Bè-Kpota, Lomé, Togo</span></div></li>';
+echo '<li><i class="fa-solid fa-phone" aria-hidden="true"></i><div><strong>Téléphone</strong><a href="tel:+22822702596">+228 22 70 25 96</a></div></li>';
+echo '<li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><div><strong>WhatsApp</strong><a href="https://wa.me/22897754000">+228 97 75 40 00</a></div></li>';
+echo '<li><i class="fa-solid fa-envelope" aria-hidden="true"></i><div><strong>Email</strong><a href="mailto:contact@campusinter.com">contact@campusinter.com</a></div></li>';
+echo '<li><i class="fa-solid fa-clock" aria-hidden="true"></i><div><strong>Horaires</strong><span>Lun – Ven : 8 h – 18 h &nbsp;|&nbsp; Sam : 9 h – 13 h</span></div></li>';
+echo '</ul>';
+echo '<div class="ci-contact-social">';
+echo '<a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>';
+echo '<a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>';
+echo '<a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>';
+echo '<a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>';
+echo '</div>';
+echo '</div>';
+
+/* --- Formulaire --- */
+echo '<div class="ci-contact-form-wrap ci-reveal-right">';
+echo '<div id="ci-success" class="ci-form-status ci-statut-ok" role="status" style="display:none;">Merci ! Votre message a bien été envoyé, nous vous répondrons sous 24h.</div>';
+echo '<div id="ci-error" class="ci-form-status ci-statut-err" role="status" style="display:none;">L\'envoi a échoué. Veuillez réessayer ou appeler le +228 22 70 25 96.</div>';
+echo '<form class="ci-form" id="ciContactForm" action="' . $pageUrl . '" method="post">';
+echo '<input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">';
+echo '<h3>Envoyez-nous un message</h3>';
+echo '<div class="ci-champ"><label for="ci-nom">Nom complet</label> <input type="text" id="ci-nom" name="nom" placeholder="Votre nom et prénom" required=""></div>';
+echo '<div class="ci-champ"><label for="ci-email">Adresse e-mail</label> <input type="email" id="ci-email" name="email" placeholder="vous@exemple.com" required=""></div>';
+echo '<div class="ci-champ"><label for="ci-tel">Téléphone / WhatsApp</label> <input type="tel" id="ci-tel" name="telephone" placeholder="+228 ..."></div>';
+echo '<div class="ci-champ"><label for="ci-sujet">Sujet</label>';
+echo '<select id="ci-sujet" name="sujet" required="">';
+echo '<option value="">Sélectionnez un sujet</option>';
+echo '<option value="etudes-france">Étudier en France</option>';
+echo '<option value="etudes-belgique">Étudier en Belgique</option>';
+echo '<option value="travail">Travailler en France</option>';
+echo '<option value="visa">Visa &amp; Démarches</option>';
+echo '<option value="installation">Installation &amp; Logement</option>';
+echo '<option value="partenariat">Partenariat</option>';
+echo '<option value="autre">Autre demande</option>';
+echo '</select></div>';
+echo '<div class="ci-champ"><label for="ci-message">Votre message</label> <textarea id="ci-message" name="message" placeholder="Décrivez votre projet ou votre question..." required=""></textarea></div>';
+echo '<button class="ci-btn ci-btn--primaire" type="submit" style="width:100%;justify-content:center;"> Envoyer le message <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> </button>';
+echo '<p style="font-size:.78rem;color:#6b7b6b;margin:12px 0 0;text-align:center;">En envoyant ce formulaire, vous acceptez d\'être contacté par Campus Inter. Vos données restent confidentielles.</p>';
+echo '</form>';
+echo '</div>';
+
+echo '</div><!-- ci-contact-grid -->';
+echo '</div><!-- ci-container -->';
+echo '</section>';
+
+return;
+}
+
+function sanitize($value) {
+if (is_array($value)) {
+return array_map('sanitize', $value);
+}
+return htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
+}
+
+function buildRow($label, $value) {
+return '<tr><td style="padding:10px 14px;border-bottom:1px solid #e8ecf0;font-weight:700;color:#1a1a2e;white-space:nowrap;vertical-align:top;width:200px;background:#f7f8fa">' . $label . '</td><td style="padding:10px 14px;border-bottom:1px solid #e8ecf0;color:#4a4a5a">' . nl2br($value) . '</td></tr>';
+}
+
+$data = [];
+foreach ($_POST as $key => $value) {
+$data[$key] = sanitize($value);
+}
+
+if (!empty($data['website'])) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=success');
+return;
+}
+
+$nom   = $data['nom'] ?? '';
+$mail  = $data['email'] ?? '';
+$tel   = $data['telephone'] ?? '';
+$sujet = $data['sujet'] ?? '';
+$msg   = $data['message'] ?? '';
+
+if ($nom === '' || $mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+
+$sujetLabels = [
+'etudes-france' => 'Étudier en France',
+'etudes-belgique' => 'Étudier en Belgique',
+'travail' => 'Travailler en France',
+'visa' => 'Visa & Démarches',
+'installation' => 'Installation & Logement',
+'partenariat' => 'Partenariat',
+'autre' => 'Autre demande',
+];
+$sujetLibelle = $sujetLabels[$sujet] ?? ($sujet !== '' ? $sujet : 'Non précisé');
+
+$html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#f7f8fa;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif">';
+$html .= '<table style="max-width:620px;margin:30px auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e8ecf0"><tr><td style="padding:30px 28px;background:linear-gradient(135deg,rgba(21,148,71,0.95),rgba(29,184,94,0.8));text-align:center"><h1 style="margin:0;font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:0.05em">NOUVEAU MESSAGE — CONTACT</h1><p style="margin:8px 0 0;font-size:0.8rem;color:rgba(255,255,255,0.7)">Campus Inter</p></td></tr>';
+$html .= '<tr><td style="padding:24px 28px 0"><table style="width:100%;border-collapse:collapse">';
+$html .= buildRow('Nom complet', $nom);
+$html .= buildRow('Adresse email', $mail);
+$html .= buildRow('Téléphone / WhatsApp', $tel !== '' ? $tel : 'Non renseigné');
+$html .= buildRow('Sujet', $sujetLibelle);
+$html .= buildRow('Message', $msg !== '' ? $msg : 'Aucun message');
+$html .= buildRow('Reçu le', date('d/m/Y à H:i'));
+$html .= '</table></td></tr>';
+$html .= '<tr><td style="padding:24px 28px;text-align:center;color:#6b6b7b;font-size:0.75rem;border-top:1px solid #e8ecf0">Message envoyé depuis la page Contact Campus Inter.</td></tr></table></body></html>';
+
+$sujetEmail = 'Nouveau message Contact — ' . $nom;
+
+try {
+$app = Factory::getApplication();
+$mailer = Factory::getMailer();
+$mailer->setSender([$app->get('mailfrom'), $app->get('fromname')]);
+$mailer->addRecipient('amerocar010' . '@' . 'gmail.com');
+$mailer->addReplyTo($mail);
+$mailer->setSubject($sujetEmail);
+$mailer->setBody($html);
+$mailer->isHtml(true);
+$mailer->send();
+$app->redirect(Uri::current() . '?ci=success');
+} catch (Exception $e) {
+$app->redirect(Uri::current() . '?ci=error');
+}
+?>{/source}
+
+<!-- WhatsApp flottant -->
+<a href="https://wa.me/22897754000" class="ci-wa-float" aria-label="Nous écrire sur WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+
+<!-- Retour en haut -->
+<a href="#" class="ci-back-top" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>

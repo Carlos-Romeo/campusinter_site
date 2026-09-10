@@ -1,0 +1,597 @@
+<!-- ============================================================
+  CAMPUS INTER — Visa & Procedures
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : visa-et-demarches.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Visa & Procedures" (category : Visa & Procedures).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="09">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><span class="ci-here">Visa & Procedures</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-file-shield" aria-hidden="true"></i>
+            Supervised procedure
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Visa & <em>Procedures</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">A clear, supervised procedure to get your student or work visa: we take care of everything.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Get my file checked
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciVisas">View the procedures</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Our commitments">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span>
+          </div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciVisas"><i class="fa-solid fa-passport" aria-hidden="true"></i>Types of visas</a>
+            <a class="ci-hero-chip" href="#ciChecklist"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Checklist</a>
+            <a class="ci-hero-chip" href="#ciFaq"><i class="fa-solid fa-circle-question" aria-hidden="true"></i>FAQ</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">09</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-visa-demarches.jpg" alt="Passport and visa documents">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>File</b><small>verified before submission</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Follow-up</b><small>at every step</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> 100% supported</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — TYPES DE VISAS (5 cartes)
+       ========================================================== -->
+  <section class="ci-section" id="ciVisas" data-ghost="01">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Types of visas</span>
+        <h2>The right visa for your project</h2>
+        <p>Depending on your goal, a suitable visa allows you to stay, study or work legally in Europe.</p>
+      </div>
+
+      <!-- Grille des 5 types de visas -->
+      <div class="ci-visa-grid">
+        <!-- Visa étudiant -->
+        <article class="ci-visa ci-reveal">
+          <span class="ci-visa-icone"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+          <h3>Student visa</h3>
+          <p>To pursue higher education in France or Belgium. It authorizes full-time studies and part-time student work.</p>
+        </article>
+
+        <!-- Visa travail / salarié -->
+        <article class="ci-visa ci-reveal" style="--d:.08s">
+          <span class="ci-visa-icone"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+          <h3>Work / salaried visa</h3>
+          <p>To take up a salaried job in an in-demand occupation, as part of a legal, supervised migration to Europe.</p>
+        </article>
+
+        <!-- VLS-TS -->
+        <article class="ci-visa ci-reveal" style="--d:.16s">
+          <span class="ci-visa-icone"><i class="fa-solid fa-clock" aria-hidden="true"></i></span>
+          <h3>VLS-TS</h3>
+          <p>The long-stay visa equivalent to a residence permit: a simplified procedure for stays of more than 3 months, especially for studies.</p>
+        </article>
+
+        <!-- Court séjour -->
+        <article class="ci-visa ci-reveal" style="--d:.24s">
+          <span class="ci-visa-icone"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i></span>
+          <h3>Short stay</h3>
+          <p>For a tourist, business or family stay of less than 90 days in the Schengen area.</p>
+        </article>
+
+        <!-- Titre de séjour -->
+        <article class="ci-visa ci-reveal" style="--d:.32s">
+          <span class="ci-visa-icone"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i></span>
+          <h3>Residence permit</h3>
+          <p>To regularize and extend your stay once you are there, depending on your situation (studies, work, family reunification).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — NOS SERVICES (5 icônes)
+       ========================================================== -->
+  <section class="ci-services ci-section" id="ciServices" data-ghost="02">
+    <!-- Hexagones : coin haut-gauche, très subtil, vert -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Our services</span>
+        <h2>Complete support</h2>
+        <p>From assessing your eligibility to following up on your file, we support you at every step.</p>
+      </div>
+
+      <!-- Grille des 5 services -->
+      <div class="ci-services-grid">
+        <!-- Service 1 -->
+        <article class="ci-service ci-reveal">
+          <span class="ci-service-icone"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+          <h3>Eligibility assessment</h3>
+          <p>Analysis of your profile and chances of success</p>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="ci-service ci-reveal" style="--d:.08s">
+          <span class="ci-service-icone"><i class="fa-solid fa-file" aria-hidden="true"></i></span>
+          <h3>Building the file</h3>
+          <p>Preparation of all your documents and supporting materials</p>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="ci-service ci-reveal" style="--d:.16s">
+          <span class="ci-service-icone"><i class="fa-solid fa-clock" aria-hidden="true"></i></span>
+          <h3>Appointments & interviews</h3>
+          <p>Appointment booking and interview preparation</p>
+        </article>
+
+        <!-- Service 4 -->
+        <article class="ci-service ci-reveal" style="--d:.24s">
+          <span class="ci-service-icone"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+          <h3>Insurance</h3>
+          <p>Subscribing to your health and assistance insurance</p>
+        </article>
+
+        <!-- Service 5 -->
+        <article class="ci-service ci-reveal" style="--d:.32s">
+          <span class="ci-service-icone"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i></span>
+          <h3>Prefecture follow-up</h3>
+          <p>Follow-up of your file with the prefecture</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — CHECKLIST DES DOCUMENTS
+       ========================================================== -->
+  <section class="ci-section" id="ciChecklist" data-ghost="03">
+    <!-- Hexagones : coin bas-gauche, présent, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--bl ci-hex--lg ci-hex--mid" data-cols="6" data-rows="4" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/visa-et-demarches.jpg" data-img-every="6" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Document checklist</span>
+        <h2>The essential documents</h2>
+        <p>A complete list of documents to prepare to build a solid file. We check every document with you.</p>
+      </div>
+
+      <!-- Grille des documents -->
+      <div class="ci-checklist">
+        <div class="ci-checklist-grid">
+          <!-- Document 1 -->
+          <div class="ci-check-item ci-reveal">
+            <span class="ci-check-box"><i class="fa-solid fa-file" aria-hidden="true"></i></span>
+            <div>
+              <h3>Passport</h3>
+              <p>Valid at least 6 months after your planned departure</p>
+            </div>
+          </div>
+
+          <!-- Document 2 -->
+          <div class="ci-check-item ci-reveal" style="--d:.05s">
+            <span class="ci-check-box"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+            <div>
+              <h3>ID photos</h3>
+              <p>Official standards, light background and recent</p>
+            </div>
+          </div>
+
+          <!-- Document 3 -->
+          <div class="ci-check-item ci-reveal" style="--d:.1s">
+            <span class="ci-check-box"><i class="fa-solid fa-lock" aria-hidden="true"></i></span>
+            <div>
+              <h3>CV</h3>
+              <p>Up to date, adapted to the European format</p>
+            </div>
+          </div>
+
+          <!-- Document 4 -->
+          <div class="ci-check-item ci-reveal" style="--d:.15s">
+            <span class="ci-check-box"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+            <div>
+              <h3>Diplomas</h3>
+              <p>Originals, translated and legalized if necessary</p>
+            </div>
+          </div>
+
+          <!-- Document 5 -->
+          <div class="ci-check-item ci-reveal" style="--d:.2s">
+            <span class="ci-check-box"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></span>
+            <div>
+              <h3>Proof of financial resources</h3>
+              <p>Proof of sufficient financial resources</p>
+            </div>
+          </div>
+
+          <!-- Document 6 -->
+          <div class="ci-check-item ci-reveal" style="--d:.25s">
+            <span class="ci-check-box"><i class="fa-solid fa-comment" aria-hidden="true"></i></span>
+            <div>
+              <h3>Cover letter</h3>
+              <p>Personalized and well-argued for your project</p>
+            </div>
+          </div>
+
+          <!-- Document 7 -->
+          <div class="ci-check-item ci-reveal" style="--d:.3s">
+            <span class="ci-check-box"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span>
+            <div>
+              <h3>Documents from the institution</h3>
+              <p>Enrollment certificate, admission confirmation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — PROCESSUS (timeline)
+       ========================================================== -->
+  <section class="ci-procedure ci-section" id="ciProcessus" data-ghost="04">
+    <!-- Hexagones : coin haut-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tr ci-hex--sm ci-hex--soft" data-cols="5" data-rows="3" data-size="20" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Process</span>
+        <h2>How does your file process work?</h2>
+        <p>A structured, transparent procedure, followed step by step by our advisors.</p>
+      </div>
+
+      <!-- Timeline des 6 étapes -->
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 01</span>
+          <h3>Profile assessment</h3>
+          <p>First appointment to analyze your situation, goals and eligibility.</p>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 02</span>
+          <h3>Building the file</h3>
+          <p>Gathering and verifying all the documents needed for your application.</p>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 03</span>
+          <h3>Submitting the application</h3>
+          <p>Submitting and following up your application with the competent authorities.</p>
+        </div>
+
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 04</span>
+          <h3>Interview & appointments</h3>
+          <p>Preparation and support during your interviews and appointments.</p>
+        </div>
+
+        <!-- Étape 5 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 05</span>
+          <h3>Getting the visa</h3>
+          <p>Collecting your visa and checking entry conditions.</p>
+        </div>
+
+        <!-- Étape 6 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 06</span>
+          <h3>Settlement in Europe</h3>
+          <p>Support on your arrival: accommodation, formalities and integration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — FAQ (accordéon)
+       ========================================================== -->
+  <section class="ci-section" id="ciFaq" data-ghost="05">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">FAQ</span>
+        <h2>Frequently asked questions</h2>
+        <p>Answers to the most asked questions about visas and procedures.</p>
+      </div>
+
+      <!-- Accordéon FAQ -->
+      <div class="ci-faq">
+        <!-- Question 1 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            How long does it take to get a visa?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>The delay varies depending on the visa type and the time of year. In general, allow 2 to 4 months for a long-stay visa. We recommend starting your procedures 6 to 9 months before your departure.</p></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            What fees should I expect?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>The fees include visa fees, file fees and any translations and legalizations. We give you a transparent, detailed quote before the procedure begins.</p></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Can I work with my student visa?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Yes, in most European countries a student visa allows part-time work (for example up to 964 hours per year in France). This allows you to fund part of your stay.</p></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            What happens if my visa is refused?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>In case of refusal, we analyze the reasons, correct any weaknesses in your file and support you in filing an appeal or a new application under the best conditions.</p></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Do you offer assistance after arrival?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Absolutely. Our support does not stop when you get your visa: we help you with accommodation, insurance, opening a bank account and all the settlement formalities when you arrive.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6 — CTA FINAL
+       ========================================================== -->
+  <section class="ci-cta ci-section" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-reveal">
+        <span class="ci-kicker">Ready to start?</span>
+        <h2>Assess your eligibility for free</h2>
+        <p>Contact us today for a free first analysis of your visa and mobility project.</p>
+        <div class="ci-cta-btns">
+          <a class="ci-btn ci-btn--primaire" href="/contact">
+            Start my project
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000">
+            WhatsApp
+            <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Visa & Procedures".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

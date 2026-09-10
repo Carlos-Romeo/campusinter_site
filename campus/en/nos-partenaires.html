@@ -1,0 +1,563 @@
+<!-- ============================================================
+  CAMPUS INTER — Our Partners
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : nos-partenaires.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Our Partners" (category : Partners).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Call the landline">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Write on WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Send an email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Monday - Friday, 7:30 am to 5:30 pm
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="04">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><a href="#">Campus Inter</a><span class="ci-sep">›</span><span class="ci-here">Our partners</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+            Campus Inter network
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Our <em>partners</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">A solid network for your success: academic, financial and housing partners at the service of your project.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Explore the partners
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciIntro">Discover the network</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Our commitments"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciIntro"><i class="fa-solid fa-handshake" aria-hidden="true"></i>Partners</a>
+            <a class="ci-hero-chip" href="#ciAcademiques"><i class="fa-solid fa-school" aria-hidden="true"></i>Academic</a>
+            <a class="ci-hero-chip" href="#ciServices"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>Services</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">04</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-partenaires.jpg" alt="Handshake between partners">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Partners</b><small>carefully selected</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Programs</b><small>recognized in Europe</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Trusted network</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — INTRO DU RÉSEAU + CHIFFRES
+       ========================================================== -->
+  <section class="ci-section" id="ciIntro">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Texte de présentation du réseau de partenaires -->
+      <div class="ci-intro ci-reveal">
+        <span class="ci-kicker">The Campus Inter network</span>
+        <h2>A strategic network at the service of your project</h2>
+        <p>At Campus Inter, we have built a strategic network of academic, professional and institutional partners in Europe to offer our candidates the best opportunities for study, career, funding and integration.</p>
+        <p>We work closely with recognized international institution groups, as well as with partners specialized in funding migration projects and accommodation solutions for students and young professionals.</p>
+      </div>
+
+      <!-- Statistiques clés du réseau -->
+      <div class="ci-intro-stats">
+        <!-- Stat 1 -->
+        <div class="ci-intro-stat ci-reveal">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="5">0</span>+</div>
+          <p>Partner academic groups</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="ci-intro-stat ci-reveal" style="--d:.1s">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="100">0</span>+</div>
+          <p>Institutions in Europe</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="ci-intro-stat ci-reveal" style="--d:.2s">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="20">0</span></div>
+          <p>Countries covered by our partners</p>
+        </div>
+        <!-- Stat 4 -->
+        <div class="ci-intro-stat ci-reveal" style="--d:.3s">
+          <div class="ci-intro-num"><span class="ci-counter" data-target="300">0</span>K+</div>
+          <p>Students trained every year</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — PARTENAIRES ACADÉMIQUES (5 fiches)
+       ========================================================== -->
+  <section class="ci-section ci-partenaires" id="ciAcademiques" data-ghost="01">
+    <!-- Hexagones : coin haut-gauche, très subtil, vert -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Academic partners in Europe</span>
+        <h2>Exceptional higher education groups</h2>
+        <p>Campus Inter represents several groups of European institutions in several African countries. Among more than a hundred institutions located in several European cities, you will certainly find the ideal pathway for your academic project.</p>
+      </div>
+
+      <!-- Fiche 1 : Galileo Global Education -->
+      <article class="ci-partner ci-reveal-left">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-galileo.png" alt="Logo Galileo Global Education" loading="lazy">
+          <span class="ci-partner-groupe">Galileo Global Education<small>Largest private group in Europe</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>Galileo Global Education</h3>
+          <p>Campus Inter is a partner of the largest private higher education group in Europe. This group brings together more than 70 schools and universities across 20 countries, training more than 300,000 students every year in fields as varied as management, digital, communication, arts, health and educational innovation.</p>
+          <p>Thanks to this network, our candidates have access to international pathways, recognized professional diplomas and strong employability internationally.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">70+ schools</span>
+            <span class="ci-partner-chiffre">20 countries</span>
+            <span class="ci-partner-chiffre">300K+ students</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">emlyon</span>
+            <span class="ci-partner-ecole">Cours Florent</span>
+            <span class="ci-partner-ecole">Digital Campus</span>
+            <span class="ci-partner-ecole">ESG</span>
+            <span class="ci-partner-ecole">Paris School of Business</span>
+            <span class="ci-partner-ecole">HETIC</span>
+            <span class="ci-partner-ecole">IESA</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Discover the schools <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 2 : Omnes Education Group -->
+      <article class="ci-partner ci-reveal-right">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-omnes.png" alt="Logo Omnes Education" loading="lazy">
+          <span class="ci-partner-groupe">OMNES Education Group<small>Major player in higher education</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>OMNES Education Group</h3>
+          <p>We also work with Omnes Education Group, a major European higher education player. This group brings together 15 schools and nearly 20 campuses in France and internationally, in fields such as management, engineering, communication, digital and international relations.</p>
+          <p>With Omnes Education, our students benefit from varied programs, a powerful alumni network and access to a wide range of professional sectors.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">15 schools</span>
+            <span class="ci-partner-chiffre">~20 campuses</span>
+            <span class="ci-partner-chiffre">215K+ alumni</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">INSEEC</span>
+            <span class="ci-partner-ecole">ESCE</span>
+            <span class="ci-partner-ecole">ECE</span>
+            <span class="ci-partner-ecole">HEIP</span>
+            <span class="ci-partner-ecole">Sup de Pub</span>
+            <span class="ci-partner-ecole">EU Business School</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Discover the schools <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 3 : Media School -->
+      <article class="ci-partner ci-reveal-left">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-mediaschool.png" alt="Logo Media School" loading="lazy">
+          <span class="ci-partner-groupe">MediaSchool<small>Network of communication & media schools</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>Media School</h3>
+          <p>Campus Inter is also a partner of Media School, a network of schools specialized in communication, marketing, digital and creative industries. This collaboration opens doors to programs oriented toward tomorrow's careers, rooted in digital transformation and innovative communication strategies.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">14 schools</span>
+            <span class="ci-partner-chiffre">29 campuses</span>
+            <span class="ci-partner-chiffre">13,500+ partner companies</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">IEJ</span>
+            <span class="ci-partner-ecole">SUPDEPROD</span>
+            <span class="ci-partner-ecole">SUPDEWEB</span>
+            <span class="ci-partner-ecole">Paris School of Tourism</span>
+            <span class="ci-partner-ecole">Paris School of Luxury</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Discover the schools <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 4 : Hema Management School -->
+      <article class="ci-partner ci-reveal-right">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-hema.png" alt="Logo HEMA Group" loading="lazy">
+          <span class="ci-partner-groupe">Hema Management School<small>Expert in work-study programs for 32 years</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>Hema Management School</h3>
+          <p>We collaborate with Hema Management School, a European institution renowned for its programs in management, commerce and leadership. This alliance allows our candidates to join programs focused on entrepreneurship, strategy and business management, while benefiting from personalized support for their professional integration.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">32 years of experience</span>
+            <span class="ci-partner-chiffre">Bac to Bac+5</span>
+            <span class="ci-partner-chiffre">Qualiopi certified</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">ESMA</span>
+            <span class="ci-partner-ecole">ESCI Paris</span>
+            <span class="ci-partner-ecole">ISEAM</span>
+            <span class="ci-partner-ecole">ISEADD</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Discover the schools <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+
+      <!-- Fiche 5 : MBN Global Education -->
+      <article class="ci-partner ci-reveal-left">
+        <div class="ci-partner-visuel">
+          <img class="ci-partner-logo" src="images/campusinter/logo-mbn.png" alt="Logo MBN Global Education" loading="lazy">
+          <span class="ci-partner-groupe">MBN Global Education<small>Professional & international programs</small></span>
+        </div>
+        <div class="ci-partner-contenu">
+          <h3>MBN Global Education</h3>
+          <p>Finally, Campus Inter is a partner of MBN Global Education, a French and international education group offering professional programs, bachelor's degrees, master's degrees and work-study opportunities in various sectors.</p>
+          <p>MBN Global Education focuses on academic excellence, international openness and employability, offering a dynamic and attractive learning environment.</p>
+          <!-- Chiffres clés -->
+          <div class="ci-partner-chiffres">
+            <span class="ci-partner-chiffre">BTS · Bachelor · Master's</span>
+            <span class="ci-partner-chiffre">4 campuses</span>
+            <span class="ci-partner-chiffre">RNCP & Qualiopi certified</span>
+          </div>
+          <!-- Écoles clés -->
+          <div class="ci-partner-ecoles">
+            <span class="ci-partner-ecole">Paris-Torcy</span>
+            <span class="ci-partner-ecole">Paris-Évry</span>
+            <span class="ci-partner-ecole">Lyon</span>
+            <span class="ci-partner-ecole">Yaoundé</span>
+          </div>
+          <a class="ci-btn ci-btn--primaire" href="/ecoles-et-programmes">Discover the schools <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — PARTENAIRES FINANCIERS & LOGEMENT
+       ========================================================== -->
+  <section class="ci-section" id="ciServices" data-ghost="02">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Complete support</span>
+        <h2>Financial solutions and secure accommodation</h2>
+        <p>Beyond studies and employment, we make your funding and settlement in France easier.</p>
+      </div>
+
+      <!-- Grille : Financiers + Logement -->
+      <div class="ci-services-grid">
+        <!-- Partenaires financiers -->
+        <article class="ci-service ci-reveal">
+          <img src="images/campusinter/partenaire-finance.jpg" alt="Funding solutions" loading="lazy">
+          <div class="ci-service-body">
+            <h3><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i> Financial partners</h3>
+            <p>To make your study or professional migration project feasible and secure, Campus Inter works with specialized financial partners offering:</p>
+            <ul>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> adapted student loan solutions</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> targeted scholarships and financial aid</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> personalized advice to manage your budget</li>
+            </ul>
+            <p style="margin-top:10px;font-size:.9rem;color:var(--ci-texte-2);">These partners are selected for their reliability, flexibility and transparency, to make it easier for you to access training and life in France.</p>
+          </div>
+        </article>
+
+        <!-- Partenaires logement -->
+        <article class="ci-service ci-reveal" style="--d:.15s">
+          <img src="images/campusinter/partenaire-logement.jpg" alt="Student accommodation" loading="lazy">
+          <div class="ci-service-body">
+            <h3><i class="fa-solid fa-building-columns" aria-hidden="true"></i> Housing partners</h3>
+            <p>We also put a network of housing partners at your disposal so your arrival in France is comfortable and peaceful:</p>
+            <ul>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> partner student residences</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> temporary or long-stay accommodation solutions</li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i> support in finding accommodation according to your budget</li>
+            </ul>
+            <p style="margin-top:10px;font-size:.9rem;color:var(--ci-texte-2);">A network of reliable housing options to arrive with peace of mind and focus on what matters.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — VALEUR AJOUTÉE (3 points forts)
+       ========================================================== -->
+  <section class="ci-section ci-valeur" id="ciValeur" data-ghost="03">
+    <!-- Hexagones : fond complet, très subtil, blanc ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="14" data-rows="7" data-size="24" data-color="#FFFFFF" data-fill="5" data-img="images/campusinter/partenaire-logement.jpg" data-img-every="12" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker" style="color:#8ee0b4;">Real added value</span>
+        <h2>This unique network maximizes your chances of success</h2>
+        <p>Thanks to this network of prestigious academic partners, robust funding solutions and housing facilities, Campus Inter offers you:</p>
+      </div>
+
+      <!-- Grille des 3 valeurs ajoutées -->
+      <div class="ci-valeur-grid">
+        <!-- Valeur 1 -->
+        <div class="ci-valeur-item ci-reveal">
+          <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+          <h3>International training pathways</h3>
+          <p>Privileged access to more than 100 recognized European institutions, in all fields.</p>
+        </div>
+        <!-- Valeur 2 -->
+        <div class="ci-valeur-item ci-reveal" style="--d:.12s">
+          <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+          <h3>Concrete career opportunities</h3>
+          <p>Real career prospects thanks to a network of partner companies and strong employability.</p>
+        </div>
+        <!-- Valeur 3 -->
+        <div class="ci-valeur-item ci-reveal" style="--d:.24s">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <h3>Complete support</h3>
+          <p>Personalized follow-up for every stage of your project, from orientation to settlement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL — dégradé sombre + vague
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Appel à l'action -->
+      <h2 class="ci-reveal">Become a Campus Inter partner?</h2>
+      <p class="ci-reveal">Are you an institution, a school or a sector player? Let's build bridges together toward students and professionals from Africa.</p>
+      <!-- Boutons d'action -->
+      <div class="ci-cta-btns ci-reveal">
+        <a class="ci-btn ci-btn--primaire" href="/contact">
+          Contact Campus Inter
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewbox="0 0 1440 70" preserveaspectratio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Our Partners".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

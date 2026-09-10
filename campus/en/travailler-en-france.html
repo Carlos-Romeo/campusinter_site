@@ -1,0 +1,616 @@
+<!-- ============================================================
+  CAMPUS INTER — Working in France
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : travailler-en-france.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Working in France" (category : Work — France).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Call the landline">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Write on WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Send an email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Monday - Friday, 7:30 am to 5:30 pm
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="08">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><a href="#">Work Visa</a><span class="ci-sep">›</span><span class="ci-here">Working in France</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            Work Visa · Campus Inter
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Working in <em>France</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Real opportunities, legal migration and complete support: achieve your career project in France.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Evaluate my profile
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciSecteurs">View the sectors</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Our commitments">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span>
+          </div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciSecteurs"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Sectors</a>
+            <a class="ci-hero-chip" href="#ciMetiers"><i class="fa-solid fa-hard-hat" aria-hidden="true"></i>Jobs</a>
+            <a class="ci-hero-chip" href="#ciProcedure"><i class="fa-solid fa-file-contract" aria-hidden="true"></i>Procedure</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">08</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-travailler-france.jpg" alt="Professional at work">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Profile</b><small>valued for France</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Sectors</b><small>that hire</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> France · Work Visa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — DES OPPORTUNITÉS RÉELLES (5 secteurs)
+       ========================================================== -->
+  <section class="ci-section" id="ciSecteurs" data-ghost="01">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Real opportunities</span>
+        <h2>France is hiring in many sectors</h2>
+        <p>In-demand jobs across the French economy, accessible to qualified and motivated candidates.</p>
+      </div>
+
+      <!-- Grille des 5 secteurs -->
+      <div class="ci-secteur-grid">
+        <!-- Secteur 1 : BTP -->
+        <article class="ci-secteur ci-reveal">
+          <img src="images/campusinter/secteur-btp.jpg" alt="Construction site" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-house" aria-hidden="true"></i> BTP</h3>
+            <p>Masons, carpenters, electricians, plumbers, machine operators: positions in demand everywhere in France.</p>
+          </div>
+        </article>
+        <!-- Secteur 2 : Santé -->
+        <article class="ci-secteur ci-reveal" style="--d:.1s">
+          <img src="images/campusinter/secteur-sante.jpg" alt="Healthcare professional" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-bolt" aria-hidden="true"></i> Health</h3>
+            <p>Care assistants, nurses, home helpers: a sector desperately short of labor.</p>
+          </div>
+        </article>
+        <!-- Secteur 3 : Restauration -->
+        <article class="ci-secteur ci-reveal" style="--d:.2s">
+          <img src="images/campusinter/secteur-restauration.jpg" alt="Chef cooking in a kitchen" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-flask" aria-hidden="true"></i> Hospitality</h3>
+            <p>Cooks, waiters, kitchen assistants, restaurant managers: constant needs.</p>
+          </div>
+        </article>
+        <!-- Secteur 4 : Industrie -->
+        <article class="ci-secteur ci-reveal" style="--d:.3s">
+          <img src="images/campusinter/secteur-industrie.jpg" alt="Automated factory" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-chart-column" aria-hidden="true"></i> Industry</h3>
+            <p>Operators, technicians, welders, mechanics: French industry hires and trains.</p>
+          </div>
+        </article>
+        <!-- Secteur 5 : Services -->
+        <article class="ci-secteur ci-reveal" style="--d:.4s">
+          <img src="images/campusinter/secteur-services.jpg" alt="Modern office employee" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Services</h3>
+            <p>Logistics, trade, digital, home care: many opportunities for qualified profiles.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — NOTRE MÉTHODE (7 étapes) + PROMESSE
+       ========================================================== -->
+  <section class="ci-section ci-methode" id="ciMethode" data-ghost="02">
+    <!-- Hexagones : coin haut-gauche, présent, vert clair ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--tl ci-hex--lg ci-hex--mid" data-cols="6" data-rows="4" data-size="26" data-color="#8ee0b4" data-fill="5" data-img="images/campusinter/secteur-services.jpg" data-img-every="7" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker" style="color:#8ee0b4;">Our method</span>
+        <h2>Complete professional support</h2>
+        <p>From analyzing your profile to the work visa, we manage every step with rigor.</p>
+      </div>
+
+      <!-- Grille des 7 étapes de la méthode -->
+      <div class="ci-methode-grid">
+        <!-- Étape 1 -->
+        <div class="ci-methode-item ci-reveal">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Analysis of your profile</h3><p>Review of your skills, experience and career goals.</p></div>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.06s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Clear career project</h3><p>Defining a coherent and credible project for your file.</p></div>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.12s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>High-performing French CVs</h3><p>Writing CVs that meet French recruiters' standards.</p></div>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.18s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Tailored letters</h3><p>Personalized cover letters for each application.</p></div>
+        </div>
+        <!-- Étape 5 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.24s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Targeted applications</h3><p>Sending applications to employers hiring your profile.</p></div>
+        </div>
+        <!-- Étape 6 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.3s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Employer follow-up</h3><p>Coordination and follow-up with recruiters until the offer.</p></div>
+        </div>
+        <!-- Étape 7 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.36s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Work visa</h3><p>Complete preparation and follow-up of your work visa application.</p></div>
+        </div>
+      </div>
+
+      <!-- Bandeau promesse « Migration légale et encadrée » -->
+      <div class="ci-promesse ci-reveal">
+        <span class="ci-promesse-inner">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          🎯 Legal and supervised migration
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — MÉTIERS EN TENSION (liste par secteur)
+       ========================================================== -->
+  <section class="ci-section" id="ciMetiers" data-ghost="03">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">In-demand jobs</span>
+        <h2>The jobs hiring in France</h2>
+        <p>A selection of the most in-demand jobs, where your profile can quickly find an opportunity.</p>
+      </div>
+
+      <!-- Grille des métiers par secteur -->
+      <div class="ci-metiers-grid">
+        <!-- Métiers BTP -->
+        <div class="ci-metier ci-reveal">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-house" aria-hidden="true"></i></span>
+            <h3>Construction sector</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Mason / formworker</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Building electrician</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Plumber / heating technician</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Carpenter / joiner</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Machine operator</li>
+          </ul>
+        </div>
+        <!-- Métiers Santé -->
+        <div class="ci-metier ci-reveal" style="--d:.08s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+            <h3>Healthcare sector</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Care assistant</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Nurse</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Home care worker</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Home care assistant</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Midwife</li>
+          </ul>
+        </div>
+        <!-- Métiers Restauration -->
+        <div class="ci-metier ci-reveal" style="--d:.16s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+            <h3>Hospitality sector</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Cook / chef de partie</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Waiter / head waiter</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Kitchen assistant</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Restaurant manager</li>
+          </ul>
+        </div>
+        <!-- Métiers Industrie -->
+        <div class="ci-metier ci-reveal" style="--d:.24s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span>
+            <h3>Industry sector</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Production operator</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Welder / boilermaker</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Maintenance technician</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Mechanic / bodywork specialist</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Electromechanic</li>
+          </ul>
+        </div>
+        <!-- Métiers Services -->
+        <div class="ci-metier ci-reveal" style="--d:.32s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+            <h3>Services sector</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Order picker</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Salesperson / customer advisor</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Logistics agent</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Developer / IT technician</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — PROCÉDURE VISA TRAVAIL (timeline)
+       ========================================================== -->
+  <section class="ci-section ci-procedure" id="ciProcedure" data-ghost="04">
+    <!-- Hexagones : coin bas-gauche, très subtil, vert -->
+    <div class="ci-hex ci-hex--bl ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">The work visa procedure</span>
+        <h2>From application to visa, step by step</h2>
+        <p>A clear, secure pathway for a legal settlement in France.</p>
+      </div>
+
+      <!-- Timeline verticale -->
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 01</span>
+          <h3>Profile analysis</h3>
+          <p>Assessment of your skills, experience and the sectors that are hiring.</p>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 02</span>
+          <h3>Employer search</h3>
+          <p>Identifying an employer ready to recruit and sponsor you.</p>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 03</span>
+          <h3>Employment contract</h3>
+          <p>Validation of the job offer and employment contract (permanent/fixed-term).</p>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 04</span>
+          <h3>Work authorization</h3>
+          <p>Procedure with the French authorities (DIRECCTE / prefecture).</p>
+        </div>
+        <!-- Étape 5 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 05</span>
+          <h3>Visa application</h3>
+          <p>Submitting the long-stay work visa file and consular follow-up.</p>
+        </div>
+        <!-- Étape 6 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Step 06</span>
+          <h3>Arrival & settlement</h3>
+          <p>Flight, accommodation, residence permit: you are supported until settlement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — FAQ VISA TRAVAIL (accordéon)
+       ========================================================== -->
+  <section class="ci-section" id="ciFaq" data-ghost="05">
+    <!-- Hexagones : coin haut-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tr ci-hex--sm ci-hex--soft" data-cols="5" data-rows="3" data-size="20" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Work visa FAQ</span>
+        <h2>Your questions about working in France</h2>
+        <p>Answers to the most common questions about professional migration to France.</p>
+      </div>
+
+      <div class="ci-faq">
+        <!-- Question 1 : Faut-il un employeur avant ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Do I already need an employer in France?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Yes, for most work visas you need a job offer from a French employer. That's why our support starts with finding an employer willing to sponsor you.</p></div>
+        </div>
+        <!-- Question 2 : Quels sont les types de visa travail ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            What are the types of work visa?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>The main ones are: the salaried worker visa (permanent contract), the temporary worker visa (fixed-term contract), the "worker" residence card and the talent passport for qualified profiles. We determine the most suitable solution for your situation.</p></div>
+        </div>
+        <!-- Question 3 : Quelle est la durée de la procédure ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            How long does the procedure take?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>The delay varies by sector and visa type, but generally allow 2 to 6 months. We give you a realistic schedule from the first appointment.</p></div>
+        </div>
+        <!-- Question 4 : Puis-je faire venir ma famille ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Can I bring my family?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Depending on the visa type and after a certain period, family reunification may be possible. We inform you precisely about your rights and the procedures related to family.</p></div>
+        </div>
+        <!-- Question 5 : Coût de l'accompagnement -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            How much does your support cost?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Our prices are transparent and shared during the free first appointment. They depend on the complexity of the file. No hidden fees: you know exactly what is included.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL — dégradé sombre + vague
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Appel à l'action -->
+      <h2 class="ci-reveal">Ready to work in France?</h2>
+      <p class="ci-reveal">Send us your CV: an advisor analyzes your profile and presents the best opportunities.</p>
+      <!-- Boutons d'action -->
+      <div class="ci-cta-btns ci-reveal">
+        <a class="ci-btn ci-btn--primaire" href="/contact">
+          Send my CV now
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewbox="0 0 1440 70" preserveaspectratio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Working in France".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

@@ -1,0 +1,1309 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE ÉTUDIER EN FRANCE
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : etudier-en-france.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Étudier en France »
+     (catégorie : Visa Étude — France).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Images à déposer dans le Gestionnaire de médias :
+     - images/campusinter/hero-etudier-france.jpg
+     - images/campusinter/paris-universite.jpg (et autres
+       visuels des cartes "Pourquoi la France")
+     - images/campusinter/logo-galileo.png, logo-omnes.png,
+       logo-mediaschool.png, logo-hema.png, logo-mbn.png
+     - images/campusinter/ecole-xxx.png (logos des écoles)
+  4. Désactiver le filtrage HTML de l'article (sinon Joomla
+     supprime <style> et <script>).
+  5. Le header/footer peuvent être déplacés dans le template
+     pour éviter la duplication entre les pages.
+  6. Les filtres de la grille d'écoles sont en JS pur :
+      ils fonctionnent sans extension supplémentaire.
+  7. GRILLE HEXAGONALE : le motif est généré par le script
+      (div.ci-hex). Position : --tl/--tr/--bl/--br/--full ;
+      opacité : --faint/--soft/--mid/--strong ; densité :
+      data-cols/data-rows/data-size ; couleur data-color ;
+      remplissage data-fill ; images data-img/data-img-every.
+          8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE « ÉTUDIER EN FRANCE »
+     Styles scopés .ci- pour éviter tout conflit Joomla.
+     Les tokens reprennent la charte officielle (UX-UI-DESIGN).
+     ========================================================== */
+
+  /* --- Polices Google Fonts --- */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  /* --- Design tokens (charte Campus Inter) --- */
+  :root{
+    --ci-vert:#159447;  --ci-vert-fonce:#0F7A3A;  --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525;  --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;  --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8; --ci-bordure-input:#E2E8E2;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-grad-sombre:linear-gradient(135deg,#252525,#159447);
+    --ci-rayon:18px; --ci-rayon-lg:22px; --ci-pill:999px;
+    --ci-ombre-carte:0 8px 26px rgba(0,0,0,.06);
+    --ci-ombre:0 14px 40px rgba(21,148,71,.14);
+    --ci-ombre-forte:0 18px 45px rgba(21,148,71,.35);
+    --ci-ombre-noir:0 14px 40px rgba(21,148,71,.25);
+    --ci-ombre-header:0 8px 30px rgba(0,0,0,.08);
+    --ci-ombre-mega:0 25px 60px rgba(0,0,0,.14);
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px); --ci-section-pad-mobile:32px;
+    --ci-conteneur:100%;
+  }
+
+  /* --- Base --- */
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *, .ci-page *::before, .ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 1em; }
+  .ci-container{ width:var(--ci-conteneur); max-width:none; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+  .ci-section-titre{ text-align:center; max-width:720px; margin:0 auto 56px; }
+  .ci-kicker{ display:inline-block; font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:var(--ci-vert-fonce); margin-bottom:16px; }
+  .ci-section-titre h2{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:800; }
+  .ci-section-titre p{ color:var(--ci-texte-2); font-size:1.05rem; }
+
+  /* --- Boutons (mêmes styles que l'accueil) --- */
+  .ci-btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--ci-font-titres); font-weight:700; font-size:.95rem; padding:15px 30px; border-radius:999px; cursor:pointer; transition:transform .3s, box-shadow .3s, background .3s; border:none; position:relative; overflow:hidden; }
+  .ci-btn i{ font-size:18px; transition:transform .3s; }
+  .ci-btn:hover i{ transform:translateX(4px); }
+  .ci-btn--primaire{ background:var(--ci-grad); color:#fff; box-shadow:var(--ci-ombre-noir); }
+  .ci-btn--primaire:hover{ transform:translateY(-3px); box-shadow:var(--ci-ombre-forte); }
+  .ci-btn--primaire::after{ content:""; position:absolute; inset:0; background:var(--ci-grad-sombre); opacity:0; transition:opacity .35s; }
+  .ci-btn--primaire:hover::after{ opacity:1; }
+  .ci-btn--primaire > *{ position:relative; z-index:1; }
+  .ci-btn--outline{ background:transparent; color:var(--ci-noir); border:2px solid var(--ci-noir); }
+  .ci-btn--outline:hover{ background:var(--ci-noir); color:#fff; transform:translateY(-3px); }
+  .ci-btn--blanc{ background:#fff; color:var(--ci-vert-fonce); box-shadow:var(--ci-ombre); }
+  .ci-btn--blanc:hover{ transform:translateY(-3px); }
+  .ci-btn--filtre{ background:#fff; border:1.5px solid var(--ci-bordure); color:var(--ci-texte); font-size:.88rem; padding:10px 18px; font-family:var(--ci-font-texte); font-weight:600; transition:.25s; }
+  .ci-btn--filtre.ci-active{ background:var(--ci-vert); border-color:var(--ci-vert); color:#fff; box-shadow:var(--ci-ombre-noir); }
+  .ci-btn--filtre:hover{ border-color:var(--ci-vert); color:var(--ci-vert); }
+  .ci-btn--filtre.ci-active:hover{ color:#fff; }
+
+  /* --- Preloader --- */
+  .ci-preloader{ position:fixed; inset:0; z-index:9999; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transition:opacity .6s, visibility .6s; }
+  .ci-preloader.ci-hide{ opacity:0; visibility:hidden; }
+  .ci-preloader-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.8rem; color:var(--ci-vert); animation:ciPulse 1.6s infinite; }
+  .ci-preloader-bar{ width:180px; height:5px; background:var(--ci-fond); border-radius:99px; overflow:hidden; }
+  .ci-preloader-bar span{ display:block; height:100%; width:40%; background:var(--ci-grad); border-radius:99px; animation:ciLoad 1.2s infinite; }
+  @keyframes ciPulse{ 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(1.06); opacity:.85;} }
+  @keyframes ciLoad{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(450%);} }
+
+  /* --- Topbar --- */
+  .ci-topbar{ background:var(--ci-noir); color:#cfd8d2; font-size:.82rem; padding:8px 0; }
+  .ci-topbar .ci-container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .ci-topbar a{ color:#cfd8d2; display:inline-flex; align-items:center; gap:6px; transition:color .25s; }
+  .ci-topbar a:hover{ color:#fff; }
+  .ci-topbar i{ font-size:14px; }
+  .ci-topbar-infos{ display:flex; gap:20px; flex-wrap:wrap; }
+  .ci-topbar-social{ display:flex; gap:12px; }
+
+  /* --- Barre de progression de lecture --- */
+  .ci-scroll-progress{ position:fixed; top:0; left:0; height:4px; width:0; background:var(--ci-grad); z-index:1000; }
+
+  /* ==========================================================
+     POURQUOI ÉTUDIER EN FRANCE — 5 cartes avantages
+     ========================================================== */
+  .ci-avantage-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .ci-avantage{
+    background:#fff; border:1px solid var(--ci-bordure); border-radius:var(--ci-rayon-lg); padding:28px;
+    position:relative; overflow:hidden; transition:transform .3s, box-shadow .3s, border-color .3s;
+  }
+.ci-avantage:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); border-color:transparent; }
+  
+  .ci-avantage-icone{ width:58px; height:58px; border-radius:16px; background:var(--ci-vert-bg); color:var(--ci-vert); display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .ci-avantage-icone i{ font-size:28px; }
+  .ci-avantage h3{ font-size:1.15rem; }
+  .ci-avantage p{ color:var(--ci-texte-2); font-size:.93rem; margin:0; }
+
+  /* ==========================================================
+     NOTRE ACCOMPAGNEMENT — 4 étapes numérotées
+     ========================================================== */
+  .ci-accompagnement{ background:var(--ci-fond); }
+  .ci-acc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; }
+  .ci-acc-step{ background:#fff; border-radius:var(--ci-rayon-lg); padding:30px; text-align:center; position:relative; transition:transform .3s, box-shadow .3s; }
+  .ci-acc-step:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-acc-num{ font-family:var(--ci-font-titres); font-weight:800; font-size:2.4rem; color:var(--ci-vert-bg); line-height:1; }
+  .ci-acc-step h3{ font-size:1.1rem; margin-top:10px; }
+  .ci-acc-step p{ color:var(--ci-texte-2); font-size:.92rem; margin:0; }
+  .ci-acc-phrase{ text-align:center; font-family:var(--ci-font-titres); font-weight:700; font-size:1.2rem; color:var(--ci-vert-fonce); margin-top:40px; }
+
+  /* ==========================================================
+     PROCESSUS DÉTAILLÉ — timeline 6 étapes
+     ========================================================== */
+  .ci-timeline{ position:relative; max-width:900px; margin:0 auto; }
+  .ci-timeline::before{ content:""; position:absolute; left:50%; top:0; bottom:0; width:4px; background:var(--ci-vert-bg); transform:translateX(-50%); }
+  .ci-step{ position:relative; width:50%; padding:0 40px 44px; }
+  .ci-step:nth-child(odd){ left:0; text-align:right; }
+  .ci-step:nth-child(even){ left:50%; text-align:left; }
+  .ci-step-dot{ position:absolute; top:4px; width:22px; height:22px; border-radius:50%; background:#fff; border:5px solid var(--ci-vert); box-shadow:0 0 0 6px var(--ci-vert-bg); z-index:2; }
+  .ci-step:nth-child(odd) .ci-step-dot{ right:-11px; }
+  .ci-step:nth-child(even) .ci-step-dot{ left:-11px; }
+  .ci-step-num{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.1rem; color:var(--ci-vert); }
+  .ci-step h3{ font-size:1.12rem; margin:.2em 0 .3em; }
+  .ci-step p{ color:var(--ci-texte-2); font-size:.93rem; margin:0; }
+
+  /* ==========================================================
+     ÉCOLES & PROGRAMMES — grille filtrable par domaine
+     ========================================================== */
+  .ci-ecoles{ background:var(--ci-fond); }
+  /* Barre de filtres (domaines) */
+  .ci-filtres{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:40px; }
+  /* Grille des écoles */
+  .ci-ecole-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .ci-ecole-card{ background:#fff; border-radius:var(--ci-rayon-lg); overflow:hidden; box-shadow:var(--ci-ombre-carte); transition:transform .3s, box-shadow .3s; opacity:0; transform:scale(.94); transition:opacity .35s, transform .35s, box-shadow .3s; }
+  .ci-ecole-card.ci-visible{ opacity:1; transform:scale(1); }
+  .ci-ecole-card:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-ecole-head{ background:var(--ci-vert-bg); padding:34px 20px; display:flex; align-items:center; justify-content:center; min-height:110px; }
+  .ci-ecole-head img{ max-height:52px; }
+  .ci-ecole-head .ci-no-logo{ font-family:var(--ci-font-titres); font-weight:800; color:var(--ci-vert-fonce); font-size:1.1rem; text-align:center; }
+  .ci-ecole-body{ padding:22px; }
+  .ci-ecole-body h3{ font-size:1.12rem; }
+  .ci-ecole-tags{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 14px; }
+  .ci-tag{ font-size:.75rem; font-weight:600; background:var(--ci-fond); color:var(--ci-texte-2); padding:5px 12px; border-radius:99px; }
+  .ci-ecole-ligne{ display:flex; align-items:center; gap:8px; font-size:.85rem; color:var(--ci-texte-2); margin-bottom:6px; }
+  .ci-ecole-ligne i{ font-size:15px; color:var(--ci-vert); flex-shrink:0; }
+  .ci-ecole-lien{ display:inline-flex; align-items:center; gap:8px; color:var(--ci-vert); font-weight:700; font-size:.9rem; margin-top:12px; }
+  .ci-ecole-lien i{ font-size:16px; transition:transform .3s; }
+  .ci-ecole-lien:hover i{ transform:translateX(5px); }
+
+  /* ==========================================================
+     TÉMOIGNAGE SPÉCIFIQUE FRANCE
+     ========================================================== */
+  .ci-temoignage-france{ max-width:min(100%,1000px); margin:0 auto; background:#fff; border-radius:var(--ci-rayon-lg); padding:38px; text-align:center; box-shadow:var(--ci-ombre); position:relative; }
+  .ci-temoignage-france::before{ content:"“"; position:absolute; top:10px; left:30px; font-family:var(--ci-font-titres); font-size:6rem; color:var(--ci-vert-bg); line-height:1; }
+  .ci-etoiles{ color:#F5B301; font-size:1.15rem; letter-spacing:4px; margin-bottom:16px; }
+  .ci-temoignage-france blockquote{ font-size:1.08rem; font-style:italic; color:var(--ci-texte); margin:0 0 20px; }
+  .ci-temoignage-auteur{ display:flex; align-items:center; justify-content:center; gap:14px; }
+  .ci-avatar{ width:52px; height:52px; border-radius:50%; background:var(--ci-grad); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-family:var(--ci-font-titres); }
+  .ci-temoignage-auteur b{ display:block; font-family:var(--ci-font-titres); }
+  .ci-temoignage-auteur small{ color:var(--ci-texte-2); }
+
+  /* ==========================================================
+     FAQ VISA ÉTUDIANT — accordéon
+     ========================================================== */
+  .ci-faq{ max-width:760px; margin:0 auto; }
+  .ci-faq-item{ background:#fff; border:1px solid var(--ci-bordure); border-radius:16px; margin-bottom:14px; overflow:hidden; transition:box-shadow .3s; }
+  .ci-faq-item.ci-open{ box-shadow:var(--ci-ombre); border-color:transparent; }
+  .ci-faq-q{ width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px; background:none; border:none; cursor:pointer; padding:20px 24px; text-align:left; font-family:var(--ci-font-titres); font-weight:700; font-size:1rem; color:var(--ci-noir); }
+  .ci-faq-icone{ width:30px; height:30px; flex-shrink:0; border-radius:50%; background:var(--ci-vert-bg); color:var(--ci-vert); display:flex; align-items:center; justify-content:center; transition:transform .35s; }
+  .ci-faq-icone i{ font-size:16px; }
+  .ci-faq-item.ci-open .ci-faq-icone{ transform:rotate(45deg); background:var(--ci-vert); color:#fff; }
+  .ci-faq-a{ max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .ci-faq-a p{ padding:0 24px 20px; margin:0; color:var(--ci-texte-2); font-size:.94rem; }
+
+  /* ==========================================================
+     CTA FINAL — dégradé sombre + vague
+     ========================================================== */
+  .ci-cta{ background:var(--ci-grad-sombre); color:#fff; text-align:center; position:relative; overflow:hidden; }
+  .ci-cta h2{ color:#fff; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; }
+  .ci-cta p{ color:#dceadf; max-width:600px; margin:0 auto 34px; }
+  .ci-cta-btns{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .ci-wave{ position:absolute; bottom:-1px; left:0; width:100%; line-height:0; }
+  .ci-wave i{ width:100%; height:70px; fill:var(--ci-fond-2); }
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+  .ci-footer{ background:#1c1c1c; color:#c7d2cb; padding:70px 0 0; font-size:.92rem; }
+  .ci-footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:50px; }
+  .ci-footer h4{ color:#fff; font-size:1.05rem; margin-bottom:18px; position:relative; padding-bottom:10px; }
+  
+  .ci-footer a{ color:#c7d2cb; display:block; padding:5px 0; transition:color .25s, transform .25s; }
+  .ci-footer a:hover{ color:var(--ci-vert-clair); transform:translateX(4px); }
+  .ci-footer-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.5rem; color:#fff; margin-bottom:14px; }
+  .ci-footer-logo img{ height:46px; filter:brightness(0) invert(1); }
+  .ci-footer-contact a{ display:flex; gap:10px; align-items:flex-start; }
+  .ci-footer-contact i{ font-size:18px; color:var(--ci-vert-clair); flex-shrink:0; margin-top:4px; }
+  .ci-footer-social{ display:flex; gap:10px; margin-top:18px; }
+  .ci-footer-social a{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; padding:0; }
+  .ci-footer-social i{ font-size:18px; }
+  .ci-footer-social a:hover{ background:var(--ci-vert); transform:translateY(-3px); }
+  .ci-footer-bottom{ border-top:1px solid rgba(255,255,255,.1); padding:22px 0; text-align:center; font-size:.82rem; }
+  .ci-footer-bottom a{ display:inline; padding:0 8px; }
+
+  /* --- Boutons flottants --- */
+  .ci-whatsapp{ position:fixed; bottom:26px; right:26px; z-index:900; width:60px; height:60px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(37,211,102,.4); transition:transform .3s; }
+  .ci-whatsapp:hover{ transform:scale(1.1); }
+  .ci-whatsapp i{ font-size:30px; }
+  .ci-whatsapp::before{ content:""; position:absolute; inset:-6px; border-radius:50%; border:2px solid #25D366; animation:ciPulseRing 1.8s ease-out infinite; }
+  @keyframes ciPulseRing{ 0%{ transform:scale(.85); opacity:1;} 100%{ transform:scale(1.4); opacity:0;} }
+  .ci-to-top{ position:fixed; bottom:100px; right:34px; z-index:900; width:48px; height:48px; border-radius:12px; background:var(--ci-noir); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transform:translateY(14px); transition:.35s; }
+  .ci-to-top.ci-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+  .ci-to-top:hover{ background:var(--ci-vert); }
+  .ci-to-top i{ font-size:20px; }
+
+  /* --- Système reveal au scroll --- */
+  .ci-reveal{ opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal.ci-visible{ opacity:1; transform:translateY(0); }
+  .ci-reveal-left{ opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-left.ci-visible{ opacity:1; transform:translateX(0); }
+  .ci-reveal-right{ opacity:0; transform:translateX(40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-right.ci-visible{ opacity:1; transform:translateX(0); }
+
+  /* --- Responsive --- */
+  @media (max-width:1024px){
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+    .ci-timeline::before{ left:12px; }
+    .ci-step{ width:100%; left:0 !important; text-align:left !important; padding:0 0 40px 46px; }
+    .ci-step:nth-child(odd) .ci-step-dot, .ci-step:nth-child(even) .ci-step-dot{ left:1px; right:auto; }
+  }
+  @media (max-width:640px){
+    .ci-section{ padding:var(--ci-section-pad-mobile) 0; }
+    .ci-topbar-infos{ justify-content:center; }
+    .ci-topbar-social{ display:none; }
+    .ci-footer-grid{ grid-template-columns:1fr; gap:30px; }
+  }
+  @media (max-width:400px){
+    .ci-container{ padding-left:14px; padding-right:14px; }
+    .ci-section{ padding:24px 0; }
+    .ci-section-titre{ margin-bottom:34px; }
+  }
+
+  /* --- Accessibilité : désactivation des animations --- */
+  @media (prefers-reduced-motion: reduce){
+    .ci-preloader-bar span, .ci-hero-particles span, .ci-whatsapp::before{ animation:none !important; }
+    .ci-reveal, .ci-reveal-left, .ci-reveal-right{ opacity:1 !important; transform:none !important; }
+  }
+
+  /* ==========================================================
+     GRILLE HEXAGONALE DÉCORATIVE (arrière-plans de sections)
+     Conteneur positionné : --tl/--tr/--bl/--br/--full,
+     tailles --sm/--md/--lg/--xl, opacité --faint/--soft/--mid/--strong.
+     Motif SVG généré par le script (attributs data-*).
+     ========================================================== */
+  section{ position:relative; }
+  .ci-hex{
+    position:absolute; pointer-events:none; overflow:hidden;
+    line-height:0; z-index:0;
+  }
+  .ci-hex i{ display:block; width:100%; height:100%; }
+  .ci-hex--tl{ top:0; left:0; }
+  .ci-hex--tr{ top:0; right:0; }
+  .ci-hex--bl{ bottom:0; left:0; }
+  .ci-hex--br{ bottom:0; right:0; }
+  .ci-hex--full{ inset:0; width:100%; height:100%; }
+  .ci-hex--sm{ width:130px; height:150px; }
+  .ci-hex--md{ width:230px; height:270px; }
+  .ci-hex--lg{ width:350px; height:410px; }
+  .ci-hex--xl{ width:520px; height:600px; }
+  .ci-hex--faint{ opacity:.07; }
+  .ci-hex--soft{ opacity:.14; }
+  .ci-hex--mid{ opacity:.24; }
+  .ci-hex--strong{ opacity:.38; }
+  section > .ci-container{ position:relative; z-index:1; }
+  
+
+
+  /* ==========================================================
+     PRÉMIUM — cohérence éditoriale avec l'accueil
+     Numéros fantômes de section
+     ========================================================== */
+  .ci-section[data-ghost]::before{
+    content:attr(data-ghost);
+    position:absolute; top:clamp(6px,2vw,28px); right:clamp(8px,2.5vw,44px); z-index:0;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(3.8rem,7.5vw,6rem); line-height:1;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.2);
+    pointer-events:none; user-select:none;
+  }
+  .ci-section[data-ghost].ci-band-chiffres::before,
+  .ci-section[data-ghost].ci-partners::before{
+    -webkit-text-stroke:1.5px rgba(255,255,255,.16);
+  }
+  @media (max-width:640px){
+    .ci-section[data-ghost]::before{ display:none; }
+  }
+
+
+
+  /* ==========================================================
+     HERO INTÉRIEUR — ADN premium accueil, variante inversée
+     Grille inversée (média gauche / texte droite) + chips de nav
+     ========================================================== */
+  .ci-page-hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#f1f8f4 0%,#ffffff 55%);
+    padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px);
+  }
+  .ci-page-hero .ci-hex{ opacity:.45; }
+  .ci-breadcrumb{ display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap; align-items:center;
+    font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--ci-texte-2); margin-bottom:clamp(28px,4vw,44px); }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); transition:color .25s; }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-sep{ opacity:.5; margin:0 2px; }
+  .ci-breadcrumb .ci-here{ color:var(--ci-vert-fonce); font-weight:700; }
+  .ci-hero-grid--inverse{
+    display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);
+    gap:clamp(32px,5vw,72px); align-items:center; position:relative; z-index:1;
+    grid-template-areas:"media content";
+  }
+  .ci-hero-grid--inverse .ci-hero-content{ grid-area:content; }
+  .ci-hero-grid--inverse .ci-hero-media{ grid-area:media; }
+  .ci-hero-kicker{ display:inline-flex; align-items:center; gap:10px; font-size:.8rem; font-weight:700;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--ci-vert-fonce); margin-bottom:20px; }
+  .ci-hero-kicker::before{ content:""; width:34px; height:2px; background:var(--ci-vert); border-radius:99px; }
+  .ci-hero-kicker i{ font-size:15px; color:var(--ci-vert); }
+  .ci-page-hero h1{ font-size:clamp(2.4rem,5.2vw,3.9rem); font-weight:800; color:var(--ci-noir); margin:0 0 18px; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-page-hero .ci-hero-sous{ font-size:1.08rem; color:var(--ci-texte); max-width:540px; margin-bottom:28px; }
+  .ci-hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .ci-hero-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .ci-hero-chip{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #e2e8e2;
+    border-radius:999px; padding:9px 16px; font-size:.82rem; font-weight:600; color:var(--ci-texte); transition:.25s; }
+  .ci-hero-chip i{ color:var(--ci-vert); font-size:14px; }
+  .ci-hero-chip:hover{ border-color:var(--ci-vert); color:var(--ci-vert-fonce); transform:translateY(-2px); box-shadow:0 10px 24px rgba(18,52,36,.1); }
+  .ci-hero-media{ position:relative; z-index:1; max-width:min(100%,360px); justify-self:end; }
+  .ci-hero-blob{ position:absolute; width:82%; height:74%; top:6%; left:-6%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(29,184,94,.55), rgba(21,148,71,.06) 72%); z-index:0; }
+  .ci-hero-dots{ position:absolute; z-index:0; right:-16%; bottom:2%; opacity:.65; }
+  .ci-hero-img-frame{ position:relative; z-index:1; }
+  .ci-hero-img-frame::before{ content:""; position:absolute; inset:0; transform:translate(-14px,-14px);
+    border:2px solid var(--ci-vert); border-radius:26px; opacity:.4; z-index:0; }
+  .ci-hero-img{ position:relative; z-index:1; width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:26px;
+    box-shadow:0 34px 70px rgba(18,52,36,.24); }
+  .ci-hero-card{ position:absolute; z-index:2; display:flex; align-items:center; gap:12px; background:#fff;
+    border-radius:16px; padding:14px 18px; box-shadow:0 18px 44px rgba(18,52,36,.16); border:1px solid #eef5f0; }
+  .ci-hero-card i{ font-size:20px; color:var(--ci-vert); }
+  .ci-hero-card b{ font-family:var(--ci-font-titres); font-size:1.2rem; color:var(--ci-noir); line-height:1.1; }
+  .ci-hero-card small{ color:var(--ci-texte-2); font-size:.78rem; }
+  .ci-hero-card--1{ top:7%; left:-7%; }
+  .ci-hero-card--2{ bottom:12%; right:-9%; }
+  .ci-hero-tag{ position:absolute; z-index:2; bottom:7%; right:-5%; background:rgba(21,148,71,.94); color:#fff;
+    padding:8px 16px; border-radius:999px; font-size:.82rem; font-weight:600; box-shadow:0 14px 30px rgba(21,148,71,.35); }
+  .ci-ghost{
+    position:absolute; z-index:0; font-family:var(--ci-font-titres); font-weight:800;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.3); user-select:none; pointer-events:none; line-height:1;
+  }
+  .ci-hero-media .ci-ghost{ top:-34px; left:-4%; font-size:clamp(4.2rem,7vw,6rem); }
+  @media (max-width:1024px){
+    .ci-hero-grid--inverse{ grid-template-columns:1fr; grid-template-areas:"content" "media"; }
+    .ci-hero-media{ max-width:min(100%,330px); margin:0 auto; justify-self:auto; }
+    .ci-hero-media .ci-ghost{ top:-36px; left:6%; }
+    .ci-hero-blob{ left:auto; right:-6%; }
+  }
+  @media (max-width:640px){
+    .ci-hero-media{ max-width:min(100%,300px); }
+    .ci-hero-card--1{ left:-4%; }
+    .ci-hero-card--2{ right:-4%; }
+    .ci-hero-tag{ right:-3%; }
+  }
+  @media (max-width:400px){
+    .ci-hero-media{ max-width:min(100%,260px); }
+    .ci-hero-chips{ gap:8px; }
+    .ci-hero-chip{ padding:8px 13px; font-size:.76rem; }
+  }
+</style>
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Appeler le fixe">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Envoyer un email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Lundi - Vendredi, 07h30 à 17h30
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="01">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span class="ci-sep">›</span><a href="#">Visa Étude</a><span class="ci-sep">›</span><span class="ci-here">Étudier en France</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            Visa Étude · Campus Inter
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Étudier en <em>France</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Un diplôme reconnu mondialement, un accompagnement complet et un visa sécurisé : votre projet d'études en France commence ici.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Vérifier mon éligibilité
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciPourquoiFrance">Pourquoi la France ?</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Nos engagements">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Premier échange gratuit</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Réponse sous 48 h</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp disponible</span>
+          </div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciPourquoiFrance"><i class="fa-solid fa-star" aria-hidden="true"></i>Pourquoi la France</a>
+            <a class="ci-hero-chip" href="#ciAccompagnement"><i class="fa-solid fa-user-check" aria-hidden="true"></i>Accompagnement</a>
+            <a class="ci-hero-chip" href="#ciProcessus"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Processus</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">01</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-etudier-france.jpg" alt="Université en France">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Campus France</b><small>dossier structuré</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Visa étude</b><small>étapes accompagnées</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> France · Visa Étude</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — POURQUOI ÉTUDIER EN FRANCE (5 cartes)
+       ========================================================== -->
+  <section class="ci-section" id="ciPourquoiFrance" data-ghost="01">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Pourquoi la France</span>
+        <h2>Une destination d'exception pour vos études</h2>
+        <p>La France offre un enseignement d'excellence, accessible et tourné vers l'international.</p>
+      </div>
+
+      <!-- Grille des 5 avantages -->
+      <div class="ci-avantage-grid">
+        <!-- Avantage 1 : Diplômes reconnus -->
+        <article class="ci-avantage ci-reveal">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+          <h3>Diplômes reconnus mondialement</h3>
+          <p>Les diplômes français sont valorisés partout dans le monde et ouvrent des portes sur tous les continents.</p>
+        </article>
+        <!-- Avantage 2 : Coûts accessibles -->
+        <article class="ci-avantage ci-reveal" style="--d:.08s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i></span>
+          <h3>Coûts accessibles</h3>
+          <p>Des frais de scolarité maîtrisés et un système d'aides sociales étudiantes (logement, santé, CAF).</p>
+        </article>
+        <!-- Avantage 3 : Universités de qualité -->
+        <article class="ci-avantage ci-reveal" style="--d:.16s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-landmark" aria-hidden="true"></i></span>
+          <h3>Universités de qualité</h3>
+          <p>Des établissements publics et privés d'excellence, dans toutes les villes et tous les domaines.</p>
+        </article>
+        <!-- Avantage 4 : Opportunités professionnelles -->
+        <article class="ci-avantage ci-reveal" style="--d:.24s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+          <h3>Opportunités professionnelles</h3>
+          <p>Stages, alternance et employabilité renforcée : un tremplin pour votre carrière en Europe.</p>
+        </article>
+        <!-- Avantage 5 : Ouverture internationale -->
+        <article class="ci-avantage ci-reveal" style="--d:.32s">
+          <span class="ci-avantage-icone"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+          <h3>Ouverture internationale</h3>
+          <p>Une vie étudiante cosmopolite, des campus dans toute l'Europe et un réseau d'alumni puissant.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — NOTRE ACCOMPAGNEMENT COMPLET (4 étapes)
+       ========================================================== -->
+  <section class="ci-section ci-accompagnement" id="ciAccompagnement" data-ghost="02">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Notre accompagnement</span>
+        <h2>Un suivi complet, du projet au visa</h2>
+        <p>Quatre étapes clés pour transformer votre ambition en réalité.</p>
+      </div>
+
+      <!-- Grille des 4 étapes -->
+      <div class="ci-acc-grid">
+        <!-- Étape 1 : Orientation académique -->
+        <div class="ci-acc-step ci-reveal">
+          <div class="ci-acc-num">01</div>
+          <h3>Orientation académique</h3>
+          <p>Choix de formations adaptées à ton profil, à ton niveau et à ton projet professionnel.</p>
+        </div>
+        <!-- Étape 2 : Dossier Campus France -->
+        <div class="ci-acc-step ci-reveal" style="--d:.1s">
+          <div class="ci-acc-num">02</div>
+          <h3>Dossier Campus France</h3>
+          <p>Montage stratégique et solide : CV, lettres de motivation, justificatifs et préparation.</p>
+        </div>
+        <!-- Étape 3 : Visa étudiant -->
+        <div class="ci-acc-step ci-reveal" style="--d:.2s">
+          <div class="ci-acc-num">03</div>
+          <h3>Visa étudiant</h3>
+          <p>Préparation complète à l'entretien consulaire et suivi de la procédure jusqu'à la délivrance.</p>
+        </div>
+        <!-- Étape 4 : Installation -->
+        <div class="ci-acc-step ci-reveal" style="--d:.3s">
+          <div class="ci-acc-num">04</div>
+          <h3>Installation</h3>
+          <p>Logement, assurance, formalités administratives : vous êtes accompagné à l'arrivée.</p>
+        </div>
+      </div>
+
+      <!-- Phrase signature -->
+      <p class="ci-acc-phrase ci-reveal">👉 Étudier en France devient simple et sécurisé.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — PROCESSUS DÉTAILLÉ (timeline 6 étapes)
+       ========================================================== -->
+  <section class="ci-section" id="ciProcessus" data-ghost="03">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Le processus</span>
+        <h2>Six étapes vers votre diplôme en France</h2>
+        <p>Un parcours balisé et transparent, géré de A à Z par nos conseillers.</p>
+      </div>
+
+      <!-- Timeline verticale -->
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 01</span>
+          <h3>Bilan &amp; orientation</h3>
+          <p>Analyse de votre profil, de vos résultats et de vos objectifs pour définir la bonne filière.</p>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 02</span>
+          <h3>Sélection des formations</h3>
+          <p>Choix des écoles et programmes parmi plus de 100 établissements partenaires en Europe.</p>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 03</span>
+          <h3>Dossier Campus France</h3>
+          <p>Constitution et validation du dossier académique, pièces justificatives et cohérence du projet.</p>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 04</span>
+          <h3>Entretien Campus France</h3>
+          <p>Simulations et préparation intensive pour réussir votre entretien en toute confiance.</p>
+        </div>
+        <!-- Étape 5 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 05</span>
+          <h3>Visa étudiant</h3>
+          <p>Dépôt du dossier, suivi consulaire et accompagnement jusqu'à l'obtention du visa long séjour.</p>
+        </div>
+        <!-- Étape 6 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 06</span>
+          <h3>Départ &amp; installation</h3>
+          <p>Vol, logement, assurance et formalités : nous restons à vos côtés une fois arrivé en France.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — ÉCOLES & PROGRAMMES (grille filtrable)
+       ========================================================== -->
+  <section class="ci-section ci-ecoles" id="ciEcoles" data-ghost="04">
+    <!-- Hexagones : coin haut-gauche, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Écoles &amp; programmes</span>
+        <h2>Trouvez la formation idéale</h2>
+        <p>Explorez nos établissements partenaires, tous domaines confondus. Cliquez sur un domaine pour filtrer.</p>
+      </div>
+
+      <!-- Barre de filtres par domaine -->
+      <div class="ci-filtres ci-reveal" role="tablist" aria-label="Filtrer les écoles par domaine">
+        <button class="ci-btn ci-btn--filtre ci-active" data-filtre="tous">Tous</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="management">Management &amp; Business</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="digital">Digital &amp; Tech</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="communication">Communication &amp; Médias</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="arts">Arts &amp; Création</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="sante">Santé</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="droit">Droit</button>
+        <button class="ci-btn ci-btn--filtre" data-filtre="tourisme">Tourisme &amp; Luxe</button>
+      </div>
+
+      <!-- Grille d'écoles (data-domaine pour le filtrage) -->
+      <div class="ci-ecole-grid" id="ciEcoleGrid">
+        <!-- École 1 : GGE — emlyon (Management) -->
+        <article class="ci-ecole-card" data-domaine="management">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <h3>emlyon business school</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Management</span><span class="ci-tag">Programme Grande École</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon · Shanghai · Mumbai</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Programme Grande École</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/emlyon">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 2 : GGE — Digital Campus (Digital) -->
+        <article class="ci-ecole-card" data-domaine="digital">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <h3>Digital Campus</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Digital</span><span class="ci-tag">Tech</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Dakar</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Digital</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/digital-campus">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 3 : OMNES — ESCE (Management/International) -->
+        <article class="ci-ecole-card" data-domaine="management">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <h3>ESCE Business School</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Commerce international</span><span class="ci-tag">Bachelor</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère · PGE</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/esce">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 4 : OMNES — ECE (Ingénierie/Digital) -->
+        <article class="ci-ecole-card" data-domaine="digital">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <h3>ECE — École d'ingénieurs</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Ingénierie</span><span class="ci-tag">Digital</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bac+2 · Bac+5 Ingénieur</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/ece">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 5 : MediaSchool — IEJ (Communication/Médias) -->
+        <article class="ci-ecole-card" data-domaine="communication">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mediaschool.png" alt="MediaSchool"></div>
+          <div class="ci-ecole-body">
+            <h3>IEJ — Journalisme</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Journalisme</span><span class="ci-tag">Médias</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · 15 campus en France</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Communication</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/iej">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 6 : MediaSchool — Paris School of Tourism (Tourisme/Luxe) -->
+        <article class="ci-ecole-card" data-domaine="tourisme">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mediaschool.png" alt="MediaSchool"></div>
+          <div class="ci-ecole-body">
+            <h3>Paris School of Tourism &amp; Communication</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Tourisme</span><span class="ci-tag">Communication</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bruxelles · Barcelone</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> BTS · Bachelor · Mastère</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/pstc">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 7 : HEMA — ESCI Paris (Management) -->
+        <article class="ci-ecole-card" data-domaine="management">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-hema.png" alt="Groupe HEMA"></div>
+          <div class="ci-ecole-body">
+            <h3>ESCI Paris</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Commerce international</span><span class="ci-tag">Programme Grande École</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris — Marne-la-Vallée</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Programme Grande École · Bac à Bac+5</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/esci">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 8 : MBN — BTS/Bachelor (Management) -->
+        <article class="ci-ecole-card" data-domaine="management">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mbn.png" alt="MBN Global Education"></div>
+          <div class="ci-ecole-body">
+            <h3>MBN — BTS &amp; Bachelor</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">BTS</span><span class="ci-tag">Bachelor</span><span class="ci-tag">Mastère</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris-Torcy · Paris-Évry · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> BTS · Bachelor · Mastère</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/mbn">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 9 : GGE — Cours Florent (Arts) -->
+        <article class="ci-ecole-card" data-domaine="arts">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <h3>Cours Florent</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Art dramatique</span><span class="ci-tag">Audiovisuel</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Montpellier · Bordeaux</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Mastère Création</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/cours-florent">Voir la fiche <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — TÉMOIGNAGE SPÉCIFIQUE FRANCE
+       ========================================================== -->
+  <section class="ci-section" id="ciTemoignage">
+    <!-- Hexagones : coin bas-droit, présent, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--mid" data-cols="5" data-rows="3" data-size="26" data-color="#159447" data-fill="5" data-img="images/campusinter/paris-universite.jpg" data-img-every="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Témoignage d'un étudiant parti en France -->
+      <div class="ci-temoignage-france ci-reveal">
+        <div class="ci-etoiles" aria-label="5 étoiles">★★★★★</div>
+        <blockquote>« Du premier rendez-vous à mon arrivée à Lyon, j'ai été guidé à chaque étape. Mon dossier Campus France était parfait, et mon visa est arrivé plus vite que prévu. »</blockquote>
+        <div class="ci-temoignage-auteur">
+          <span class="ci-avatar">K</span>
+          <div style="text-align:left;">
+            <b>Kossi</b>
+            <small>Bachelor en France — Lyon</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6 — FAQ VISA ÉTUDIANT (accordéon)
+       ========================================================== -->
+  <section class="ci-section" style="background:var(--ci-fond);" id="ciFaq" data-ghost="05">
+    <!-- Hexagones : coin bas-gauche, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--bl ci-hex--sm ci-hex--soft" data-cols="5" data-rows="3" data-size="20" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">FAQ visa étudiant</span>
+        <h2>Vos questions sur les études en France</h2>
+        <p>Les réponses aux questions les plus fréquentes sur la procédure d'études en France.</p>
+      </div>
+
+      <div class="ci-faq">
+        <!-- Question 1 : Campus France obligatoire ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            La procédure Campus France est-elle obligatoire ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Oui, pour la majorité des étudiants étrangers. Campus France évalue votre projet et votre niveau académique, puis délivre l'attestation nécessaire à la demande de visa. Nous prenons en charge l'intégralité de cette procédure avec vous.</p></div>
+        </div>
+        <!-- Question 2 : Niveau de français exigé ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Quel niveau de français est exigé ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Cela dépend de la formation. Pour la plupart des programmes en français, un niveau B2 est recommandé (TCF, DELF, DALF). De nombreux établissements proposent aussi des programmes en anglais ou des parcours intensifs de français.</p></div>
+        </div>
+        <!-- Question 3 : Frais de scolarité -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Combien coûtent les études en France ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Les frais varient selon le type d'établissement : universités publiques (frais modérés) ou écoles privées (plus élevés mais professionnalisants). Nos conseillers vous présentent un budget réaliste complet : scolarité, logement, assurance et vie courante.</p></div>
+        </div>
+        <!-- Question 4 : Peut-on travailler pendant ses études ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Peut-on travailler pendant ses études ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Oui, avec un visa étudiant, vous pouvez travailler jusqu'à 964 heures par an en France. C'est un excellent moyen de financer une partie de votre séjour et d'acquérir une première expérience professionnelle.</p></div>
+        </div>
+        <!-- Question 5 : Délais de la procédure -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Quels sont les délais moyens ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>La procédure complète prend généralement de 2 à 4 mois selon la période. Il est conseillé de commencer vos démarches 6 à 9 mois avant la rentrée souhaitée. Nous vous fournissons un calendrier précis dès le premier rendez-vous.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL — dégradé sombre + vague
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Appel à l'action -->
+      <h2 class="ci-reveal">Prêt à étudier en France ?</h2>
+      <p class="ci-reveal">Discutons de votre projet : un conseiller Campus Inter vous répond sous 48h pour un premier bilan gratuit.</p>
+      <!-- Boutons d'action -->
+      <div class="ci-cta-btns ci-reveal">
+        <a class="ci-btn ci-btn--primaire" href="/contact">
+          Démarrer mon projet maintenant
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener">Discuter sur WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT « ÉTUDIER EN FRANCE »
+     IIFE pour éviter les conflits avec le template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences de mouvement (accessibilité) */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000); /* filet de sécurité */
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    var toTop = document.getElementById('ciToTop');
+    function onScroll(){      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       3. PARALLAX — l'image du hero bouge au scroll
+       ---------------------------------------------------------- */
+    var bgParallax = document.getElementById('ciBgParallax');
+    if(bgParallax && !reducedMotion){
+      window.addEventListener('scroll', function(){
+        /* Déplacement vertical léger : 30 % de la vitesse de scroll */
+        var y = window.scrollY * 0.3;
+        bgParallax.style.transform = 'translate3d(0,' + y + 'px,0)';
+      }, { passive:true });
+    }
+
+    /* ----------------------------------------------------------
+       4. REVEAL AU SCROLL
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       5. FILTRE DES ÉCOLES PAR DOMAINE
+       ---------------------------------------------------------- */
+    var filtres = document.querySelectorAll('.ci-btn--filtre');
+    var cartes = document.querySelectorAll('.ci-ecole-card');
+    filtres.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        /* Activation visuelle du bouton cliqué */
+        filtres.forEach(function(b){ b.classList.remove('ci-active'); });
+        btn.classList.add('ci-active');
+
+        var filtre = btn.getAttribute('data-filtre');
+        cartes.forEach(function(carte){
+          var domaine = carte.getAttribute('data-domaine');
+          var match = (filtre === 'tous') || (domaine === filtre);
+          /* Affichage avec animation d'apparition en fondu */
+          if(match){
+            carte.style.display = 'block';
+            requestAnimationFrame(function(){ carte.classList.add('ci-visible'); });
+          } else {
+            carte.classList.remove('ci-visible');
+            carte.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* ----------------------------------------------------------
+       6. FAQ ACCORDÉON
+       ---------------------------------------------------------- */
+    document.querySelectorAll('.ci-faq-item').forEach(function(item){
+      var btn = item.querySelector('.ci-faq-q');
+      btn.addEventListener('click', function(){
+        var isOpen = item.classList.contains('ci-open');
+        document.querySelectorAll('.ci-faq-item.ci-open').forEach(function(other){
+          other.classList.remove('ci-open');
+          other.querySelector('.ci-faq-a').style.maxHeight = null;
+          other.querySelector('.ci-faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if(!isOpen){
+          item.classList.add('ci-open');
+          item.querySelector('.ci-faq-a').style.maxHeight = item.querySelector('.ci-faq-a').scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ----------------------------------------------------------
+       8. BOUTON RETOUR EN HAUT (remontée fluide)
+       ---------------------------------------------------------- */
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       9. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+  /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Étudier en France ».
+       2. Images à déposer dans le Gestionnaire de médias.
+       3. Désactiver le filtrage HTML de l'article.
+       4. Menu : Visa Étude > Étudier en France (alias).
+       5. Pour ajouter/retirer des écoles : dupliquer une
+          <article class="ci-ecole-card" data-domaine="..."> et
+          ajuster son attribut data-domaine pour le filtrage.
+       6. En production, les liens « Voir la fiche » pointent vers
+          les fiches écoles (articles dédiés).
+       ============================================================ -->
+</div>

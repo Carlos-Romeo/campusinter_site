@@ -1,0 +1,1215 @@
+<!-- ============================================================
+  CAMPUS INTER — PAGE TRAVAILLER EN FRANCE
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 13/08/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : travailler-en-france.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Travailler en France »
+     (catégorie : Visa Travail — France).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Images à déposer dans le Gestionnaire de médias :
+     - images/campusinter/hero-travailler-france.jpg
+     - images/campusinter/secteur-btp.jpg
+     - images/campusinter/secteur-sante.jpg
+     - images/campusinter/secteur-restauration.jpg
+     - images/campusinter/secteur-industrie.jpg
+     - images/campusinter/secteur-services.jpg
+  4. Désactiver le filtrage HTML de l'article (sinon Joomla
+     supprime <style> et <script>).
+  5. Le header/footer peuvent être déplacés dans le template
+     pour éviter la duplication entre les pages.
+  6. Les 5 secteurs et les métiers en tension sont des données
+      modifiables directement dans le HTML.
+  7. GRILLE HEXAGONALE : le motif est généré par le script
+      (div.ci-hex). Position : --tl/--tr/--bl/--br/--full ;
+      opacité : --faint/--soft/--mid/--strong ; densité :
+      data-cols/data-rows/data-size ; couleur data-color ;
+      remplissage data-fill ; images data-img/data-img-every.
+          8. ICÔNES : toutes les icônes utilisent Font Awesome 6 via
+          le lien CDN inséré en début de page (cdnjs font-awesome
+          all.min.css). Pour remplacer une icône, changer la classe
+          fa-* de la balise <i> (fa-solid pour la version pleine,
+          fa-brands pour les réseaux sociaux).
+       ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  <style>
+  /* ==========================================================
+     CAMPUS INTER — FEUILLE DE STYLE « TRAVAILLER EN FRANCE »
+     Styles scopés .ci- pour éviter tout conflit Joomla.
+     Charte officielle (voir UX-UI-DESIGN-CAMPUS-INTER.md).
+     ========================================================== */
+
+  /* --- Polices Google Fonts --- */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  /* --- Design tokens (charte Campus Inter) --- */
+  :root{
+    --ci-vert:#159447;  --ci-vert-fonce:#0F7A3A;  --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525;  --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;  --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8; --ci-bordure-input:#E2E8E2;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-grad-sombre:linear-gradient(135deg,#252525,#159447);
+    --ci-rayon:18px; --ci-rayon-lg:22px; --ci-pill:999px;
+    --ci-ombre-carte:0 8px 26px rgba(0,0,0,.06);
+    --ci-ombre:0 14px 40px rgba(21,148,71,.14);
+    --ci-ombre-forte:0 18px 45px rgba(21,148,71,.35);
+    --ci-ombre-noir:0 14px 40px rgba(21,148,71,.25);
+    --ci-ombre-header:0 8px 30px rgba(0,0,0,.08);
+    --ci-ombre-mega:0 25px 60px rgba(0,0,0,.14);
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px); --ci-section-pad-mobile:32px;
+    --ci-conteneur:100%;
+  }
+
+  /* --- Base --- */
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *, .ci-page *::before, .ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 1em; }
+  .ci-container{ width:var(--ci-conteneur); max-width:none; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+  .ci-section-titre{ text-align:center; max-width:720px; margin:0 auto 56px; }
+  .ci-kicker{ display:inline-block; font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:var(--ci-vert-fonce); margin-bottom:16px; }
+  .ci-section-titre h2{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:800; }
+  .ci-section-titre p{ color:var(--ci-texte-2); font-size:1.05rem; }
+
+  /* --- Boutons --- */
+  .ci-btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--ci-font-titres); font-weight:700; font-size:.95rem; padding:15px 30px; border-radius:999px; cursor:pointer; transition:transform .3s, box-shadow .3s, background .3s; border:none; position:relative; overflow:hidden; }
+  .ci-btn i{ font-size:18px; transition:transform .3s; }
+  .ci-btn:hover i{ transform:translateX(4px); }
+  .ci-btn--primaire{ background:var(--ci-grad); color:#fff; box-shadow:var(--ci-ombre-noir); }
+  .ci-btn--primaire:hover{ transform:translateY(-3px); box-shadow:var(--ci-ombre-forte); }
+  .ci-btn--primaire::after{ content:""; position:absolute; inset:0; background:var(--ci-grad-sombre); opacity:0; transition:opacity .35s; }
+  .ci-btn--primaire:hover::after{ opacity:1; }
+  .ci-btn--primaire > *{ position:relative; z-index:1; }
+  .ci-btn--blanc{ background:#fff; color:var(--ci-vert-fonce); box-shadow:var(--ci-ombre); }
+  .ci-btn--blanc:hover{ transform:translateY(-3px); }
+
+  /* --- Preloader --- */
+  .ci-preloader{ position:fixed; inset:0; z-index:9999; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transition:opacity .6s, visibility .6s; }
+  .ci-preloader.ci-hide{ opacity:0; visibility:hidden; }
+  .ci-preloader-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.8rem; color:var(--ci-vert); animation:ciPulse 1.6s infinite; }
+  .ci-preloader-bar{ width:180px; height:5px; background:var(--ci-fond); border-radius:99px; overflow:hidden; }
+  .ci-preloader-bar span{ display:block; height:100%; width:40%; background:var(--ci-grad); border-radius:99px; animation:ciLoad 1.2s infinite; }
+  @keyframes ciPulse{ 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(1.06); opacity:.85;} }
+  @keyframes ciLoad{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(450%);} }
+
+  /* --- Topbar --- */
+  .ci-topbar{ background:var(--ci-noir); color:#cfd8d2; font-size:.82rem; padding:8px 0; }
+  .ci-topbar .ci-container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .ci-topbar a{ color:#cfd8d2; display:inline-flex; align-items:center; gap:6px; transition:color .25s; }
+  .ci-topbar a:hover{ color:#fff; }
+  .ci-topbar i{ font-size:14px; }
+  .ci-topbar-infos{ display:flex; gap:20px; flex-wrap:wrap; }
+  .ci-topbar-social{ display:flex; gap:12px; }
+
+  /* --- Barre de progression --- */
+  .ci-scroll-progress{ position:fixed; top:0; left:0; height:4px; width:0; background:var(--ci-grad); z-index:1000; }
+
+  /* ==========================================================
+     SECTEURS D'ACTIVITÉ — 5 cartes avec visuel
+     ========================================================== */
+  .ci-secteur-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .ci-secteur{ background:#fff; border-radius:var(--ci-rayon-lg); overflow:hidden; box-shadow:var(--ci-ombre-carte); transition:transform .3s, box-shadow .3s; }
+  .ci-secteur:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-secteur img{ width:100%; height:170px; object-fit:cover; transition:transform .6s; }
+  .ci-secteur:hover img{ transform:scale(1.08); }
+  .ci-secteur-body{ padding:22px; }
+  .ci-secteur-body h3{ font-size:1.1rem; display:flex; align-items:center; gap:10px; }
+  .ci-secteur-body h3 i{ font-size:22px; color:var(--ci-vert); flex-shrink:0; }
+  .ci-secteur-body p{ color:var(--ci-texte-2); font-size:.92rem; margin:0; }
+
+  /* ==========================================================
+     NOTRE MÉTHODE — 7 étapes checklist
+     ========================================================== */
+  .ci-methode{ background:var(--ci-noir); color:#fff; }
+  .ci-methode .ci-section-titre h2{ color:#fff; }
+  .ci-methode .ci-section-titre p{ color:#c7d2cb; }
+  .ci-methode-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; max-width:none; margin:0 auto; }
+  .ci-methode-item{ display:flex; gap:16px; align-items:flex-start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:20px; transition:background .3s, transform .3s; }
+  .ci-methode-item:hover{ background:rgba(255,255,255,.1); transform:translateY(-4px); }
+  .ci-methode-check{ width:34px; height:34px; flex-shrink:0; border-radius:50%; background:var(--ci-vert); color:#fff; display:flex; align-items:center; justify-content:center; }
+  .ci-methode-check i{ font-size:18px; }
+  .ci-methode-item h3{ color:#fff; font-size:1.02rem; margin:0 0 4px; }
+  .ci-methode-item p{ color:#c7d2cb; font-size:.9rem; margin:0; }
+
+  /* --- Bandeau promesse « Migration légale et encadrée » --- */
+  .ci-promesse{ text-align:center; margin-top:44px; }
+  .ci-promesse-inner{ display:inline-flex; align-items:center; gap:12px; background:var(--ci-vert); color:#fff; font-family:var(--ci-font-titres); font-weight:700; font-size:clamp(1rem,2.4vw,1.3rem); padding:16px 30px; border-radius:999px; box-shadow:var(--ci-ombre-forte); }
+  .ci-promesse-inner i{ font-size:26px; }
+
+  /* ==========================================================
+     MÉTIERS EN TENSION — liste par secteur
+     ========================================================== */
+  .ci-metiers-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .ci-metier{ background:#fff; border:1px solid var(--ci-bordure); border-radius:var(--ci-rayon-lg); padding:26px; transition:transform .3s, box-shadow .3s; }
+  .ci-metier:hover{ transform:translateY(-6px); box-shadow:var(--ci-ombre); }
+  .ci-metier-head{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .ci-metier-icone{ width:48px; height:48px; border-radius:14px; background:var(--ci-vert-bg); color:var(--ci-vert); display:flex; align-items:center; justify-content:center; }
+  .ci-metier-icone i{ font-size:24px; }
+  .ci-metier-head h3{ font-size:1.08rem; margin:0; }
+  .ci-metier ul{ list-style:none; margin:0; padding:0; }
+  .ci-metier li{ display:flex; gap:10px; align-items:flex-start; padding:7px 0; color:var(--ci-texte); font-size:.93rem; border-bottom:1px dashed var(--ci-bordure); }
+  .ci-metier li:last-child{ border-bottom:none; }
+  .ci-metier li i{ font-size:16px; color:var(--ci-vert); flex-shrink:0; margin-top:3px; }
+
+  /* ==========================================================
+     PROCÉDURE VISA TRAVAIL — timeline
+     ========================================================== */
+  .ci-procedure{ background:var(--ci-fond); }
+  .ci-timeline{ position:relative; max-width:900px; margin:0 auto; }
+  .ci-timeline::before{ content:""; position:absolute; left:50%; top:0; bottom:0; width:4px; background:var(--ci-vert-bg); transform:translateX(-50%); }
+  .ci-step{ position:relative; width:50%; padding:0 40px 44px; }
+  .ci-step:nth-child(odd){ left:0; text-align:right; }
+  .ci-step:nth-child(even){ left:50%; text-align:left; }
+  .ci-step-dot{ position:absolute; top:4px; width:22px; height:22px; border-radius:50%; background:#fff; border:5px solid var(--ci-vert); box-shadow:0 0 0 6px var(--ci-vert-bg); z-index:2; }
+  .ci-step:nth-child(odd) .ci-step-dot{ right:-11px; }
+  .ci-step:nth-child(even) .ci-step-dot{ left:-11px; }
+  .ci-step-num{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.1rem; color:var(--ci-vert); }
+  .ci-step h3{ font-size:1.12rem; margin:.2em 0 .3em; }
+  .ci-step p{ color:var(--ci-texte-2); font-size:.93rem; margin:0; }
+
+  /* ==========================================================
+     FAQ VISA TRAVAIL — accordéon
+     ========================================================== */
+  .ci-faq{ max-width:760px; margin:0 auto; }
+  .ci-faq-item{ background:#fff; border:1px solid var(--ci-bordure); border-radius:16px; margin-bottom:14px; overflow:hidden; transition:box-shadow .3s; }
+  .ci-faq-item.ci-open{ box-shadow:var(--ci-ombre); border-color:transparent; }
+  .ci-faq-q{ width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px; background:none; border:none; cursor:pointer; padding:20px 24px; text-align:left; font-family:var(--ci-font-titres); font-weight:700; font-size:1rem; color:var(--ci-noir); }
+  .ci-faq-icone{ width:30px; height:30px; flex-shrink:0; border-radius:50%; background:var(--ci-vert-bg); color:var(--ci-vert); display:flex; align-items:center; justify-content:center; transition:transform .35s; }
+  .ci-faq-icone i{ font-size:16px; }
+  .ci-faq-item.ci-open .ci-faq-icone{ transform:rotate(45deg); background:var(--ci-vert); color:#fff; }
+  .ci-faq-a{ max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .ci-faq-a p{ padding:0 24px 20px; margin:0; color:var(--ci-texte-2); font-size:.94rem; }
+
+  /* ==========================================================
+     CTA FINAL — dégradé sombre + vague
+     ========================================================== */
+  .ci-cta{ background:var(--ci-grad-sombre); color:#fff; text-align:center; position:relative; overflow:hidden; }
+  .ci-cta h2{ color:#fff; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; }
+  .ci-cta p{ color:#dceadf; max-width:600px; margin:0 auto 34px; }
+  .ci-cta-btns{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .ci-wave{ position:absolute; bottom:-1px; left:0; width:100%; line-height:0; }
+  .ci-wave i{ width:100%; height:70px; fill:var(--ci-fond-2); }
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+  .ci-footer{ background:#1c1c1c; color:#c7d2cb; padding:70px 0 0; font-size:.92rem; }
+  .ci-footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:50px; }
+  .ci-footer h4{ color:#fff; font-size:1.05rem; margin-bottom:18px; position:relative; padding-bottom:10px; }
+  
+  .ci-footer a{ color:#c7d2cb; display:block; padding:5px 0; transition:color .25s, transform .25s; }
+  .ci-footer a:hover{ color:var(--ci-vert-clair); transform:translateX(4px); }
+  .ci-footer-logo{ font-family:var(--ci-font-titres); font-weight:800; font-size:1.5rem; color:#fff; margin-bottom:14px; }
+  .ci-footer-logo img{ height:46px; filter:brightness(0) invert(1); }
+  .ci-footer-contact a{ display:flex; gap:10px; align-items:flex-start; }
+  .ci-footer-contact i{ font-size:18px; color:var(--ci-vert-clair); flex-shrink:0; margin-top:4px; }
+  .ci-footer-social{ display:flex; gap:10px; margin-top:18px; }
+  .ci-footer-social a{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; padding:0; }
+  .ci-footer-social i{ font-size:18px; }
+  .ci-footer-social a:hover{ background:var(--ci-vert); transform:translateY(-3px); }
+  .ci-footer-bottom{ border-top:1px solid rgba(255,255,255,.1); padding:22px 0; text-align:center; font-size:.82rem; }
+  .ci-footer-bottom a{ display:inline; padding:0 8px; }
+
+  /* --- Boutons flottants --- */
+  .ci-whatsapp{ position:fixed; bottom:26px; right:26px; z-index:900; width:60px; height:60px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(37,211,102,.4); transition:transform .3s; }
+  .ci-whatsapp:hover{ transform:scale(1.1); }
+  .ci-whatsapp i{ font-size:30px; }
+  .ci-whatsapp::before{ content:""; position:absolute; inset:-6px; border-radius:50%; border:2px solid #25D366; animation:ciPulseRing 1.8s ease-out infinite; }
+  @keyframes ciPulseRing{ 0%{ transform:scale(.85); opacity:1;} 100%{ transform:scale(1.4); opacity:0;} }
+  .ci-to-top{ position:fixed; bottom:100px; right:34px; z-index:900; width:48px; height:48px; border-radius:12px; background:var(--ci-noir); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transform:translateY(14px); transition:.35s; }
+  .ci-to-top.ci-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+  .ci-to-top:hover{ background:var(--ci-vert); }
+  .ci-to-top i{ font-size:20px; }
+
+  /* --- Reveal au scroll --- */
+  .ci-reveal{ opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal.ci-visible{ opacity:1; transform:translateY(0); }
+  .ci-reveal-left{ opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-left.ci-visible{ opacity:1; transform:translateX(0); }
+  .ci-reveal-right{ opacity:0; transform:translateX(40px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .ci-reveal-right.ci-visible{ opacity:1; transform:translateX(0); }
+
+  /* --- Responsive --- */
+  @media (max-width:1024px){
+    .ci-footer-grid{ grid-template-columns:1fr 1fr; }
+    .ci-timeline::before{ left:12px; }
+    .ci-step{ width:100%; left:0 !important; text-align:left !important; padding:0 0 40px 46px; }
+    .ci-step:nth-child(odd) .ci-step-dot, .ci-step:nth-child(even) .ci-step-dot{ left:1px; right:auto; }
+  }
+  @media (max-width:640px){
+    .ci-section{ padding:var(--ci-section-pad-mobile) 0; }
+    .ci-topbar-infos{ justify-content:center; }
+    .ci-topbar-social{ display:none; }
+    .ci-footer-grid{ grid-template-columns:1fr; gap:30px; }
+  }
+  @media (max-width:400px){
+    .ci-container{ padding-left:14px; padding-right:14px; }
+    .ci-section{ padding:24px 0; }
+    .ci-section-titre{ margin-bottom:34px; }
+  }
+
+  /* --- Accessibilité --- */
+  @media (prefers-reduced-motion: reduce){
+    .ci-preloader-bar span, .ci-hero-particles span, .ci-whatsapp::before{ animation:none !important; }
+    .ci-reveal, .ci-reveal-left, .ci-reveal-right{ opacity:1 !important; transform:none !important; }
+  }
+
+  /* ==========================================================
+     GRILLE HEXAGONALE DÉCORATIVE (arrière-plans de sections)
+     Conteneur positionné : --tl/--tr/--bl/--br/--full,
+     tailles --sm/--md/--lg/--xl, opacité --faint/--soft/--mid/--strong.
+     Motif SVG généré par le script (attributs data-*).
+     ========================================================== */
+  section{ position:relative; }
+  .ci-hex{
+    position:absolute; pointer-events:none; overflow:hidden;
+    line-height:0; z-index:0;
+  }
+  .ci-hex i{ display:block; width:100%; height:100%; }
+  .ci-hex--tl{ top:0; left:0; }
+  .ci-hex--tr{ top:0; right:0; }
+  .ci-hex--bl{ bottom:0; left:0; }
+  .ci-hex--br{ bottom:0; right:0; }
+  .ci-hex--full{ inset:0; width:100%; height:100%; }
+  .ci-hex--sm{ width:130px; height:150px; }
+  .ci-hex--md{ width:230px; height:270px; }
+  .ci-hex--lg{ width:350px; height:410px; }
+  .ci-hex--xl{ width:520px; height:600px; }
+  .ci-hex--faint{ opacity:.07; }
+  .ci-hex--soft{ opacity:.14; }
+  .ci-hex--mid{ opacity:.24; }
+  .ci-hex--strong{ opacity:.38; }
+  section > .ci-container{ position:relative; z-index:1; }
+  
+
+
+  /* ==========================================================
+     PRÉMIUM — cohérence éditoriale avec l'accueil
+     Numéros fantômes de section
+     ========================================================== */
+  .ci-section[data-ghost]::before{
+    content:attr(data-ghost);
+    position:absolute; top:clamp(6px,2vw,28px); right:clamp(8px,2.5vw,44px); z-index:0;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(3.8rem,7.5vw,6rem); line-height:1;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.2);
+    pointer-events:none; user-select:none;
+  }
+  .ci-section[data-ghost].ci-band-chiffres::before,
+  .ci-section[data-ghost].ci-partners::before{
+    -webkit-text-stroke:1.5px rgba(255,255,255,.16);
+  }
+  @media (max-width:640px){
+    .ci-section[data-ghost]::before{ display:none; }
+  }
+
+
+
+  /* ==========================================================
+     HERO INTÉRIEUR — ADN premium accueil, variante inversée
+     Grille inversée (média gauche / texte droite) + chips de nav
+     ========================================================== */
+  .ci-page-hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#f1f8f4 0%,#ffffff 55%);
+    padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px);
+  }
+  .ci-page-hero .ci-hex{ opacity:.45; }
+  .ci-breadcrumb{ display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap; align-items:center;
+    font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--ci-texte-2); margin-bottom:clamp(28px,4vw,44px); }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); transition:color .25s; }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-sep{ opacity:.5; margin:0 2px; }
+  .ci-breadcrumb .ci-here{ color:var(--ci-vert-fonce); font-weight:700; }
+  .ci-hero-grid--inverse{
+    display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);
+    gap:clamp(32px,5vw,72px); align-items:center; position:relative; z-index:1;
+    grid-template-areas:"media content";
+  }
+  .ci-hero-grid--inverse .ci-hero-content{ grid-area:content; }
+  .ci-hero-grid--inverse .ci-hero-media{ grid-area:media; }
+  .ci-hero-kicker{ display:inline-flex; align-items:center; gap:10px; font-size:.8rem; font-weight:700;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--ci-vert-fonce); margin-bottom:20px; }
+  .ci-hero-kicker::before{ content:""; width:34px; height:2px; background:var(--ci-vert); border-radius:99px; }
+  .ci-hero-kicker i{ font-size:15px; color:var(--ci-vert); }
+  .ci-page-hero h1{ font-size:clamp(2.4rem,5.2vw,3.9rem); font-weight:800; color:var(--ci-noir); margin:0 0 18px; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-page-hero .ci-hero-sous{ font-size:1.08rem; color:var(--ci-texte); max-width:540px; margin-bottom:28px; }
+  .ci-hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .ci-hero-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .ci-hero-chip{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #e2e8e2;
+    border-radius:999px; padding:9px 16px; font-size:.82rem; font-weight:600; color:var(--ci-texte); transition:.25s; }
+  .ci-hero-chip i{ color:var(--ci-vert); font-size:14px; }
+  .ci-hero-chip:hover{ border-color:var(--ci-vert); color:var(--ci-vert-fonce); transform:translateY(-2px); box-shadow:0 10px 24px rgba(18,52,36,.1); }
+  .ci-hero-media{ position:relative; z-index:1; max-width:min(100%,360px); justify-self:end; }
+  .ci-hero-blob{ position:absolute; width:82%; height:74%; top:6%; left:-6%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(29,184,94,.55), rgba(21,148,71,.06) 72%); z-index:0; }
+  .ci-hero-dots{ position:absolute; z-index:0; right:-16%; bottom:2%; opacity:.65; }
+  .ci-hero-img-frame{ position:relative; z-index:1; }
+  .ci-hero-img-frame::before{ content:""; position:absolute; inset:0; transform:translate(-14px,-14px);
+    border:2px solid var(--ci-vert); border-radius:26px; opacity:.4; z-index:0; }
+  .ci-hero-img{ position:relative; z-index:1; width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:26px;
+    box-shadow:0 34px 70px rgba(18,52,36,.24); }
+  .ci-hero-card{ position:absolute; z-index:2; display:flex; align-items:center; gap:12px; background:#fff;
+    border-radius:16px; padding:14px 18px; box-shadow:0 18px 44px rgba(18,52,36,.16); border:1px solid #eef5f0; }
+  .ci-hero-card i{ font-size:20px; color:var(--ci-vert); }
+  .ci-hero-card b{ font-family:var(--ci-font-titres); font-size:1.2rem; color:var(--ci-noir); line-height:1.1; }
+  .ci-hero-card small{ color:var(--ci-texte-2); font-size:.78rem; }
+  .ci-hero-card--1{ top:7%; left:-7%; }
+  .ci-hero-card--2{ bottom:12%; right:-9%; }
+  .ci-hero-tag{ position:absolute; z-index:2; bottom:7%; right:-5%; background:rgba(21,148,71,.94); color:#fff;
+    padding:8px 16px; border-radius:999px; font-size:.82rem; font-weight:600; box-shadow:0 14px 30px rgba(21,148,71,.35); }
+  .ci-ghost{
+    position:absolute; z-index:0; font-family:var(--ci-font-titres); font-weight:800;
+    color:transparent; -webkit-text-stroke:1.5px rgba(21,148,71,.3); user-select:none; pointer-events:none; line-height:1;
+  }
+  .ci-hero-media .ci-ghost{ top:-34px; left:-4%; font-size:clamp(4.2rem,7vw,6rem); }
+  @media (max-width:1024px){
+    .ci-hero-grid--inverse{ grid-template-columns:1fr; grid-template-areas:"content" "media"; }
+    .ci-hero-media{ max-width:min(100%,330px); margin:0 auto; justify-self:auto; }
+    .ci-hero-media .ci-ghost{ top:-36px; left:6%; }
+    .ci-hero-blob{ left:auto; right:-6%; }
+  }
+  @media (max-width:640px){
+    .ci-hero-media{ max-width:min(100%,300px); }
+    .ci-hero-card--1{ left:-4%; }
+    .ci-hero-card--2{ right:-4%; }
+    .ci-hero-tag{ right:-3%; }
+  }
+  @media (max-width:400px){
+    .ci-hero-media{ max-width:min(100%,260px); }
+    .ci-hero-chips{ gap:8px; }
+    .ci-hero-chip{ padding:8px 13px; font-size:.76rem; }
+  }
+</style>
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <em style="color:var(--ci-noir)">INTER</em></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ==========================================================
+       BARRE DE PROGRESSION DE LECTURE
+       ========================================================== -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <div class="ci-topbar-infos">
+        <!-- Téléphone fixe -->
+        <a href="tel:+22822702596" aria-label="Appeler le fixe">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <!-- Mobile / WhatsApp -->
+        <a href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          +228 97 75 40 00
+        </a>
+        <!-- Email -->
+        <a href="mailto:contact@campusinter.com" aria-label="Envoyer un email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+        <!-- Horaires -->
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-clock" aria-hidden="true"></i>
+          Lundi - Vendredi, 07h30 à 17h30
+        </span>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="08">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span class="ci-sep">›</span><a href="#">Visa Travail</a><span class="ci-sep">›</span><span class="ci-here">Travailler en France</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            Visa Travail · Campus Inter
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Travailler en <em>France</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Des opportunités réelles, une migration légale et un accompagnement complet : réalisez votre projet professionnel en France.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Évaluer mon profil
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciSecteurs">Voir les secteurs</a>
+          </div>
+          <div class="ci-hero-reassurance" aria-label="Nos engagements">
+            <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Premier échange gratuit</span>
+            <span><i class="fa-solid fa-clock" aria-hidden="true"></i>Réponse sous 48 h</span>
+            <span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp disponible</span>
+          </div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciSecteurs"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Secteurs</a>
+            <a class="ci-hero-chip" href="#ciMetiers"><i class="fa-solid fa-hard-hat" aria-hidden="true"></i>Métiers</a>
+            <a class="ci-hero-chip" href="#ciProcedure"><i class="fa-solid fa-file-contract" aria-hidden="true"></i>Procédure</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">08</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-travailler-france.jpg" alt="Professionnel au travail">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Profil</b><small>valorisé pour la France</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Secteurs</b><small>qui recrutent</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> France · Visa Travail</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — DES OPPORTUNITÉS RÉELLES (5 secteurs)
+       ========================================================== -->
+  <section class="ci-section" id="ciSecteurs" data-ghost="01">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Des opportunités réelles</span>
+        <h2>La France recrute dans de nombreux secteurs</h2>
+        <p>Des métiers en tension dans toute l'économie française, accessibles aux candidats qualifiés et motivés.</p>
+      </div>
+
+      <!-- Grille des 5 secteurs -->
+      <div class="ci-secteur-grid">
+        <!-- Secteur 1 : BTP -->
+        <article class="ci-secteur ci-reveal">
+          <img src="images/campusinter/secteur-btp.jpg" alt="Chantier de construction" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-house" aria-hidden="true"></i> BTP</h3>
+            <p>Maçons, charpentiers, électriciens, plombiers, conducteurs d'engins : des postes recherchés partout en France.</p>
+          </div>
+        </article>
+        <!-- Secteur 2 : Santé -->
+        <article class="ci-secteur ci-reveal" style="--d:.1s">
+          <img src="images/campusinter/secteur-sante.jpg" alt="Professionnel de santé" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-bolt" aria-hidden="true"></i> Santé</h3>
+            <p>Aides-soignants, infirmiers, auxiliaires de vie : un secteur qui manque cruellement de main-d'œuvre.</p>
+          </div>
+        </article>
+        <!-- Secteur 3 : Restauration -->
+        <article class="ci-secteur ci-reveal" style="--d:.2s">
+          <img src="images/campusinter/secteur-restauration.jpg" alt="Chef cuisinier en cuisine" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-flask" aria-hidden="true"></i> Restauration</h3>
+            <p>Cuisiniers, serveurs, commis de cuisine, managers de restaurant : des besoins permanents.</p>
+          </div>
+        </article>
+        <!-- Secteur 4 : Industrie -->
+        <article class="ci-secteur ci-reveal" style="--d:.3s">
+          <img src="images/campusinter/secteur-industrie.jpg" alt="Usine automatisée" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-chart-column" aria-hidden="true"></i> Industrie</h3>
+            <p>Opérateurs, techniciens, soudeurs, mécaniciens : l'industrie française recrute et forme.</p>
+          </div>
+        </article>
+        <!-- Secteur 5 : Services -->
+        <article class="ci-secteur ci-reveal" style="--d:.4s">
+          <img src="images/campusinter/secteur-services.jpg" alt="Employé de bureau moderne" loading="lazy">
+          <div class="ci-secteur-body">
+            <h3><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Services</h3>
+            <p>Logistique, commerce, numérique, aide à domicile : de nombreuses opportunités pour les profils qualifiés.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — NOTRE MÉTHODE (7 étapes) + PROMESSE
+       ========================================================== -->
+  <section class="ci-section ci-methode" id="ciMethode" data-ghost="02">
+    <!-- Hexagones : coin haut-gauche, présent, vert clair ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--tl ci-hex--lg ci-hex--mid" data-cols="6" data-rows="4" data-size="26" data-color="#8ee0b4" data-fill="5" data-img="images/campusinter/secteur-services.jpg" data-img-every="7" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker" style="color:#8ee0b4;">Notre méthode</span>
+        <h2>Un accompagnement professionnel complet</h2>
+        <p>De l'analyse de votre profil jusqu'au visa travail, nous gérons chaque étape avec rigueur.</p>
+      </div>
+
+      <!-- Grille des 7 étapes de la méthode -->
+      <div class="ci-methode-grid">
+        <!-- Étape 1 -->
+        <div class="ci-methode-item ci-reveal">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Analyse de ton profil</h3><p>Étude de vos compétences, expériences et objectifs professionnels.</p></div>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.06s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Projet professionnel clair</h3><p>Définition d'un projet cohérent et crédible pour votre dossier.</p></div>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.12s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>CV français performants</h3><p>Rédaction de CV conformes aux standards des recruteurs français.</p></div>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.18s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Lettres adaptées</h3><p>Lettres de motivation personnalisées pour chaque candidature.</p></div>
+        </div>
+        <!-- Étape 5 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.24s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Candidatures ciblées</h3><p>Envoi de candidatures vers les employeurs qui recrutent votre profil.</p></div>
+        </div>
+        <!-- Étape 6 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.3s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Suivi employeurs</h3><p>Coordination et relance auprès des recruteurs jusqu'à l'offre.</p></div>
+        </div>
+        <!-- Étape 7 -->
+        <div class="ci-methode-item ci-reveal" style="--d:.36s">
+          <span class="ci-methode-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          <div><h3>Visa travail</h3><p>Préparation et suivi complet de votre demande de visa de travail.</p></div>
+        </div>
+      </div>
+
+      <!-- Bandeau promesse « Migration légale et encadrée » -->
+      <div class="ci-promesse ci-reveal">
+        <span class="ci-promesse-inner">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          🎯 Migration légale et encadrée
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — MÉTIERS EN TENSION (liste par secteur)
+       ========================================================== -->
+  <section class="ci-section" id="ciMetiers" data-ghost="03">
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Métiers en tension</span>
+        <h2>Les métiers qui recrutent en France</h2>
+        <p>Une sélection des métiers les plus demandés, où votre profil peut rapidement trouver une opportunité.</p>
+      </div>
+
+      <!-- Grille des métiers par secteur -->
+      <div class="ci-metiers-grid">
+        <!-- Métiers BTP -->
+        <div class="ci-metier ci-reveal">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-house" aria-hidden="true"></i></span>
+            <h3>Secteur BTP</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Maçon / coffreur-bancheur</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Électricien bâtiment</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Plombier / chauffagiste</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Charpentier / menuisier</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Conducteur d'engins</li>
+          </ul>
+        </div>
+        <!-- Métiers Santé -->
+        <div class="ci-metier ci-reveal" style="--d:.08s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+            <h3>Secteur Santé</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Aide-soignant</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Infirmier</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Auxiliaire de vie</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Aide à domicile</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Sage-femme</li>
+          </ul>
+        </div>
+        <!-- Métiers Restauration -->
+        <div class="ci-metier ci-reveal" style="--d:.16s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+            <h3>Secteur Restauration</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Cuisinier / chef de partie</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Serveur / maître d'hôtel</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Commis de cuisine</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Manager de restaurant</li>
+          </ul>
+        </div>
+        <!-- Métiers Industrie -->
+        <div class="ci-metier ci-reveal" style="--d:.24s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span>
+            <h3>Secteur Industrie</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Opérateur de production</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Soudeur / chaudronnier</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Technicien de maintenance</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Mécanicien / carrossier</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Électromécanicien</li>
+          </ul>
+        </div>
+        <!-- Métiers Services -->
+        <div class="ci-metier ci-reveal" style="--d:.32s">
+          <div class="ci-metier-head">
+            <span class="ci-metier-icone"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+            <h3>Secteur Services</h3>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Préparateur de commandes</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Vendeur / conseiller clientèle</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Agent logistique</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Développeur / technicien IT</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — PROCÉDURE VISA TRAVAIL (timeline)
+       ========================================================== -->
+  <section class="ci-section ci-procedure" id="ciProcedure" data-ghost="04">
+    <!-- Hexagones : coin bas-gauche, très subtil, vert -->
+    <div class="ci-hex ci-hex--bl ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">La procédure visa travail</span>
+        <h2>De la candidature au visa, étape par étape</h2>
+        <p>Un parcours clair et sécurisé pour une installation légale en France.</p>
+      </div>
+
+      <!-- Timeline verticale -->
+      <div class="ci-timeline">
+        <!-- Étape 1 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 01</span>
+          <h3>Analyse du profil</h3>
+          <p>Évaluation de vos compétences, expériences et des secteurs qui recrutent.</p>
+        </div>
+        <!-- Étape 2 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 02</span>
+          <h3>Recherche d'employeur</h3>
+          <p>Identification d'un employeur prêt à vous recruter et à vous sponsoriser.</p>
+        </div>
+        <!-- Étape 3 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 03</span>
+          <h3>Contrat de travail</h3>
+          <p>Validation de l'offre d'emploi et du contrat de travail (CDI/CDD).</p>
+        </div>
+        <!-- Étape 4 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 04</span>
+          <h3>Autorisation de travail</h3>
+          <p>Démarche auprès des autorités françaises (DIRECCTE / préfecture).</p>
+        </div>
+        <!-- Étape 5 -->
+        <div class="ci-step ci-reveal-left">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 05</span>
+          <h3>Demande de visa</h3>
+          <p>Dépôt du dossier de visa long séjour travail et suivi consulaire.</p>
+        </div>
+        <!-- Étape 6 -->
+        <div class="ci-step ci-reveal-right">
+          <span class="ci-step-dot" aria-hidden="true"></span>
+          <span class="ci-step-num">Étape 06</span>
+          <h3>Arrivée &amp; installation</h3>
+          <p>Vol, logement, titre de séjour : vous êtes accompagné jusqu'à l'installation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — FAQ VISA TRAVAIL (accordéon)
+       ========================================================== -->
+  <section class="ci-section" id="ciFaq" data-ghost="05">
+    <!-- Hexagones : coin haut-droit, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tr ci-hex--sm ci-hex--soft" data-cols="5" data-rows="3" data-size="20" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">FAQ visa travail</span>
+        <h2>Vos questions sur le travail en France</h2>
+        <p>Les réponses aux questions les plus fréquentes sur la migration professionnelle en France.</p>
+      </div>
+
+      <div class="ci-faq">
+        <!-- Question 1 : Faut-il un employeur avant ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Faut-il déjà avoir un employeur en France ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Oui, pour la plupart des visas travail, il faut une offre d'emploi d'un employeur français. C'est pourquoi notre accompagnement commence par la recherche d'un employeur qui accepte de vous sponsoriser.</p></div>
+        </div>
+        <!-- Question 2 : Quels sont les types de visa travail ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Quels sont les types de visa travail ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Les principaux sont : le visa salarié (CDI), le visa travailleur temporaire (CDD), la carte de séjour « travailleur » et le passeport talent pour les profils qualifiés. Nous déterminons la solution la plus adaptée à votre situation.</p></div>
+        </div>
+        <!-- Question 3 : Quelle est la durée de la procédure ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Combien de temps dure la procédure ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Le délai varie selon le secteur et le type de visa, mais comptez généralement de 2 à 6 mois. Nous vous fournissons un calendrier réaliste dès le premier rendez-vous.</p></div>
+        </div>
+        <!-- Question 4 : Puis-je faire venir ma famille ? -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Puis-je faire venir ma famille ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Selon le type de visa et après une certaine période, le regroupement familial peut être possible. Nous vous informons précisément sur vos droits et les démarches liées à la famille.</p></div>
+        </div>
+        <!-- Question 5 : Coût de l'accompagnement -->
+        <div class="ci-faq-item ci-reveal">
+          <button class="ci-faq-q" aria-expanded="false">
+            Combien coûte votre accompagnement ?
+            <span class="ci-faq-icone"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+          </button>
+          <div class="ci-faq-a"><p>Nos tarifs sont transparents et communiqués lors du premier rendez-vous gratuit. Ils dépendent de la complexité du dossier. Aucun frais caché : vous savez exactement ce qui est inclus.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA FINAL — dégradé sombre + vague
+       ========================================================== -->
+  <section class="ci-section ci-cta" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Appel à l'action -->
+      <h2 class="ci-reveal">Prêt à travailler en France ?</h2>
+      <p class="ci-reveal">Envoyez-nous votre CV : un conseiller analyse votre profil et vous présente les meilleures opportunités.</p>
+      <!-- Boutons d'action -->
+      <div class="ci-cta-btns ci-reveal">
+        <a class="ci-btn ci-btn--primaire" href="/contact">
+          Envoyer mon CV maintenant
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener">Discuter sur WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Vague décorative en bas de section -->
+    <div class="ci-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,37.3C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,70L0,70Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">Agence de mobilité internationale basée à Bè-Kpota (Lomé, Togo). Nous accompagnons étudiants et professionnels vers l'Europe : études, emploi, visa et installation. L'immigration No Stress !</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Nos services</h4>
+          <a href="/etudier-en-france">Étudier en France</a>
+          <a href="/etudier-en-belgique">Étudier en Belgique</a>
+          <a href="/travailler-en-france">Travailler en France</a>
+          <a href="/visa-et-demarches">Visa &amp; Démarches</a>
+          <a href="/installation-en-france">Installation</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Liens rapides</h4>
+          <a href="/ecoles-et-programmes">Écoles &amp; Programmes</a>
+          <a href="/nos-partenaires">Nos partenaires</a>
+          <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+          <a href="/blog">Le blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. Tous droits réservés. Designed by Yehna Services.
+        <a href="/mentions-legales">Mentions légales</a>·
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Retour en haut de page">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  <script>
+  /* ==========================================================
+     CAMPUS INTER — SCRIPT « TRAVAILLER EN FRANCE »
+     IIFE pour éviter les conflits avec le template Joomla.
+     ========================================================== */
+  (function(){
+    "use strict";
+
+    /* Respect des préférences de mouvement (accessibilité) */
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ----------------------------------------------------------
+       1. PRÉLOADER — masquer l'écran de chargement
+       ---------------------------------------------------------- */
+    var preloader = document.getElementById('ciPreloader');
+    function hidePreloader(){
+      if(preloader){ preloader.classList.add('ci-hide'); }
+    }
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 3000); /* filet de sécurité */
+
+    /* ----------------------------------------------------------
+       2. HEADER STICKY + BARRE DE PROGRESSION + RETOUR EN HAUT
+       ---------------------------------------------------------- */
+    var progress = document.getElementById('ciProgress');
+    var toTop = document.getElementById('ciToTop');
+    function onScroll(){      if(progress){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+      if(toTop){ toTop.classList.toggle('ci-visible', window.scrollY > 600); }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       3. PARALLAX — image du hero en mouvement
+       ---------------------------------------------------------- */
+    var bgParallax = document.getElementById('ciBgParallax');
+    if(bgParallax && !reducedMotion){
+      window.addEventListener('scroll', function(){
+        var y = window.scrollY * 0.3;
+        bgParallax.style.transform = 'translate3d(0,' + y + 'px,0)';
+      }, { passive:true });
+    }
+
+    /* ----------------------------------------------------------
+       4. REVEAL AU SCROLL
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.ci-reveal, .ci-reveal-left, .ci-reveal-right');
+    if('IntersectionObserver' in window){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('ci-visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold:0.15 });
+      revealEls.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('ci-visible'); });
+    }
+
+    /* ----------------------------------------------------------
+       5. FAQ ACCORDÉON
+       ---------------------------------------------------------- */
+    document.querySelectorAll('.ci-faq-item').forEach(function(item){
+      var btn = item.querySelector('.ci-faq-q');
+      btn.addEventListener('click', function(){
+        var isOpen = item.classList.contains('ci-open');
+        document.querySelectorAll('.ci-faq-item.ci-open').forEach(function(other){
+          other.classList.remove('ci-open');
+          other.querySelector('.ci-faq-a').style.maxHeight = null;
+          other.querySelector('.ci-faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if(!isOpen){
+          item.classList.add('ci-open');
+          item.querySelector('.ci-faq-a').style.maxHeight = item.querySelector('.ci-faq-a').scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ----------------------------------------------------------
+       7. BOUTON RETOUR EN HAUT (remontée fluide)
+       ---------------------------------------------------------- */
+    toTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       8. DÉFILEMENT FLUIDE VERS LES ANCRES (#)
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var cible = document.querySelector(this.getAttribute('href'));
+        if(cible){
+          e.preventDefault();
+          cible.scrollIntoView({ behavior:'smooth' });
+        }
+      });
+    });
+
+  /* ----------------------------------------------------------
+       GRILLE HEXAGONALE DÉCORATIVE — générateur SVG honeycomb
+       Lit les attributs data-* du conteneur .ci-hex :
+         data-cols / data-rows / data-size (rayon px)
+         data-color (traits) / data-fill (1 hex sur N rempli)
+         data-fill-color / data-img (image dans 1 hex sur N)
+         data-img-every / data-rotate (degrés)
+       ---------------------------------------------------------- */
+        function ciHexBuild(box, seed){
+          if(box.getAttribute('data-ci-hex-built')) return;
+          box.setAttribute('data-ci-hex-built','1');
+          var cols = parseInt(box.getAttribute('data-cols')||'9',10);
+          var rows = parseInt(box.getAttribute('data-rows')||'5',10);
+          var r = parseInt(box.getAttribute('data-size')||'26',10);
+          var color = box.getAttribute('data-color')||'#159447';
+          var fillEvery = parseInt(box.getAttribute('data-fill')||'0',10);
+          var fillColor = box.getAttribute('data-fill-color')||color;
+          var img = box.getAttribute('data-img')||'';
+          var imgEvery = parseInt(box.getAttribute('data-img-every')||'0',10);
+          var rotate = parseFloat(box.getAttribute('data-rotate')||'0');
+          var jitter = parseFloat(box.getAttribute('data-jitter')||'0.55');
+          var density = parseFloat(box.getAttribute('data-density')||'0.86');
+          var sx = ((parseInt(box.getAttribute('data-seed')||'0',10)) || seed || 1) >>> 0;
+          function rnd(){ sx = (sx + 0x6D2B79F5) | 0; var t = Math.imul(sx ^ (sx>>>15), 1 | sx); t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t; return ((t ^ (t>>>14)) >>> 0) / 4294967296; }
+          if(box.getAttribute('data-rotate')===null){ rotate = -9 - rnd()*7; }
+          var NS='http://www.w3.org/2000/svg';
+          var sqrt3 = Math.sqrt(3), w = sqrt3*r;
+          var W = cols*w + w, H = rows*1.5*r + r;
+          var svg = document.createElementNS(NS,'svg');
+          svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+          svg.setAttribute('aria-hidden','true');
+          var defs = document.createElementNS(NS,'defs');
+          svg.appendChild(defs);
+          var uid = Math.random().toString(36).slice(2,8);
+          var fade = document.createElementNS(NS,'radialGradient');
+          fade.setAttribute('id','ciHexFade'+uid);
+          var f1 = document.createElementNS(NS,'stop'); f1.setAttribute('offset','35%'); f1.setAttribute('stop-color','#fff');
+          var f2 = document.createElementNS(NS,'stop'); f2.setAttribute('offset','100%'); f2.setAttribute('stop-color','#fff'); f2.setAttribute('stop-opacity','0');
+          fade.appendChild(f1); fade.appendChild(f2);
+          defs.appendChild(fade);
+          var mask = document.createElementNS(NS,'mask');
+          mask.setAttribute('id','ciHexMask'+uid);
+          var mrect = document.createElementNS(NS,'rect');
+          mrect.setAttribute('x','-35%'); mrect.setAttribute('y','-35%'); mrect.setAttribute('width','170%'); mrect.setAttribute('height','170%');
+          mrect.setAttribute('fill','url(#ciHexFade'+uid+')');
+          mask.appendChild(mrect);
+          defs.appendChild(mask);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('mask','url(#ciHexMask'+uid+')');
+          svg.appendChild(g);
+          var n = 0;
+          for(var q=0;q<rows;q++){
+            for(var c=0;c<cols;c++){
+              if(rnd()>density){ n++; continue; }
+              var jx = (rnd()-0.5)*r*jitter*0.7;
+              var jy = (rnd()-0.5)*r*jitter*0.7;
+              var cx = c*w + (q%2)*(w/2) + w/2 + jx;
+              var cy = q*1.5*r + r + jy;
+              var pts = [cx+','+(cy-r), (cx+w/2)+','+(cy-r/2), (cx+w/2)+','+(cy+r/2), cx+','+(cy+r), (cx-w/2)+','+(cy+r/2), (cx-w/2)+','+(cy-r/2)].join(' ');
+              var isImg = img && imgEvery>0 && (n % imgEvery === 0);
+              var isFill = fillEvery>0 && (n % fillEvery === 0);
+              var sw = 0.5 + rnd()*1.3;
+              var so = 0.45 + rnd()*0.55;
+              if(isImg){
+                var clId = 'ciHexClip'+uid+'_'+n;
+                var clip = document.createElementNS(NS,'clipPath');
+                clip.setAttribute('id',clId);
+                var clipPoly = document.createElementNS(NS,'polygon');
+                clipPoly.setAttribute('points',pts);
+                clip.appendChild(clipPoly);
+                defs.appendChild(clip);
+                var imgEl = document.createElementNS(NS,'image');
+                imgEl.setAttribute('href',img);
+                imgEl.setAttribute('x',String(cx-w/2));
+                imgEl.setAttribute('y',String(cy-r));
+                imgEl.setAttribute('width',String(w));
+                imgEl.setAttribute('height',String(2*r));
+                imgEl.setAttribute('preserveAspectRatio','xMidYMid slice');
+                imgEl.setAttribute('clip-path','url(#'+clId+')');
+                g.appendChild(imgEl);
+                var frame = document.createElementNS(NS,'polygon');
+                frame.setAttribute('points',pts);
+                frame.setAttribute('fill','none');
+                frame.setAttribute('stroke',color);
+                frame.setAttribute('stroke-width',String(1+sw*0.4));
+                frame.setAttribute('stroke-opacity',String(so));
+                g.appendChild(frame);
+              } else if(isFill){
+                var poly = document.createElementNS(NS,'polygon');
+                poly.setAttribute('points',pts);
+                poly.setAttribute('fill',fillColor);
+                poly.setAttribute('fill-opacity',String(0.1+rnd()*0.25));
+                poly.setAttribute('stroke',color);
+                poly.setAttribute('stroke-width',String(sw));
+                poly.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly);
+              } else {
+                var poly2 = document.createElementNS(NS,'polygon');
+                poly2.setAttribute('points',pts);
+                poly2.setAttribute('fill','none');
+                poly2.setAttribute('stroke',color);
+                poly2.setAttribute('stroke-width',String(sw));
+                poly2.setAttribute('stroke-opacity',String(so));
+                g.appendChild(poly2);
+                if(rnd()<0.2){
+                  var dr = r*0.28*(0.6+rnd()*0.8);
+                  var dpts = [cx+','+(cy-dr), (cx+dr)+','+(cy-dr/2), (cx+dr)+','+(cy+dr/2), cx+','+(cy+dr), (cx-dr)+','+(cy+dr/2), (cx-dr)+','+(cy-dr/2)].join(' ');
+                  var dot = document.createElementNS(NS,'polygon');
+                  dot.setAttribute('points',dpts);
+                  dot.setAttribute('fill',color);
+                  dot.setAttribute('fill-opacity',String(0.07+rnd()*0.2));
+                  g.appendChild(dot);
+                }
+              }
+              n++;
+            }
+          }
+          if(rotate){
+            svg.setAttribute('transform','rotate('+rotate+' '+W/2+' '+H/2+')');
+          }
+          box.appendChild(svg);
+        }
+    var ciHexList = document.querySelectorAll('.ci-hex');
+    for(var ciHx=0; ciHx<ciHexList.length; ciHx++){ ciHexBuild(ciHexList[ciHx], ciHx+1); }
+
+  })();
+  </script>
+
+  <script src="images/campusinter/campus-inter-premium.js"></script>
+  <script src="/footer.js"></script>
+
+  <!-- ============================================================
+       NOTES D'INTÉGRATION JOOMLA
+       ------------------------------------------------------------
+       1. Coller ce bloc dans l'article « Travailler en France ».
+       2. Images à déposer dans le Gestionnaire de médias.
+       3. Désactiver le filtrage HTML de l'article.
+       4. Menu : Visa Travail > Travailler en France (alias).
+       5. Les secteurs et métiers en tension sont des données
+          modifiables directement dans le HTML (cartes .ci-secteur
+          et .ci-metier). Dupliquez-les pour enrichir le contenu.
+       6. En production, le bouton « Envoyer mon CV » doit pointer
+          vers le formulaire de contact (ou un module dédié).
+       ============================================================ -->
+</div>

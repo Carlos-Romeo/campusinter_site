@@ -1,0 +1,395 @@
+<!-- ============================================================
+  CAMPUS INTER — Blog
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : blog.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Blog" (category : News & Advice).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+  
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="06">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><span class="ci-here">The blog</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+            News & Advice
+          </span>
+
+          <!-- Titre principal -->
+          <h1>The blog <em>Campus Inter</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Expert advice, practical guides and news about studies, visas, employment and accommodation in Europe.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Talk to an advisor
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciBlog">Discover the blog</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Our commitments"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Practical advice</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Regularly updated articles</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>A question? Write to us</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciBlog"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>Articles</a>
+            <a class="ci-hero-chip" href="#ciNewsletter"><i class="fa-solid fa-envelope-open" aria-hidden="true"></i>Newsletter</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">06</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-blog.jpg" alt="Students sharing a moment on campus">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Guides</b><small>to better prepare you</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Advice</b><small>studies, visa and employment</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Europe · Advice</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION ARTICLES — filtres + grille
+       ========================================================== -->
+  <section class="ci-section" id="ciBlog">
+    <!-- Hexagones : coin bas-droit, subtil, vert ; images dans quelques alvéoles -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="6" data-rows="4" data-size="24" data-color="#159447" data-fill="5" data-img="images/campusinter/blog-dossier.jpg" data-img-every="8" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Filtres par catégorie -->
+      <div class="ci-filters" id="ciFilters" role="group" aria-label="Filter articles by category">
+        <button class="ci-filter ci-active" data-filter="tous">All</button>
+        <button class="ci-filter" data-filter="etudes">Studies</button>
+        <button class="ci-filter" data-filter="visa">Visa</button>
+        <button class="ci-filter" data-filter="emploi">Employment</button>
+        <button class="ci-filter" data-filter="logement">Accommodation</button>
+      </div>
+
+      <!-- Grille des articles -->
+      <div class="ci-articles-grid" id="ciArticles">
+        <!-- Article 1 : Réussir son dossier Campus France -->
+        <article class="ci-article ci-reveal" data-categorie="etudes">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-dossier-campus-france.jpg" alt="Preparing your Campus France file">
+            <span class="ci-article-cat">Studies</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 12 July 2026 · 6 min</span>
+            <h3><a href="/blog/reussir-son-dossier-campus-france">Succeeding with your Campus France file</a></h3>
+            <p>The documents to provide, the mistakes to avoid and the tips for a solid file that maximizes your chances of admission.</p>
+            <a class="ci-article-link" href="/blog/reussir-son-dossier-campus-france">
+              Read the article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 2 : Réussir son entretien Campus France -->
+        <article class="ci-article ci-reveal" style="--d:.08s" data-categorie="visa">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-entretien-campus-france.jpg" alt="Preparing for the Campus France interview">
+            <span class="ci-article-cat">Visa</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 28 June 2026 · 5 min</span>
+            <h3><a href="/blog/reussir-son-entretien-campus-france">Succeeding at your Campus France interview</a></h3>
+            <p>How to prepare, the common questions and the right attitudes to convince during your interview.</p>
+            <a class="ci-article-link" href="/blog/reussir-son-entretien-campus-france">
+              Read the article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 3 : Métiers en tension en France -->
+        <article class="ci-article ci-reveal" style="--d:.16s" data-categorie="emploi">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-metiers-tension.jpg" alt="In-demand jobs in France">
+            <span class="ci-article-cat">Employment</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 15 June 2026 · 7 min</span>
+            <h3><a href="/blog/metiers-en-tension-en-france">In-demand jobs in France</a></h3>
+            <p>The sectors that hire massively and the in-demand jobs to facilitate your work visa project.</p>
+            <a class="ci-article-link" href="/blog/metiers-en-tension-en-france">
+              Read the article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 4 : Travailler après ses études -->
+        <article class="ci-article ci-reveal" style="--d:.24s" data-categorie="emploi">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-travailler-apres-etudes.jpg" alt="Working after your studies">
+            <span class="ci-article-cat">Employment</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 2 June 2026 · 6 min</span>
+            <h3><a href="/blog/travailler-apres-ses-etudes">Working after your studies</a></h3>
+            <p>The steps to move from student to employee status in France and extend your stay with peace of mind.</p>
+            <a class="ci-article-link" href="/blog/travailler-apres-ses-etudes">
+              Read the article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 5 : Trouver un logement étudiant -->
+        <article class="ci-article ci-reveal" style="--d:.32s" data-categorie="logement">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-logement-etudiant.jpg" alt="Finding student accommodation">
+            <span class="ci-article-cat">Accommodation</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 20 May 2026 · 5 min</span>
+            <h3><a href="/blog/trouver-un-logement-etudiant">Find student accommodation</a></h3>
+            <p>Residences, shared flats, CAF: our advice to find accommodation suited to your budget before you leave.</p>
+            <a class="ci-article-link" href="/blog/trouver-un-logement-etudiant">
+              Read the article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 6 : Erreurs à éviter pour le visa -->
+        <article class="ci-article ci-reveal" style="--d:.4s" data-categorie="visa">
+          <div class="ci-article-img">
+            <img src="images/campusinter/blog-erreurs-visa.jpg" alt="Mistakes to avoid for the visa">
+            <span class="ci-article-cat">Visa</span>
+          </div>
+          <div class="ci-article-body">
+            <span class="ci-article-date"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 8 May 2026 · 6 min</span>
+            <h3><a href="/blog/erreurs-a-eviter-pour-le-visa">Mistakes to avoid for the visa</a></h3>
+            <p>The most common pitfalls that lead to a visa refusal and how to avoid them for a flawless file.</p>
+            <a class="ci-article-link" href="/blog/erreurs-a-eviter-pour-le-visa">
+              Read the article
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION NEWSLETTER
+       ========================================================== -->
+  <section class="ci-section" id="ciNewsletter" style="padding-top:0;">
+    <!-- Hexagones : coin haut-gauche, présent, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--mid" data-cols="5" data-rows="4" data-size="24" data-color="#159447" data-fill="3" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-newsletter ci-reveal">
+        <h2>Stay informed</h2>
+        <p>Receive our latest articles and advice directly in your inbox. No spam, only useful information.</p>
+        <form class="ci-newsletter-form" id="ciFormNews" action="mail-campinter.php" method="post" novalidate>
+          <input type="hidden" name="type" value="newsletter">
+          <input type="hidden" name="page" value="Blog">
+          <input type="text" name="website" class="ci-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
+          <button class="ci-btn ci-btn--primaire" type="submit">
+            Subscribe
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </form>
+        <p class="ci-newsletter-status" id="ciNewsStatus" role="status" aria-live="polite" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Blog".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>

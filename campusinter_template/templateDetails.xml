@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="template" version="4.0" client="site" method="upgrade">
+    <name>Campus Inter Template</name>
+    <creationDate>2024</creationDate>
+    <author>Campus Inter</author>
+    <authorEmail>contact@campusinter.com</authorEmail>
+    <authorUrl>https://www.campusinter.com</authorUrl>
+    <copyright>Copyright (C) 2024 Campus Inter. Tous droits réservés.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>1.0.0</version>
+    <description>Template Joomla moderne et dynamique pour Campus Inter - Agence de mobilité internationale des étudiants</description>
+    
+    <files>
+        <filename>index.php</filename>
+        <filename>component.php</filename>
+        <filename>error.php</filename>
+        <filename>offline.php</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>images</folder>
+        <folder>html</folder>
+    </files>
+    
+    <positions>
+        <position>header</position>
+        <position>banner</position>
+        <position>services</position>
+        <position>stats</position>
+        <position>partners</position>
+        <position>faq</position>
+        <position>footer</position>
+        <position>debug</position>
+    </positions>
+    
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="primaryColor" type="color" default="#0a2540" label="Couleur principale" description="Couleur principale du template (bleu foncé)" />
+                <field name="accentColor" type="color" default="#f39c12" label="Couleur d'accent" description="Couleur d'accent pour les boutons et éléments importants" />
+                <field name="showStats" type="radio" default="1" label="Afficher les statistiques" description="Afficher la section des statistiques clés">
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </option>
+                <field name="showPartners" type="radio" default="1" label="Afficher les partenaires" description="Afficher la section des partenaires">
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </option>
+                <field name="showFAQ" type="radio" default="1" label="Afficher la FAQ" description="Afficher la section FAQ">
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </option>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

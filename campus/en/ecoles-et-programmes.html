@@ -1,0 +1,575 @@
+<!-- ============================================================
+  CAMPUS INTER — Schools & Programs
+  ------------------------------------------------------------
+  Version   : 1.0.0
+  Date      : 13/08/2026
+  Platform  : Joomla 4/5 — Article integration.
+  File      : ecoles-et-programmes.html
+  Language  : English (multilingual version).
+
+  JOOMLA INTEGRATION
+  ------------------
+  1. Create the article "Schools & Programs" (category : Schools & Programs).
+  2. Code editor (CodeMirror/JCE) : paste this block.
+  3. Upload the images in the Media Manager (same paths as the
+     French version).
+  4. Keep the Font Awesome 6 CDN link at the top of the block
+     for the icons.
+  5. No CSS or JS is embedded: the site template provides the
+     styles. Structure, tags and classes are identical to the
+     French page.
+============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link rel="stylesheet" href="images/campusinter/campus-inter-common.css">
+
+  <!-- ==========================================================
+       PRÉLOADER
+       ========================================================== -->
+  <div class="ci-preloader" id="ciPreloader" aria-hidden="true">
+    <div class="ci-preloader-logo">CAMPUS <span style="color:#159447;">INTER</span></div>
+    <div class="ci-preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Barre de progression de lecture -->
+  <div class="ci-scroll-progress" id="ciProgress" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       TOPBAR — coordonnées + réseaux sociaux
+       ========================================================== -->
+  <div class="ci-topbar">
+    <div class="ci-container">
+      <!-- Coordonnées rapides -->
+      <div class="ci-topbar-infos">
+        <a href="tel:+22822702596">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          +228 22 70 25 96
+        </a>
+        <a href="https://wa.me/22897754000">
+          <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          WhatsApp
+        </a>
+        <a href="mailto:contact@campusinter.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          contact@campusinter.com
+        </a>
+      </div>
+      <!-- Réseaux sociaux -->
+      <div class="ci-topbar-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       HEADER STICKY + MÉGA-MENU
+       ========================================================== -->
+  <!-- Menu mobile plein écran -->
+  <!-- ==========================================================
+       HERO INTERNE — bandeau + fil d'Ariane + parallax
+       ========================================================== -->
+      <section class="ci-page-hero" data-num="03">
+    <!-- Grille hexagonale décorative : fond complet, très subtil, vert clair -->
+    <div class="ci-hex ci-hex--full ci-hex--faint" data-cols="13" data-rows="7" data-size="28" data-color="#8ee0b4" data-fill="6" aria-hidden="true"></div>
+
+    <div class="ci-container">
+      <!-- Fil d'Ariane : bandeau premium au-dessus de la grille -->
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="ci-sep">›</span><span class="ci-here">Schools & Programs</span>
+      </nav>
+
+      <div class="ci-hero-grid--inverse">
+        <!-- Colonne texte (droite au desktop, première sur mobile) -->
+        <div class="ci-hero-content">
+          <!-- Kicker éditorial -->
+          <span class="ci-hero-kicker">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            Catalogue · Europe
+          </span>
+
+          <!-- Titre principal -->
+          <h1>Schools & <em>Programs</em></h1>
+
+          <!-- Accroche -->
+          <p class="ci-hero-sous">Browse our catalogue of partner schools in Europe. Filter by field, country and level to find the program that suits you.</p>
+
+          <!-- Appels à l'action -->
+          <div class="ci-hero-cta">
+            <a class="ci-btn ci-btn--primaire" href="/contact">
+              Find my program
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="ci-btn ci-btn--outline" href="#ciCatalogue">View the catalogue</a>
+          </div>
+
+          <div class="ci-hero-reassurance" aria-label="Our commitments"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Free first consultation</span><span><i class="fa-solid fa-clock" aria-hidden="true"></i>Response within 48 hours</span><span><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp available</span></div>
+
+          <!-- Navigation rapide vers les sections de la page -->
+          <div class="ci-hero-chips">
+            <a class="ci-hero-chip" href="#ciCatalogue"><i class="fa-solid fa-layer-group" aria-hidden="true"></i>Fields</a>
+            <a class="ci-hero-chip" href="/etudier-en-france"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Study in France</a>
+            <a class="ci-hero-chip" href="/etudier-en-belgique"><i class="fa-solid fa-database" aria-hidden="true"></i>Study in Belgium</a>
+          </div>
+        </div>
+
+        <!-- Colonne média (gauche au desktop) : photo + ghost + cartes -->
+        <div class="ci-hero-media">
+          <span class="ci-ghost" aria-hidden="true">03</span>
+          <div class="ci-hero-blob" aria-hidden="true"></div>
+          <svg class="ci-hero-dots" width="150" height="150" viewbox="0 0 150 150" aria-hidden="true">
+            <g fill="#159447">
+              <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+              <circle cx="100" cy="10" r="3"/><circle cx="130" cy="10" r="3"/>
+              <circle cx="10" cy="40" r="3"/><circle cx="70" cy="40" r="3"/><circle cx="130" cy="40" r="3"/>
+              <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+              <circle cx="10" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="130" cy="100" r="3"/>
+              <circle cx="10" cy="130" r="3"/><circle cx="40" cy="130" r="3"/><circle cx="100" cy="130" r="3"/>
+            </g>
+          </svg>
+          <div class="ci-hero-img-frame">
+            <img class="ci-hero-img" src="images/campusinter/hero-ecoles-programmes.jpg" alt="European university campus">
+          </div>
+          <div class="ci-hero-card ci-hero-card--1">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <div><b>Schools</b><small>and partner programs</small></div>
+          </div>
+          <div class="ci-hero-card ci-hero-card--2">
+            <i class="fa-solid fa-passport" aria-hidden="true"></i>
+            <div><b>Orientation</b><small>according to your project</small></div>
+          </div>
+          <span class="ci-hero-tag"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Europe · Partners</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================
+       SECTION 1 — OUTIL DE RECHERCHE + GRILLE D'ÉCOLES
+       ========================================================== -->
+  <section class="ci-section" id="ciCatalogue">
+    <!-- Hexagones : coin bas-droit, très subtil, vert -->
+    <div class="ci-hex ci-hex--br ci-hex--md ci-hex--faint" data-cols="5" data-rows="3" data-size="24" data-color="#159447" data-fill="0" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Carte recherche + filtres combinés -->
+      <div class="ci-recherche ci-reveal">
+        <div class="ci-recherche-card">
+          <!-- Champ de recherche texte -->
+          <div class="ci-recherche-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="text" id="ciSearch" placeholder="Search for a school, program, city..." aria-label="Search for a school or program">
+          </div>
+
+          <!-- Filtres déroulants combinés -->
+          <div class="ci-recherche-filtres">
+            <!-- Filtre domaine -->
+            <select id="ciFiltreDomaine" aria-label="Filter by field">
+              <option value="tous">All fields</option>
+              <option value="management">Management & Business</option>
+              <option value="digital">Digital & Tech</option>
+              <option value="communication">Communication & Media</option>
+              <option value="arts">Arts & Creation</option>
+              <option value="design">Design</option>
+              <option value="ingenierie">Engineering</option>
+              <option value="sante">Health</option>
+              <option value="droit">Law</option>
+              <option value="tourisme">Tourism & Luxury</option>
+              <option value="data">Data & AI</option>
+            </select>
+
+            <!-- Filtre pays -->
+            <select id="ciFiltrePays" aria-label="Filter by country">
+              <option value="tous">All countries</option>
+              <option value="france">France</option>
+              <option value="belgique">Belgium</option>
+            </select>
+
+            <!-- Filtre niveau -->
+            <select id="ciFiltreNiveau" aria-label="Filter by level">
+              <option value="tous">All levels</option>
+              <option value="bts">BTS / Bac+2</option>
+              <option value="bachelor">Bachelor / Bac+3</option>
+              <option value="mastere">Master's / Bac+5</option>
+              <option value="pge">Grande École Program</option>
+            </select>
+          </div>
+
+          <!-- Compteur de résultats -->
+          <p class="ci-recherche-count"><b id="ciCount">0</b> school(s) found</p>
+        </div>
+      </div>
+
+      <!-- Grille d'écoles (data-* pour le filtrage combiné) -->
+      <div class="ci-ecole-grid" id="ciEcoleGrid">
+        <!-- École 1 : GGE — emlyon (Management, France, PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>emlyon business school</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Management</span><span class="ci-tag">Grande École Program</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon · Shanghai · Mumbai</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's · Grande École Program</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/emlyon">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 2 : GGE — Digital Campus (Digital, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="digital" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>Digital Campus</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Digital</span><span class="ci-tag">Tech</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Dakar</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's Digital</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/digital-campus">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 3 : GGE — Cours Florent (Arts, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="arts" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>Cours Florent</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Dramatic arts</span><span class="ci-tag">Cinema</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Montpellier</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's Arts & Creation</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/cours-florent">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 4 : GGE — Intuit Lab (Design, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="design" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-galileo.png" alt="Galileo Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Galileo Global Education</span>
+            <h3>Intuit Lab</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Design</span><span class="ci-tag">Art direction</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Aix-en-Provence · Mumbai · São Paulo</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's Design</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/intuit-lab">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 5 : OMNES — ESCE (Management, France, Bachelor/PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>ESCE Business School</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">International Trade</span><span class="ci-tag">Bachelor</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's · PGE</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/esce">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 6 : OMNES — ECE (Ingénierie/Digital, France, Bac+2 à Bac+5) -->
+        <article class="ci-ecole-card" data-domaine="ingenierie" data-pays="france" data-niveau="bts bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>ECE — Engineering School</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Engineering</span><span class="ci-tag">Digital</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bac+2 · Bac+5 Engineering</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/ece">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 7 : OMNES — INSEEC (Management, France, PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>INSEEC</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Management</span><span class="ci-tag">Finance</span><span class="ci-tag">Marketing</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Rennes</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's · PGE</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/inseec">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 8 : OMNES — Sup de Pub (Communication, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="communication" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-omnes.png" alt="OMNES Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">OMNES Education Group</span>
+            <h3>Sup de Pub</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Advertising</span><span class="ci-tag">Communication</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Bordeaux · Lyon · Aix</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's Communication</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/sup-de-pub">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 9 : MediaSchool — IEJ (Communication, France, Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="communication" data-pays="france" data-niveau="bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mediaschool.png" alt="MediaSchool"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Media School</span>
+            <h3>IEJ — Journalism</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Journalism</span><span class="ci-tag">Media</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · 15 campuses in France</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Bachelor · Master's Communication</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/iej">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 10 : MediaSchool — PSTC (Tourisme, France/Belgique, BTS/Bachelor/Mastère) -->
+        <article class="ci-ecole-card" data-domaine="tourisme" data-pays="france belgique" data-niveau="bts bachelor mastere">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mediaschool.png" alt="MediaSchool"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Media School</span>
+            <h3>Paris School of Tourism & Communication</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">Tourism</span><span class="ci-tag">Communication</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris · Brussels · Barcelona</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> BTS · Bachelor · Master's</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/pstc">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 11 : HEMA — ESCI Paris (Management, France, PGE) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bachelor mastere pge">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-hema.png" alt="HEMA Group"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">Hema Management School</span>
+            <h3>ESCI Paris</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">International Trade</span><span class="ci-tag">Grande École Program</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris — Marne-la-Vallée</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Grande École Program · Bac to Bac+5</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/esci">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- École 12 : MBN — BTS & Bachelor (Management, France, BTS/Bachelor) -->
+        <article class="ci-ecole-card" data-domaine="management" data-pays="france" data-niveau="bts bachelor">
+          <div class="ci-ecole-head"><img src="images/campusinter/logo-mbn.png" alt="MBN Global Education"></div>
+          <div class="ci-ecole-body">
+            <span class="ci-ecole-groupe">MBN Global Education</span>
+            <h3>MBN — BTS & Bachelor</h3>
+            <div class="ci-ecole-tags"><span class="ci-tag">BTS</span><span class="ci-tag">Bachelor</span><span class="ci-tag">Master's</span></div>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Paris-Torcy · Paris-Évry · Lyon</p>
+            <p class="ci-ecole-ligne"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> BTS · Bachelor · Master's</p>
+            <a class="ci-ecole-lien" href="/ecoles-et-programmes/mbn">View details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Message aucun résultat -->
+      <div class="ci-aucun-resultat" id="ciAucunResultat">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <h3>No results</h3>
+        <p>No school matches your criteria. Try widening your search or contact us for personalized advice.</p>
+        <a class="ci-btn ci-btn--primaire" href="/contact">Let's talk about your project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2 — DOMAINES MIS EN AVANT (12 domaines)
+       ========================================================== -->
+  <section class="ci-domaines ci-section" id="ciDomaines" data-ghost="01">
+    <!-- Hexagones : coin haut-gauche, subtil, vert ; quelques remplis -->
+    <div class="ci-hex ci-hex--tl ci-hex--md ci-hex--soft" data-cols="6" data-rows="4" data-size="22" data-color="#159447" data-fill="4" aria-hidden="true"></div>
+    <div class="ci-container">
+      <!-- Titre de section -->
+      <div class="ci-section-titre ci-reveal">
+        <span class="ci-kicker">Fields</span>
+        <h2>Explore by field</h2>
+        <p>Click on a field to instantly filter the schools in the catalogue.</p>
+      </div>
+
+      <!-- Grille des 12 domaines -->
+      <div class="ci-domaines-grid">
+        <!-- Domaine 1 -->
+        <div class="ci-domaine ci-reveal" data-filtre-domaine="management">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-table" aria-hidden="true"></i></span>
+          <b>Management</b>
+          <span>Business & Commerce</span>
+        </div>
+        <!-- Domaine 2 -->
+        <div class="ci-domaine ci-reveal" style="--d:.05s" data-filtre-domaine="digital">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-display" aria-hidden="true"></i></span>
+          <b>Digital & Tech</b>
+          <span>Web, AI, Data</span>
+        </div>
+        <!-- Domaine 3 -->
+        <div class="ci-domaine ci-reveal" style="--d:.1s" data-filtre-domaine="communication">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-comment" aria-hidden="true"></i></span>
+          <b>Communication</b>
+          <span>Media & Advertising</span>
+        </div>
+        <!-- Domaine 4 -->
+        <div class="ci-domaine ci-reveal" style="--d:.15s" data-filtre-domaine="arts">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-stamp" aria-hidden="true"></i></span>
+          <b>Arts & Creation</b>
+          <span>Theatre, Cinema, Music</span>
+        </div>
+        <!-- Domaine 5 -->
+        <div class="ci-domaine ci-reveal" style="--d:.2s" data-filtre-domaine="design">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i></span>
+          <b>Design</b>
+          <span>Art direction</span>
+        </div>
+        <!-- Domaine 6 -->
+        <div class="ci-domaine ci-reveal" style="--d:.25s" data-filtre-domaine="ingenierie">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-wrench" aria-hidden="true"></i></span>
+          <b>Engineering</b>
+          <span>Engineering schools</span>
+        </div>
+        <!-- Domaine 7 -->
+        <div class="ci-domaine ci-reveal" style="--d:.3s" data-filtre-domaine="sante">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+          <b>Health</b>
+          <span>Health & Social</span>
+        </div>
+        <!-- Domaine 8 -->
+        <div class="ci-domaine ci-reveal" style="--d:.35s" data-filtre-domaine="droit">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+          <b>Law</b>
+          <span>Law & Legal Careers</span>
+        </div>
+        <!-- Domaine 9 -->
+        <div class="ci-domaine ci-reveal" style="--d:.4s" data-filtre-domaine="tourisme">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-location-arrow" aria-hidden="true"></i></span>
+          <b>Tourism & Luxury</b>
+          <span>Hospitality, Events</span>
+        </div>
+        <!-- Domaine 10 -->
+        <div class="ci-domaine ci-reveal" style="--d:.45s" data-filtre-domaine="data">
+          <span class="ci-domaine-icone"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+          <b>Data & AI</b>
+          <span>Artificial intelligence</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — CTA FINAL
+       ========================================================== -->
+  <section class="ci-cta ci-section" id="ciCta">
+    <!-- Hexagones : coin bas-droit, subtil, blanc ; quelques remplis -->
+    <div class="ci-hex ci-hex--br ci-hex--lg ci-hex--soft" data-cols="8" data-rows="5" data-size="24" data-color="#FFFFFF" data-fill="5" aria-hidden="true"></div>
+    <div class="ci-container">
+      <div class="ci-reveal">
+        <span class="ci-kicker">Undecided?</span>
+        <h2>Find the ideal program</h2>
+        <p>Our team freely guides you toward the programs best suited to your profile, level and budget.</p>
+        <div class="ci-cta-btns">
+          <a class="ci-btn ci-btn--primaire" href="/contact">
+            Find my program
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="ci-btn ci-btn--blanc" href="https://wa.me/22897754000">
+            WhatsApp
+            <i class="fa-solid fa-comment" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER — 4 colonnes
+       ========================================================== -->
+  <footer class="ci-footer" data-ci-footer>
+    <div class="ci-container">
+      <div class="ci-footer-grid">
+        <!-- Colonne À propos -->
+        <div>
+          <div class="ci-footer-logo"><img src="images/campusinter/logo-campus-inter.png" alt="Logo Campus Inter"><span style="margin-left:10px;">CAMPUS INTER</span></div>
+          <p style="margin-top:14px;">International mobility agency based in Bè-Kpota (Lomé, Togo). We support students and professionals moving to Europe: studies, employment, visa and settlement. Immigration, No Stress!</p>
+          <div class="ci-footer-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/22897754000" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Colonne Nos services -->
+        <div>
+          <h4>Our services</h4>
+          <a href="/etudier-en-france">Study in France</a>
+          <a href="/etudier-en-belgique">Study in Belgium</a>
+          <a href="/travailler-en-france">Working in France</a>
+          <a href="/visa-et-demarches">Visa & Procedures</a>
+          <a href="/installation-en-france">Settlement</a>
+        </div>
+
+        <!-- Colonne Liens rapides -->
+        <div>
+          <h4>Quick links</h4>
+          <a href="/ecoles-et-programmes">Schools & Programs</a>
+          <a href="/nos-partenaires">Our partners</a>
+          <a href="/qui-sommes-nous">Who are we?</a>
+          <a href="/blog">The blog</a>
+          <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Colonne Contact -->
+        <div class="ci-footer-contact">
+          <h4>Contact</h4>
+          <a href="#"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Boulevard de l'Oti, opposite Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo</a>
+          <a href="tel:+22822702596"><i class="fa-solid fa-phone" aria-hidden="true"></i> +228 22 70 25 96</a>
+          <a href="https://wa.me/22897754000"><i class="fa-solid fa-comment" aria-hidden="true"></i> +228 97 75 40 00</a>
+          <a href="mailto:contact@campusinter.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> contact@campusinter.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="ci-footer-bottom">
+      <div class="ci-container">
+        © 2026 CAMPUS INTER. All rights reserved. Designed by Yehna Services.
+        <a href="/mentions-legales">Legal notice</a>·
+        <a href="/politique-de-confidentialite">Privacy policy</a>·
+        <a href="/faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       BOUTON WHATSAPP FLOTTANT
+       ========================================================== -->
+  <a class="ci-whatsapp" href="https://wa.me/22897754000?text=Bonjour%20Campus%20Inter" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ==========================================================
+       BOUTON RETOUR EN HAUT
+       ========================================================== -->
+  <button class="ci-to-top" id="ciToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </button>
+
+  
+
+  
+  
+
+    <!-- ============================================================
+       JOOMLA INTEGRATION NOTES
+       ------------------------------------------------------------
+       1. Paste this block into the article "Schools & Programs".
+       2. Upload the images in the Media Manager.
+       3. The site template provides the styles (no CSS or JS
+          embedded).
+       4. Menu : same structure as the French menu, in English.
+       5. To add/remove schools: duplicate an
+          <article class="ci-ecole-card" data-domaine="..."> and
+          adjust its data-domaine attribute.
+       6. In production, the "View details" links point to the
+          school fact sheets (dedicated articles).
+       ============================================================ -->
+</div>
