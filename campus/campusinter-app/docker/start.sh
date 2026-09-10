@@ -21,7 +21,7 @@ EOF
 TABLE_COUNT=$(mysql -u root -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='campusinter'")
 if [ "$TABLE_COUNT" -eq 0 ]; then
     echo "Importation de la base de données..."
-    mysql -u root campusinter < /var/www/html/database/campusinter.sql
+    mysql -u root campusinter < /var/www/database/campusinter.sql
     echo "Base de données importée avec succès."
 fi
 
