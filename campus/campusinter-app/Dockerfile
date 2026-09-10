@@ -14,13 +14,18 @@ RUN apt-get update && apt-get install -y \
 # Copier la configuration Apache
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Copier l'application
+# Créer la structure correcte
+RUN mkdir -p /var/www/html
+
+# Copier l'application (public = racine web)
 COPY public/ /var/www/html/
-COPY app/ /var/www/html/app/
-COPY config/ /var/www/html/config/
-COPY vendor/ /var/www/html/vendor/
-COPY storage/ /var/www/html/storage/
-COPY database/ /var/www/html/database/
+
+# Copier les dossiers au-dessus de public pour que index.php les trouve
+COPY app/ /var/www/app/
+COPY config/ /var/www/config/
+COPY vendor/ /var/www/vendor/
+COPY storage/ /var/www/storage/
+COPY database/ /var/www/database/
 
 # Script d'initialisation au démarrage
 COPY docker/start.sh /start.sh
