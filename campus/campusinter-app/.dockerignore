@@ -4,7 +4,7 @@
 .env.example
 DEPLOY.md
 README.md
-docker/
+RENDER.md
 render.yaml
 *.md
 database/migrations/

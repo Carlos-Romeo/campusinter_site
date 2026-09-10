@@ -4,7 +4,7 @@ FROM php:8.2-apache
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
 # Activer mod_rewrite
-RUN a]2enmod rewrite
+RUN a2enmod rewrite
 
 # Installer MySQL dans le conteneur
 RUN apt-get update && apt-get install -y \
