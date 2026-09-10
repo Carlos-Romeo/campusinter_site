@@ -1,0 +1,15 @@
+.git
+.gitignore
+.env
+.env.example
+DEPLOY.md
+README.md
+docker/
+render.yaml
+*.md
+database/migrations/
+database/seeds/
+storage/logs/*
+storage/cache/*
+!storage/logs/.gitkeep
+!storage/cache/.gitkeep

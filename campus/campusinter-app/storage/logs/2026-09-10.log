@@ -8,3 +8,4 @@ Context: {"program":"Doctorat Médecine","campus":"Campus de Cocody"}
 Context: {"program":"Doctorat Médecine","campus":"Campus de Cocody"}
 [2026-09-10 15:41:40] ERROR [email] Erreur envoi email à admission@rabatam.ci.com: SMTP Error: Could not authenticate. | IP: 127.0.0.1
 [2026-09-10 15:41:42] ERROR [email] Erreur envoi email à romeo.afanvi@gmail.com: SMTP Error: Could not authenticate. | IP: 127.0.0.1
+[2026-09-10 15:53:03] INFO [system] Statut candidature mis à jour: ID 3 → accepted | IP: 127.0.0.1

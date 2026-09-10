@@ -1,13 +1,20 @@
+# CAMPUS INTER — Apache URL Rewriting
+# Compatible InfinityFree / hébergement mutualisé
+
 RewriteEngine On
 
-# Rediriger vers HTTPS (décommenter en production)
+# Forcer HTTPS (décommenter en production)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Empêcher l'accès aux fichiers sensibles
-RewriteRule ^(config|app|database|storage)/ - [F,L]
+RewriteRule ^config/ - [F,L]
+RewriteRule ^app/ - [F,L]
+RewriteRule ^vendor/ - [F,L]
+RewriteRule ^storage/ - [F,L]
+RewriteRule ^\.env - [F,L]
 
-# Rediriger les dossiers vers index.php
+# Si le fichier/dossier demandé n'existe pas, passer à index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
