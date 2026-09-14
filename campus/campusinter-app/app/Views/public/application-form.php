@@ -35,18 +35,13 @@
                 <div class="ci-step__separator"></div>
                 <div class="ci-step" data-ci-step-indicator="3">
                     <span class="ci-step__number">3</span>
-                    <span>Documents</span>
-                </div>
-                <div class="ci-step__separator"></div>
-                <div class="ci-step" data-ci-step-indicator="4">
-                    <span class="ci-step__number">4</span>
                     <span>Confirmation</span>
                 </div>
             </div>
 
             <!-- Form -->
             <div class="ci-card">
-                <form id="ci-application-form" method="post" enctype="multipart/form-data">
+                <form id="ci-application-form" method="post">
                     <input type="hidden" id="ci-program-id" value="<?= $program['id'] ?>">
                     <input type="hidden" id="ci-campus-id" value="<?= $campus['id'] ?>">
 
@@ -160,82 +155,8 @@
                         </div>
                     </div>
 
-                    <!-- Étape 3: Documents -->
+                    <!-- Étape 3: Confirmation -->
                     <div class="ci-form-step" data-ci-step-content="3" style="display: none;">
-                        <h2 style="font-size: 1.125rem; font-weight: 700; margin-bottom: var(--ci-space-lg); color: var(--ci-gray-900);">
-                            Documents
-                        </h2>
-                        
-                        <p style="color: var(--ci-gray-600); margin-bottom: var(--ci-space-lg); font-size: 0.875rem;">
-                            Téléchargez vos documents pour compléter votre dossier. Formats acceptés : PDF, JPG, PNG (max 5 Mo chacun).
-                        </p>
-
-                        <div class="ci-form-group" style="margin-bottom: var(--ci-space-md);">
-                            <label for="diploma_file">
-                                Relevé de notes du dernier diplôme
-                                <span style="color: var(--ci-gray-500); font-weight: normal;">(optionnel)</span>
-                            </label>
-                            <div class="ci-file-upload">
-                                <input type="file" id="diploma_file" name="diploma_file" accept=".pdf,.jpg,.jpeg,.png" class="ci-file-input">
-                                <label for="diploma_file" class="ci-file-label">
-                                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <span class="ci-file-name">Choisir un fichier</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="ci-form-group" style="margin-bottom: var(--ci-space-md);">
-                            <label for="bac_file">
-                                Attestation ou copie du BAC
-                                <span style="color: var(--ci-gray-500); font-weight: normal;">(optionnel)</span>
-                            </label>
-                            <div class="ci-file-upload">
-                                <input type="file" id="bac_file" name="bac_file" accept=".pdf,.jpg,.jpeg,.png" class="ci-file-input">
-                                <label for="bac_file" class="ci-file-label">
-                                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <span class="ci-file-name">Choisir un fichier</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="ci-form-group" style="margin-bottom: var(--ci-space-lg);">
-                            <label for="cv_file">
-                                CV
-                                <span style="color: var(--ci-gray-500); font-weight: normal;">(optionnel)</span>
-                            </label>
-                            <div class="ci-file-upload">
-                                <input type="file" id="cv_file" name="cv_file" accept=".pdf,.jpg,.jpeg,.png" class="ci-file-input">
-                                <label for="cv_file" class="ci-file-label">
-                                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <span class="ci-file-name">Choisir un fichier</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="ci-form-step-actions">
-                            <button type="button" class="ci-btn ci-btn--outline" data-ci-step="2">
-                                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                </svg>
-                                Retour
-                            </button>
-                            <button type="button" class="ci-btn ci-btn--secondary" data-ci-step="4">
-                                Continuer
-                                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Étape 4: Confirmation -->
-                    <div class="ci-form-step" data-ci-step-content="4" style="display: none;">
                         <h2 style="font-size: 1.125rem; font-weight: 700; margin-bottom: var(--ci-space-lg); color: var(--ci-gray-900);">
                             Vérifier vos informations
                         </h2>
@@ -257,7 +178,7 @@
                         </div>
 
                         <div class="ci-form-step-actions">
-                            <button type="button" class="ci-btn ci-btn--outline" data-ci-step="3">
+                            <button type="button" class="ci-btn ci-btn--outline" data-ci-step="2">
                                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                                 </svg>
@@ -276,59 +197,5 @@
         </div>
     </div>
 </section>
-
-<style>
-/* Styles pour l'upload de fichiers */
-.ci-file-upload {
-    position: relative;
-}
-
-.ci-file-input {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.ci-file-label {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    border: 2px dashed var(--ci-gray-300, #ccc);
-    border-radius: 8px;
-    background: var(--ci-gray-50, #f9f9f9);
-    color: var(--ci-gray-600, #666);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.ci-file-label:hover {
-    border-color: var(--ci-primary, #1976D2);
-    background: var(--ci-primary-light, #E3F2FD);
-}
-
-.ci-file-input:focus + .ci-file-label {
-    outline: none;
-    border-color: var(--ci-primary, #1976D2);
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
-}
-
-.ci-file-input.has-file + .ci-file-label {
-    border-color: var(--ci-success, #4CAF50);
-    background: var(--ci-success-light, #E8F5E9);
-}
-
-.ci-file-name {
-    flex: 1;
-}
-
-.ci-file-size {
-    font-size: 0.75rem;
-    color: var(--ci-gray-500, #999);
-}
-</style>
 
 <script src="/assets/js/application-form.js"></script>
