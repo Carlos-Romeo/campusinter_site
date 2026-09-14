@@ -29,6 +29,7 @@ use CampusInter\Controllers\AuthController;
 use CampusInter\Controllers\AdminController;
 use CampusInter\Controllers\PublicController;
 use CampusInter\Controllers\CsvImportController;
+use CampusInter\Controllers\PaymentController;
 
 // Créer le routeur
 $router = new Router();
@@ -41,6 +42,11 @@ $router->get('/programme', [new PublicController(), 'programDetail']);
 $router->get('/preinscription', [new PublicController(), 'applicationForm']);
 $router->get('/confirmation', [new PublicController(), 'confirmation']);
 
+// Routes paiement
+$payment = new PaymentController();
+$router->get('/paiement', [$payment, 'paymentPage']);
+$router->get('/recu', [$payment, 'receipt']);
+
 // =====================================================
 // API PUBLIQUE
 // =====================================================
@@ -50,6 +56,8 @@ $router->get('/api/specialties', [new PublicController(), 'apiSpecialties']);
 $router->get('/api/cities', [new PublicController(), 'apiCities']);
 $router->get('/api/programs/search', [new PublicController(), 'apiSearch']);
 $router->post('/api/applications', [new PublicController(), 'apiSubmitApplication']);
+$router->post('/api/payment', [$payment, 'processPayment']);
+$router->get('/api/payment/status', [$payment, 'checkStatus']);
 
 // =====================================================
 // ROUTES ADMIN - AUTH
@@ -139,6 +147,11 @@ $router->post('/admin/academic-years/edit', [$admin, 'academicYearEdit'], ['auth
 $router->get('/admin/applications', [$admin, 'applications'], ['auth']);
 $router->get('/admin/applications/show', [$admin, 'applicationShow'], ['auth']);
 $router->post('/admin/applications/status', [$admin, 'applicationUpdateStatus'], ['auth']);
+
+// Paiements
+$router->get('/admin/payments', [$admin, 'payments'], ['auth']);
+$router->get('/admin/payments/show', [$admin, 'paymentShow'], ['auth']);
+$router->post('/admin/payments/status', [$admin, 'paymentUpdateStatus'], ['auth']);
 
 // Import CSV
 $csvImport = new CsvImportController();

@@ -25,15 +25,38 @@ $ciBeStatut = '';
 $ciBeMsg    = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (trim((string) ($_POST['website'] ?? '')) !== '') {
+    /* --- 1. Validation du token CSRF --- */
+    $ciSession = \Joomla\CMS\Factory::getSession();
+    $tokenName  = $ciSession->getName();
+    $tokenValue = $_POST[$tokenName] ?? '';
+    if (!$ciSession->validate($tokenName, $tokenValue)) {
+        $ciBeStatut = 'err';
+        $ciBeMsg    = 'Session expirée. Rafraîchissez la page et réessayez.';
+    }
+    /* --- 2. Rate limiting (5 req / min / IP) --- */
+    elseif ($ciBeStatut === '') {
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+        $rateKey = 'ci_rate_be_' . md5($ip);
+        $rate = (int) $ciSession->get($rateKey, 0);
+        if ($rate >= 5) {
+            $ciBeStatut = 'err';
+            $ciBeMsg    = 'Trop de requêtes. Réessayez dans 1 minute.';
+        } else {
+            $ciSession->set($rateKey, $rate + 1);
+        }
+    }
+    /* --- 3. Honeypot --- */
+    if ($ciBeStatut === '' && trim((string) ($_POST['website'] ?? '')) !== '') {
         $ciBeStatut = 'ok';
         $ciBeMsg    = 'Merci ! Votre demande a bien été envoyée, un conseiller Campus Inter vous recontacte sous 48h.';
-    } else {
-        $nom      = trim(strip_tags((string) ($_POST['nom']      ?? '')));
-        $mail     = trim(strip_tags((string) ($_POST['email']    ?? '')));
-        $tel      = trim(strip_tags((string) ($_POST['telephone']?? '')));
-        $domaine  = trim(strip_tags((string) ($_POST['domaine']  ?? '')));
-        $message  = trim(strip_tags((string) ($_POST['message']  ?? '')));
+    }
+    /* --- 4. Traitement du formulaire --- */
+    elseif ($ciBeStatut === '') {
+        $nom      = substr(trim(strip_tags((string) ($_POST['nom']      ?? ''))), 0, 100);
+        $mail     = substr(trim(strip_tags((string) ($_POST['email']    ?? ''))), 0, 254);
+        $tel      = substr(trim(strip_tags((string) ($_POST['telephone']?? ''))), 0, 20);
+        $domaine  = substr(trim(strip_tags((string) ($_POST['domaine']  ?? ''))), 0, 50);
+        $message  = substr(trim(strip_tags((string) ($_POST['message']  ?? ''))), 0, 2000);
 
         if ($nom === '' || $mail === '' || $tel === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             $ciBeStatut = 'err';

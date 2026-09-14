@@ -44,6 +44,8 @@ echo '<p>Recevez nos derniers articles et conseils directement dans votre boîte
 echo '<div id="ci-success" class="ci-newsletter-status ci-statut-ok" role="status" style="display:none;">Merci ! Vous êtes maintenant inscrit à la newsletter Campus Inter.</div>';
 echo '<div id="ci-error" class="ci-newsletter-status ci-statut-err" role="status" style="display:none;">L\'inscription a échoué. Veuillez réessayer.</div>';
 echo '<form class="ci-newsletter-form" id="ciFormNews" action="' . $pageUrl . '" method="post">';
+$ciToken = \Joomla\CMS\Factory::getSession()->getFormToken();
+echo '<input type="hidden" name="' . $ciToken . '" value="1">';
 echo '<input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">';
 echo '<input type="email" name="email" placeholder="Votre adresse e-mail" aria-label="Adresse e-mail" required="">';
 echo '<button class="ci-btn ci-btn--primaire" type="submit"> S\'abonner <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> </button>';
@@ -52,7 +54,26 @@ echo '</form></div></div></section>';
 return;
 }
 
-$mail = trim(strip_tags((string) ($_POST['email'] ?? '')));
+$ciSession = \Joomla\CMS\Factory::getSession();
+$tokenName  = $ciSession->getName();
+$tokenValue = $_POST[$tokenName] ?? '';
+if (!$ciSession->validate($tokenName, $tokenValue)) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+
+$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+$rateKey = 'ci_rate_nl_' . md5($ip);
+$rate = (int) $ciSession->get($rateKey, 0);
+if ($rate >= 5) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+$ciSession->set($rateKey, $rate + 1);
+
+$mail = substr(trim(strip_tags((string) ($_POST['email'] ?? ''))), 0, 254);
 
 if ($mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 $app = Factory::getApplication();

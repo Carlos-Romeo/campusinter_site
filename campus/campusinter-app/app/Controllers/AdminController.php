@@ -1192,7 +1192,7 @@ class AdminController extends Controller
         $id = (int) ($_POST['id'] ?? 0);
         $status = $_POST['status'] ?? '';
 
-        $validStatuses = ['new', 'processing', 'accepted', 'rejected', 'archived'];
+        $validStatuses = ['new', 'processing', 'accepted', 'rejected', 'archived', 'paid'];
         if (!in_array($status, $validStatuses)) {
             $this->json(['success' => false, 'message' => 'Statut invalide.'], 400);
             return;
@@ -1204,6 +1204,160 @@ class AdminController extends Controller
 
         Logger::info("Statut candidature mis à jour: ID {$id} → {$status}", 'system');
         $this->json(['success' => true, 'message' => 'Statut mis à jour avec succès.']);
+    }
+
+    // =====================================================
+    // GESTION DES PAIEMENTS
+    // =====================================================
+
+    public function payments(): void
+    {
+        $db = $this->db->getConnection();
+        $search = $_GET['search'] ?? '';
+        $status = $_GET['status'] ?? '';
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = 20;
+        $offset = ($page - 1) * $perPage;
+
+        $sql = "SELECT p.*, a.reference, a.first_name, a.last_name, a.email,
+                       pr.name as program_name, pr.level
+                FROM payments p
+                JOIN applications a ON p.application_id = a.id
+                JOIN programs pr ON a.program_id = pr.id";
+        $conditions = [];
+        $params = [];
+
+        if ($search) {
+            $conditions[] = "(a.reference LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ? OR p.transaction_reference LIKE ?)";
+            $searchParam = "%{$search}%";
+            $params = array_merge($params, [$searchParam, $searchParam, $searchParam, $searchParam]);
+        }
+
+        if ($status) {
+            $conditions[] = "p.status = ?";
+            $params[] = $status;
+        }
+
+        if ($conditions) {
+            $sql .= " WHERE " . implode(" AND ", $conditions);
+        }
+
+        // Count total
+        $countSql = "SELECT COUNT(*) as total FROM ({$sql}) as sub";
+        $stmt = $db->prepare($countSql);
+        $stmt->execute($params);
+        $total = (int) $stmt->fetch()['total'];
+        $totalPages = (int) ceil($total / $perPage);
+
+        $sql .= " ORDER BY p.created_at DESC LIMIT ? OFFSET ?";
+        $params[] = $perPage;
+        $params[] = $offset;
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+        $payments = $stmt->fetchAll();
+
+        $this->view('admin/payments/index', [
+            'title' => 'Gestion des paiements',
+            'payments' => $payments,
+            'total' => $total,
+            'totalPages' => $totalPages,
+            'page' => $page,
+            'search' => $search,
+            'status' => $status,
+        ]);
+    }
+
+    public function paymentShow(): void
+    {
+        $id = (int) ($_GET['id'] ?? 0);
+        if ($id <= 0) {
+            $this->notFound();
+            return;
+        }
+
+        $db = $this->db->getConnection();
+        $stmt = $db->prepare("
+            SELECT p.*, a.reference, a.first_name, a.last_name, a.email, a.phone,
+                   a.birth_date, a.last_diploma, a.bac_year, a.bac_average,
+                   pr.name as program_name, pr.level,
+                   c.name as campus_name, i.name as institution_name
+            FROM payments p
+            JOIN applications a ON p.application_id = a.id
+            JOIN programs pr ON a.program_id = pr.id
+            LEFT JOIN campuses c ON a.campus_id = c.id
+            LEFT JOIN institutions i ON c.institution_id = i.id
+            WHERE p.id = ?
+        ");
+        $stmt->execute([$id]);
+        $payment = $stmt->fetch();
+
+        if (!$payment) {
+            $this->notFound();
+            return;
+        }
+
+        // Récupérer les documents
+        $stmt = $db->prepare("SELECT * FROM application_documents WHERE application_id = ?");
+        $stmt->execute([$payment['application_id']]);
+        $documents = $stmt->fetchAll();
+
+        $this->view('admin/payments/show', [
+            'title' => 'Détail du paiement',
+            'payment' => $payment,
+            'documents' => $documents,
+        ]);
+    }
+
+    public function paymentUpdateStatus(): void
+    {
+        $id = (int) ($_POST['id'] ?? 0);
+        $status = $_POST['status'] ?? '';
+
+        $validStatuses = ['pending', 'paid', 'failed', 'cancelled'];
+        if (!in_array($status, $validStatuses)) {
+            $this->json(['success' => false, 'message' => 'Statut invalide.'], 400);
+            return;
+        }
+
+        $db = $this->db->getConnection();
+        
+        $updates = ['status = ?'];
+        $params = [$status];
+        
+        if ($status === 'paid') {
+            $updates[] = 'paid_at = NOW()';
+        }
+        
+        $sql = "UPDATE payments SET " . implode(', ', $updates) . " WHERE id = ?";
+        $params[] = $id;
+        
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+
+        // Mettre à jour le statut de l'application si paiement confirmé
+        if ($status === 'paid') {
+            $stmt = $db->prepare("UPDATE applications SET status = 'paid' WHERE id = (SELECT application_id FROM payments WHERE id = ?)");
+            $stmt->execute([$id]);
+        }
+
+        Logger::info("Statut paiement mis à jour: ID {$id} → {$status}", 'payment');
+        $this->json(['success' => true, 'message' => 'Statut mis à jour avec succès.']);
+    }
+
+    public function applicationDocuments(): void
+    {
+        $applicationId = (int) ($_GET['id'] ?? 0);
+        if ($applicationId <= 0) {
+            $this->json(['success' => false, 'message' => 'ID invalide'], 400);
+            return;
+        }
+
+        $db = $this->db->getConnection();
+        $stmt = $db->prepare("SELECT * FROM application_documents WHERE application_id = ?");
+        $stmt->execute([$applicationId]);
+        $documents = $stmt->fetchAll();
+
+        $this->json(['success' => true, 'data' => $documents]);
     }
 
     // =====================================================

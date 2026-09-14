@@ -277,29 +277,6 @@
      tailles --sm/--md/--lg/--xl, opacité --faint/--soft/--mid/--strong.
      Motif SVG généré par le script (attributs data-*).
      ========================================================== */
-  section{ position:relative; }
-  .ci-hex{
-    position:absolute; pointer-events:none; overflow:hidden;
-    line-height:0; z-index:0;
-  }
-  .ci-hex i{ display:block; width:100%; height:100%; }
-  .ci-hex--tl{ top:0; left:0; }
-  .ci-hex--tr{ top:0; right:0; }
-  .ci-hex--bl{ bottom:0; left:0; }
-  .ci-hex--br{ bottom:0; right:0; }
-  .ci-hex--full{ inset:0; width:100%; height:100%; }
-  .ci-hex--sm{ width:130px; height:150px; }
-  .ci-hex--md{ width:230px; height:270px; }
-  .ci-hex--lg{ width:350px; height:410px; }
-  .ci-hex--xl{ width:520px; height:600px; }
-  .ci-hex--faint{ opacity:.07; }
-  .ci-hex--soft{ opacity:.14; }
-  .ci-hex--mid{ opacity:.24; }
-  .ci-hex--strong{ opacity:.38; }
-  section > .ci-container{ position:relative; z-index:1; }
-  
-
-
   /* ==========================================================
      PRÉMIUM — cohérence éditoriale avec l'accueil
      Numéros fantômes de section
@@ -330,7 +307,6 @@
     background:linear-gradient(180deg,#f1f8f4 0%,#ffffff 55%);
     padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px);
   }
-  .ci-page-hero .ci-hex{ opacity:.45; }
   .ci-breadcrumb{ display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap; align-items:center;
     font-size:.76rem; text-transform:uppercase; letter-spacing:.14em; color:var(--ci-texte-2); margin-bottom:clamp(28px,4vw,44px); }
   .ci-breadcrumb a{ color:var(--ci-texte-2); transition:color .25s; }

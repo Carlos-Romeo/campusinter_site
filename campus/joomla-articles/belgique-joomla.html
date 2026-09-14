@@ -52,6 +52,8 @@ echo '</ul></div>';
 echo '<div id="ci-success" class="ci-form-status ci-statut-ok" role="status" style="display:none;">Merci ! Votre demande a bien été envoyée, un conseiller vous recontacte sous 24h.</div>';
 echo '<div id="ci-error" class="ci-form-status ci-statut-err" role="status" style="display:none;">L\'envoi a échoué. Veuillez réessayer ou appeler le +228 22 70 25 96.</div>';
 echo '<form class="ci-form ci-reveal-right" id="ciFormInfo" action="' . $pageUrl . '" method="post">';
+$ciToken = \Joomla\CMS\Factory::getSession()->getFormToken();
+echo '<input type="hidden" name="' . $ciToken . '" value="1">';
 echo '<input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">';
 echo '<h3>Demande d\'informations</h3>';
 echo '<div class="ci-champ"><label for="ci-nom">Nom complet</label> <input type="text" id="ci-nom" name="nom" placeholder="Votre nom et prénom" required=""></div>';
@@ -64,6 +66,25 @@ echo '</form></div></div></div></section>';
 
 return;
 }
+
+$ciSession = \Joomla\CMS\Factory::getSession();
+$tokenName  = $ciSession->getName();
+$tokenValue = $_POST[$tokenName] ?? '';
+if (!$ciSession->validate($tokenName, $tokenValue)) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+
+$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+$rateKey = 'ci_rate_be_' . md5($ip);
+$rate = (int) $ciSession->get($rateKey, 0);
+if ($rate >= 5) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+$ciSession->set($rateKey, $rate + 1);
 
 function sanitize($value) {
 if (is_array($value)) {
@@ -87,11 +108,11 @@ $app->redirect(Uri::current() . '?ci=success');
 return;
 }
 
-$nom  = $data['nom'] ?? '';
-$mail = $data['email'] ?? '';
-$tel  = $data['telephone'] ?? '';
-$dom  = $data['domaine'] ?? '';
-$msg  = $data['message'] ?? '';
+$nom  = substr($data['nom'] ?? '', 0, 100);
+$mail = substr($data['email'] ?? '', 0, 254);
+$tel  = substr($data['telephone'] ?? '', 0, 20);
+$dom  = substr($data['domaine'] ?? '', 0, 50);
+$msg  = substr($data['message'] ?? '', 0, 2000);
 
 if ($nom === '' || $mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 $app = Factory::getApplication();

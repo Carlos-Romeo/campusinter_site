@@ -10,3 +10,25 @@ services:
         value: production
       - key: APP_DEBUG
         value: false
+      - key: APP_URL
+        value: https://campusinter.onrender.com
+      # Variables d'environnement pour Timoney (à configurer)
+      - key: TIMONEY_API_KEY
+        sync: false
+      - key: TIMONEY_API_SECRET
+        sync: false
+      - key: TIMONEY_API_URL
+        value: https://api.timoney.com/v1
+      # Email SMTP (à configurer)
+      - key: MAIL_HOST
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: "587"
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_FROM
+        value: noreply@campusinter.com
+      - key: MAIL_TO
+        value: admission@rabatam.ci.com

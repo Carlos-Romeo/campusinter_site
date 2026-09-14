@@ -27,14 +27,37 @@ $ciCtaStatut = '';
 $ciCtaMsg    = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (trim((string) ($_POST['website'] ?? '')) !== '') {
+    /* --- 1. Validation du token CSRF --- */
+    $ciSession = \Joomla\CMS\Factory::getSession();
+    $tokenName  = $ciSession->getName();
+    $tokenValue = $_POST[$tokenName] ?? '';
+    if (!$ciSession->validate($tokenName, $tokenValue)) {
+        $ciCtaStatut = 'err';
+        $ciCtaMsg    = 'Session expirée. Rafraîchissez la page et réessayez.';
+    }
+    /* --- 2. Rate limiting (5 req / min / IP) --- */
+    elseif ($ciCtaStatut === '') {
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+        $rateKey = 'ci_rate_cta_' . md5($ip);
+        $rate = (int) $ciSession->get($rateKey, 0);
+        if ($rate >= 5) {
+            $ciCtaStatut = 'err';
+            $ciCtaMsg    = 'Trop de requêtes. Réessayez dans 1 minute.';
+        } else {
+            $ciSession->set($rateKey, $rate + 1);
+        }
+    }
+    /* --- 3. Honeypot --- */
+    if ($ciCtaStatut === '' && trim((string) ($_POST['website'] ?? '')) !== '') {
         $ciCtaStatut = 'ok';
         $ciCtaMsg    = 'Merci ! Votre demande a bien été envoyée, un conseiller Campus Inter vous recontacte sous 48h.';
-    } else {
-        $nom  = trim(strip_tags((string) ($_POST['nom']  ?? '')));
-        $mail = trim(strip_tags((string) ($_POST['email'] ?? '')));
-        $tel  = trim(strip_tags((string) ($_POST['telephone'] ?? '')));
-        $proj = trim(strip_tags((string) ($_POST['projet'] ?? '')));
+    }
+    /* --- 4. Traitement du formulaire --- */
+    elseif ($ciCtaStatut === '') {
+        $nom  = substr(trim(strip_tags((string) ($_POST['nom']  ?? ''))), 0, 100);
+        $mail = substr(trim(strip_tags((string) ($_POST['email'] ?? ''))), 0, 254);
+        $tel  = substr(trim(strip_tags((string) ($_POST['telephone'] ?? ''))), 0, 20);
+        $proj = substr(trim(strip_tags((string) ($_POST['projet'] ?? ''))), 0, 50);
 
         if ($nom === '' || $mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             $ciCtaStatut = 'err';

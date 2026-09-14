@@ -5,7 +5,7 @@
 
 const CIApplicationForm = {
     currentStep: 1,
-    totalSteps: 3,
+    totalSteps: 4,
     formData: {},
     errors: {},
 
@@ -19,6 +19,7 @@ const CIApplicationForm = {
         };
 
         this.bindEvents();
+        this.initFileInputs();
         this.showStep(1);
     },
 
@@ -55,11 +56,63 @@ const CIApplicationForm = {
         });
     },
 
+    initFileInputs() {
+        // Gestion des inputs fichier
+        document.querySelectorAll('.ci-file-input').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                const label = input.nextElementSibling;
+                const fileNameEl = label.querySelector('.ci-file-name');
+                
+                if (file) {
+                    // Vérifier la taille (5 MB max)
+                    if (file.size > 5 * 1024 * 1024) {
+                        this.showFieldError(input.name, 'Le fichier ne doit pas dépasser 5 Mo.');
+                        input.value = '';
+                        return;
+                    }
+                    
+                    // Vérifier l'extension
+                    const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+                    if (!allowedTypes.includes(file.type)) {
+                        this.showFieldError(input.name, 'Format non accepté. Utilisez PDF, JPG ou PNG.');
+                        input.value = '';
+                        return;
+                    }
+                    
+                    fileNameEl.textContent = file.name;
+                    input.classList.add('has-file');
+                    this.clearFieldError(input.name);
+                    
+                    // Ajouter la taille du fichier
+                    let sizeEl = label.querySelector('.ci-file-size');
+                    if (!sizeEl) {
+                        sizeEl = document.createElement('span');
+                        sizeEl.className = 'ci-file-size';
+                        label.appendChild(sizeEl);
+                    }
+                    sizeEl.textContent = this.formatFileSize(file.size);
+                } else {
+                    fileNameEl.textContent = 'Choisir un fichier';
+                    input.classList.remove('has-file');
+                    const sizeEl = label.querySelector('.ci-file-size');
+                    if (sizeEl) sizeEl.remove();
+                }
+            });
+        });
+    },
+
+    formatFileSize(bytes) {
+        if (bytes < 1024) return bytes + ' octets';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' Ko';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' Mo';
+    },
+
     goToStep(step) {
         if (step < 1 || step > this.totalSteps) return;
         
-        // Si on va à l'étape 3 (confirmation), remplir le résumé
-        if (step === 3) {
+        // Si on va à l'étape 4 (confirmation), remplir le résumé
+        if (step === 4) {
             this.fillSummary();
         }
 
@@ -229,6 +282,11 @@ const CIApplicationForm = {
         const summaryEl = document.getElementById('ci-summary');
         if (!summaryEl) return;
 
+        // Récupérer les fichiers
+        const diplomaFile = document.getElementById('diploma_file');
+        const bacFile = document.getElementById('bac_file');
+        const cvFile = document.getElementById('cv_file');
+
         let html = `
             <div class="ci-confirmation__detail">
                 <span class="ci-confirmation__detail-label">Prénom</span>
@@ -264,6 +322,27 @@ const CIApplicationForm = {
             </div>
         `;
 
+        // Documents
+        const documents = [];
+        if (diplomaFile && diplomaFile.files.length > 0) {
+            documents.push('Relevé de notes');
+        }
+        if (bacFile && bacFile.files.length > 0) {
+            documents.push('Attestation BAC');
+        }
+        if (cvFile && cvFile.files.length > 0) {
+            documents.push('CV');
+        }
+
+        if (documents.length > 0) {
+            html += `
+                <div class="ci-confirmation__detail">
+                    <span class="ci-confirmation__detail-label">Documents</span>
+                    <span class="ci-confirmation__detail-value">${documents.join(', ')}</span>
+                </div>
+            `;
+        }
+
         if (data.message) {
             html += `
                 <div class="ci-confirmation__detail" style="flex-direction: column; gap: 8px;">
@@ -283,31 +362,43 @@ const CIApplicationForm = {
         if (btn) {
             btn.disabled = true;
             btn.classList.add('ci-btn--loading');
+            btn.innerHTML = '<span class="ci-spinner"></span> Envoi en cours...';
         }
 
         try {
-            const data = this.collectFormData();
+            // Utiliser FormData pour envoyer les fichiers
+            const formData = new FormData(this.form);
             
+            // Ajouter les données cachées
+            formData.set('program_id', this.formData.program_id);
+            formData.set('campus_id', this.formData.campus_id);
+
             // Ajouter le token CSRF
             const csrfMeta = document.querySelector('meta[name="csrf-token"]');
             if (csrfMeta) {
-                data._csrf_token = csrfMeta.getAttribute('content');
+                formData.set('_csrf_token', csrfMeta.getAttribute('content'));
             }
 
-            const response = await CIApi.post('/api/applications', data);
+            // Supprimer le champ honeypot
+            formData.delete('website');
 
-            if (response.success) {
-                // Rediriger vers la page de confirmation
-                const params = new URLSearchParams({
-                    ref: response.reference,
-                    program: response.program,
-                    campus: response.campus,
-                });
-                window.location.href = `/confirmation?${params}`;
+            const response = await fetch('/api/applications', {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Rediriger vers la page de paiement
+                window.location.href = `/paiement?ref=${result.reference}`;
             } else {
-                this.showFormError(response.message);
-                if (response.errors) {
-                    Object.entries(response.errors).forEach(([name, message]) => {
+                this.showFormError(result.message);
+                if (result.errors) {
+                    Object.entries(result.errors).forEach(([name, message]) => {
                         this.showFieldError(name, message);
                     });
                 }
@@ -318,6 +409,12 @@ const CIApplicationForm = {
             if (btn) {
                 btn.disabled = false;
                 btn.classList.remove('ci-btn--loading');
+                btn.innerHTML = `
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Confirmer et payer
+                `;
             }
         }
     },

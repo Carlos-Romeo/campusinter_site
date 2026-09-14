@@ -437,16 +437,24 @@ class PublicController extends Controller
             return;
         }
 
-        // CSRF
-        if (!Csrf::verify($_SERVER['HTTP_X_CSRF_TOKEN'] ?? '')) {
+        // CSRF - vérifier depuis le header ou le formulaire
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
             $this->json(['success' => false, 'message' => 'Token de sécurité invalide.'], 403);
             return;
         }
 
-        $data = $this->getJsonInput();
+        // Récupérer les données (JSON ou FormData)
+        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+        if (strpos($contentType, 'application/json') !== false) {
+            $data = $this->getJsonInput();
+        } else {
+            // FormData (pour l'upload de fichiers)
+            $data = $_POST;
+        }
 
         // Honeypot
-        if (!empty($data['website'] ?? $_POST['website'] ?? '')) {
+        if (!empty($data['website'] ?? '')) {
             // Fausse réponse pour les bots
             $this->json(['success' => true, 'message' => 'Votre candidature a été enregistrée.', 'reference' => 'CI-SPAM-000000']);
             return;
@@ -546,9 +554,58 @@ class PublicController extends Controller
                 $cleanData['message'],
             ]);
 
+            $applicationId = $db->lastInsertId();
+
+            // Gérer l'upload de fichiers
+            $uploadDir = dirname(__DIR__, 2) . '/storage/uploads/' . $reference . '/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            $uploadedFiles = [];
+            $fileFields = ['diploma_file', 'bac_file', 'cv_file'];
+            
+            foreach ($fileFields as $fieldName) {
+                if (!empty($_FILES[$fieldName]['name'])) {
+                    $file = $_FILES[$fieldName];
+                    if ($file['error'] === UPLOAD_ERR_OK) {
+                        $allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+                        $maxSize = 5 * 1024 * 1024; // 5 MB
+
+                        if (in_array($file['type'], $allowedTypes) && $file['size'] <= $maxSize) {
+                            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                            $filename = $fieldName . '_' . time() . '.' . $ext;
+                            $filepath = $uploadDir . $filename;
+                            
+                            if (move_uploaded_file($file['tmp_name'], $filepath)) {
+                                $uploadedFiles[$fieldName] = $filename;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Enregistrer les fichiers en base si la table existe
+            if (!empty($uploadedFiles)) {
+                try {
+                    foreach ($uploadedFiles as $field => $filename) {
+                        $docType = str_replace('_file', '', $field);
+                        $stmt = $db->prepare("
+                            INSERT INTO application_documents (application_id, document_type, file_name, file_path)
+                            VALUES (?, ?, ?, ?)
+                        ");
+                        $stmt->execute([$applicationId, $docType, $filename, $reference . '/' . $filename]);
+                    }
+                } catch (\Exception $e) {
+                    // La table n'existe peut-être pas encore, on continue
+                    Logger::warning("Table application_documents non trouvée: " . $e->getMessage());
+                }
+            }
+
             Logger::info("Candidature créée: {$reference}", 'system', [
                 'program' => $program['name'],
                 'campus' => $campus['name'],
+                'files' => $uploadedFiles,
             ]);
 
             // Envoyer emails

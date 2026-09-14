@@ -35,6 +35,25 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 return;
 }
 
+$ciSession = \Joomla\CMS\Factory::getSession();
+$tokenName  = $ciSession->getName();
+$tokenValue = $_POST[$tokenName] ?? '';
+if (!$ciSession->validate($tokenName, $tokenValue)) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+
+$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+$rateKey = 'ci_rate_accueil_' . md5($ip);
+$rate = (int) $ciSession->get($rateKey, 0);
+if ($rate >= 5) {
+$app = Factory::getApplication();
+$app->redirect(Uri::current() . '?ci=error');
+return;
+}
+$ciSession->set($rateKey, $rate + 1);
+
 function sanitize($value) {
 if (is_array($value)) {
 return array_map('sanitize', $value);
@@ -57,10 +76,10 @@ $app->redirect(Uri::current() . '?ci=success');
 return;
 }
 
-$nom  = $data['nom'] ?? '';
-$mail = $data['email'] ?? '';
-$tel  = $data['telephone'] ?? '';
-$proj = $data['projet'] ?? '';
+$nom  = substr($data['nom'] ?? '', 0, 100);
+$mail = substr($data['email'] ?? '', 0, 254);
+$tel  = substr($data['telephone'] ?? '', 0, 20);
+$proj = substr($data['projet'] ?? '', 0, 50);
 
 if ($nom === '' || $mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 $app = Factory::getApplication();
@@ -98,6 +117,7 @@ $app->redirect(Uri::current() . '?ci=error');
 <div id="ci-success" class="ci-full ci-form-status ci-statut-ok" role="status" style="display:none;">Merci ! Votre demande a bien été envoyée, un conseiller vous recontacte sous 48h.</div>
 <div id="ci-error" class="ci-full ci-form-status ci-statut-err" role="status" style="display:none;">L'envoi a échoué. Veuillez réessayer ou appeler le +228 22 70 25 96.</div>
 <form class="ci-cta-form ci-reveal" id="ciForm" method="post">
+<?php $ciToken = \Joomla\CMS\Factory::getSession()->getFormToken(); echo '<input type="hidden" name="' . $ciToken . '" value="1">'; ?>
 <input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">
 <div><input type="text" name="nom" placeholder="Nom complet *" required="" aria-label="Nom complet"></div>
 <div><input type="email" name="email" placeholder="Adresse email *" required="" aria-label="Adresse email"></div>
