@@ -69,6 +69,13 @@ class PaymentController extends Controller
             return;
         }
 
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
         $data = $this->getJsonInput();
         
         // Si pas de JSON, essayer POST classique
@@ -199,8 +206,8 @@ class PaymentController extends Controller
     }
 
     /**
-     * Appel API Timoney (simulation)
-     * En production, remplacer par le vrai appel API
+     * Appel API Timoney (simulation en développement)
+     * En production, utilise l'API réelle Timoney
      */
     private function callTimoneyApi(string $phone, int $amount, string $transactionRef, string $provider): array
     {
@@ -208,14 +215,24 @@ class PaymentController extends Controller
         $apiKey = getenv('TIMONEY_API_KEY') ?: '';
         $apiSecret = getenv('TIMONEY_API_SECRET') ?: '';
         $apiUrl = getenv('TIMONEY_API_URL') ?: 'https://api.timoney.com/v1';
+        $appEnv = getenv('APP_ENV') ?: 'development';
 
-        // Pour le développement, simuler un succès après 2 secondes
-        if (getenv('APP_ENV') === 'development' || empty($apiKey)) {
+        // En développement, simuler un succès
+        if ($appEnv === 'development') {
             sleep(1); // Simuler latence réseau
             return [
                 'success' => true,
-                'message' => 'Paiement simulé avec succès',
+                'message' => 'Paiement simulé avec succès (mode développement)',
                 'transaction_id' => $transactionRef
+            ];
+        }
+
+        // En production, vérifier que les clés API sont configurées
+        if (empty($apiKey) || empty($apiSecret)) {
+            Logger::error('Clés API Timoney non configurées en production', 'payment');
+            return [
+                'success' => false,
+                'message' => 'Le paiement n\'est pas configuré. Veuillez contacter l\'administrateur.'
             ];
         }
 

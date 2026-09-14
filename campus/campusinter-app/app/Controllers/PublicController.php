@@ -569,17 +569,40 @@ class PublicController extends Controller
                 if (!empty($_FILES[$fieldName]['name'])) {
                     $file = $_FILES[$fieldName];
                     if ($file['error'] === UPLOAD_ERR_OK) {
-                        $allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
                         $maxSize = 5 * 1024 * 1024; // 5 MB
+                        
+                        // Vérifier la taille
+                        if ($file['size'] > $maxSize) {
+                            continue;
+                        }
 
-                        if (in_array($file['type'], $allowedTypes) && $file['size'] <= $maxSize) {
-                            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-                            $filename = $fieldName . '_' . time() . '.' . $ext;
-                            $filepath = $uploadDir . $filename;
-                            
-                            if (move_uploaded_file($file['tmp_name'], $filepath)) {
-                                $uploadedFiles[$fieldName] = $filename;
-                            }
+                        // Vérifier le vrai type MIME avec finfo (sécurisé)
+                        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                        $mimeType = $finfo->file($file['tmp_name']);
+                        
+                        $allowedMimes = [
+                            'application/pdf',
+                            'image/jpeg',
+                            'image/png'
+                        ];
+
+                        if (!in_array($mimeType, $allowedMimes)) {
+                            continue;
+                        }
+
+                        // Déterminer l'extension basée sur le type MIME réel
+                        $mimeToExt = [
+                            'application/pdf' => 'pdf',
+                            'image/jpeg' => 'jpg',
+                            'image/png' => 'png'
+                        ];
+                        $ext = $mimeToExt[$mimeType] ?? 'bin';
+                        
+                        $filename = $fieldName . '_' . time() . '.' . $ext;
+                        $filepath = $uploadDir . $filename;
+                        
+                        if (move_uploaded_file($file['tmp_name'], $filepath)) {
+                            $uploadedFiles[$fieldName] = $filename;
                         }
                     }
                 }

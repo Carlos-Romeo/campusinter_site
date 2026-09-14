@@ -179,7 +179,14 @@ class AdminController extends Controller
 
     public function domainDelete(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
+        $id = (int) ($_POST['id'] ?? $_GET['id'] ?? 0);
         $db = $this->db->getConnection();
 
         // Vérifier les dépendances
@@ -337,7 +344,14 @@ class AdminController extends Controller
 
     public function specialtyDelete(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
+        $id = (int) ($_POST['id'] ?? $_GET['id'] ?? 0);
         $db = $this->db->getConnection();
 
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM programs WHERE specialty_id = ?");
@@ -461,7 +475,14 @@ class AdminController extends Controller
 
     public function cityDelete(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
+        $id = (int) ($_POST['id'] ?? $_GET['id'] ?? 0);
         $db = $this->db->getConnection();
 
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM campuses WHERE city_id = ?");
@@ -587,7 +608,14 @@ class AdminController extends Controller
 
     public function institutionDelete(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
+        $id = (int) ($_POST['id'] ?? $_GET['id'] ?? 0);
         $db = $this->db->getConnection();
 
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM campuses WHERE institution_id = ?");
@@ -735,7 +763,14 @@ class AdminController extends Controller
 
     public function campusDelete(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
+        $id = (int) ($_POST['id'] ?? $_GET['id'] ?? 0);
         $db = $this->db->getConnection();
 
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM program_campuses WHERE campus_id = ?");
@@ -967,7 +1002,14 @@ class AdminController extends Controller
 
     public function programDelete(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        // Vérification CSRF
+        $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_csrf_token'] ?? '';
+        if (!Csrf::verify($csrfToken)) {
+            $this->json(['success' => false, 'message' => 'Token de sécurité invalide'], 403);
+            return;
+        }
+
+        $id = (int) ($_POST['id'] ?? $_GET['id'] ?? 0);
         $db = $this->db->getConnection();
 
         $stmt = $db->prepare("SELECT COUNT(*) as count FROM applications WHERE program_id = ?");

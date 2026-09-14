@@ -2,13 +2,9 @@
 /**
  * Campus Inter - Page de Paiement
  * Paiement des frais de dossier par Mobile Money
+ * 
+ * Variables disponibles : $application, $amount, $currency
  */
-
-$this->view('public/payment', [
-    'application' => $application,
-    'amount' => $amount,
-    'currency' => $currency,
-]);
 ?>
 
 <div class="payment-container">

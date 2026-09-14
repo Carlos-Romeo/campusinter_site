@@ -13,12 +13,23 @@ ini_set('log_errors', '1');
 
 // Démarrer la session
 if (session_status() === PHP_SESSION_NONE) {
+    $isProduction = (getenv('APP_ENV') ?: 'development') === 'production';
+    
     session_start([
         'cookie_httponly' => true,
-        'cookie_secure' => false,
+        'cookie_secure' => $isProduction, // Activer en production (HTTPS)
         'cookie_samesite' => 'Lax',
         'use_strict_mode' => true,
     ]);
+}
+
+// Forcer HTTPS en production
+if ((getenv('APP_ENV') ?: 'development') === 'production') {
+    if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+        $redirectUrl = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        header('Location: ' . $redirectUrl, true, 301);
+        exit;
+    }
 }
 
 // Chargement des classes
@@ -94,7 +105,7 @@ $router->get('/admin/domains/create', [$admin, 'domainCreate'], ['auth']);
 $router->post('/admin/domains/create', [$admin, 'domainCreate'], ['auth']);
 $router->get('/admin/domains/edit', [$admin, 'domainEdit'], ['auth']);
 $router->post('/admin/domains/edit', [$admin, 'domainEdit'], ['auth']);
-$router->get('/admin/domains/delete', [$admin, 'domainDelete'], ['auth']);
+$router->post('/admin/domains/delete', [$admin, 'domainDelete'], ['auth']);
 
 // Spécialités
 $router->get('/admin/specialties', [$admin, 'specialties'], ['auth']);
@@ -102,7 +113,7 @@ $router->get('/admin/specialties/create', [$admin, 'specialtyCreate'], ['auth'])
 $router->post('/admin/specialties/create', [$admin, 'specialtyCreate'], ['auth']);
 $router->get('/admin/specialties/edit', [$admin, 'specialtyEdit'], ['auth']);
 $router->post('/admin/specialties/edit', [$admin, 'specialtyEdit'], ['auth']);
-$router->get('/admin/specialties/delete', [$admin, 'specialtyDelete'], ['auth']);
+$router->post('/admin/specialties/delete', [$admin, 'specialtyDelete'], ['auth']);
 
 // Villes
 $router->get('/admin/cities', [$admin, 'cities'], ['auth']);
@@ -110,7 +121,7 @@ $router->get('/admin/cities/create', [$admin, 'cityCreate'], ['auth']);
 $router->post('/admin/cities/create', [$admin, 'cityCreate'], ['auth']);
 $router->get('/admin/cities/edit', [$admin, 'cityEdit'], ['auth']);
 $router->post('/admin/cities/edit', [$admin, 'cityEdit'], ['auth']);
-$router->get('/admin/cities/delete', [$admin, 'cityDelete'], ['auth']);
+$router->post('/admin/cities/delete', [$admin, 'cityDelete'], ['auth']);
 
 // Établissements
 $router->get('/admin/institutions', [$admin, 'institutions'], ['auth']);
@@ -118,7 +129,7 @@ $router->get('/admin/institutions/create', [$admin, 'institutionCreate'], ['auth
 $router->post('/admin/institutions/create', [$admin, 'institutionCreate'], ['auth']);
 $router->get('/admin/institutions/edit', [$admin, 'institutionEdit'], ['auth']);
 $router->post('/admin/institutions/edit', [$admin, 'institutionEdit'], ['auth']);
-$router->get('/admin/institutions/delete', [$admin, 'institutionDelete'], ['auth']);
+$router->post('/admin/institutions/delete', [$admin, 'institutionDelete'], ['auth']);
 
 // Campus
 $router->get('/admin/campuses', [$admin, 'campuses'], ['auth']);
@@ -126,7 +137,7 @@ $router->get('/admin/campuses/create', [$admin, 'campusCreate'], ['auth']);
 $router->post('/admin/campuses/create', [$admin, 'campusCreate'], ['auth']);
 $router->get('/admin/campuses/edit', [$admin, 'campusEdit'], ['auth']);
 $router->post('/admin/campuses/edit', [$admin, 'campusEdit'], ['auth']);
-$router->get('/admin/campuses/delete', [$admin, 'campusDelete'], ['auth']);
+$router->post('/admin/campuses/delete', [$admin, 'campusDelete'], ['auth']);
 
 // Formations
 $router->get('/admin/programs', [$admin, 'programs'], ['auth']);
@@ -134,7 +145,7 @@ $router->get('/admin/programs/create', [$admin, 'programCreate'], ['auth']);
 $router->post('/admin/programs/create', [$admin, 'programCreate'], ['auth']);
 $router->get('/admin/programs/edit', [$admin, 'programEdit'], ['auth']);
 $router->post('/admin/programs/edit', [$admin, 'programEdit'], ['auth']);
-$router->get('/admin/programs/delete', [$admin, 'programDelete'], ['auth']);
+$router->post('/admin/programs/delete', [$admin, 'programDelete'], ['auth']);
 
 // Années académiques
 $router->get('/admin/academic-years', [$admin, 'academicYears'], ['auth']);

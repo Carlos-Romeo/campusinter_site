@@ -1,0 +1,23 @@
+# Désactiver l'exécution de PHP dans ce dossier
+php_admin_flag engine off
+
+# Désactiver l'exécution de CGI
+Options -ExecCGI
+
+# Empêcher l'accès aux fichiers .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Autoriser uniquement les types de fichiers autorisés
+<FilesMatch "\.(pdf|jpg|jpeg|png|gif|webp)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Bloquer l'accès aux autres fichiers
+<FilesMatch "\.(?i:php|php3|php4|php5|phtml|pht|phps|cgi|pl|asp|aspx|jsp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

@@ -1,11 +1,9 @@
 <?php
 /**
  * Campus Inter - Reçu de paiement
+ * 
+ * Variable disponible : $application
  */
-
-$this->view('public/receipt', [
-    'application' => $application,
-]);
 ?>
 
 <div class="receipt-container">

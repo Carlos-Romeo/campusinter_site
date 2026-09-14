@@ -66,11 +66,24 @@ const CIAdmin = {
 
     async deleteItem(url, btn) {
         try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+            
+            // Extraire l'ID depuis l'URL
+            const urlObj = new URL(url, window.location.origin);
+            const id = urlObj.searchParams.get('id');
+            
+            const formData = new FormData();
+            formData.append('_csrf_token', csrfToken);
+            if (id) {
+                formData.append('id', id);
+            }
+
             const response = await fetch(url, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                 },
+                body: formData,
             });
             const data = await response.json();
 
