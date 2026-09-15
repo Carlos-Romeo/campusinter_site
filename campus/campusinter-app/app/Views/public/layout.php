@@ -25,7 +25,7 @@
                     </svg>
                 </button>
                 <nav id="ci-header-nav" class="ci-header__nav">
-                    <a href="https://it.dyk08.com/campusinter/index.php/fr" target="_blank" class="ci-header__link">Site</a>
+                    <a href="https://campusinter.com/index.php/fr" target="_blank" class="ci-header__link">Site</a>
                     <a href="/" class="ci-header__link ci-header__link--active">Formations</a>
                     <a href="/admin" class="ci-header__link">Administration</a>
                 </nav>
