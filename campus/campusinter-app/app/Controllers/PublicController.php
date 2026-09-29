@@ -739,4 +739,34 @@ class PublicController extends Controller
 
         return sprintf("%s-%s-%06d", $prefix, $year, $newNum);
     }
+
+    /**
+     * Page Mentions Légales
+     */
+    public function mentionsLegales(): void
+    {
+        $this->view('public/mentions-legales', [
+            'title' => 'Mentions Légales',
+        ]);
+    }
+
+    /**
+     * Page Politique de Confidentialité
+     */
+    public function politiqueConfidentialite(): void
+    {
+        $this->view('public/politique-confidentialite', [
+            'title' => 'Politique de Confidentialité',
+        ]);
+    }
+
+    /**
+     * Page CGU
+     */
+    public function cgu(): void
+    {
+        $this->view('public/cgu', [
+            'title' => 'Conditions Générales d\'Utilisation',
+        ]);
+    }
 }

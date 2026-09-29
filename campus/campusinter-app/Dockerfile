@@ -1,24 +1,20 @@
 FROM php:8.2-apache
 
 # Installer les extensions PHP nécessaires
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN docker-php-ext-install pdo pdo_mysql pgsql pdo_pgsql
 
-# Installer les extensions pour l'upload de fichiers
+# Installer les extensions pour l'upload de fichiers et le client PostgreSQL
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
+    postgresql-client \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
     && rm -rf /var/lib/apt/lists/*
 
 # Activer mod_rewrite
 RUN a2enmod rewrite
-
-# Installer MySQL dans le conteneur
-RUN apt-get update && apt-get install -y \
-    mariadb-server \
-    && rm -rf /var/lib/apt/lists/*
 
 # Copier la configuration Apache
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf

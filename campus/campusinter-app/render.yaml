@@ -12,6 +12,13 @@ services:
         value: false
       - key: APP_URL
         value: https://campusinter.onrender.com
+      # PostgreSQL (base de données Render)
+      - key: DATABASE_URL
+        fromDatabase:
+          name: campusinter-db
+          property: connectionString
+      - key: DB_DRIVER
+        value: pgsql
       # Variables d'environnement pour Timoney (à configurer)
       - key: TIMONEY_API_KEY
         sync: false
@@ -32,3 +39,9 @@ services:
         value: noreply@campusinter.com
       - key: MAIL_TO
         value: admission@rabatam.ci.com
+
+databases:
+  - name: campusinter-db
+    plan: free
+    databaseName: campusinter
+    user: campususer

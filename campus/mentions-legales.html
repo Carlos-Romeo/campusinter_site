@@ -1,0 +1,158 @@
+<!-- ============================================================
+  CAMPUS INTER — MENTIONS LÉGALES
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 16/09/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : mentions-legales.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Mentions légales »
+     (catégorie : Informations légales).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Désactiver le filtrage HTML de l'article.
+  4. Menu : Footer > Mentions légales.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-rayon:18px;
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px);
+  }
+
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *,.ci-page *::before,.ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; color:var(--ci-vert-fonce); transition:color .25s; }
+  .ci-page a:hover{ color:var(--ci-vert); }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 .5em; }
+  .ci-container{ width:100%; max-width:900px; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+
+  .ci-page-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%); padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px); }
+  .ci-page-hero h1{ font-size:clamp(2.2rem,4.2vw,3.65rem); letter-spacing:-.035em; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:640px; margin-bottom:0; }
+  .ci-breadcrumb{ font-size:.82rem; color:var(--ci-texte-2); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-here{ color:var(--ci-noir); font-weight:600; }
+
+  .ci-legal h2{ font-size:clamp(1.4rem,2.5vw,1.8rem); margin-top:1.5em; padding-top:1em; border-top:1px solid var(--ci-bordure); }
+  .ci-legal h2:first-child{ margin-top:0; padding-top:0; border-top:none; }
+  .ci-legal h3{ font-size:1.15rem; margin-top:1em; }
+  .ci-legal p,.ci-legal li{ font-size:1rem; line-height:1.75; }
+  .ci-legal ul,.ci-legal ol{ padding-left:1.5em; margin:0 0 .5em; }
+  .ci-legal li{ margin-bottom:.3em; }
+  .ci-legal strong{ color:var(--ci-noir); }
+  .ci-legal .ci-highlight{ background:var(--ci-vert-bg); border-left:4px solid var(--ci-vert); padding:12px 16px; border-radius:0 var(--ci-rayon) var(--ci-rayon) 0; margin:1em 0; }
+  .ci-legal table{ width:100%; border-collapse:collapse; margin:1em 0; }
+  .ci-legal th,.ci-legal td{ padding:12px 16px; text-align:left; border-bottom:1px solid var(--ci-bordure); font-size:.95rem; }
+  .ci-legal th{ background:var(--ci-fond); font-weight:700; color:var(--ci-noir); }
+  .ci-legal .ci-updated{ display:inline-block; background:var(--ci-vert-bg); color:var(--ci-vert-fonce); font-size:.85rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+
+  @media(max-width:640px){
+    .ci-legal h2{ font-size:1.3rem; }
+    .ci-legal th,.ci-legal td{ padding:10px 12px; font-size:.88rem; }
+  }
+  </style>
+
+  <!-- HERO -->
+  <section class="ci-page-hero">
+    <div class="ci-container">
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a> <span class="ci-sep">›</span> <span class="ci-here">Mentions légales</span>
+      </nav>
+      <h1><em>Mentions</em> légales</h1>
+      <p class="ci-hero-sous">Informations juridiques relatives au site campusinter.com et à son éditeur.</p>
+    </div>
+  </section>
+
+  <!-- CONTENU -->
+  <section class="ci-section">
+    <div class="ci-container ci-legal">
+
+      <span class="ci-updated">Dernière mise à jour : 16 septembre 2026</span>
+
+      <h2>1. Éditeur du site</h2>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Agence de mobilité internationale<br>
+        Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo<br><br>
+        <strong>Tél :</strong> +228 22 70 25 96<br>
+        <strong>WhatsApp :</strong> +228 97 75 40 00<br>
+        <strong>Email :</strong> <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        <strong>Site web :</strong> <a href="https://campusinter.com">campusinter.com</a>
+      </div>
+
+      <h2>2. Propriété intellectuelle</h2>
+      <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, sons, logiciels) est la propriété exclusive de <strong>CAMPUS INTER</strong> ou de ses partenaires et est protégé par les lois internationales relatives à la propriété intellectuelle.</p>
+      <p>Toute reproduction, représentation, modification, publication, transmission ou dénaturée du site ou de son contenu, par quelque procédé que ce soit, est interdite sans autorisation préalable écrite.</p>
+      <p>Les marques et logos reproduits sur le site sont déposés par les sociétés qui en sont propriétaires.</p>
+
+      <h2>3. Responsabilité</h2>
+      <h3>3.1 Contenu du site</h3>
+      <p>Les informations fournies sur ce site le sont à titre informatif. CAMPUS INTER s'efforce de fournir des informations exactes et à jour, mais ne garantit pas l'exactitude, la complétude ou l'actualité des informations publiées.</p>
+      <p>CAMPUS INTER ne peut être tenu responsable des :</p>
+      <ul>
+        <li>Erreurs ou omissions dans le contenu du site</li>
+        <li>Dommages résultant de l'utilisation du site</li>
+        <li>Interruptions ou indisponibilités du service</li>
+        <li>Contenus des sites tiers accessibles via des liens hypertextes</li>
+      </ul>
+
+      <h3>3.2 Services d'accompagnement</h3>
+      <p>CAMPUS INTER propose des services d'accompagnement et de conseil en matière de mobilité internationale. Ces services ne constituent pas des prestations juridiques. CAMPUS INTER ne garantit pas l'obtention de visas, d'inscriptions ou d'emplois, ces décisions relevant exclusivement des autorités compétentes.</p>
+
+      <h2>4. Liens hypertextes</h2>
+      <p>Ce site peut contenir des liens hypertextes vers d'autres sites. CAMPUS INTER n'exerce aucun contrôle sur le contenu de ces sites tiers et décline toute responsabilité quant à leur contenu ou leurs pratiques en matière de protection des données.</p>
+
+      <h2>5. Données personnelles</h2>
+      <p>Pour information sur la collectée et le traitement de vos données personnelles, veuillez consulter notre <a href="/politique-de-confidentialite">Politique de confidentialité</a>.</p>
+
+      <h2>6. Cookies</h2>
+      <p>Pour information sur l'utilisation des cookies, veuillez consulter notre <a href="/politique-cookies">Politique de cookies</a>.</p>
+
+      <h2>7. Droit applicable</h2>
+      <p>Les présentes mentions légales sont régies par le droit en vigueur en République Togolaise. En cas de litige, les tribunaux compétents de Lomé seront seuls compétents.</p>
+
+      <h2>8. Contact</h2>
+      <p>Pour toute question relative aux mentions légales :</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Email : <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Tél : +228 22 70 25 96
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var reveals = document.querySelectorAll('.ci-reveal');
+    if(reveals.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ci-visible'); io.unobserve(e.target); } });
+      }, {threshold:.15});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
+
+</div>

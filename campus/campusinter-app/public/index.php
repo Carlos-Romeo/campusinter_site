@@ -53,6 +53,11 @@ $router->get('/programme', [new PublicController(), 'programDetail']);
 $router->get('/preinscription', [new PublicController(), 'applicationForm']);
 $router->get('/confirmation', [new PublicController(), 'confirmation']);
 
+// Routes RGPD
+$router->get('/mentions-legales', [new PublicController(), 'mentionsLegales']);
+$router->get('/politique-confidentialite', [new PublicController(), 'politiqueConfidentialite']);
+$router->get('/cgu', [new PublicController(), 'cgu']);
+
 // Routes paiement
 $payment = new PaymentController();
 $router->get('/paiement', [$payment, 'paymentPage']);

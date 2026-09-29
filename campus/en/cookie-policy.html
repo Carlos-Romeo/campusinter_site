@@ -1,0 +1,187 @@
+<!-- ============================================================
+  CAMPUS INTER — COOKIE POLICY
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 16/09/2026
+  Platform: Joomla 4/5 — Article integration.
+  File    : en/cookie-policy.html
+
+  JOOMLA INTEGRATION INSTRUCTIONS
+  --------------------------------
+  1. Create the article "Cookie Policy" (category: Legal Information).
+  2. Editor in code mode (CodeMirror/JCE): paste this block.
+  3. Disable article HTML filtering.
+  4. Menu: Footer > Cookie Policy.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-rayon:18px;
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px);
+  }
+
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *,.ci-page *::before,.ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; color:var(--ci-vert-fonce); transition:color .25s; }
+  .ci-page a:hover{ color:var(--ci-vert); }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 .5em; }
+  .ci-container{ width:100%; max-width:900px; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+
+  .ci-page-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%); padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px); }
+  .ci-page-hero h1{ font-size:clamp(2.2rem,4.2vw,3.65rem); letter-spacing:-.035em; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:640px; margin-bottom:0; }
+  .ci-breadcrumb{ font-size:.82rem; color:var(--ci-texte-2); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-here{ color:var(--ci-noir); font-weight:600; }
+
+  .ci-legal h2{ font-size:clamp(1.4rem,2.5vw,1.8rem); margin-top:1.5em; padding-top:1em; border-top:1px solid var(--ci-bordure); }
+  .ci-legal h2:first-child{ margin-top:0; padding-top:0; border-top:none; }
+  .ci-legal h3{ font-size:1.15rem; margin-top:1em; }
+  .ci-legal p,.ci-legal li{ font-size:1rem; line-height:1.75; }
+  .ci-legal ul,.ci-legal ol{ padding-left:1.5em; margin:0 0 .5em; }
+  .ci-legal li{ margin-bottom:.3em; }
+  .ci-legal strong{ color:var(--ci-noir); }
+  .ci-legal .ci-highlight{ background:var(--ci-vert-bg); border-left:4px solid var(--ci-vert); padding:12px 16px; border-radius:0 var(--ci-rayon) var(--ci-rayon) 0; margin:1em 0; }
+  .ci-legal table{ width:100%; border-collapse:collapse; margin:1em 0; }
+  .ci-legal th,.ci-legal td{ padding:12px 16px; text-align:left; border-bottom:1px solid var(--ci-bordure); font-size:.95rem; }
+  .ci-legal th{ background:var(--ci-fond); font-weight:700; color:var(--ci-noir); }
+  .ci-legal .ci-updated{ display:inline-block; background:var(--ci-vert-bg); color:var(--ci-vert-fonce); font-size:.85rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+
+  @media(max-width:640px){
+    .ci-legal h2{ font-size:1.3rem; }
+    .ci-legal th,.ci-legal td{ padding:10px 12px; font-size:.88rem; }
+  }
+  </style>
+
+  <!-- HERO -->
+  <section class="ci-page-hero">
+    <div class="ci-container">
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/en/">Home</a> <span class="ci-sep">›</span> <span class="ci-here">Cookie Policy</span>
+      </nav>
+      <h1><em>Cookie</em> Policy</h1>
+      <p class="ci-hero-sous">How we use cookies and similar technologies on our website.</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="ci-section">
+    <div class="ci-container ci-legal">
+
+      <span class="ci-updated">Last updated: September 16, 2026</span>
+
+      <h2>1. What is a cookie?</h2>
+      <p>A cookie is a small text file placed on your device (computer, tablet, smartphone) when you visit a website. It allows the site to store information about your browsing and to recognize you during future visits.</p>
+
+      <h2>2. Cookies used on this site</h2>
+      <p>Our website uses the following categories of cookies:</p>
+
+      <h3>2.1 Strictly necessary cookies</h3>
+      <table>
+        <tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr>
+        <tr><td><strong>session_id</strong></td><td>Joomla Session — maintains your browsing session</td><td>Session end</td></tr>
+        <tr><td><strong>csrf_token</strong></td><td>Form anti-forgery protection (security)</td><td>Session end</td></tr>
+        <tr><td><strong>ci_rate_*</strong></td><td>Form submission rate limiting</td><td>1 minute</td></tr>
+      </table>
+      <p>These cookies are essential for the website to function and cannot be disabled.</p>
+
+      <h3>2.2 Performance and analytics cookies</h3>
+      <table>
+        <tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr>
+        <tr><td><strong>_ga</strong> (Google Analytics)</td><td>Distinguishing unique users</td><td>2 years</td></tr>
+        <tr><td><strong>_ga_*</strong> (Google Analytics)</td><td>Maintaining session state</td><td>2 years</td></tr>
+        <tr><td><strong>_gid</strong> (Google Analytics)</td><td>Distinguishing users</td><td>24 hours</td></tr>
+      </table>
+      <p>These cookies help us understand how you use our site in order to improve our services.</p>
+
+      <h3>2.3 Preference cookies</h3>
+      <table>
+        <tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr>
+        <tr><td><strong>ci_lang</strong></td><td>Remembering your chosen language</td><td>1 year</td></tr>
+        <tr><td><strong>ci_cookie_consent</strong></td><td>Recording your cookie consent choice</td><td>6 months</td></tr>
+      </table>
+
+      <h2>3. Cookie Purposes</h2>
+      <p>We use cookies for the following purposes:</p>
+      <ul>
+        <li><strong>Website operation</strong>: ensuring security, navigation, and form usage</li>
+        <li><strong>Audience measurement</strong>: analyzing traffic and improving user experience</li>
+        <li><strong>Preferences</strong>: remembering your choices (language, cookie consent)</li>
+      </ul>
+
+      <h2>4. Managing Your Preferences</h2>
+      <p>You can modify your cookie preferences at any time:</p>
+      <ul>
+        <li><strong>Cookie banner</strong>: on your first visit, you can accept or decline non-essential cookies</li>
+        <li><strong>Browser settings</strong>: you can configure your browser to block or delete cookies</li>
+      </ul>
+
+      <div class="ci-highlight">
+        <strong>How to disable cookies in your browser:</strong><br><br>
+        • <strong>Chrome</strong>: Settings → Privacy → Cookies<br>
+        • <strong>Firefox</strong>: Options → Privacy → Cookies<br>
+        • <strong>Safari</strong> → Preferences → Privacy<br>
+        • <strong>Edge</strong> → Settings → Privacy → Cookies
+      </div>
+
+      <h2>5. Third-party Cookies</h2>
+      <p>Our website may contain embedded content (YouTube videos, social sharing buttons). These third-party services may place cookies that we do not control. We invite you to consult their respective privacy policies:</p>
+      <ul>
+        <li><strong>Google Analytics</strong>: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+        <li><strong>YouTube</strong>: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+        <li><strong>Font Awesome (CDN)</strong>: no cookies placed</li>
+        <li><strong>Google Fonts</strong>: Google Privacy Policy</li>
+      </ul>
+
+      <h2>6. Retention Period</h2>
+      <p>Cookies have varying retention periods depending on their purpose (see tables above). Beyond these periods, data is automatically deleted.</p>
+
+      <h2>7. Your Rights</h2>
+      <p>In accordance with GDPR, you have rights regarding your personal data collected via cookies. For more information, please refer to our <a href="/en/privacy-policy">Privacy Policy</a>.</p>
+
+      <h2>8. Changes to This Policy</h2>
+      <p>This cookie policy may be updated at any time. The date of the last update is indicated at the top of this page.</p>
+
+      <h2>9. Contact</h2>
+      <p>For any questions regarding our cookie policy:</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Email: <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Phone: +228 22 70 25 96
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var reveals = document.querySelectorAll('.ci-reveal');
+    if(reveals.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ci-visible'); io.unobserve(e.target); } });
+      }, {threshold:.15});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
+
+</div>

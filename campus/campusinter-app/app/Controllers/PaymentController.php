@@ -240,7 +240,7 @@ class PaymentController extends Controller
         $payload = [
             'phone' => $phone,
             'amount' => $amount,
-            'currency' => 'XOF',
+            'currency' => 'FCFA',
             'reference' => $transactionRef,
             'provider' => $provider, // orange_money, mtn_mobile
             'description' => 'Frais de dossier Campus Inter'

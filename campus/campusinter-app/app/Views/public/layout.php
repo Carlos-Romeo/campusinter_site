@@ -41,6 +41,11 @@
         <!-- Footer -->
         <footer class="ci-footer">
             <div class="ci-container">
+                <div class="ci-footer__links">
+                    <a href="/mentions-legales">Mentions Légales</a>
+                    <a href="/politique-confidentialite">Politique de Confidentialité</a>
+                    <a href="/cgu">CGU</a>
+                </div>
                 <p>&copy; <?= date('Y') ?> Campus Inter. Tous droits réservés.</p>
             </div>
         </footer>

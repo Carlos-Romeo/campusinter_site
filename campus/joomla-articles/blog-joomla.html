@@ -1,16 +1,3 @@
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  'use strict';
-  var form = document.getElementById('ciFormNews');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
-      var btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>'; }
-    });
-  }
-});
-</script>
 {source}<?php
 defined('_JEXEC') or die;
 
@@ -23,12 +10,39 @@ function ciSanitize($val) {
   return str_replace(["\0", "\r", "\n"], '', trim((string) $val));
 }
 
+function ciVerifyRecaptcha($response) {
+  if (empty($response)) return false;
+  $secret = '6Lf5wL4tAAAAALTdbwqRbOhp3bsfS5rQtrE5p9eR';
+  $url = 'https://www.google.com/recaptcha/api/siteverify';
+  $data = http_build_query(['secret' => $secret, 'response' => $response, 'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '']);
+  $opts = ['http' => ['method' => 'POST', 'header' => "Content-Type: application/x-www-form-urlencoded\r\n", 'content' => $data, 'timeout' => 5]];
+  $ctx = stream_context_create($opts);
+  $verify = @file_get_contents($url, false, $ctx);
+  if ($verify === false) return true;
+  $result = json_decode($verify, true);
+  return !isset($result['success']) || $result['success'] === true;
+}
+
+function ciCheckBot() {
+  if ($_SERVER['REQUEST_METHOD'] !== 'POST') return false;
+  $ts  = (int) ($_POST['ci_ts'] ?? 0);
+  $tok = $_POST['ci_tok'] ?? '';
+  if ($ts <= 0) return true;
+  $salt = 'campusinter_2024_xK9mP';
+  if ($tok !== md5($ts . $salt)) return true;
+  $age = time() - $ts;
+  if ($age < 3) return true;
+  if ($age > 7200) return true;
+  return false;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $ci = $_GET['ci'] ?? '';
 $pageUrl = Uri::current();
-$tokenName  = 'ci_token_newsletter';
-$tokenValue = $app->getSession()->getFormToken();
+
+$ci_ts = time();
+$ci_tok = md5($ci_ts . 'campusinter_2024_xK9mP');
 
 echo '<section class="ci-section" id="ciNewsletter" style="padding-top:0;">';
 echo '<div class="ci-hex ci-hex--tl ci-hex--md ci-hex--mid" data-cols="5" data-rows="4" data-size="24" data-color="#159447" data-fill="3" aria-hidden="true"></div>';
@@ -50,13 +64,30 @@ return;
 }
 
 echo '<form class="ci-newsletter-form" id="ciFormNews" action="' . $pageUrl . '" method="post">';
-echo '<input type="hidden" name="' . $tokenName . '" value="' . $tokenValue . '">';
+echo '<textarea name="g-recaptcha-response" id="g-recaptcha-response" style="display:none;"></textarea>';
 echo '<input type="text" name="website" class="ci-honeypot" autocomplete="off" aria-hidden="true" tabindex="-1">';
 echo '<input type="email" name="email" placeholder="Votre adresse e-mail" aria-label="Adresse e-mail" required="">';
+echo '<input type="hidden" name="ci_ts" value="' . $ci_ts . '">';
+echo '<input type="hidden" name="ci_tok" value="' . $ci_tok . '">';
 echo '<button class="ci-btn ci-btn--primaire" type="submit"> S\'abonner <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> </button>';
 echo '</form></div></div></section>';
 
 return;
+}
+
+if (ciCheckBot()) {
+  echo '<section class="ci-section ci-newsletter" id="ciNewsletter"><div class="ci-container">';
+  echo '<div class="ci-newsletter-status ci-statut-ok" role="status">Merci ! Vous êtes maintenant inscrit(e) à notre newsletter.</div>';
+  echo '</div></section>';
+  return;
+}
+
+$rcToken = $_POST['g-recaptcha-response'] ?? '';
+if (!ciVerifyRecaptcha($rcToken)) {
+  echo '<section class="ci-section ci-newsletter" id="ciNewsletter"><div class="ci-container">';
+  echo '<div class="ci-newsletter-status ci-statut-err" role="status">Vérification anti-spam échouée. Veuillez réessayer.</div>';
+  echo '</div></section>';
+  return;
 }
 
 $mail = ciSanitize(substr(trim(strip_tags((string) ($_POST['email'] ?? ''))), 0, 254));
@@ -64,15 +95,6 @@ $mail = ciSanitize(substr(trim(strip_tags((string) ($_POST['email'] ?? ''))), 0,
 if ($mail === '' || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
   echo '<section class="ci-section ci-newsletter" id="ciNewsletter"><div class="ci-container">';
   echo '<div class="ci-newsletter-status ci-statut-err" role="status">L\'inscription a échoué. Veuillez réessayer.</div>';
-  echo '</div></section>';
-  return;
-}
-
-$tokenName  = 'ci_token_newsletter';
-$tokenValue = $app->getSession()->getFormToken();
-if (empty($_POST[$tokenName]) || $_POST[$tokenName] !== $tokenValue) {
-  echo '<section class="ci-section ci-newsletter" id="ciNewsletter"><div class="ci-container">';
-  echo '<div class="ci-newsletter-status ci-statut-err" role="status">Session expirée. Veuillez recharger la page et réessayer.</div>';
   echo '</div></section>';
   return;
 }
@@ -113,3 +135,31 @@ try {
   echo '</div></section>';
 }
 ?>{/source}
+
+<script src="https://www.google.com/recaptcha/api.js?render=6Lf5wL4tAAAAAI5HHmit6nFVS5lxetRwoW7b8_AM"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var form = document.getElementById('ciFormNews');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>'; }
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6Lf5wL4tAAAAAI5HHmit6nFVS5lxetRwoW7b8_AM', {action: 'newsletter'}).then(function(token) {
+          if (token) {
+            document.getElementById('g-recaptcha-response').value = token;
+            form.submit();
+          } else {
+            form.submit();
+          }
+        }).catch(function() {
+          form.submit();
+        });
+      });
+    });
+  }
+});
+</script>

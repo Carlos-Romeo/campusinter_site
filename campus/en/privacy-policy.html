@@ -1,0 +1,222 @@
+<!-- ============================================================
+  CAMPUS INTER — PRIVACY POLICY (GDPR)
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 16/09/2026
+  Platform: Joomla 4/5 — Article integration.
+  File    : en/privacy-policy.html
+
+  JOOMLA INTEGRATION INSTRUCTIONS
+  --------------------------------
+  1. Create the article "Privacy Policy" (category: Legal Information).
+  2. Editor in code mode (CodeMirror/JCE): paste this block.
+  3. Disable article HTML filtering.
+  4. Menu: Footer > Privacy Policy.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4; --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-rayon:18px;
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px);
+  }
+
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *,.ci-page *::before,.ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; color:var(--ci-vert-fonce); transition:color .25s; }
+  .ci-page a:hover{ color:var(--ci-vert); }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 .5em; }
+  .ci-container{ width:100%; max-width:900px; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+
+  /* Hero */
+  .ci-page-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%); padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px); }
+  .ci-page-hero h1{ font-size:clamp(2.2rem,4.2vw,3.65rem); letter-spacing:-.035em; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:640px; margin-bottom:0; }
+  .ci-breadcrumb{ font-size:.82rem; color:var(--ci-texte-2); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-here{ color:var(--ci-noir); font-weight:600; }
+
+  /* Legal content */
+  .ci-legal h2{ font-size:clamp(1.4rem,2.5vw,1.8rem); margin-top:1.5em; padding-top:1em; border-top:1px solid var(--ci-bordure); }
+  .ci-legal h2:first-child{ margin-top:0; padding-top:0; border-top:none; }
+  .ci-legal h3{ font-size:1.15rem; margin-top:1em; }
+  .ci-legal p,.ci-legal li{ font-size:1rem; line-height:1.75; }
+  .ci-legal ul,.ci-legal ol{ padding-left:1.5em; margin:0 0 .5em; }
+  .ci-legal li{ margin-bottom:.3em; }
+  .ci-legal strong{ color:var(--ci-noir); }
+  .ci-legal .ci-highlight{ background:var(--ci-vert-bg); border-left:4px solid var(--ci-vert); padding:12px 16px; border-radius:0 var(--ci-rayon) var(--ci-rayon) 0; margin:1em 0; }
+  .ci-legal table{ width:100%; border-collapse:collapse; margin:1em 0; }
+  .ci-legal th,.ci-legal td{ padding:12px 16px; text-align:left; border-bottom:1px solid var(--ci-bordure); font-size:.95rem; }
+  .ci-legal th{ background:var(--ci-fond); font-weight:700; color:var(--ci-noir); }
+  .ci-legal .ci-updated{ display:inline-block; background:var(--ci-vert-bg); color:var(--ci-vert-fonce); font-size:.85rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+
+  @media(max-width:640px){
+    .ci-legal h2{ font-size:1.3rem; }
+    .ci-legal th,.ci-legal td{ padding:10px 12px; font-size:.88rem; }
+  }
+  </style>
+
+  <!-- HERO -->
+  <section class="ci-page-hero">
+    <div class="ci-container">
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/en/">Home</a> <span class="ci-sep">›</span> <span class="ci-here">Privacy Policy</span>
+      </nav>
+      <h1><em>Privacy</em> Policy</h1>
+      <p class="ci-hero-sous">How we collect, use, and protect your personal data in compliance with GDPR.</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="ci-section">
+    <div class="ci-container ci-legal">
+
+      <span class="ci-updated">Last updated: September 16, 2026</span>
+
+      <h2>1. Data Controller</h2>
+      <p>The data controller for personal data collected on <strong>campusinter.com</strong> is:</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        International Mobility Agency<br>
+        Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo<br>
+        Phone: +228 22 70 25 96<br>
+        Email: <a href="mailto:contact@campusinter.com">contact@campusinter.com</a>
+      </div>
+
+      <h2>2. Personal Data Collected</h2>
+      <p>We collect the personal data you voluntarily provide through our forms:</p>
+
+      <h3>2.1 Contact / Information Request Form</h3>
+      <table>
+        <tr><th>Data</th><th>Purpose</th><th>Legal Basis</th></tr>
+        <tr><td>Full name</td><td>Identification and response to your request</td><td>Consent</td></tr>
+        <tr><td>Email address</td><td>Sending the response and follow-up</td><td>Consent</td></tr>
+        <tr><td>Phone / WhatsApp</td><td>Phone contact if necessary</td><td>Consent</td></tr>
+        <tr><td>Project type</td><td>Directing to the right service</td><td>Consent</td></tr>
+        <tr><td>Message</td><td>Understanding your request</td><td>Consent</td></tr>
+      </table>
+
+      <h3>2.2 Newsletter Subscription</h3>
+      <table>
+        <tr><th>Data</th><th>Purpose</th><th>Legal Basis</th></tr>
+        <tr><td>Email address</td><td>Sending newsletters and updates</td><td>Consent</td></tr>
+      </table>
+
+      <h3>2.3 Browsing Data</h3>
+      <p>When you browse our site, we may automatically collect:</p>
+      <ul>
+        <li>IP address (anonymized)</li>
+        <li>Browser type and operating system</li>
+        <li>Pages visited and visit duration</li>
+        <li>Traffic source (referrer)</li>
+      </ul>
+
+      <h2>3. Data Processing Purposes</h2>
+      <p>Your personal data is collected for the following purposes:</p>
+      <ul>
+        <li><strong>Responding to your contact and information requests</strong></li>
+        <li><strong>Contacting you</strong> regarding your study or relocation project</li>
+        <li><strong>Sending newsletters</strong> and updates (only if you have consented)</li>
+        <li><strong>Improving our services</strong> and user experience on our website</li>
+        <li><strong>Ensuring website security</strong> and fraud prevention</li>
+      </ul>
+
+      <h2>4. Data Retention Period</h2>
+      <table>
+        <tr><th>Data Type</th><th>Retention Period</th></tr>
+        <tr><td>Contact form data</td><td>24 months after last contact</td></tr>
+        <tr><td>Newsletter subscription data</td><td>Until unsubscribe</td></tr>
+        <tr><td>Browsing data</td><td>Maximum 13 months</td></tr>
+        <tr><td>Cookies</td><td>Maximum 13 months</td></tr>
+      </table>
+
+      <h2>5. Data Recipients</h2>
+      <p>Your personal data is intended only for:</p>
+      <ul>
+        <li><strong>The Campus Inter team</strong> (advisors and administrators)</li>
+        <li><strong>Our hosting provider</strong> (technical provider, subject to confidentiality obligation)</li>
+      </ul>
+      <p>Your data is <strong>never sold</strong> to third parties or shared with commercial partners.</p>
+
+      <h2>6. Data Transfer Outside the European Union</h2>
+      <p>As our website is hosted outside the EU, your data may be transferred to countries offering a different level of protection. In such cases, we ensure that appropriate safeguards are in place (standard contractual clauses, adequacy decisions, etc.) in compliance with GDPR.</p>
+
+      <h2>7. Your GDPR Rights</h2>
+      <p>In accordance with the General Data Protection Regulation (GDPR), you have the following rights:</p>
+      <ul>
+        <li><strong>Right of access</strong>: obtain a copy of your personal data</li>
+        <li><strong>Right to rectification</strong>: correct inaccurate data</li>
+        <li><strong>Right to erasure</strong>: request deletion of your data ("right to be forgotten")</li>
+        <li><strong>Right to restriction</strong>: request restriction of processing</li>
+        <li><strong>Right to data portability</strong>: receive your data in a structured format</li>
+        <li><strong>Right to object</strong>: object to the processing of your data</li>
+        <li><strong>Right to withdraw consent</strong>: unsubscribe at any time</li>
+      </ul>
+
+      <div class="ci-highlight">
+        <strong>To exercise your rights</strong>, contact us at: <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        We commit to responding within <strong>30 days</strong>.
+      </div>
+
+      <h2>8. Data Security</h2>
+      <p>We implement the following technical and organizational measures to protect your data:</p>
+      <ul>
+        <li>Transmission encryption (HTTPS / SSL)</li>
+        <li>Form validation (CSRF anti-forgery tokens)</li>
+        <li>Submission rate limiting (anti-spam / anti-flooding)</li>
+        <li>Web Application Firewall (WAF)</li>
+        <li>Restricted data access for authorized team only</li>
+      </ul>
+
+      <h2>9. Cookies</h2>
+      <p>Our website uses cookies to improve your experience. For more information, please refer to our <a href="/en/cookie-policy">Cookie Policy</a>.</p>
+
+      <h2>10. Complaints</h2>
+      <p>If you believe that the processing of your data is not compliant with GDPR, you have the right to file a complaint with the competent supervisory authority.</p>
+
+      <h2>11. Changes to This Policy</h2>
+      <p>This privacy policy may be updated at any time. The date of the last update is indicated at the top of this page. We encourage you to consult this page regularly.</p>
+
+      <h2>12. Contact</h2>
+      <p>For any questions regarding the protection of your personal data:</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Email: <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Phone: +228 22 70 25 96<br>
+        WhatsApp: +228 97 75 40 00
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var reveals = document.querySelectorAll('.ci-reveal');
+    if(reveals.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ci-visible'); io.unobserve(e.target); } });
+      }, {threshold:.15});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
+
+</div>

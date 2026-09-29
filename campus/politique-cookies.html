@@ -1,0 +1,188 @@
+<!-- ============================================================
+  CAMPUS INTER — POLITIQUE DE COOKIES
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 16/09/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : politique-cookies.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Politique de cookies »
+     (catégorie : Informations légales).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Désactiver le filtrage HTML de l'article.
+  4. Menu : Footer > Politique de cookies.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-rayon:18px;
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px);
+  }
+
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *,.ci-page *::before,.ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; color:var(--ci-vert-fonce); transition:color .25s; }
+  .ci-page a:hover{ color:var(--ci-vert); }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 .5em; }
+  .ci-container{ width:100%; max-width:900px; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+
+  .ci-page-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%); padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px); }
+  .ci-page-hero h1{ font-size:clamp(2.2rem,4.2vw,3.65rem); letter-spacing:-.035em; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:640px; margin-bottom:0; }
+  .ci-breadcrumb{ font-size:.82rem; color:var(--ci-texte-2); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-here{ color:var(--ci-noir); font-weight:600; }
+
+  .ci-legal h2{ font-size:clamp(1.4rem,2.5vw,1.8rem); margin-top:1.5em; padding-top:1em; border-top:1px solid var(--ci-bordure); }
+  .ci-legal h2:first-child{ margin-top:0; padding-top:0; border-top:none; }
+  .ci-legal h3{ font-size:1.15rem; margin-top:1em; }
+  .ci-legal p,.ci-legal li{ font-size:1rem; line-height:1.75; }
+  .ci-legal ul,.ci-legal ol{ padding-left:1.5em; margin:0 0 .5em; }
+  .ci-legal li{ margin-bottom:.3em; }
+  .ci-legal strong{ color:var(--ci-noir); }
+  .ci-legal .ci-highlight{ background:var(--ci-vert-bg); border-left:4px solid var(--ci-vert); padding:12px 16px; border-radius:0 var(--ci-rayon) var(--ci-rayon) 0; margin:1em 0; }
+  .ci-legal table{ width:100%; border-collapse:collapse; margin:1em 0; }
+  .ci-legal th,.ci-legal td{ padding:12px 16px; text-align:left; border-bottom:1px solid var(--ci-bordure); font-size:.95rem; }
+  .ci-legal th{ background:var(--ci-fond); font-weight:700; color:var(--ci-noir); }
+  .ci-legal .ci-updated{ display:inline-block; background:var(--ci-vert-bg); color:var(--ci-vert-fonce); font-size:.85rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+
+  @media(max-width:640px){
+    .ci-legal h2{ font-size:1.3rem; }
+    .ci-legal th,.ci-legal td{ padding:10px 12px; font-size:.88rem; }
+  }
+  </style>
+
+  <!-- HERO -->
+  <section class="ci-page-hero">
+    <div class="ci-container">
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a> <span class="ci-sep">›</span> <span class="ci-here">Politique de cookies</span>
+      </nav>
+      <h1><em>Politique</em> de cookies</h1>
+      <p class="ci-hero-sous">Comment nous utilisons les cookies et technologies similaires sur notre site.</p>
+    </div>
+  </section>
+
+  <!-- CONTENU -->
+  <section class="ci-section">
+    <div class="ci-container ci-legal">
+
+      <span class="ci-updated">Dernière mise à jour : 16 septembre 2026</span>
+
+      <h2>1. Qu'est-ce qu'un cookie ?</h2>
+      <p>Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de la consultation d'un site web. Il permet au site de stocker des informations sur votre navigation et de vous reconnaître lors de vos visites ultérieures.</p>
+
+      <h2>2. Cookies utilisés sur ce site</h2>
+      <p>Notre site utilise les catégories de cookies suivantes :</p>
+
+      <h3>2.1 Cookies strictement nécessaires</h3>
+      <table>
+        <tr><th>Cookie</th><th>Finalité</th><th>Durée</th></tr>
+        <tr><td><strong>session_id</strong></td><td>Session Joomla — maintient votre session de navigation</td><td>Fin de session</td></tr>
+        <tr><td><strong>csrf_token</strong></td><td>Protection anti-forgery des formulaires (sécurité)</td><td>Fin de session</td></tr>
+        <tr><td><strong>ci_rate_*</strong></td><td>Limitation du débit de soumission des formulaires</td><td>1 minute</td></tr>
+      </table>
+      <p>Ces cookies sont indispensables au fonctionnement du site et ne peuvent pas être désactivés.</p>
+
+      <h3>2.2 Cookies de performance et d'analyse</h3>
+      <table>
+        <tr><th>Cookie</th><th>Finalité</th><th>Durée</th></tr>
+        <tr><td><strong>_ga</strong> (Google Analytics)</td><td>Distinction des utilisateurs uniques</td><td>2 ans</td></tr>
+        <tr><td><strong>_ga_*</strong> (Google Analytics)</td><td>Maintien de l'état de la session</td><td>2 ans</td></tr>
+        <tr><td><strong>_gid</strong> (Google Analytics)</td><td>Distinction des utilisateurs</td><td>24 heures</td></tr>
+      </table>
+      <p>Ces cookies nous aident à comprendre comment vous utilisez notre site afin d'améliorer vos services.</p>
+
+      <h3>2.3 Cookies de préférence</h3>
+      <table>
+        <tr><th>Cookie</th><th>Finalité</th><th>Durée</th></tr>
+        <tr><td><strong>ci_lang</strong></td><td>Memorisation de la langue choisie</td><td>1 an</td></tr>
+        <tr><td><strong>ci_cookie_consent</strong></td><td>Enregistrement de votre choix concernant les cookies</td><td>6 mois</td></tr>
+      </table>
+
+      <h2>3. Finalités des cookies</h2>
+      <p>Nous utilisons les cookies aux finalités suivantes :</p>
+      <ul>
+        <li><strong>Fonctionnement du site</strong> : assurer la sécurité, la navigation et l'utilisation des formulaires</li>
+        <li><strong>Mesure d'audience</strong> : analyser le trafic et améliorer l'expérience utilisateur</li>
+        <li><strong>Préférences</strong> : mémoriser vos choix (langue, consentement cookies)</li>
+      </ul>
+
+      <h2>4. Gestion de vos préférences</h2>
+      <p>Vous pouvez à tout moment modifier vos préférences en matière de cookies :</p>
+      <ul>
+        <li><strong>Bandeau de cookies</strong> : lors de votre première visite, vous pouvez accepter ou refuser les cookies non essentiels</li>
+        <li><strong>Paramètres du navigateur</strong> : vous pouvez configurer votre navigateur pour bloquer ou supprimer les cookies</li>
+      </ul>
+
+      <div class="ci-highlight">
+        <strong>Comment désactiver les cookies dans votre navigateur :</strong><br><br>
+        • <strong>Chrome</strong> : Paramètres → Confidentialité → Cookies<br>
+        • <strong>Firefox</strong> : Options → Vie privée → Cookies<br>
+        • <strong>Safari</strong> → Préférences → Confidentialité<br>
+        • <strong>Edge</strong> → Paramètres → Confidentialité → Cookies
+      </div>
+
+      <h2>5. Cookies tiers</h2>
+      <p>Notre site peut contenir des contenus intégrés (vidéos YouTube, boutons de partage social). Ces services tiers peuvent déposer des cookies que nous ne contrôlons pas. Nous vous invitons à consulter leurs politiques de confidentialité respectives :</p>
+      <ul>
+        <li><strong>Google Analytics</strong> : <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">politique de confidentialité Google</a></li>
+        <li><strong>YouTube</strong> : <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">politique de confidentialité Google</a></li>
+        <li><strong>Font Awesome (CDN)</strong> : pas de cookies déposés</li>
+        <li><strong>Google Fonts</strong> : politique de confidentialité Google</li>
+      </ul>
+
+      <h2>6. Durée de conservation</h2>
+      <p>Les cookies ont des durées de conservation variables selon leur finalité (voir tableaux ci-dessus). Au-delà de ces durées, les données sont automatiquement supprimées.</p>
+
+      <h2>7. Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez de droits concernant vos données personnelles collectées via les cookies. Pour plus d'informations, consultez notre <a href="/politique-de-confidentialite">Politique de confidentialité</a>.</p>
+
+      <h2>8. Modifications de cette politique</h2>
+      <p>Cette politique de cookies peut être mise à jour à tout moment. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+
+      <h2>9. Contact</h2>
+      <p>Pour toute question relative à notre politique de cookies :</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Email : <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Tél : +228 22 70 25 96
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var reveals = document.querySelectorAll('.ci-reveal');
+    if(reveals.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ci-visible'); io.unobserve(e.target); } });
+      }, {threshold:.15});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
+
+</div>

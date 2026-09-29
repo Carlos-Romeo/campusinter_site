@@ -1,0 +1,224 @@
+<!-- ============================================================
+  CAMPUS INTER — POLITIQUE DE CONFIDENTIALITÉ (RGPD)
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 16/09/2026
+  Plateforme : Joomla 4/5 — Intégration dans un article.
+  Fichier  : politique-de-confidentialite.html
+
+  INSTRUCTIONS D'INTÉGRATION JOOMLA
+  ---------------------------------
+  1. Créer l'article « Politique de confidentialité »
+     (catégorie : Informations légales).
+  2. Éditeur en mode code (CodeMirror/JCE) : coller ce bloc.
+  3. Désactiver le filtrage HTML de l'article.
+  4. Menu : Footer > Politique de confidentialité.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE; --ci-vert-bg-2:#DDF0E5;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4; --ci-fond-2:#F8FAF8;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-rayon:18px;
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px);
+  }
+
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *,.ci-page *::before,.ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; color:var(--ci-vert-fonce); transition:color .25s; }
+  .ci-page a:hover{ color:var(--ci-vert); }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 .5em; }
+  .ci-container{ width:100%; max-width:900px; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+
+  /* Hero */
+  .ci-page-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%); padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px); }
+  .ci-page-hero h1{ font-size:clamp(2.2rem,4.2vw,3.65rem); letter-spacing:-.035em; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:640px; margin-bottom:0; }
+  .ci-breadcrumb{ font-size:.82rem; color:var(--ci-texte-2); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-here{ color:var(--ci-noir); font-weight:600; }
+
+  /* Contenu légal */
+  .ci-legal h2{ font-size:clamp(1.4rem,2.5vw,1.8rem); margin-top:1.5em; padding-top:1em; border-top:1px solid var(--ci-bordure); }
+  .ci-legal h2:first-child{ margin-top:0; padding-top:0; border-top:none; }
+  .ci-legal h3{ font-size:1.15rem; margin-top:1em; }
+  .ci-legal p,.ci-legal li{ font-size:1rem; line-height:1.75; }
+  .ci-legal ul,.ci-legal ol{ padding-left:1.5em; margin:0 0 .5em; }
+  .ci-legal li{ margin-bottom:.3em; }
+  .ci-legal strong{ color:var(--ci-noir); }
+  .ci-legal .ci-highlight{ background:var(--ci-vert-bg); border-left:4px solid var(--ci-vert); padding:12px 16px; border-radius:0 var(--ci-rayon) var(--ci-rayon) 0; margin:1em 0; }
+  .ci-legal table{ width:100%; border-collapse:collapse; margin:1em 0; }
+  .ci-legal th,.ci-legal td{ padding:12px 16px; text-align:left; border-bottom:1px solid var(--ci-bordure); font-size:.95rem; }
+  .ci-legal th{ background:var(--ci-fond); font-weight:700; color:var(--ci-noir); }
+  .ci-legal .ci-updated{ display:inline-block; background:var(--ci-vert-bg); color:var(--ci-vert-fonce); font-size:.85rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+
+  @media(max-width:640px){
+    .ci-legal h2{ font-size:1.3rem; }
+    .ci-legal th,.ci-legal td{ padding:10px 12px; font-size:.88rem; }
+  }
+  </style>
+
+  <!-- HERO -->
+  <section class="ci-page-hero">
+    <div class="ci-container">
+      <nav class="ci-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a> <span class="ci-sep">›</span> <span class="ci-here">Politique de confidentialité</span>
+      </nav>
+      <h1><em>Politique</em> de confidentialité</h1>
+      <p class="ci-hero-sous">Comment nous collectons, utilisons et protégeons vos données personnelles conformément au RGPD.</p>
+    </div>
+  </section>
+
+  <!-- CONTENU -->
+  <section class="ci-section">
+    <div class="ci-container ci-legal">
+
+      <span class="ci-updated">Dernière mise à jour : 16 septembre 2026</span>
+
+      <h2>1. Responsable du traitement</h2>
+      <p>Le responsable du traitement des données personnelles collectées sur le site <strong>campusinter.com</strong> est :</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Agence de mobilité internationale<br>
+        Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo<br>
+        Tél : +228 22 70 25 96<br>
+        Email : <a href="mailto:contact@campusinter.com">contact@campusinter.com</a>
+      </div>
+
+      <h2>2. Données personnelles collectées</h2>
+      <p>Nous collectons les données personnelles que vous nous fournissez volontairement via nos formulaires :</p>
+
+      <h3>2.1 Formulaire de contact / demande d'information</h3>
+      <table>
+        <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th></tr>
+        <tr><td>Nom complet</td><td>Identification et réponse à votre demande</td><td>Consentement</td></tr>
+        <tr><td>Adresse email</td><td>Envoi de la réponse et suivi</td><td>Consentement</td></tr>
+        <tr><td>Téléphone / WhatsApp</td><td>Contact téléphonique si nécessaire</td><td>Consentement</td></tr>
+        <tr><td>Type de projet</td><td>Orienter vers le bon service</td><td>Consentement</td></tr>
+        <tr><td>Message</td><td>Comprendre votre demande</td><td>Consentement</td></tr>
+      </table>
+
+      <h3>2.2 Inscription à la newsletter</h3>
+      <table>
+        <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th></tr>
+        <tr><td>Adresse email</td><td>Envoi des newsletters et actualités</td><td>Consentement</td></tr>
+      </table>
+
+      <h3>2.3 Données de navigation</h3>
+      <p>Lors de votre navigation, nous pouvons collecter automatiquement :</p>
+      <ul>
+        <li>Adresse IP (anonymisée)</li>
+        <li>Type de navigateur et système d'exploitation</li>
+        <li>Pages visitées et durée de visite</li>
+        <li>Source de traffic (référent)</li>
+      </ul>
+
+      <h2>3. Finalités du traitement</h2>
+      <p>Vos données personnelles sont collectées pour les finalités suivantes :</p>
+      <ul>
+        <li><strong>Répondre à vos demandes</strong> de contact et d'information</li>
+        <li><strong>Vous recontacter</strong> dans le cadre de votre projet d'études ou d'installation</li>
+        <li><strong>Vous envoyer des newsletters</strong> et actualités (uniquement si vous y avez consenti)</li>
+        <li><strong>Améliorer nos services</strong> et l'expérience utilisateur sur notre site</li>
+        <li><strong>Assurer la sécurité</strong> du site et prévenir la fraude</li>
+      </ul>
+
+      <h2>4. Durée de conservation</h2>
+      <table>
+        <tr><th>Type de données</th><th>Durée de conservation</th></tr>
+        <tr><td>Données de formulaire de contact</td><td>24 mois après le dernier contact</td></tr>
+        <tr><td>Données d'inscription newsletter</td><td>Jusqu'à désinscription</td></tr>
+        <tr><td>Données de navigation</td><td>13 mois maximum</td></tr>
+        <tr><td>Cookies</td><td>13 mois maximum</td></tr>
+      </table>
+
+      <h2>5. Destinataires des données</h2>
+      <p>Vos données personnelles sont destinées uniquement à :</p>
+      <ul>
+        <li><strong>L'équipe Campus Inter</strong> (conseillers et administrateurs)</li>
+        <li><strong>Notre hébergeur</strong> (prestataire technique, soumis à obligation de confidentialité)</li>
+      </ul>
+      <p>Vos données ne sont <strong>jamais vendues</strong> à des tiers ni transmises à des partenaires commerciaux.</p>
+
+      <h2>6. Transfert de données hors Union européenne</h2>
+      <p>Notre site étant hébergé en dehors de l'UE, vos données peuvent être transférées vers des pays offrant un niveau de protection différent. Dans ce cas, nous nous assurons que des garanties appropriées sont mises en place (clauses contractuelles types, décision d'adéquation, etc.) conformément au RGPD.</p>
+
+      <h2>7. Vos droits RGPD</h2>
+      <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+      <ul>
+        <li><strong>Droit d'accès</strong> : obtenir une copie de vos données personnelles</li>
+        <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+        <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données (« droit à l'oubli »)</li>
+        <li><strong>Droit à la limitation</strong> : demander la limitation du traitement</li>
+        <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+        <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
+        <li><strong>Droit de retrait du consentement</strong> : vous désinscrire à tout moment</li>
+      </ul>
+
+      <div class="ci-highlight">
+        <strong>Pour exercer vos droits</strong>, contactez-nous à : <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Nous nous engageons à répondre dans un délai de <strong>30 jours</strong>.
+      </div>
+
+      <h2>8. Sécurité des données</h2>
+      <p>Nous mettons en œuvre les mesures techniques et organisationnelles suivantes pour protéger vos données :</p>
+      <ul>
+        <li>Chiffrement des transmissions (HTTPS / SSL)</li>
+        <li>Validation des formulaires (tokens CSRF anti-forgery)</li>
+        <li>Limitation du débit de soumission (anti-spam / anti-flooding)</li>
+        <li>Pare-feu applicatif (WAF)</li>
+        <li>Accès restreint aux données par l'équipe autorisée</li>
+      </ul>
+
+      <h2>9. Cookies</h2>
+      <p>Notre site utilise des cookies pour améliorer votre expérience. Pour plus d'informations, consultez notre <a href="/politique-cookies">Politique de cookies</a>.</p>
+
+      <h2>10. Réclamation</h2>
+      <p>Si vous estimez que le traitement de vos données n'est pas conforme au RGPD, vous avez le droit d'introduire une réclamation auprès de l'autorité de contrôle compétente.</p>
+
+      <h2>11. Modifications de cette politique</h2>
+      <p>Cette politique de confidentialité peut être mise à jour à tout moment. La date de dernière mise à jour est indiquée en haut de cette page. Nous vous encourageons à consulter régulièrement cette page.</p>
+
+      <h2>12. Contact</h2>
+      <p>Pour toute question relative à la protection de vos données personnelles :</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Email : <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Tél : +228 22 70 25 96<br>
+        WhatsApp : +228 97 75 40 00
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    /* --- SCROLL REVEAL --- */
+    var reveals = document.querySelectorAll('.ci-reveal');
+    if(reveals.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ci-visible'); io.unobserve(e.target); } });
+      }, {threshold:.15});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
+
+</div>

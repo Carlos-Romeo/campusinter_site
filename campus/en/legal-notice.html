@@ -1,0 +1,157 @@
+<!-- ============================================================
+  CAMPUS INTER — LEGAL NOTICE
+  ------------------------------------------------------------
+  Version : 1.0.0
+  Date    : 16/09/2026
+  Platform: Joomla 4/5 — Article integration.
+  File    : en/legal-notice.html
+
+  JOOMLA INTEGRATION INSTRUCTIONS
+  --------------------------------
+  1. Create the article "Legal Notice" (category: Legal Information).
+  2. Editor in code mode (CodeMirror/JCE): paste this block.
+  3. Disable article HTML filtering.
+  4. Menu: Footer > Legal Notice.
+  ============================================================ -->
+
+<div class="ci-page">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ci-vert:#159447; --ci-vert-fonce:#0F7A3A; --ci-vert-clair:#1DB85E;
+    --ci-vert-bg:#E8F7EE;
+    --ci-noir:#252525; --ci-blanc:#FFFFFF;
+    --ci-fond:#F4F7F4;
+    --ci-texte:#2F3B36; --ci-texte-2:#6B7280;
+    --ci-bordure:#E7EFE8;
+    --ci-grad:linear-gradient(135deg,#159447,#1DB85E);
+    --ci-rayon:18px;
+    --ci-font-titres:'Plus Jakarta Sans',sans-serif;
+    --ci-font-texte:'Inter',sans-serif;
+    --ci-section-pad:clamp(42px,5vw,70px);
+  }
+
+  .ci-page{ margin:0; padding:0; font-family:var(--ci-font-texte); color:var(--ci-texte); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .ci-page *,.ci-page *::before,.ci-page *::after{ box-sizing:border-box; }
+  .ci-page img{ max-width:100%; display:block; }
+  .ci-page a{ text-decoration:none; color:var(--ci-vert-fonce); transition:color .25s; }
+  .ci-page a:hover{ color:var(--ci-vert); }
+  .ci-page h1,.ci-page h2,.ci-page h3,.ci-page h4{ font-family:var(--ci-font-titres); color:var(--ci-noir); line-height:1.2; margin:0 0 .6em; }
+  .ci-page p{ margin:0 0 .5em; }
+  .ci-container{ width:100%; max-width:900px; margin:0 auto; padding-left:clamp(16px,4vw,64px); padding-right:clamp(16px,4vw,64px); }
+  .ci-section{ padding:var(--ci-section-pad) 0; position:relative; }
+
+  .ci-page-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#f1f8f4 0%,#fff 55%); padding:clamp(20px,3vw,36px) 0 clamp(28px,3.5vw,48px); }
+  .ci-page-hero h1{ font-size:clamp(2.2rem,4.2vw,3.65rem); letter-spacing:-.035em; }
+  .ci-page-hero h1 em{ font-style:normal; color:var(--ci-vert); }
+  .ci-hero-sous{ font-size:1.1rem; color:var(--ci-texte); max-width:640px; margin-bottom:0; }
+  .ci-breadcrumb{ font-size:.82rem; color:var(--ci-texte-2); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ci-breadcrumb a{ color:var(--ci-texte-2); }
+  .ci-breadcrumb a:hover{ color:var(--ci-vert); }
+  .ci-breadcrumb .ci-here{ color:var(--ci-noir); font-weight:600; }
+
+  .ci-legal h2{ font-size:clamp(1.4rem,2.5vw,1.8rem); margin-top:1.5em; padding-top:1em; border-top:1px solid var(--ci-bordure); }
+  .ci-legal h2:first-child{ margin-top:0; padding-top:0; border-top:none; }
+  .ci-legal h3{ font-size:1.15rem; margin-top:1em; }
+  .ci-legal p,.ci-legal li{ font-size:1rem; line-height:1.75; }
+  .ci-legal ul,.ci-legal ol{ padding-left:1.5em; margin:0 0 .5em; }
+  .ci-legal li{ margin-bottom:.3em; }
+  .ci-legal strong{ color:var(--ci-noir); }
+  .ci-legal .ci-highlight{ background:var(--ci-vert-bg); border-left:4px solid var(--ci-vert); padding:12px 16px; border-radius:0 var(--ci-rayon) var(--ci-rayon) 0; margin:1em 0; }
+  .ci-legal table{ width:100%; border-collapse:collapse; margin:1em 0; }
+  .ci-legal th,.ci-legal td{ padding:12px 16px; text-align:left; border-bottom:1px solid var(--ci-bordure); font-size:.95rem; }
+  .ci-legal th{ background:var(--ci-fond); font-weight:700; color:var(--ci-noir); }
+  .ci-legal .ci-updated{ display:inline-block; background:var(--ci-vert-bg); color:var(--ci-vert-fonce); font-size:.85rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+
+  @media(max-width:640px){
+    .ci-legal h2{ font-size:1.3rem; }
+    .ci-legal th,.ci-legal td{ padding:10px 12px; font-size:.88rem; }
+  }
+  </style>
+
+  <!-- HERO -->
+  <section class="ci-page-hero">
+    <div class="ci-container">
+      <nav class="ci-breadcrumb" aria-label="Breadcrumb">
+        <a href="/en/">Home</a> <span class="ci-sep">›</span> <span class="ci-here">Legal Notice</span>
+      </nav>
+      <h1><em>Legal</em> Notice</h1>
+      <p class="ci-hero-sous">Legal information regarding the campusinter.com website and its publisher.</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="ci-section">
+    <div class="ci-container ci-legal">
+
+      <span class="ci-updated">Last updated: September 16, 2026</span>
+
+      <h2>1. Website Publisher</h2>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        International Mobility Agency<br>
+        Boulevard de l'Oti, face Massalassi, Bè-Kpota, Golfe 1, Lomé, Togo<br><br>
+        <strong>Phone:</strong> +228 22 70 25 96<br>
+        <strong>WhatsApp:</strong> +228 97 75 40 00<br>
+        <strong>Email:</strong> <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        <strong>Website:</strong> <a href="https://campusinter.com">campusinter.com</a>
+      </div>
+
+      <h2>2. Intellectual Property</h2>
+      <p>All content on this website (text, images, graphics, logos, icons, sounds, software) is the exclusive property of <strong>CAMPUS INTER</strong> or its partners and is protected by international intellectual property laws.</p>
+      <p>Any reproduction, representation, modification, publication, transmission, or distortion of the site or its content, by any means whatsoever, is prohibited without prior written authorization.</p>
+      <p>The trademarks and logos displayed on the site are registered by their respective owners.</p>
+
+      <h2>3. Liability</h2>
+      <h3>3.1 Website Content</h3>
+      <p>The information provided on this site is for informational purposes only. CAMPUS INTER strives to provide accurate and up-to-date information but does not guarantee the accuracy, completeness, or timeliness of the information published.</p>
+      <p>CAMPUS INTER cannot be held responsible for:</p>
+      <ul>
+        <li>Errors or omissions in the site content</li>
+        <li> damages resulting from the use of the site</li>
+        <li>Service interruptions or unavailability</li>
+        <li>Content of third-party websites accessible via hyperlinks</li>
+      </ul>
+
+      <h3>3.2 Advisory Services</h3>
+      <p>CAMPUS INTER offers support and advisory services for international mobility. These services do not constitute legal services. CAMPUS INTER does not guarantee the obtaining of visas, enrollment, or employment, as these decisions rest solely with the relevant authorities.</p>
+
+      <h2>4. Hyperlinks</h2>
+      <p>This website may contain hyperlinks to other websites. CAMPUS INTER exercises no control over the content of these third-party sites and disclaims any responsibility regarding their content or their data protection practices.</p>
+
+      <h2>5. Personal Data</h2>
+      <p>For information about the collection and processing of your personal data, please refer to our <a href="/en/privacy-policy">Privacy Policy</a>.</p>
+
+      <h2>6. Cookies</h2>
+      <p>For information about the use of cookies, please refer to our <a href="/en/cookie-policy">Cookie Policy</a>.</p>
+
+      <h2>7. Applicable Law</h2>
+      <p>This legal notice is governed by the laws in force in the Togolese Republic. In the event of a dispute, the competent courts of Lomé shall have exclusive jurisdiction.</p>
+
+      <h2>8. Contact</h2>
+      <p>For any questions regarding this legal notice:</p>
+      <div class="ci-highlight">
+        <strong>CAMPUS INTER</strong><br>
+        Email: <a href="mailto:contact@campusinter.com">contact@campusinter.com</a><br>
+        Phone: +228 22 70 25 96
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var reveals = document.querySelectorAll('.ci-reveal');
+    if(reveals.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('ci-visible'); io.unobserve(e.target); } });
+      }, {threshold:.15});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
+
+</div>

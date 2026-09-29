@@ -18,6 +18,9 @@ return [
     // ===========================
     // BASE DE DONNÉES
     // ===========================
+    // Supporte MySQL (par défaut) et PostgreSQL (via DB_DRIVER=pgsql)
+    // En production sur Render, DATABASE_URL est défini automatiquement
+    'DB_DRIVER' => getenv('DB_DRIVER') ?: 'mysql',
     'DB_HOST' => getenv('DB_HOST') ?: '127.0.0.1',
     'DB_PORT' => getenv('DB_PORT') ?: '3306',
     'DB_NAME' => getenv('DB_NAME') ?: 'campusinter',
@@ -34,7 +37,7 @@ return [
     'MAIL_PASSWORD' => getenv('MAIL_PASSWORD') ?: '',
     'MAIL_FROM' => getenv('MAIL_FROM') ?: 'noreply@campusinter.com',
     'MAIL_FROM_NAME' => getenv('MAIL_FROM_NAME') ?: 'Campus Inter',
-    'MAIL_TO' => getenv('MAIL_TO') ?: 'admission@rabatam.ci.com',
+    'MAIL_TO' => getenv('MAIL_TO') ?: 'webinfo@campusinter.com',
     'MAIL_ENCRYPTION' => getenv('MAIL_ENCRYPTION') ?: 'tls',
 
     // ===========================

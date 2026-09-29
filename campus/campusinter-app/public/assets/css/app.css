@@ -1151,12 +1151,101 @@ button { cursor: pointer; }
   font-size: .88rem;
 }
 
+.ci-footer__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.ci-footer__links a {
+  color: #cfd8d2;
+  font-size: .82rem;
+  transition: color .25s;
+}
+
+.ci-footer__links a:hover { color: var(--ci-blanc); }
+
 .ci-footer a {
   color: #cfd8d2;
   transition: color .25s;
 }
 
 .ci-footer a:hover { color: var(--ci-blanc); }
+
+/* =====================================================
+   LEGAL PAGES (RGPD)
+   ===================================================== */
+
+.ci-hero--compact {
+  padding: clamp(32px, 5vw, 56px) 0 clamp(40px, 6vw, 72px);
+}
+
+.ci-container--narrow {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ci-card--flat {
+  box-shadow: none;
+  border: 1px solid var(--ci-bordure);
+}
+
+.ci-legal-content h2 {
+  font-family: var(--ci-font-titres);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ci-noir);
+  margin: 32px 0 12px;
+  letter-spacing: -.02em;
+}
+
+.ci-legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.ci-legal-content p {
+  color: var(--ci-texte);
+  font-size: .94rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.ci-legal-content ul {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.ci-legal-content li {
+  color: var(--ci-texte);
+  font-size: .94rem;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.ci-legal-content a {
+  color: var(--ci-vert);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ci-legal-content a:hover {
+  color: var(--ci-vert-fonce);
+}
+
+.ci-legal-content em {
+  color: var(--ci-texte-2);
+  font-size: .85rem;
+}
+
+@media (max-width: 639px) {
+  .ci-footer__links {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
 
 /* =====================================================
    UTILITIES
